@@ -1,0 +1,30 @@
+.card-img{
+    position: relative;
+    float: right;
+    top: -60px;
+    right: 45px;
+}
+
+.card-icon{
+    position: relative;
+    top: -16px;
+    float: right;
+    color: #f3e2c8;
+}
+
+.list-address{
+    overflow-wrap: break-word; color: rgb(51, 51, 51); margin-top: 6px;font-size: 13px;
+}
+
+.textarea-bottom{
+    /*border-bottom: 1PX solid #ddd;*/
+}
+
+.address-add-iconscan{
+    position: relative;
+    float: right;
+    bottom: 122px;
+    color: rgb(51, 51, 51);
+    right: 10px;
+}
+

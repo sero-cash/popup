@@ -1,0 +1,68 @@
+.btn-bottom{
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+.btn-bottom a{
+    margin: 5px;
+}
+
+.am-tag {
+    display: inline-block;
+    position: relative;
+    font-size: 14px !important;
+    text-align: center;
+    height: 25px !important;
+    line-height: 25px !important;
+    box-sizing: border-box;
+    margin: 5px;
+    padding: 0 5px !important;
+}
+
+.am-tag-normal {
+    background-color: #c7c9f3 !important;
+    color: #5d5d5d !important;
+}
+
+.tag-div{
+    border-top: 1px solid #e4e0e0;
+    border-bottom: 1px solid #e4e0e0;
+    padding: 10px 0px;
+    min-height: 30px;
+    margin: 0 0 20px;
+}
+
+
+.am-tag-disabled {
+    color: #5d5d5d !important;
+    background-color: #c7c9f3 !important;
+    border: 1PX solid #ddd;
+    border-radius: 3px;
+    letter-spacing:1px;
+}
+
+.am-tag-active {
+    background-color: #c7c9f3 !important;
+    color: #5d5d5d !important;
+    border: 1PX solid #ddd !important;
+    border-radius: 3px;
+}
+
+.customer-tag{
+    background-color: #c7c9f3 !important;
+    color: #5d5d5d !important;
+    border: 1PX solid #ddd !important;
+    border-radius: 3px;
+}
+
+html:not([data-scale]) .am-tag-active::before {
+    border: 1PX solid #ddd !important;
+}
+/*.am-list-line::after {*/
+/*    border-bottom: unset !important;*/
+/*}*/
+
+/*.am-list-line{*/
+/*    border-bottom: unset !important;*/
+/*}*/

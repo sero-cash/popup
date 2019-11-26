@@ -1,0 +1,13 @@
+.my-header{
+    /*background: rgb(60 67 86);*/
+    background-color: #f7f7f7;
+    width: 100%;
+}
+
+.my-address{
+    width: 50%;
+    float: left;
+    padding: 5px 0;
+    font-size: 16px;
+    color: #333333;
+}

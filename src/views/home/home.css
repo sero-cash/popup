@@ -1,0 +1,105 @@
+.am-card{
+    background: #139abf;
+}
+
+.tabbar {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    z-index: 999;
+    background:#f5f5f9
+}
+
+.layout-top{
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 999;
+}
+
+.am-card-header-content{
+    color: #f9f9f9;
+
+}
+
+.am-card-header-extra{
+    color: #f9f9f9;
+}
+
+.am-card-body div {
+    color: #f9f9f9;
+}
+
+.am-card-footer{
+    color:#f9f9f9;
+    font-weight: bold;
+    font-size: 32px;
+}
+
+.am-card-footer-content {
+    flex: 0 1;
+}
+
+.am-card-body {
+    position: unset;
+    border-top: unset;
+    padding:0px 15px 6px;
+}
+
+.home-list-item-money {
+    color: #888;
+    font-size: 12px;
+}
+
+.home-list-item-number{
+    color: #000;
+    font-size: 16px;
+}
+
+.am-list-item{
+    background: #fdfdfd !important;
+}
+
+.home-list-item-name{
+    font-size: 18px;
+    overflow-wrap: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #64727e;
+}
+.am-list-item .am-list-line .am-list-extra{
+    flex-basis: 50%;
+}
+
+/*.am-list-body::after {*/
+/*    background-color:unset !important;*/
+/*}*/
+
+.home-list-title{
+    background: #fdfdfd;
+    width: 100%;
+    color: #000;
+    font-size: 17px;
+    font-weight: bold;
+    border-bottom: 1PX solid #ddd;
+    padding: 0px 0px 10px;
+}
+
+.currency-icon-border{
+    border: 1PX solid #ddd;
+    border-radius: 25px;
+    padding: 5px;
+}
+
+.icon-pkr{
+    width: 16px;
+    position: relative;
+    top: 4px;
+    margin-right: 5px;
+}
+
+.icon-select-account-setting{
+    position: relative;
+    float: right;
+    bottom: 4px;
+}

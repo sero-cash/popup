@@ -1,0 +1,47 @@
+.sub-title {
+    color: #333;
+    font-weight: 800;
+    font-size: 15px;
+    padding: 15px 0 9px 15px;
+}
+.not-square-grid .am-grid-icon {
+    width: 40px;
+    height: 60px;
+}
+
+.space-carousel {
+    padding: 16px;
+    background: #fdfdfd;
+    overflow: hidden;
+}
+
+.dapp-icon{
+    border: #ddd 1px solid;
+    border-radius: 10px;
+    padding: 5px 5px 3px;
+    background: #fcfcfc;
+    box-shadow: 1px 1px 9px #ddd;
+}
+
+.passwordInput{
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.h5-iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 45px 0 0;
+    padding: 0;
+    /*height: 100%;*/
+    width: 100%;
+    z-index: 100;
+}
+
+.dapp-img{
+    width: 48px;
+    height: 48px;
+}

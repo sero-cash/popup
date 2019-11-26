@@ -3,6 +3,7 @@
   "version": "1.0.1",
   "private": true,
   "main": ".",
+  "homepage": ".",
   "dependencies": {
     "jsuperzk": "file:../jsuperzk",
     "popup-service": "file:../popup-service",

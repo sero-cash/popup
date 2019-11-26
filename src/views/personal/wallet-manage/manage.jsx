@@ -66,23 +66,21 @@ class Manage extends Component {
                 {
                     text: lang.e().button.confirm,
                     onPress: password => new Promise((resolve, reject) => {
-                        Toast.loading(lang.e().toast.loading.exporting,60)
+
                         if(password){
-                            setTimeout(function () {
-                                try{
-                                    ac.exportMnemonic(that.props.match.params.address,password).then(data=>{
-                                        Toast.success(lang.e().toast.export,2)
-                                        resolve();
-                                        url.goPage(url.AccountCreate2,url.manage(that.props.match.params.address));
-                                    }).catch(error=>{
-                                        Toast.fail(error,3);
-                                        reject();
-                                    });
-                                }catch (e) {
-                                    Toast.fail(e.message,3);
-                                    reject();
+                            Toast.loading(lang.e().toast.loading.exporting,60)
+                            ac.exportMnemonic(that.props.match.params.address,password).then(data=>{
+                                Toast.success(lang.e().toast.export,2)
+                                resolve();
+                                url.goPage(url.AccountCreate2,url.manage(that.props.match.params.address));
+                            }).catch(e=>{
+                                if (e.indexOf("wrong passphrase") > -1) {
+                                    Toast.fail(lang.e().toast.error.passwordError, 2);
+                                } else {
+                                    Toast.fail(e, 3);
                                 }
-                            },500)
+                                reject();
+                            });
                         }else{
                             reject();
                         }

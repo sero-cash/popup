@@ -68,8 +68,7 @@ class Form extends Component{
                         checkConfirming: false
                     });
                 }else{
-
-                        Toast.loading(lang.e().toast.loading.importing);
+                        Toast.loading(lang.e().toast.loading.importing,60);
                         setTimeout(function () {
                             account.importMnemonic(value["name"],value["hint"],value["word"],value["password"]).then(function (data) {
                                 Toast.success(lang.e().toast.success.import,1.5);

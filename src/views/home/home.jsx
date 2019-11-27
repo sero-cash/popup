@@ -129,7 +129,7 @@ class Home extends Component {
                         this.accounts();
                         modalId.close();
                     }}>
-                        {ac.name}
+                        {ac.name}({ac.mainPKr})
                         {/*<Brief>{utils.ellipsisAddress(ac.address)}</Brief>*/}
                     </Item>
                 )
@@ -186,8 +186,7 @@ class Home extends Component {
     accounts() {
         let current = account.getCurrent();
         if (current) {
-            account = new Account(current.address);
-            let detail = account.Detail();
+            let detail = account.Detail(current.address);
             // let assets = acmng.balancesOf(detail.tk);
             this.setState({
                 current: current,

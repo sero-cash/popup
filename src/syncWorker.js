@@ -1,15 +1,18 @@
 import Account from "./components/account/account";
 import {assetService} from "./components/service/service";
+import {storage,keys} from "./config/common";
 
 window.hasSet = new Map();
-
+const account = new Account();
 export function register() {
-    let account = new Account();
+
     account.initRpc();
     assetService.init();
 
     console.log("init worker success");
     initAccountSyncService();
+
+    repairData();
     setInterval(function () {
         initAccountSyncService();
     }, 1000)
@@ -39,3 +42,37 @@ function initAccountSyncService() {
         }
     }
 }
+
+function repairData() {
+    const storageLength = storage.length();
+    let removeKeys = [];
+    for (let i = 0; i < storageLength; i++) {
+        let key = storage.key(i)
+        if (key
+            && key.indexOf("account:") === -1
+            && key.indexOf("settings:") === -1
+            && key.indexOf("dapps:") === -1
+            && key.indexOf("address:") === -1
+            && key.indexOf("decimals:") === -1){
+            removeKeys.push(key)
+        }
+        if (key.indexOf("account:pkrIndex") > -1) {
+            removeKeys.push(key)
+        }
+        if (key.indexOf("account:currentPKr") > -1) {
+            removeKeys.push(key)
+        }
+    }
+
+    if (removeKeys.length > 0) {
+        acmng.clearAccounts();
+        removeKeys.forEach(function (value) {
+            storage.delete(value)
+        })
+    }
+
+    account.repairAccountData().then()
+
+
+}
+

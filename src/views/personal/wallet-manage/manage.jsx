@@ -8,16 +8,17 @@ class Manage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            ac:''
+            detail:''
         }
     }
 
     componentWillMount() {
         const address = this.props.match.params.address;
         let act = new Account(address);
-        if(act.Detail()){
+        const detail = act.Detail(address);
+        if(detail){
             this.setState({
-                ac:act
+                detail:detail
             })
         }else{
             Toast.fail(lang.e().toast.error.accountExisted,1)
@@ -28,7 +29,7 @@ class Manage extends Component {
     }
 
     changePasswordHint = ()=>{
-        const detail = this.state.ac.Detail();
+        const detail = this.state.detail;
         Modal.prompt(lang.e().page.walletManage.changePasswordHint, '',
             [
                 {
@@ -90,6 +91,7 @@ class Manage extends Component {
     }
 
     render() {
+        const {detail} = this.state;
         return <div style={{height: document.documentElement.clientHeight-45}}>
             <div className="layout-top">
                 <NavBar
@@ -110,14 +112,14 @@ class Manage extends Component {
                     <WingBlank size="lg">
                         <List.Item
                             arrow="horizontal"
-                            thumb={<Icon className="icon-avatar" type={this.state.ac.Detail().avatar} size="lg"/>}
+                            thumb={<Icon className="icon-avatar" type={detail.avatar} size="lg"/>}
                             multipleLine
                             onClick={()=>{
                                 // window.location.replace("/#/manage/name/"+ this.state.ac.Detail().address)
-                                url.goPage(url.manageName(this.state.ac.Detail().address),url.manage(this.props.match.params.address));
+                                url.goPage(url.manageName(detail.address),url.manage(this.props.match.params.address));
                             }}
                         >
-                            {this.state.ac.Detail().name} <List.Item.Brief>{ this.state.ac.Detail().mainPKr}</List.Item.Brief>
+                            {detail.name} <List.Item.Brief>{ detail.mainPKr}</List.Item.Brief>
                         </List.Item>
                     </WingBlank>
                 </List>

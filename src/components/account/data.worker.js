@@ -73,7 +73,7 @@ function getSK(msg){
         msg.data = wallet.getSk(password)
         _postMessage(msg)
     } catch (error) {
-        msg.data=error.message;
+        msg.error=error.message;
         _postMessage(msg)
     }
 }

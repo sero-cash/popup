@@ -50,8 +50,7 @@ class WalletManager extends Component {
         let i=0;
         let tmpArray = [];
         for(let account of list){
-            account = new Account(account.address)
-            const detail = account.Detail();
+            const detail = ac.Detail(account.address);
             const mainPKr = detail.mainPKr;
             const currentPKr = detail.currentPKr;
             tmpArray.push(

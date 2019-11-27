@@ -133,8 +133,7 @@ class Transactions {
                 const current = account.getCurrent();
                 from = current.tk;
             }else{
-                let account = new Account(from)
-                from = account.Detail().tk;
+                from = account.Detail(from).tk;
             }
             let txReq = {}
             txReq.From=from;

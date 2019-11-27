@@ -217,30 +217,77 @@ class Account {
     }
 
     Detail(address) {
-        if (!address){
-            address = this.address;
-        }else{
-            this.address = address;
+        const that = this;
+        if(!address){
+            return
         }
         let detail = storage.get(keys.detailKey(address));
         if (detail) {
             if (!detail.mainPKr) {
-                detail.mainPKr = this.MainPKr();
+                detail.mainPKr = that.MainPKr();
             }
-            let keystore = this.Keystore(this.address);
+            let keystore = storage.get(keys.infoKey(address));
             if(!detail.currentPKr){
-                detail.currentPKr =  this.MainPKr();
+                detail.currentPKr =  that.MainPKr();
             }
             assetService.getPKrIndex(keystore.tk).then(info=>{
                 detail.currentPKr = jsuperzk.createPkrHash( keystore.tk, info.PkrIndex,keystore.version);
-                storage.set(keys.detailKey(this.address), detail);
+                storage.set(keys.detailKey(address), detail);
             }).catch(err=>{
 
             })
-
             return detail
         }
     }
+
+
+    async repairAccountData(){
+        const storageLength = storage.length();
+        for(let i=0;i<storageLength;i++){
+            const key = storage.key(i);
+            if(key.indexOf("account:detail:")>-1){
+                let detail = storage.get(key);
+                // if(key.indexOf(detail.address) === -1){
+                //
+                // }
+                detail.address = key.substring("account:detail:".length);
+                const keystore = storage.get(keys.infoKey(detail.address));
+                if (keystore){
+                    const info = await assetService.getPKrIndex(keystore.tk);
+                    detail.mainPKr = jsuperzk.createPkrHash( keystore.tk,1,keystore.version);
+                    detail.tk=keystore.tk;
+                    detail.currentPKr = jsuperzk.createPkrHash( keystore.tk, info.PkrIndex,keystore.version);
+                    storage.set(keys.detailKey(detail.address), detail);
+                }
+            }
+        }
+    }
+
+    // Detail(address) {
+    //     if (!address){
+    //         address = this.address;
+    //     }else{
+    //         this.address = address;
+    //     }
+    //     let detail = storage.get(keys.detailKey(address));
+    //     if (detail) {
+    //         if (!detail.mainPKr) {
+    //             detail.mainPKr = this.MainPKr();
+    //         }
+    //         let keystore = this.Keystore(this.address);
+    //         if(!detail.currentPKr){
+    //             detail.currentPKr =  this.MainPKr();
+    //         }
+    //         assetService.getPKrIndex(keystore.tk).then(info=>{
+    //             detail.currentPKr = jsuperzk.createPkrHash( keystore.tk, info.PkrIndex,keystore.version);
+    //             storage.set(keys.detailKey(this.address), detail);
+    //         }).catch(err=>{
+    //
+    //         })
+    //
+    //         return detail
+    //     }
+    // }
 
     Remove() {
         let addresses = storage.get(keys.account.addresses);

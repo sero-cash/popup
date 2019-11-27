@@ -18,16 +18,17 @@ class ManageName extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            ac
+            detail:{}
         }
     }
 
     componentWillMount() {
         const address = this.props.match.params.address;
         let act = new Account(address);
-        if(act.Detail()){
+        let detail = act.Detail(address)
+        if(detail){
             this.setState({
-                ac:act
+                detail:detail
             })
         }else{
             Toast.fail("Account not exist!",1)
@@ -41,7 +42,7 @@ class ManageName extends Component {
         let modalId ;
         modalId = Modal.alert(lang.e().page.walletManage.changeProfilePhoto, <div><Grid data={data} hasLine={false} onClick={(o,i)=>{
             const type = o.icon.props.type;
-                const detail = this.state.ac.Detail();
+                const detail = this.state.detail;
                 detail.avatar = type;
                 ac.setDetail(detail);
                 this.setState({
@@ -72,7 +73,7 @@ class ManageName extends Component {
                     text: lang.e().button.confirm,
                     onPress: value => new Promise((resolve, reject) => {
                         if(value){
-                            const detail = this.state.ac.Detail();
+                            const detail = this.state.detail;
                             detail.name = value;
                             ac.setDetail(detail);
                             this.setState({
@@ -88,6 +89,7 @@ class ManageName extends Component {
     }
 
     render() {
+        const {detail} = this.state;
         return <div style={{height: document.documentElement.clientHeight-45}}>
             <div className="layout-top">
                 <NavBar
@@ -107,10 +109,10 @@ class ManageName extends Component {
                     <WingBlank size="lg">
                         <List.Item
                             onClick={this.showChangeAvatar}
-                            extra={<Icon type={this.state.ac.Detail()?this.state.ac.Detail().avatar:""} className="icon-avatar" size="lg"/>} thumb={<Icon type="iconavatar"  color="gray"/>}><span >{lang.e().page.walletManage.changeProfilePhoto}</span></List.Item>
+                            extra={<Icon type={detail?detail.avatar:""} className="icon-avatar" size="lg"/>} thumb={<Icon type="iconavatar"  color="gray"/>}><span >{lang.e().page.walletManage.changeProfilePhoto}</span></List.Item>
                         <List.Item
                             onClick={this.showChangeName}
-                            extra={<span style={{color:"#4e73df"}}>{this.state.ac.Detail()?this.state.ac.Detail().name:""}</span>} thumb={<Icon type="iconname" color="gray"/>}><span >{lang.e().page.walletManage.changeWalletName}</span></List.Item>
+                            extra={<span style={{color:"#4e73df"}}>{detail?detail.name:""}</span>} thumb={<Icon type="iconname" color="gray"/>}><span >{lang.e().page.walletManage.changeWalletName}</span></List.Item>
                     </WingBlank>
                 </List>
             </div>

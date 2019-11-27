@@ -155,6 +155,9 @@ class Form extends Component {
                                     }, 1500)
                                 }
                             }).catch(e=>{
+                                if(typeof e === "object"){
+                                    e = e.message;
+                                }
                                 if (e.indexOf("wrong passphrase") > -1) {
                                     Toast.fail(lang.e().toast.error.passwordError, 2);
                                 } else {
@@ -302,8 +305,8 @@ class Transfer extends Component {
     componentDidMount() {
         const currency = this.props.match.params.currency;
         const current = account.getCurrent();
-        account = new Account(current.address);
-        assetService.balanceOf(account.Detail().tk).then(data=>{
+        // account = new Account(current.address);
+        assetService.balanceOf(account.Detail(current.address).tk).then(data=>{
             if(data && typeof data === 'object'){
                 data.forEach((amount,cy)=>{
                     if(cy ===  currency){
@@ -318,7 +321,7 @@ class Transfer extends Component {
         this.setState({
             currency: currency,
             current: current,
-            detail: account.Detail(),
+            detail: account.Detail(current.address),
         })
     }
 

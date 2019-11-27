@@ -15,6 +15,16 @@ export function register() {
     }, 1000)
 }
 
+document.onvisibilitychange = ()=>{
+    let visibility = document.visibilityState;
+    console.log("document.visibilityState:",visibility);
+    if(visibility === "visible"){
+        alert(visibility);
+        assetService.init();
+    }
+}
+
+
 function initAccountSyncService() {
     if (!window.hasSet) {
         window.hasSet = new Map();

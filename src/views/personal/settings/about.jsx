@@ -63,7 +63,7 @@ class AboutUs extends Component {
                     <div className="my-header"
                          style={{"height": document.documentElement.clientHeight * 0.15, padding: "30px 0px"}}>
                         <img src={sero} style={{width: "60px"}}/>
-                        <div style={{color:"#888"}}>v1.0.0</div>
+                        <div style={{color:"#888"}}>v1.0.1</div>
                     </div>
                     <List>
                         {abouts}

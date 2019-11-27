@@ -19,7 +19,6 @@ document.onvisibilitychange = ()=>{
     let visibility = document.visibilityState;
     console.log("document.visibilityState:",visibility);
     if(visibility === "visible"){
-        alert(visibility);
         assetService.init();
     }
 }

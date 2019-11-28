@@ -24,7 +24,6 @@ class Personal extends Component {
                 </div>
 
                 {/*<div style={{background:"#f7f7f7"}}>*/}
-
                 {/*    <Flex style={{textAlign: 'center'}}>*/}
                 {/*        <Flex.Item>*/}
                 {/*            <List>*/}

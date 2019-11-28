@@ -65,7 +65,6 @@ function repairData() {
     }
 
     if (removeKeys.length > 0) {
-        acmng.clearAccounts();
         removeKeys.forEach(function (value) {
             storage.delete(value)
         })

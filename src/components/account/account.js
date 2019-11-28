@@ -143,7 +143,8 @@ class Account {
                     if (addressArray) {
                         for(let addr of addressArray){
                             if(addr === address){
-                                return "Account Exist!! ";
+                                reject("Account Exist!!")
+                                return
                             }
                         }
                         addressArray.push(address);
@@ -217,25 +218,28 @@ class Account {
     }
 
     Detail(address) {
-        const that = this;
         if(!address){
             return
         }
         let detail = storage.get(keys.detailKey(address));
         if (detail) {
-            if (!detail.mainPKr) {
-                detail.mainPKr = that.MainPKr();
-            }
             let keystore = storage.get(keys.infoKey(address));
-            if(!detail.currentPKr){
-                detail.currentPKr =  that.MainPKr();
-            }
-            assetService.getPKrIndex(keystore.tk).then(info=>{
-                detail.currentPKr = jsuperzk.createPkrHash( keystore.tk, info.PkrIndex,keystore.version);
-                storage.set(keys.detailKey(address), detail);
-            }).catch(err=>{
+            if(keystore.tk){
+                if (!detail.mainPKr) {
+                    detail.mainPKr = jsuperzk.createPkrHash(keystore.tk, 1,keystore.version);
+                }
 
-            })
+                if(!detail.currentPKr){
+                    detail.currentPKr =  jsuperzk.createPkrHash(keystore.tk, 1,keystore.version);
+                }
+
+                assetService.getPKrIndex(keystore.tk).then(info=>{
+                    detail.currentPKr = jsuperzk.createPkrHash( keystore.tk, info.PkrIndex,keystore.version);
+                    storage.set(keys.detailKey(address), detail);
+                }).catch(err=>{
+
+                })
+            }
             return detail
         }
     }

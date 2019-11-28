@@ -77,7 +77,7 @@ class Form extends Component{
                                     // window.location.href="/"
                                 },1000)
                             }).catch(error=>{
-                                Toast.fail(ret,2);
+                                Toast.fail(error,2);
                                 that.setState({
                                     checkConfirming: false
                                 });

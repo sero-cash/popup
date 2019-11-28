@@ -245,10 +245,13 @@ class Browser extends Component {
                                 Toast.success(lang.e().toast.success.send, 2)
                                 cb(hash)
                             }).catch(error=>{
-                                if (e.message.indexOf("wrong passphrase") > -1) {
+                                if(typeof error === "object"){
+                                    error = error.message;
+                                }
+                                if (error.indexOf("wrong passphrase") > -1) {
                                     Toast.fail(lang.e().toast.error.passwordError, 2);
                                 } else {
-                                    Toast.fail(e.message, 3);
+                                    Toast.fail(error, 3);
                                 }
                             })
                             // Toast.fail(lang.e().button.openTip,3)

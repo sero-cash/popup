@@ -118,6 +118,7 @@ class Transactions {
 
     transfer(tx, password) {
         return new Promise(function (resolve,reject) {
+            let act = new Account()
             let cy = tx.cy;
             let gas = tx.gas;
             let gasPrice = tx.gasPrice;
@@ -131,9 +132,11 @@ class Transactions {
             }
             if (!from) {
                 const current = account.getCurrent();
+                act = new Account(current.address);
                 from = current.tk;
             }else{
-                from = account.Detail(from).tk;
+                act = new Account(from);
+                from = act.Detail(from).tk;
             }
             let txReq = {}
             txReq.From=from;
@@ -142,8 +145,8 @@ class Transactions {
             txReq.Value=tx.value;
             txReq.Data=tx.data;
             txReq.Gas=new BigNumber(gas).toString(16);
-            txReq.GasPrice=new BigNumber(gasPrice).toString(16);;
-            account.getSK(password).then(sk=>{
+            txReq.GasPrice=new BigNumber(gasPrice).toString(16);
+            act.getSK(password).then(sk=>{
                 txReq.SK = sk;
                 assetService.commitTx(txReq).then(rest=>{
                     resolve(rest)

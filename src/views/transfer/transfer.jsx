@@ -84,8 +84,8 @@ class Form extends Component {
                     return
                 }
             } else {
-                account = new Account(this.props.address);
-                let detail = account.Detail(this.props.address);
+                account = new Account();
+                let detail = account.getCurrent();
                 assetService.balanceOf(detail.tk).then(data=>{
                     console.log("data->",data);
                     if(data && typeof data === 'object'){

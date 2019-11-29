@@ -18,6 +18,8 @@ class Language {
                 return this.en_US;
             } else if (tLang === "zh_CN") {
                 return this.zh_CN;
+            } else if (tLang === "ja_JP") {
+                return this.ja_JP;
             } else {
                 return this.en_US;
             }
@@ -25,7 +27,8 @@ class Language {
     }
 
     en_US = {
-
+        key:"en_US",
+        value:"English",
         button: {
             confirm: "Confirm",
             cancel: "Cancel",
@@ -92,7 +95,7 @@ class Language {
             importWallet: "Import Wallet",
             clearData:"Clear app data",
             confirmClear:"Please confirm that you have backed up your account. Cleared will resynchronize transaction data",
-            clearTip:'Click "Confirm" to start syncing data. There may be a white screen during the process. Please wait patiently for data synchronization to complete, do not end the process easily.'
+            clearTip:'Click "Confirm" to start syncing data. There may be a white screen during the process. Please wait patiently for data synchronization to complete, do not end the process easily.',
         },
 
         page: {
@@ -237,6 +240,8 @@ class Language {
 
 
     zh_CN = {
+        key:"zh_CN",
+        value:"简体中文",
         button: {
             confirm: "确认",
             cancel: "取消",
@@ -304,7 +309,7 @@ class Language {
             importWallet: "导入钱包",
             clearData:"清除应用数据",
             confirmClear:"请确认你已经备份好账户。清除后将重新同步交易数据",
-            clearTip:"点击“确认”开始同步数据，过程中可能会出现白屏，请耐心等待数据同步完成，不要轻易结束进程。"
+            clearTip:"点击“确认”开始同步数据，过程中可能会出现白屏，请耐心等待数据同步完成，不要轻易结束进程。",
         },
 
         page: {
@@ -447,7 +452,219 @@ class Language {
             }
 
         }
-    }
+    };
+
+    ja_JP = {
+        key:"ja_JP",
+        value:"日本語",
+        button: {
+            confirm: "確認する",
+            cancel: "キャンセル",
+            next: "次",
+            receive: "受け取る",
+            transfer: "転送",
+            add: "加える",
+            save: "セーブ",
+            deleteAddress: "住所を削除",
+            createWallet: "ウォレットを作成",
+            importWallet: "ウォレットをインポート",
+            create: "ート",
+            done: "完了",
+            import: "完了",
+            ok: "OK",
+            openTip: "10月31日にオープン",
+        },
+
+        navbar: {
+            wallet: "財布",
+            dapp: "DApp",
+            my: "僕の",
+        },
+
+        toast: {
+            info: {
+                quitApp: "もう一度押すとアプリが終了します！",
+                createWallet: "最初にウォレットを作成してください!"
+            },
+            success: {
+                add: "正常に追加されました",
+                copy: "正常にコピーされました",
+                create: "ウォレットを作成しました 首尾よく",
+                export: "正常にエクスポートされました",
+                save: "正常に保存",
+                import: "正常にインポートされました",
+                send: "正常に送信されました",
+                clear: "正常にクリアされました"
+            },
+            loading: {
+                creating: "作成...",
+                exporting: "エクスポートしています...",
+                importing: "インポートしています...",
+                sending: "送信 ..."
+            },
+            error: {
+                passwordVerify: "少なくとも8文字のパスワード！",
+                passwordNotMatch: "パスワードが一致しません！",
+                incorrectOrder: "ニーモニックフレーズの順序が正しくありません！",
+                invalidAddress: "無効なアドレス！",
+                accountExisted: "アカウントは既に存在します！",
+                notEnough: "バランスが十分ではありません！",
+                passwordError: "間違ったパスワード！",
+                notEnoughFee: "料金を支払うのに十分なSEROがありません！"
+            }
+        },
+
+        modal: {
+            help: "助けて",
+            sure: "本気ですか？？？",
+            mainPKr: "これは、マイニングなどの頻繁な収集に使用できる収集アドレスです。",
+            pkr: "収集アドレスは、トランザクションが成功するたびに変更されます。",
+            createWallet: "ウォレットを作成",
+            importWallet: "ウォレットをインポート",
+            clearData:"アプリデータを消去する",
+            confirmClear:"アカウントをバックアップしたことを確認してください。トランザクションデータはクリア後に再同期されます",
+            clearTip:'[確認]をクリックして、データの同期を開始します。プロセス中に白い画面が表示される場合があります。データの同期が完了するまでお待ちください。プロセスを突然終了しないでください。'
+        },
+
+        page: {
+            wallet: {
+                mainPKr: "メインPKr",
+                PKr: "PKr",
+                Assets: "資産",
+                selectWallet: "ウォレットを選択",
+            },
+
+            txList: {
+                all: "すべて",
+                out: "でる",
+                in: "に",
+                noData: "データなし",
+            },
+
+            txDetail: {
+                title: "取引情報",
+                success: "成功",
+                pending: "ペンディング",
+                amount: "量",
+                fee: "料金",
+                from: "から",
+                to: "に",
+                hash: "ハッシュ",
+                block: "ブロック",
+                goto: "詳細については、ブロックエクスプローラーに移動してください"
+            },
+
+            txTransfer: {
+                balance: "バランス",
+                address: "住所を",
+                inputAmount: "入力量",
+                inputAddress: "SEROアドレスを入力してください",
+                fee: "料金",
+                total: "合計",
+                amount: "量",
+                gas: "ガス",
+                gasPrice: "ガス価格",
+                inputPassword: "入力パスワード",
+                passwordMsg: "アカウントのパスワード"
+            },
+
+            addressBook: {
+                title: "住所録",
+                add: "住所を追加",
+                name: "名",
+                address: "住所を",
+                description: "説明（オプション）",
+                detail: "住所の詳細",
+            },
+
+            walletManage: {
+                mainPKr: "メインPKr",
+                PKr: "PKr",
+                passwordHint: "パスワードのヒント",
+                export: "ニーモニックフレーズのエクスポート",
+                password: "パスワードを入力してください",
+                changePasswordHint: "パスワードのヒントを変更する",
+                changeProfilePhoto: "プロフィール写真の変更",
+                changeWalletName: "ウォレット名を変更",
+            },
+
+            setting: {
+                language: "言語",
+                unit: "通貨単位",
+                node: "ノード設定",
+                pkr: "PKrを確認する"
+            },
+
+            create: {
+                import: "インポート",
+                step1: {
+                    title: "SEROウォレットを作成",
+                    walletName: "ウォレット名",
+                    password: "パスワード",
+                    rePassword: "パスワードを再度入力してください",
+                    hint: "パスワードヒント（オプション）",
+                    passwordTips: "少なくとも8文字。大文字と小文字のアルファベット、数字、記号を混在させることをお勧めします"
+                },
+                step2: {
+                    title: "バックアップのヒント",
+                    d1: "ニーモニックを取得することは、すべての資産を所有することに等しい",
+                    d2: "バックアップニーモニック",
+                    d3: "ニーモニックを書き留めてください。スマートフォンが紛失、盗難、破損した場合、Mnemonicを使用して資産を回復できます",
+                    d4: "オフラインストレージ",
+                    d5: "インターネットから隔離された安全な場所に保存してください。メール、アルバム、ソーシャルアプリなどのネットワーク環境でニーモニックを共有または保存しないでください。",
+                    d6: "スクリーンショットを撮らないでください",
+                    d7: "スクリーンショットを共有または保存しないでください。サードパーティが収集したスクリーンショットは、資産の損失につながる可能性があります。",
+                },
+                step3: {
+                    title: "バックアップニーモニックフレーズ",
+                    d1: "ニーモニックフレーズを適切にメモし、安全にバックアップしてください",
+                },
+                step4: {
+                    title: "確認する",
+                    d1: "ニーモニックフレーズを正しい順序で選択してください",
+                },
+            },
+            import: {
+                tips: "ニーモニックフレーズのインポート中にパスワードをリセットできます",
+                inputTips: "ニーモニックフレーズをスペースで区切って入力してください",
+                name: "ウォレット名",
+                password: "ウォレットパスワード",
+                rePassword: "パスワードを再度入力してください",
+                hint: "パスワードのヒント",
+            },
+            my: {
+                addressBook: "住所録",
+                walletManage: "ウォレット管理",
+                settings: "設定",
+                termOfUse: "利用規約",
+                about: "私たちに関しては",
+                clear: "アプリのデータを消去",
+
+                address: {
+                    name: "名",
+                    address: "住所を",
+                    description: "説明（オプション）",
+                    add: "住所を追加",
+                    edit: "住所を編集",
+                    detail: "住所の詳細"
+                },
+                manage: {
+                    mainPKr: "メインPKr",
+                    pkr: "PKr",
+                    hint: "パスワードのヒント",
+                    export: "ニーモニックフレーズのエクスポート"
+                },
+
+            },
+            dapp:{
+                search:"DApp URLを入力してください",
+                invalidDApp:"無効なDApp URL",
+                recent:"最近",
+                recommended:"お勧め",
+            }
+
+        }
+    };
 }
 
 export default Language

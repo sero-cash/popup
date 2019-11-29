@@ -104,19 +104,25 @@ class Settings extends Component {
                 <List>
                     <WingBlank size="lg">
                         <List.Item extra={
-                            <span style={{fontSize: "14px"}}>{config.language === "zh_CN" ? "简体中文" : "English"}</span>
+                            <span style={{fontSize: "14px"}}>{lang.e().value}</span>
                         } arrow="horizontal"
                                    onClick={() => {
                                        Modal.operation([
                                            {
-                                               text: "English", onPress: () => {
-                                                   config.setLanguage("en_US");
+                                               text: lang.en_US.value, onPress: () => {
+                                                   config.setLanguage(lang.en_US.key);
                                                    url.goPage(url.Settings + "?" + new Date());
                                                }
                                            },
                                            {
-                                               text: "简体中文", onPress: () => {
-                                                   config.setLanguage("zh_CN");
+                                               text: lang.zh_CN.value, onPress: () => {
+                                                   config.setLanguage(lang.zh_CN.key);
+                                                   url.goPage(url.Settings + "?" + new Date());
+                                               }
+                                           },
+                                           {
+                                               text: lang.ja_JP.value, onPress: () => {
+                                                   config.setLanguage(lang.ja_JP.key);
                                                    url.goPage(url.Settings + "?" + new Date());
                                                }
                                            }

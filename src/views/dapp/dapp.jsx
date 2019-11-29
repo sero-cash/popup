@@ -49,8 +49,11 @@ const data = [
         text: `ACES`,
         url:"http://47.92.113.69/",
     },
-
-
+    {
+        icon: <div className="dapp-icon"><img src="http://alpha-live.gitee.io/alpha/logo.png"  className="dapp-img"/></div>,
+        text: `ALPHA`,
+        url:"http://alpha-live.gitee.io/alpha/index.html",
+    },
 ];
 
 class DApp extends Component {

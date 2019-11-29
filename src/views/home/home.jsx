@@ -137,7 +137,7 @@ class Home extends Component {
         }
         modalId = Modal.alert(
             <div>
-                <span>Select Wallet</span>
+                <span>{lang.e().page.wallet.selectWallet}</span>
                 <Icon type="iconsetting" className="icon-select-account-setting" onClick={() => {
                     modalId.close();
                     url.goPage(url.WalletManager, url.Home);
@@ -148,7 +148,9 @@ class Home extends Component {
                 <List>
                     {items}
                 </List>
-            </div>)
+            </div>,[
+                {text:lang.e().button.ok}
+            ])
 
     }
 

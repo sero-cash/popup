@@ -132,18 +132,13 @@ class TransferList extends Component{
 
         const {datas,hasMore,isLoading} = this.state;
         let renderTx = [];
-        console.log("datas===> ",datas)
 
         if(datas && datas.length>0){
             for(let i=datas.length-1;i>=0;i--){
                 let time;
                 const tx = datas[i];
                 if(tx && tx.Time){
-                    if(typeof tx.Time === "string"){
-                        time = new Date(parseInt(tx.Time)*1000).toLocaleString()
-                    }else{
-                        time = new Date(tx.Time*1000).toLocaleString()
-                    }
+                    time = utils.formatDate(tx.Time)
                 }
                 let value = 0;
                 tx.Tkn.forEach(function (amount,cy) {

@@ -20,6 +20,8 @@ class Language {
                 return this.zh_CN;
             } else if (tLang === "ja_JP") {
                 return this.ja_JP;
+            } else if (tLang === "be_BY") {
+                return this.be_BY;
             } else {
                 return this.en_US;
             }
@@ -27,8 +29,8 @@ class Language {
     }
 
     en_US = {
-        key:"en_US",
-        value:"English",
+        key: "en_US",
+        value: "English",
         button: {
             confirm: "Confirm",
             cancel: "Cancel",
@@ -93,9 +95,9 @@ class Language {
             pkr: "The collection address will change after each successful transaction.",
             createWallet: "Create Wallet",
             importWallet: "Import Wallet",
-            clearData:"Clear app data",
-            confirmClear:"Please confirm that you have backed up your account. Cleared will resynchronize transaction data",
-            clearTip:'Click "Confirm" to start syncing data. There may be a white screen during the process. Please wait patiently for data synchronization to complete, do not end the process easily.',
+            clearData: "Clear app data",
+            confirmClear: "Please confirm that you have backed up your account. Cleared will resynchronize transaction data",
+            clearTip: 'Click "Confirm" to start syncing data. There may be a white screen during the process. Please wait patiently for data synchronization to complete, do not end the process easily.',
         },
 
         page: {
@@ -228,20 +230,19 @@ class Language {
                 },
 
             },
-            dapp:{
-                search:"Enter DApp url",
-                invalidDApp:"Invalid DApp url",
-                recent:"Recent",
-                recommended:"Recommended",
+            dapp: {
+                search: "Enter DApp url",
+                invalidDApp: "Invalid DApp url",
+                recent: "Recent",
+                recommended: "Recommended",
             }
 
         }
     };
 
-
     zh_CN = {
-        key:"zh_CN",
-        value:"简体中文",
+        key: "zh_CN",
+        value: "简体中文",
         button: {
             confirm: "确认",
             cancel: "取消",
@@ -307,9 +308,9 @@ class Language {
             pkr: "此收款地址不可做常用收款码，每次收款后将会刷新。",
             createWallet: "新建钱包",
             importWallet: "导入钱包",
-            clearData:"清除应用数据",
-            confirmClear:"请确认你已经备份好账户。清除后将重新同步交易数据",
-            clearTip:"点击“确认”开始同步数据，过程中可能会出现白屏，请耐心等待数据同步完成，不要轻易结束进程。",
+            clearData: "清除应用数据",
+            confirmClear: "请确认你已经备份好账户。清除后将重新同步交易数据",
+            clearTip: "点击“确认”开始同步数据，过程中可能会出现白屏，请耐心等待数据同步完成，不要轻易结束进程。",
         },
 
         page: {
@@ -444,19 +445,19 @@ class Language {
 
             },
 
-            dapp:{
-                search:"输入DApp的地址",
-                invalidDApp:"无效的DApp url",
-                recent:"最近使用",
-                recommended:"推荐",
+            dapp: {
+                search: "输入DApp的地址",
+                invalidDApp: "无效的DApp url",
+                recent: "最近使用",
+                recommended: "推荐",
             }
 
         }
     };
 
     ja_JP = {
-        key:"ja_JP",
-        value:"日本語",
+        key: "ja_JP",
+        value: "日本語",
         button: {
             confirm: "確認する",
             cancel: "キャンセル",
@@ -521,9 +522,9 @@ class Language {
             pkr: "収集アドレスは、トランザクションが成功するたびに変更されます。",
             createWallet: "ウォレットを作成",
             importWallet: "ウォレットをインポート",
-            clearData:"アプリデータを消去する",
-            confirmClear:"アカウントをバックアップしたことを確認してください。トランザクションデータはクリア後に再同期されます",
-            clearTip:'[確認]をクリックして、データの同期を開始します。プロセス中に白い画面が表示される場合があります。データの同期が完了するまでお待ちください。プロセスを突然終了しないでください。'
+            clearData: "アプリデータを消去する",
+            confirmClear: "アカウントをバックアップしたことを確認してください。トランザクションデータはクリア後に再同期されます",
+            clearTip: '[確認]をクリックして、データの同期を開始します。プロセス中に白い画面が表示される場合があります。データの同期が完了するまでお待ちください。プロセスを突然終了しないでください。'
         },
 
         page: {
@@ -656,13 +657,225 @@ class Language {
                 },
 
             },
-            dapp:{
-                search:"DApp URLを入力してください",
-                invalidDApp:"無効なDApp URL",
-                recent:"最近",
-                recommended:"お勧め",
+            dapp: {
+                search: "DApp URLを入力してください",
+                invalidDApp: "無効なDApp URL",
+                recent: "最近",
+                recommended: "お勧め",
             }
 
+        }
+    };
+
+    be_BY = {
+        key: "be_BY",
+        value: "русский",
+
+        button: {
+            confirm: "Подтвердите",
+            cancel: "Отмена",
+            next: "следующ",
+            receive: "Получать",
+            transfer: "перечислить",
+            add: "Добавлять",
+            save: "Сохранить",
+            deleteAddress: "Удалить адрес",
+            createWallet: "Создать кошелек",
+            importWallet: "Импортный кошелек",
+            create: "Создайте",
+            done: "Выполнено",
+            import: "импорт",
+            ok: "OK",
+            openTip: "Открыт 31 октября",
+        },
+
+        navbar: {
+            wallet: "бумажник",
+            dapp: "DApp",
+            my: "Мой",
+        },
+
+        toast: {
+            info: {
+                quitApp: "Нажмите еще раз, чтобы выйти из приложения!",
+                createWallet: "Пожалуйста, сначала создайте кошелек!"
+            },
+            success: {
+                add: "Добавлено Успешно",
+                copy: "Успешно Скопировано",
+                create: "Успешно Создан Кошелек",
+                export: "Успешно Экспортировано",
+                save: "Сохранено Успешно",
+                import: "Импортировано Успешно",
+                send: "Отправлено Успешно",
+                clear: "Успешно очищено"
+            },
+            loading: {
+                creating: "Творя...",
+                exporting: "Экспорт...",
+                importing: "Импортирующий...",
+                sending: "Посылка ..."
+            },
+            error: {
+                passwordVerify: "Пароль должен содержать не менее 8 символов!",
+                passwordNotMatch: "Пароли не соответствуют!",
+                incorrectOrder: "Неверный порядок мнемонической фразы!",
+                invalidAddress: "Неверный адрес!",
+                accountExisted: "Аккаунт уже существует!",
+                notEnough: "Баланса недостаточно!",
+                passwordError: "Неверный пароль!",
+                notEnoughFee: "Недостаточно SERO для оплаты платы за газ!"
+            }
+        },
+
+        modal: {
+            help: "Помогите",
+            sure: "Вы уверены???",
+            mainPKr: "Это адрес коллекции, который можно использовать для частых коллекций, таких как майнинг.",
+            pkr: "Адрес коллекции будет меняться после каждой успешной транзакции.",
+            createWallet: "Создать кошелек",
+            importWallet: "Импортный кошелек",
+            clearData: "Очистить данные приложения",
+            confirmClear: "Пожалуйста, подтвердите, что вы создали резервную копию своей учетной записи. Очистка данных приложения приведет к повторной синхронизации данных транзакции",
+            clearTip: 'Нажмите «Подтвердить», чтобы начать синхронизацию данных. Во время процесса может быть белый экран. Пожалуйста, терпеливо дождитесь завершения синхронизации данных, не прерывайте процесс внезапно.'
+        },
+
+        page: {
+            wallet: {
+                mainPKr: "mainPKr",
+                PKr: "PKr",
+                Assets: "активы",
+                selectWallet: "Выберите кошелек",
+            },
+
+            txList: {
+                all: "весь",
+                out: "наружу",
+                in: "в",
+                noData: "Никакие данные",
+            },
+
+            txDetail: {
+                title: "Информация о транзакции",
+                success: "успех",
+                pending: "В ожидании",
+                amount: "сумма",
+                fee: "сборы",
+                from: "от",
+                to: "к",
+                hash: "Хэш",
+                block: "блок",
+                goto: "Для получения более подробной информации перейдите в обозреватель блоков >"
+            },
+
+            txTransfer: {
+                balance: "Остаток средств",
+                address: "Адрес",
+                inputAmount: "Сумма ввода",
+                inputAddress: "Пожалуйста, введите адрес SERO",
+                fee: "сборы",
+                total: "весь",
+                amount: "сумма",
+                gas: "газ",
+                gasPrice: "Цена на газ",
+                inputPassword: "Введите пароль",
+                passwordMsg: "Пароль от вашей учетной записи"
+            },
+
+            addressBook: {
+                title: "адресная книга",
+                add: "Добавить адрес",
+                name: "имя",
+                address: "Адрес",
+                description: "Описание (необязательно)",
+                detail: "Деталь адреса",
+            },
+
+            walletManage: {
+                mainPKr: "MainPKr",
+                PKr: "PKr",
+                passwordHint: "Подсказка пароля",
+                export: "Экспортировать мнемоническую фразу",
+                password: "Введите пароль",
+                changePasswordHint: "Сменить пароль Подсказка",
+                changeProfilePhoto: "Изменить фотографию профиля",
+                changeWalletName: "Изменить имя кошелька",
+            },
+
+            setting: {
+                language: "язык",
+                unit: "Валютная единица",
+                node: "Настройки узла",
+                pkr: "Проверьте PKr"
+            },
+
+            create: {
+                import: "импорт",
+                step1: {
+                    title: "Создать SERO Кошелек",
+                    walletName: "Название кошелька",
+                    password: "пароль",
+                    rePassword: "Повторите пароль",
+                    hint: "Подсказка к паролю (необязательно)",
+                    passwordTips: "Не менее 8 символов, рекомендуется смешивать прописные и строчные буквы, цифры и символы."
+                },
+                step2: {
+                    title: "Резервное копирование Советы",
+                    d1: "Владение мнемоникой аналогично владению всеми активами",
+                    d2: "Резервное Копирование Мнемоника",
+                    d3: "Пожалуйста, запишите мнемонику. Если ваш телефон потерян, украден, поврежден, Mnemonic будет использоваться для восстановления ваших активов",
+                    d4: "Offline storage",
+                    d5: "Пожалуйста, сохраните его в безопасном месте, изолированном от Интернета. Пожалуйста, не передавайте и не храните Mnemonic в сетевой среде, такой как электронная почта, альбомы, приложения для социальных сетей и т. Д.",
+                    d6: "Не снимайте скриншот.",
+                    d7: "Пожалуйста, не делитесь и не храните скриншоты, которые могут быть получены третьими лицами, что может привести к потере активов.",
+                },
+                step3: {
+                    title: "Резервное Копирование Мнемонической Фразы",
+                    d1: "Пожалуйста, запишите фразу-мнемонику правильно и надежно сделайте резервную копию",
+                },
+                step4: {
+                    title: "Подтвердите",
+                    d1: "пожалуйста, выберите мнемоническую фразу в правильном порядке",
+                },
+            },
+            import: {
+                tips: "Вы можете сбросить пароль при импорте мнемонической фразы",
+                inputTips: "Введите мнемонические фразы, разделенные пробелами",
+                name: "Название кошелька",
+                password: "Пароль кошелька",
+                rePassword: "Повторите пароль",
+                hint: "Подсказка пароля",
+            },
+            my: {
+                addressBook: "Адресная книга",
+                walletManage: "Управление кошельком",
+                settings: "настройки",
+                termOfUse: "Условия пользования",
+                about: "О нас",
+                clear: "Очистить данные приложения",
+
+                address: {
+                    name: "имя",
+                    address: "Адрес",
+                    description: "Описание (необязательно)",
+                    add: "Добавить адрес",
+                    edit: "Редактировать Адрес",
+                    detail: "Адрес подробно"
+                },
+                manage: {
+                    mainPKr: "MainPKr",
+                    pkr: "PKr",
+                    hint: "Подсказка пароля",
+                    export: "Экспортировать мнемоническую фразу"
+                },
+
+            },
+            dapp: {
+                search: "Введите DApp URL",
+                invalidDApp: "Неверный DApp URL",
+                recent: "Недавний",
+                recommended: "рекомендуемые",
+            }
         }
     };
 }

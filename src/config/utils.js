@@ -39,7 +39,13 @@ class Utils {
     }
 
     formatDate(timestamp) {
-
+        if(typeof timestamp === "string"){
+            const d = new Date(parseInt(timestamp)*1000);
+            return d.toLocaleDateString() + " " + d.toTimeString();
+        }else{
+            const d = new Date(timestamp*1000);
+            return d.toLocaleDateString() + " " + d.toTimeString();
+        }
     }
 
 

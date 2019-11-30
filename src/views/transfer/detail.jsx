@@ -65,11 +65,7 @@ class TransferDetail extends Component{
         }
 
         if(txInfo && txInfo.Time){
-            if(typeof txInfo.Time === "string"){
-                time = new Date(parseInt(txInfo.Time)*1000).toLocaleString()
-            }else{
-                time = new Date(txInfo.Time*1000).toLocaleString()
-            }
+            time = utils.formatDate(txInfo.Time)
         }
 
         return <div style={{height:document.documentElement.clientHeight}} className="transfer-detail-bg">

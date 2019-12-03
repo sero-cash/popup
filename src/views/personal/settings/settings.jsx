@@ -131,6 +131,12 @@ class Settings extends Component {
                                                    config.setLanguage(lang.be_BY.key);
                                                    url.goPage(url.Settings + "?" + new Date());
                                                }
+                                           },
+                                           {
+                                               text: lang.ko_KR.value, onPress: () => {
+                                                   config.setLanguage(lang.ko_KR.key);
+                                                   url.goPage(url.Settings + "?" + new Date());
+                                               }
                                            }
                                        ])
                                    }}

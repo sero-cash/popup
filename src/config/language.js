@@ -22,6 +22,8 @@ class Language {
                 return this.ja_JP;
             } else if (tLang === "be_BY") {
                 return this.be_BY;
+            } else if (tLang === "ko_KR") {
+                return this.ko_KR;
             } else {
                 return this.en_US;
             }
@@ -878,6 +880,219 @@ class Language {
             }
         }
     };
+
+    ko_KR = {
+
+        key: "ko_KR",
+        value: "언어",
+
+        button: {
+            confirm: "확인",
+            cancel: "취소",
+            next: "다음 것",
+            receive: "받다",
+            transfer: "보내기",
+            add: "더하다",
+            save: "구하다",
+            deleteAddress: "주소 삭제",
+            createWallet: "월렛 만들기",
+            importWallet: "수입 지갑",
+            create: "창조하다",
+            done: "끝난",
+            import: "가져오기",
+            ok: "OK",
+            openTip: "10 월 31 일 오픈",
+        },
+
+        navbar: {
+            wallet: "지갑",
+            dapp: "DApp",
+            my: "내",
+        },
+
+        toast: {
+            info: {
+                quitApp: "다시 누르면 앱이 종료됩니다!",
+                createWallet: "먼저 지갑을 만드십시오!"
+            },
+            success: {
+                add: "성공적으로 추가되었습니다",
+                copy: "성공적으로 복사",
+                create: "월렛이 성공적으로 생성되었습니다",
+                export: "성공적으로 수출",
+                save: "성공적으로 저장 되었음",
+                import: "성공적으로 가져오기",
+                send: "성공적으로 보냄",
+                clear: "성공적으로 클리어"
+            },
+            loading: {
+                creating: "만드는 중 ...",
+                exporting: "내보내는 중 ...",
+                importing: "가져 오기 ...",
+                sending: "보내기..."
+            },
+            error: {
+                passwordVerify: "비밀번호 최소 8 글자!",
+                passwordNotMatch: "비밀번호가 일치하지 않습니다!",
+                incorrectOrder: "니모닉의 잘못된 순서!",
+                invalidAddress: "잘못된 주소!",
+                accountExisted: "계정이 이미 존재합니다!",
+                notEnough: "균형이 충분하지 않습니다!",
+                passwordError: "비밀번호가 맞지 않습니다!",
+                notEnoughFee: "SERO는 가스를 지불하기에 충분하지 않습니다수수료!"
+            }
+        },
+
+        modal: {
+            help: "도움",
+            sure: "확실합니까???",
+            mainPKr: "채굴과 같이 자주 수집하는 데 사용할 수있는 수집 주소입니다.",
+            pkr: "수집 주소는 각 성공적인 거래 후 변경됩니다.",
+            createWallet: "월렛 만들기",
+            importWallet: "가져오기 지갑",
+            clearData:"명확한 앱 데이터",
+            confirmClear:"계정을 백업했는지 확인하십시오. 앱 데이터를 지운 후 트랜잭션 데이터가 다시 동기화됩니다.",
+            clearTip:'"확인"을 클릭하여 데이터 동기화를 시작하십시오. 처리하는 동안 흰색 화면이 표시 될 수 있습니다. 데이터 동기화가 완료 될 때까지 기다리십시오. 프로세스를 갑자기 종료하지 마십시오.'
+        },
+
+        page: {
+            wallet: {
+                mainPKr: "mainPKr",
+                PKr: "PKr",
+                Assets: "자산",
+                selectWallet: "지갑 선택",
+            },
+
+            txList: {
+                all: "모든",
+                out: "아웃",
+                in: "에서",
+                noData: "데이터가 없습니다",
+            },
+
+            txDetail: {
+                title: "거래 정보",
+                success: "성공",
+                pending: "보류 중",
+                amount: "양",
+                fee: "수수료",
+                from: "부터",
+                to: "으로",
+                hash: "해시",
+                block: "블록",
+                goto: "자세한 내용은 블록 탐색기로 이동하십시오.>"
+            },
+
+            txTransfer: {
+                balance: "균형",
+                address: "주소",
+                inputAmount: "입력 금액",
+                inputAddress: "SERO 주소를 입력하십시오",
+                fee: "수수료",
+                total: "합계",
+                amount: "양",
+                gas: "가스",
+                gasPrice: "가스 가격",
+                inputPassword: "입력 비밀번호",
+                passwordMsg: "계정 비밀번호"
+            },
+
+            addressBook: {
+                title: "주소록",
+                add: "주소 추가",
+                name: "이름",
+                address: "주소",
+                description: "설명 (선택 사항)",
+                detail: "주소 세부 사항",
+            },
+
+            walletManage: {
+                mainPKr: "MainPKr",
+                PKr: "PKr",
+                passwordHint: "암호 힌트",
+                export: "니모닉 문구 내보내기",
+                password: "비밀번호 입력",
+                changePasswordHint: "비밀번호힌트변경",
+                changeProfilePhoto: "프로필 사진 변경",
+                changeWalletName: "월렛 이름 변경",
+            },
+
+            setting: {
+                language: "언어",
+                unit: "통화 단위",
+                node: "노드 설정",
+                pkr: "PKr 확인"
+            },
+
+            create: {
+                import: "가져오기",
+                step1: {
+                    title: "SERO Wallet 생성",
+                    walletName: "지갑 이름",
+                    password: "암호",
+                    rePassword: "암호 반복",
+                    hint: "암호 힌트(선택 사항)",
+                    passwordTips: "최소 8 자, 대문자와 소문자 알파벳, 숫자 및 기호를 혼합하는 것이 좋습니다."
+                },
+                step2: {
+                    title: "백업 팁",
+                    d1: "니모닉을 소유하는 것은 모든 자산을 소유하는 것과 유사합니다",
+                    d2: "백업 니모닉",
+                    d3: "니모닉 문구를 적어 둡니다. 니모닉은 휴대 전화를 분실, 도난 당하거나 손상된 경우 자산을 복구 할 수 있습니다.",
+                    d4: "오프라인 저장소",
+                    d5: "인터넷과 격리 된 안전한 장소에 보관하십시오. 이메일, 앨범, 소셜 앱 등과 같은 네트워크 환경에서 Mnemonic을 공유하거나 저장하지 마십시오.",
+                    d6: "Do not take screenshot .",
+                    d7: "스크린 샷을 공유하거나 저장하지 마십시오. 타사에서 수집 한 스크린 샷은 자산 손실로 이어질 수 있습니다.",
+                },
+                step3: {
+                    title: "니모닉 문구 백업",
+                    d1: "제대로 니모닉 텍스트를주의하고 안전하게 백업",
+                },
+                step4: {
+                    title: "확인",
+                    d1: "올바른 순서로 니모닉 구문을 선택하십시오",
+                },
+            },
+            import: {
+                tips: "가져 오는 동안 비밀번호를 재설정 할 수 있습니다 니모닉 문구.",
+                inputTips: "공백으로 구분 된 니모닉 문구를 입력하십시오.",
+                name: "지갑 이름",
+                password: "월렛 비밀번호",
+                rePassword: "암호 반복",
+                hint: "암호 힌트",
+            },
+            my: {
+                addressBook: "주소록",
+                    walletManage: "월렛 관리",
+                    settings: "설정",
+                    termOfUse: "서비스 약관",
+                    about: "우리에 대해",
+                    clear: "명확한 앱 데이터",
+                    address: {
+                    name: "이름",
+                    address: "주소",
+                    description: "설명 (선택 사항)",
+                    add: "주소 추가",
+                    edit: "주소 편집",
+                    detail: "주소 세부 사항"
+                },
+                manage: {
+                    mainPKr: "MainPKr",
+                    pkr: "PKr",
+                    hint: "암호 힌트",
+                    export: "니모닉 문구 내보내기"
+                },
+
+            },
+            dapp:{
+                search:"DApp URL 입력",
+                invalidDApp:"잘못된 DApp URL",
+                recent:"충적세",
+                recommended:"제안 됨",
+            }
+        }
+    };
+
 }
 
 export default Language

@@ -19,16 +19,15 @@ const data = {
     data: "success"
 }
 const operation = {
-
     method: {
         init: "init",
         accountDetail: "accountDetail",
         accountList: "accountList",
         executeContract: "executeContract",
         call: "call",
-        estimateGas: "estimateGas"
+        estimateGas: "estimateGas",
+        getInfo: "getInfo"
     }
-
 }
 
 
@@ -99,6 +98,27 @@ class Browser extends Component {
             }
         }
         return "success"
+    }
+
+    getInfo = () => {
+        return new Promise(function (resolve,reject) {
+            let data = {}
+            data.language = lang.e().key;
+            data.rpc = config.seroRpc();
+            try{
+                if(plus && plus.device){
+                    data.uuid = plus.device.uuid;
+                    resolve(data)
+                }else{
+                    alert("plus not defined");
+                    resolve(data)
+                }
+            }catch (e) {
+                alert(e.message);
+                console.log('getInfo fail:',e.message);
+                resolve(data)
+            }
+        })
     }
 
     async getAccountList(msg){
@@ -331,6 +351,14 @@ class Browser extends Component {
                     that.sendMessage(that.call(msg.data,msg));
                 } else if (msg.method === operation.method.estimateGas) {
                     that.sendMessage(that.estimateGas(msg.data,msg));
+                } else if (msg.method === operation.method.getInfo) {
+                    that.getInfo().then(data=>{
+                        msg.data= data;
+                        that.sendMessage(msg);
+                    }).catch(error=>{
+                        msg.error=error
+                        that.sendMessage(msg);
+                    });
                 } else {
                     that.sendMessage("operation method is invalid !");
                 }

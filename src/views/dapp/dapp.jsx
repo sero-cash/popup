@@ -35,9 +35,9 @@ const data = [
         url:"http://edenworkroom.gitee.io/sctool/",
     },
     {
-        icon: <div className="dapp-icon"><img src="http://134.175.161.78:8088/asnow-app/logo.png"  className="dapp-img"/></div>,
+        icon: <div className="dapp-icon"><img src="https://asnowhero.gitee.io/asnow-popup/logo.png"  className="dapp-img"/></div>,
         text: `ASNOW`,
-        url:"http://134.175.161.78:8088/asnow-app",
+        url:"https://asnowhero.gitee.io/asnow-popup/",
     },
     {
         icon: <div className="dapp-icon"><img src="http://sanguo.artfuture.store/slg/icon.png"  className="dapp-img"/></div>,

@@ -183,7 +183,7 @@ class Form extends Component {
                     <div className='title'>
                         <div className='left'><strong>{cy}</strong></div>
                         <div className='right'>
-                            {lang.e().page.txTransfer.balance}: {amount} {cy}
+                            {amount}
                         </div>
                     </div>
                     <div className='content'>

@@ -1,6 +1,6 @@
-import jsuperzk from "jsuperzk/dist/index"
+import Wallet from "jsuperzk/dist/wallet/wallet"
 
-const wallet = new jsuperzk.Wallet();
+const wallet = new Wallet();
 
 const operations = {
     "createAccount": createAccount,
@@ -37,7 +37,7 @@ function createAccount(msg){
 
 function exportMnemonic(msg){
     try{
-        let wlt = new jsuperzk.Wallet();
+        let wlt = new Wallet();
         const password = msg.data.password;
         const keystore = msg.data.keystore;
         wlt.fromKeystore(keystore)
@@ -52,7 +52,7 @@ function exportMnemonic(msg){
 
 function importMnemonic(msg){
     try{
-        let wlt = new jsuperzk.Wallet();
+        let wlt = new Wallet();
         const password = msg.data.password;
         const word = msg.data.word;
         wlt = wlt.fromMnemonic(word,password);

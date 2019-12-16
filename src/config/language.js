@@ -198,6 +198,7 @@ class Language {
                 step4: {
                     title: "Confirm",
                     d1: "Please select Mnemonic Phrase in correct order",
+                    skip:"Already backed up? Skip this step",
                 },
             },
             import: {
@@ -411,6 +412,7 @@ class Language {
                 step4: {
                     title: "确认助记词",
                     d1: "请按顺序点击助记词，以确认您正确备份",
+                    skip:"已备份? 跳过此步骤",
                 },
             },
             import: {
@@ -625,6 +627,7 @@ class Language {
                 step4: {
                     title: "確認する",
                     d1: "ニーモニックフレーズを正しい順序で選択してください",
+                    skip:"バックアップ済みですか？このステップをスキップしてください",
                 },
             },
             import: {
@@ -838,6 +841,7 @@ class Language {
                 step4: {
                     title: "Подтвердите",
                     d1: "пожалуйста, выберите мнемоническую фразу в правильном порядке",
+                    skip:"Уже создана резервная копия? Пропустить этот шаг",
                 },
             },
             import: {
@@ -1051,6 +1055,7 @@ class Language {
                 step4: {
                     title: "확인",
                     d1: "올바른 순서로 니모닉 구문을 선택하십시오",
+                    skip:"이미 백업 되었습니까? 이 단계를 건너 뛰십시오",
                 },
             },
             import: {

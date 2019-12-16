@@ -1,0 +1,12 @@
+{
+  "urls": [
+    {
+      "host": "gitee",
+      "url": "http://sero-cash.gitee.io/popup"
+    },
+    {
+      "host": "github",
+      "url": "https://sero-cash.github.io/popup"
+    }
+  ]
+}

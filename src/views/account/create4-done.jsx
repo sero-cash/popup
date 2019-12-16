@@ -187,10 +187,10 @@ class AccountCreateStep4 extends Component {
                 }}
             />
             <WingBlank size="lg">
-
                 <div style={{textAlign: "center"}}>
                     <Icon type="iconanquan" style={{width: '48px', height: '48px'}} color="gray"/>
                     <h2>{lang.e().page.create.step4.title}</h2>
+                    <p style={{color:"#4285f4"}} onClick={()=>this.done()}>{lang.e().page.create.step4.skip}</p>
                     <p style={{color: 'gray'}}>{lang.e().page.create.step4.d1}</p>
                     {
                         this.state.errorMsg?<NoticeBar mode="link" action={" "} icon={null}>{this.state.errorMsg}</NoticeBar>:''

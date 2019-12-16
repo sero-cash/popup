@@ -104,10 +104,10 @@ class Account {
             storage.set(keys.account.addresses, addressArray);
             storage.set(keys.infoKey(keystore.address), keystore);
             storage.set(keys.detailKey(keystore.address), tempKeystore.detail);
-            let current = this.getCurrent();
-            if (!current) {
-                this.setCurrent(tempKeystore.detail);
-            }
+            // let current = this.getCurrent();
+            // if (!current) {
+            this.setCurrent(tempKeystore.detail);
+            // }
             storage.delete(keys.account.tempKeystore);
         }catch (e) {
             throw new Error(e.message);

@@ -3,8 +3,6 @@ import {storage, keys, config} from "../../config/common";
 import {accountService} from './accountService'
 const jsuperzk = require('jsuperzk')
 const utils = new Utils();
-import {acmng} from "../data/assetmanager";
-import BigNumber from "bignumber.js";
 import {assetService} from "../service/service";
 
 class Account {
@@ -51,18 +49,6 @@ class Account {
         })
     }
 
-     balanceOf(currency){
-        let current = this.getCurrent()
-        const assets = acmng.balancesOf(current.tk);
-        let amount =0;
-        assets.forEach(function (value, cy) {
-            if(cy === currency){
-                amount= new BigNumber(value).toString(10);
-            }
-        })
-        return amount
-    }
-
     PreCreate(name, password, hint, word) {
         try {
             storage.delete(keys.account.tempKeystore);
@@ -104,10 +90,7 @@ class Account {
             storage.set(keys.account.addresses, addressArray);
             storage.set(keys.infoKey(keystore.address), keystore);
             storage.set(keys.detailKey(keystore.address), tempKeystore.detail);
-            // let current = this.getCurrent();
-            // if (!current) {
             this.setCurrent(tempKeystore.detail);
-            // }
             storage.delete(keys.account.tempKeystore);
         }catch (e) {
             throw new Error(e.message);
@@ -267,54 +250,6 @@ class Account {
         }
     }
 
-    // Detail(address) {
-    //     if (!address){
-    //         address = this.address;
-    //     }else{
-    //         this.address = address;
-    //     }
-    //     let detail = storage.get(keys.detailKey(address));
-    //     if (detail) {
-    //         if (!detail.mainPKr) {
-    //             detail.mainPKr = this.MainPKr();
-    //         }
-    //         let keystore = this.Keystore(this.address);
-    //         if(!detail.currentPKr){
-    //             detail.currentPKr =  this.MainPKr();
-    //         }
-    //         assetService.getPKrIndex(keystore.tk).then(info=>{
-    //             detail.currentPKr = jsuperzk.createPkrHash( keystore.tk, info.PkrIndex,keystore.version);
-    //             storage.set(keys.detailKey(this.address), detail);
-    //         }).catch(err=>{
-    //
-    //         })
-    //
-    //         return detail
-    //     }
-    // }
-
-    Remove() {
-        let addresses = storage.get(keys.account.addresses);
-        let list = [];
-        for (let address of addresses) {
-            if (this.address === address) {
-            } else {
-                list.push(address);
-            }
-        }
-        storage.set(keys.account.addresses, list);
-        storage.delete(keys.infoKey(this.address));
-    }
-
-
-    NextPKrIndex() {
-        let current = storage.get(keys.account.pkrIndex + this.address);
-        if (current) {
-            return parseInt(current) + 1
-        } else {
-            return 1
-        }
-    }
 
     MainPKr(){
         let keystore = this.Keystore(this.address);

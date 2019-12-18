@@ -55,3 +55,7 @@ body {
     top: 5px;
     left: 10px;
 }
+
+.am-modal-transparent {
+    width: 82% !important;
+}

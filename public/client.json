@@ -7,6 +7,10 @@
     {
       "host": "github",
       "url": "https://sero-cash.github.io/popup"
+    },
+    {
+      "host": "localhost",
+      "url": "http://192.168.19.145:3001"
     }
   ]
 }

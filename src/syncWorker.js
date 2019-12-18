@@ -71,7 +71,5 @@ function repairData() {
     }
 
     account.repairAccountData().then()
-
-
 }
 

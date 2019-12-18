@@ -22,22 +22,8 @@
 
   <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
   <link rel="shortcut icon" href="%PUBLIC_URL%/icon32.png">
-  <script src="//at.alicdn.com/t/font_1427380_yygthjcg0kr.js"></script>
+  <script src="https://at.alicdn.com/t/font_1427380_yygthjcg0kr.js"></script>
   <title>SERO Popup</title>
-  <script>
-    var localUtc = new Date().getTimezoneOffset() / 60;
-    var a = window.location.href;
-    if (localUtc === -8
-            && a.indexOf("http://129.211.98.114:3005") === -1
-            && a.indexOf("127.0.0.1") === -1
-            && a.indexOf("localhost") === -1
-            && a.indexOf("192.168") === -1
-            && a.indexOf("http://sero-cash.gitee.io") === -1){
-
-      window.location.href = "http://129.211.98.114:3005/"
-    }
-  </script>
-
 </head>
 <body>
 <div id="root"></div>

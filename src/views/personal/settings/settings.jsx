@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {NavBar, Modal, Icon, WingBlank, WhiteSpace, List, Toast, InputItem, Button} from 'antd-mobile'
 import {config, url, lang} from "../../../config/common";
 import {assetService} from "../../../components/service/service";
+import axois from 'axios'
 
 class Settings extends Component {
 
@@ -83,7 +84,21 @@ class Settings extends Component {
         })
     }
 
+    actionSheet(data){
+        let op = [];
+        data.forEach(value=>{
+            op.push({
+                text:value.url,
+                onPress:()=>{
+                    window.location.href=value.url+"#/";
+                }
+            })
+        })
+        Modal.operation(op)
+    }
+
     render() {
+        let that = this;
         let {network} = this.state;
 
         return <div style={{height: document.documentElement.clientHeight - 45}}>
@@ -174,6 +189,14 @@ class Settings extends Component {
                         <List.Item  arrow="horizontal" onClick={() => {
                             url.goPage(url.HistoryPKr,url.Settings)
                         }}><span>{lang.e().page.setting.pkr}</span></List.Item>
+
+                        {
+                            plus?
+                            <List.Item  arrow="horizontal" onClick={() => {
+                                window.location.href="./enter.html"
+                            }}><span>Select  Wallet Source</span></List.Item>:""
+                        }
+
                     </WingBlank>
                 </List>
 
@@ -225,5 +248,32 @@ class Settings extends Component {
         </div>
     }
 }
+
+//
+// function actionSheet(data) {
+//     var btns = [];
+//     for(var i =0;i<data.length;i++){
+//         btns.push({title:data[i].url})
+//     }
+//
+//     plus.nativeUI.actionSheet(
+//         {
+//             title:"Select node host",
+//             buttons:btns
+//         },
+//         function(e){
+//             var i=e.index;
+//             if(i<=0){
+//                 actionSheet(data);
+//             }else{
+//                 var _url = data[i-1].url;
+//                 // embed=plus.webview.create(_url, 'SERO Popup', {"titleNView": false,statusbar:{"background": "#f7f7f7"}});
+//                 ws.show();
+//                 ws.loadURL(_url, {Referer:'https://sero.cash/'});
+//             }
+//
+//         }
+//     );
+// }
 
 export default Settings

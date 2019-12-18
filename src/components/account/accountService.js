@@ -45,6 +45,7 @@ class AccountService {
         if (cb) {
             const messageId = this.messageId++;
             message.messageId = messageId;
+            console.log("account service handlerMsg: ",message);
             webworker.postMessage(message);
             this.callbackHandler.set(messageId, cb)
         }

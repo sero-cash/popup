@@ -52,8 +52,10 @@ class TransferList extends Component{
         const hei = this.state.height;
 
         const act = new Account();
-        this.setState({
-            address:act.getCurrent().address
+        act.getCurrent().then(current=>{
+            that.setState({
+                address:current.address
+            })
         })
 
         Toast.loading("loading...",2)
@@ -121,10 +123,10 @@ class TransferList extends Component{
         }else{
             count = pageIndex*NUM_ROWS
         }
-        let act = account.getCurrent();
+        let act = await account.getCurrent();
         // let address = act.address;
         let currency = this.props.match.params.currency;
-        return  await assetService.getTxList(act.tk,currency,count );
+        return await assetService.getTxList(act.tk,currency,count );
     }
 
     render() {

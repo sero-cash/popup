@@ -127,7 +127,7 @@ class Browser extends Component {
             let rest = [];
             if (addresses) {
                 for (let address of addresses) {
-                    let detail = account.Detail(address)
+                    let detail = await account.Detail(address)
                     const assets = await assetService.balanceOf(detail.tk);
                     rest.push({Name: detail.name, PK: detail.address, MainPKr: detail.mainPKr, Balance: assets})
                 }
@@ -146,7 +146,7 @@ class Browser extends Component {
         try {
             if (address) {
                 // let detail = storage.get(keys.detailKey(address));
-                let detail = account.Detail(address)
+                let detail = await account.Detail(address)
                 const assets = await assetService.balanceOf(detail.tk);
                 msg.data = {Name: detail.name, PK: detail.address, MainPKr: detail.mainPKr, Balance: assets}
                 return msg

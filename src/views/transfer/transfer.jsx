@@ -85,30 +85,28 @@ class Form extends Component {
                 }
             } else {
                 account = new Account();
-                let detail = account.getCurrent();
-                assetService.balanceOf(detail.tk).then(data=>{
-                    console.log("data->",data);
-                    if(data && typeof data === 'object'){
-                        data.forEach((amount,cy)=>{
-                            if(cy ===  'SERO'){
-                                if (new BigNumber(defaultFee).comparedTo(amount) === 1) {
-                                    Toast.fail(lang.e().toast.error.notEnoughFee, 1.5)
-                                    that.setState({
-                                        confirming: false
-                                    });
+                account.getCurrent().then(detail=>{
+                    assetService.balanceOf(detail.tk).then(data=>{
+                        if(data && typeof data === 'object'){
+                            data.forEach((amount,cy)=>{
+                                if(cy ===  'SERO'){
+                                    if (new BigNumber(defaultFee).comparedTo(amount) === 1) {
+                                        Toast.fail(lang.e().toast.error.notEnoughFee, 1.5)
+                                        that.setState({
+                                            confirming: false
+                                        });
+                                    }
+                                    if (new BigNumber(value["amount"]).comparedTo(new BigNumber(that.props.amount)) === 1) {
+                                        Toast.fail(lang.e().toast.error.notEnough, 1.5)
+                                        that.setState({
+                                            confirming: false
+                                        });
+                                    }
                                 }
-                                if (new BigNumber(value["amount"]).comparedTo(new BigNumber(that.props.amount)) === 1) {
-                                    Toast.fail(lang.e().toast.error.notEnough, 1.5)
-                                    that.setState({
-                                        confirming: false
-                                    });
-                                }
-                            }
-                        })
-                    }
-                })
-
-
+                            })
+                        }
+                    })
+                });
             }
 
             if (!validPkr(value["address"])) {
@@ -303,25 +301,31 @@ class Transfer extends Component {
     }
 
     componentDidMount() {
-        const currency = this.props.match.params.currency;
-        const current = account.getCurrent();
+        const that = this;
+        that.init().then();
+    }
+
+    async init(){
+        const that = this;
+        const currency = that.props.match.params.currency;
+        const current = await account.getCurrent();
         // account = new Account(current.address);
-        assetService.balanceOf(account.Detail(current.address).tk).then(data=>{
-            if(data && typeof data === 'object'){
-                data.forEach((amount,cy)=>{
-                    if(cy ===  currency){
-                        amount = decimals.convert(amount, currency);
-                        this.setState({
-                            amount: amount,
-                        })
-                    }
-                })
-            }
-        })
-        this.setState({
+        const detail = await account.Detail(current.address);
+        const data = assetService.balanceOf(detail.tk);
+        if(data && typeof data === 'object'){
+            data.forEach((amount,cy)=>{
+                if(cy ===  currency){
+                    amount = decimals.convert(amount, currency);
+                    that.setState({
+                        amount: amount,
+                    })
+                }
+            })
+        }
+        that.setState({
             currency: currency,
             current: current,
-            detail: account.Detail(current.address),
+            detail: detail,
         })
     }
 

@@ -24,18 +24,20 @@ class ManageName extends Component {
 
     componentWillMount() {
         const address = this.props.match.params.address;
+        const that = this;
         let act = new Account(address);
-        let detail = act.Detail(address)
-        if(detail){
-            this.setState({
-                detail:detail
-            })
-        }else{
-            Toast.fail("Account not exist!",1)
-            setTimeout(function () {
-                url.goPage(url.Personal,"")
-            },1000)
-        }
+        act.Detail(address).then(detail=>{
+            if(detail){
+                that.setState({
+                    detail:detail
+                })
+            }else{
+                Toast.fail("Account not exist!",1)
+                setTimeout(function () {
+                    url.goPage(url.Personal,"")
+                },1000)
+            }
+        })
     }
 
     showChangeAvatar=()=>{
@@ -44,7 +46,7 @@ class ManageName extends Component {
             const type = o.icon.props.type;
                 const detail = this.state.detail;
                 detail.avatar = type;
-                ac.setDetail(detail);
+                ac.setDetail(detail).then();
                 this.setState({
                     detail:detail
                 })
@@ -75,7 +77,7 @@ class ManageName extends Component {
                         if(value){
                             const detail = this.state.detail;
                             detail.name = value;
-                            ac.setDetail(detail);
+                            ac.setDetail(detail).then();
                             this.setState({
                                 detail:detail
                             })

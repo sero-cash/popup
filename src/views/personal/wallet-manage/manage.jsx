@@ -13,19 +13,22 @@ class Manage extends Component {
     }
 
     componentWillMount() {
-        const address = this.props.match.params.address;
+        const that = this;
+        const address = that.props.match.params.address;
         let act = new Account(address);
-        const detail = act.Detail(address);
-        if(detail){
-            this.setState({
-                detail:detail
-            })
-        }else{
-            Toast.fail(lang.e().toast.error.accountExisted,1)
-            setTimeout(function () {
-                url.goPage(url.Personal,"")
-            },1000)
-        }
+        act.Detail(address).then(detail=>{
+            if(detail){
+                that.setState({
+                    detail:detail
+                })
+            }else{
+                Toast.fail(lang.e().toast.error.accountExisted,1)
+                setTimeout(function () {
+                    url.goPage(url.Personal,"")
+                },1000)
+            }
+        });
+
     }
 
     changePasswordHint = ()=>{
@@ -70,7 +73,7 @@ class Manage extends Component {
 
                         if(password){
                             Toast.loading(lang.e().toast.loading.exporting,60)
-                            ac.exportMnemonic(that.props.match.params.address,password).then(data=>{
+                            ac.exportMnemonic(that.props.match.params.address,password).then(()=>{
                                 Toast.success(lang.e().toast.export,2)
                                 resolve();
                                 url.goPage(url.AccountCreate2,url.manage(that.props.match.params.address));

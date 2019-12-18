@@ -19,25 +19,28 @@ class Receive extends Component{
     }
 
     componentDidMount() {
+        const that = this;
         let address = this.props.match.params.address;
         let pkrType = this.props.match.params.type;
         let account = new Account(address);
-        const detail = account.Detail(address);
-        let pkr = detail.currentPKr;
-        let tips = lang.e().modal.pkr;
-        if(pkrType === 'mainPKr'){
-            pkr = detail.mainPKr;
-            tips = lang.e().modal.mainPKr;
-        }
-        let canvas = document.getElementById('qrImg')
-        QRCode.toCanvas(canvas, pkr, function (error) {
-            if (error) console.error(error)
+        account.Detail(address).then(detail=>{
+            let pkr = detail.currentPKr;
+            let tips = lang.e().modal.pkr;
+            if(pkrType === 'mainPKr'){
+                pkr = detail.mainPKr;
+                tips = lang.e().modal.mainPKr;
+            }
+            let canvas = document.getElementById('qrImg')
+            QRCode.toCanvas(canvas, pkr, function (error) {
+                if (error) console.error(error)
+            });
+            that.setState({
+                pkr:pkr,
+                tips:tips,
+                act:detail,
+            })
         });
-        this.setState({
-            pkr:pkr,
-            tips:tips,
-            act:detail,
-        })
+
     }
 
     render() {

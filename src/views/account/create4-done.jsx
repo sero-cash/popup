@@ -34,17 +34,20 @@ class AccountCreateStep4 extends Component {
                         if(!temp){
                         }else{
                             clearInterval(invetId);
-                            ac.CopyTempKeystore();
-                            sessionStorage.removeItem("MnemonicType");
-                            sessionStorage.removeItem("worddata");
-                            Toast.success(lang.e().toast.success.create,2);
-                            setTimeout(function () {
-                                url.goPage(url.Home)
-                                // window.location.href="/"
-                            },1500)
+                            ac.CopyTempKeystore().then(()=>{
+                                sessionStorage.removeItem("MnemonicType");
+                                sessionStorage.removeItem("worddata");
+                                Toast.success(lang.e().toast.success.create,2);
+                                setTimeout(function () {
+                                    url.goPage(url.Home)
+                                    // window.location.href="/"
+                                },1500)
+                            }).catch(e=>{
+                                Toast.fail(e,2);
+                            });
                         }
                     }catch (e) {
-                        Toast.fail(e.message,1)
+                        Toast.fail(e.message,2)
                     }
                 },1000);
             }else if (type === "export"){

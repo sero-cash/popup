@@ -42,15 +42,16 @@ class WalletManager extends Component {
 
     componentDidMount() {
         let that = this;
-        that.loadAccounts();
+        that.loadAccounts().then();
     }
 
-    loadAccounts(){
-        let list = ac.List();
+    async loadAccounts(){
+        const that = this;
+        const list = await ac.List()
         let i=0;
         let tmpArray = [];
         for(let account of list){
-            const detail = ac.Detail(account.address);
+            const detail = await ac.Detail(account.address);
             const mainPKr = detail.mainPKr;
             const currentPKr = detail.currentPKr;
             tmpArray.push(
@@ -68,7 +69,7 @@ class WalletManager extends Component {
                         <Card.Body style={{padding:"0px 15px 6px"}}>
                             <div>
                                 <span style={{color:"#f6c23e"}}>
-                                    <Icon type="iconhelp" className="icon-pkr" onClick={()=>{this.modalTips(lang.e().modal.mainPKr)}}
+                                    <Icon type="iconhelp" className="icon-pkr" onClick={()=>{that.modalTips(lang.e().modal.mainPKr)}}
                                     />{lang.e().page.walletManage.mainPKr}:</span>
                                 <span> {utils.ellipsisAddress(mainPKr)}</span>
                                 <Icon type="iconqr-code" className="icon-qrcode" onClick={()=>{
@@ -77,7 +78,7 @@ class WalletManager extends Component {
                             </div>
                             <div>
                                 <span style={{color:"#f6c23e"}}>
-                                    <Icon type="iconhelp" className="icon-pkr" onClick={()=>{this.modalTips(lang.e().modal.pkr)}}
+                                    <Icon type="iconhelp" className="icon-pkr" onClick={()=>{that.modalTips(lang.e().modal.pkr)}}
                                     />{lang.e().page.walletManage.PKr}:</span>
                                 <span> {utils.ellipsisAddress(currentPKr)}</span>
                                 <Icon type="iconqr-code" className="icon-qrcode" onClick={()=>{
@@ -97,9 +98,10 @@ class WalletManager extends Component {
                 <span style={{color:"gray"}}>No Data</span>
             </div>
         }
-        this.setState({
+        that.setState({
             accountHtml:tmpArray
         })
+
     }
 
     render() {

@@ -76,9 +76,11 @@ class Form extends React.Component {
                     }
                     let data = ac.genWord();
                     if (data) {
-                        ac.PreCreate(value["name"],value["password"],value["hint"],data)
-                        // window.location.replace("/#/account/create2");
-                        url.goPage(url.AccountCreate2,url.AccountCreate1);
+                        ac.PreCreate(value["name"],value["password"],value["hint"],data).then(()=>{
+                            url.goPage(url.AccountCreate2,url.AccountCreate1);
+                        }).catch(e=>{
+                            Toast.fail(e.message,2);
+                        })
                     }
                 }catch (e) {
                     console.log(e.message);

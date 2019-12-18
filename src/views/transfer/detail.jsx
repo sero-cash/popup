@@ -24,13 +24,13 @@ class TransferDetail extends Component{
         let that = this;
         let hash = this.props.match.params.hash;
         const account = new Account()
-        const current = account.getCurrent();
-        assetService.getTxDetail(current.tk,hash).then((tx)=>{
-            that.setState({
-                txInfo:tx,
+        account.getCurrent().then(current=>{
+            assetService.getTxDetail(current.tk,hash).then((tx)=>{
+                that.setState({
+                    txInfo:tx,
+                })
             })
         })
-
     }
 
     render() {

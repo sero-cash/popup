@@ -116,47 +116,40 @@ class Transactions {
         }
     }
 
-    transfer(tx, password) {
-        return new Promise(function (resolve,reject) {
-            let act = new Account()
-            let cy = tx.cy;
-            let gas = tx.gas;
-            let gasPrice = tx.gasPrice;
-            let from = tx.from;
-            if (!cy) cy = "SERO"
-            if (!gas) {
-                gas = "0x"+new BigNumber("4700000").toString(16);
-            }
-            if (!gasPrice) {
-                gasPrice = "0x"+new BigNumber("1000000000").toString(16);
-            }
-            if (!from) {
-                const current = account.getCurrent();
-                act = new Account(current.address);
-                from = current.tk;
-            }else{
-                act = new Account(from);
-                from = act.Detail(from).tk;
-            }
-            let txReq = {}
-            txReq.From=from;
-            txReq.To=tx.to;
-            txReq.Cy=cy;
-            txReq.Value=tx.value;
-            txReq.Data=tx.data;
-            txReq.Gas=new BigNumber(gas).toString(16);
-            txReq.GasPrice=new BigNumber(gasPrice).toString(16);
-            act.getSK(password).then(sk=>{
-                txReq.SK = sk;
-                assetService.commitTx(txReq).then(rest=>{
-                    resolve(rest)
-                }).catch(error=>{
-                    reject(error)
-                })
-            }).catch(error=>{
-                reject(error)
-            })
-        })
+    async transfer(tx, password) {
+        let act = new Account()
+        let cy = tx.cy;
+        let gas = tx.gas;
+        let gasPrice = tx.gasPrice;
+        let from = tx.from;
+        if (!cy) cy = "SERO"
+        if (!gas) {
+            gas = "0x"+new BigNumber("4700000").toString(16);
+        }
+        if (!gasPrice) {
+            gasPrice = "0x"+new BigNumber("1000000000").toString(16);
+        }
+        if (!from) {
+            const current = await account.getCurrent();
+            act = new Account(current.address);
+            from = current.tk;
+        }else{
+            act = new Account(from);
+            const dtl = await act.Detail(from);
+            from = dtl.tk;
+        }
+        let txReq = {}
+        txReq.From=from;
+        txReq.To=tx.to;
+        txReq.Cy=cy;
+        txReq.Value=tx.value;
+        txReq.Data=tx.data;
+        txReq.Gas=new BigNumber(gas).toString(16);
+        txReq.GasPrice=new BigNumber(gasPrice).toString(16);
+        txReq.SK = await act.getSK(password);
+
+        await assetService.commitTx(txReq)
+
     }
 
     storePendingTx(txData) {

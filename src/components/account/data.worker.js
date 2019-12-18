@@ -80,5 +80,6 @@ function getSK(msg){
 
 
 function _postMessage(message) {
+    console.log("account service sendMsg:",message);
     self.postMessage(message)
 }

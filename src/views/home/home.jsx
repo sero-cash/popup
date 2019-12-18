@@ -47,16 +47,17 @@ class Home extends Component {
             that.calSeroTotal();
 
             setTimeout(function () {
-                let current = account.getCurrent();
-                if (!current || !current.address) {
-                    Toast.info(lang.e().toast.info.createWallet,1.5);
-                    setTimeout(function () {
-                        url.goPage(url.AccountCreate1, url.Home);
-                    },1500)
-                }
+                account.getCurrent().then(current=>{
+                    if (!current || !current.address) {
+                        Toast.info(lang.e().toast.info.createWallet,1.5);
+                        setTimeout(function () {
+                            url.goPage(url.AccountCreate1, url.Home);
+                        },1500)
+                    }
 
-                that.accounts();
-                that.calSeroTotal();
+                    that.accounts();
+                    that.calSeroTotal();
+                });
             }, 1500)
 
 
@@ -119,39 +120,41 @@ class Home extends Component {
 
     showWallet = () => {
         let modalId;
-        const list = account.Details();
-        let items = [];
-        if (list) {
-            for (let ac of list) {
-                items.push(
-                    <Item thumb={<Icon type={ac.avatar} className="icon-avatar"/>} multipleLine onClick={() => {
-                        account.setCurrent(ac);
-                        this.accounts();
-                        modalId.close();
-                    }}>
-                        {ac.name}({ac.mainPKr})
-                        {/*<Brief>{utils.ellipsisAddress(ac.address)}</Brief>*/}
-                    </Item>
-                )
+        const that = this;
+        account.Details().then(list=>{
+            let items = [];
+            if (list) {
+                for (let ac of list) {
+                    items.push(
+                        <Item thumb={<Icon type={ac.avatar} className="icon-avatar"/>} multipleLine onClick={() => {
+                            account.setCurrent(ac).then(()=>{
+                                that.accounts();
+                                modalId.close();
+                            });
+                        }}>
+                            {ac.name}({ac.mainPKr})
+                            {/*<Brief>{utils.ellipsisAddress(ac.address)}</Brief>*/}
+                        </Item>
+                    )
+                }
             }
-        }
-        modalId = Modal.alert(
-            <div>
-                <span>{lang.e().page.wallet.selectWallet}</span>
-                <Icon type="iconsetting" className="icon-select-account-setting" onClick={() => {
-                    modalId.close();
-                    url.goPage(url.WalletManager, url.Home);
-                    // window.location.replace("/#/walletManage")
-                }}/>
-            </div>
-            , <div>
-                <List>
-                    {items}
-                </List>
-            </div>,[
-                {text:lang.e().button.ok}
-            ])
-
+            modalId = Modal.alert(
+                <div>
+                    <span>{lang.e().page.wallet.selectWallet}</span>
+                    <Icon type="iconsetting" className="icon-select-account-setting" onClick={() => {
+                        modalId.close();
+                        url.goPage(url.WalletManager, url.Home);
+                        // window.location.replace("/#/walletManage")
+                    }}/>
+                </div>
+                , <div>
+                    <List>
+                        {items}
+                    </List>
+                </div>,[
+                    {text:lang.e().button.ok}
+                ])
+        });
     }
 
     showQrCode = (pkr) => {
@@ -186,25 +189,27 @@ class Home extends Component {
     }
 
     accounts() {
-        let current = account.getCurrent();
-        if (current) {
-            let detail = account.Detail(current.address);
-            // let assets = acmng.balancesOf(detail.tk);
-            this.setState({
-                current: current,
-                account: account,
-                detail: detail,
-            })
+        const that = this;
+        account.getCurrent().then(current=>{
+            if (current) {
+                account.Detail(current.address).then(detail=>{
+                    // let assets = acmng.balancesOf(detail.tk);
+                    that.setState({
+                        current: current,
+                        account: account,
+                        detail: detail,
+                    })
 
-            assetService.balanceOf(detail.tk).then(assets=>{
-                this.setState({
-                    assets: assets,
-                })
-            }).catch(err=>{
-                console.log(err);
-            })
-
-        }
+                    assetService.balanceOf(detail.tk).then(assets=>{
+                        that.setState({
+                            assets: assets,
+                        })
+                    }).catch(err=>{
+                        console.log(err);
+                    })
+                });
+            }
+        });
     }
 
     render() {
@@ -226,8 +231,6 @@ class Home extends Component {
             syncState = "cross-circle"
             stateColor="red"
         }
-
-        console.log("render healthy :",healthy);
 
         if (current) {
             mainPKr = detail.mainPKr;

@@ -31,30 +31,30 @@ class HistoryPkr extends Component{
     }
 
     loadData=()=>{
-        let current = account.getCurrent();
-        this.setState({
-            current:current
-        })
-
-        assetService.getPKrIndex(current.tk).then(data=>{
-            const pkrIndex = data.PkrIndex;
-            const currentBlock =  data.CurrentBlock;
-            account = new Account(current.address);
-            let version = account.Keystore().version;
-            let pkrTemp = [];
-            pkrTemp.push(<Item extra={"Index"} style={{background:"#fdfdfd"}}><span style={{fontSize:"14px"}}>PKr</span></Item>)
-            for (let i=pkrIndex;i>0;i--){
-                let tempPkr = jsuperzk.createPkrHash(current.tk,i,version);
-                pkrTemp.push(<Item extra={i}><span style={{fontSize:"14px"}}>{utils.ellipsisAddress(tempPkr)}</span></Item>)
-            }
-            this.setState({
-                pkrs : pkrTemp,
-                currentBlock:currentBlock
+        const that = this;
+        account.getCurrent().then(current=>{
+            that.setState({
+                current:current
             })
+            assetService.getPKrIndex(current.tk).then(data=>{
+                const pkrIndex = data.PkrIndex;
+                const currentBlock =  data.CurrentBlock;
+                account = new Account(current.address);
+                let version = account.Keystore().version;
+                let pkrTemp = [];
+                pkrTemp.push(<Item extra={"Index"} style={{background:"#fdfdfd"}}><span style={{fontSize:"14px"}}>PKr</span></Item>)
+                for (let i=pkrIndex;i>0;i--){
+                    let tempPkr = jsuperzk.createPkrHash(current.tk,i,version);
+                    pkrTemp.push(<Item extra={i}><span style={{fontSize:"14px"}}>{utils.ellipsisAddress(tempPkr)}</span></Item>)
+                }
+                that.setState({
+                    pkrs : pkrTemp,
+                    currentBlock:currentBlock
+                })
 
-        }).catch(err=>{
+            })
+        });
 
-        })
     }
 
     render() {

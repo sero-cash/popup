@@ -3,7 +3,7 @@ import {NavBar, Icon, WhiteSpace, WingBlank, Button, Tag, NoticeBar} from 'antd-
 import Account from "../../components/account/account";
 import './create.css'
 import {Toast} from "antd-mobile/es";
-import {storage, keys, config, url, baseDecimal, lang} from "../../config/common";
+import {url, lang} from "../../config/common";
 
 const ac = new Account();
 class AccountCreateStep4 extends Component {
@@ -21,35 +21,13 @@ class AccountCreateStep4 extends Component {
     }
 
     done = () => {
+        const that = this;
         try {
             this.setState({disabled:true});
             Toast.loading(lang.e().toast.loading.creating,100);
             const type = sessionStorage.getItem("MnemonicType");
             if(type === "create"){
-                let temp = storage.get(keys.account.tempKeystore);
-                let invetId;
-                invetId = setInterval(function () {
-                    try{
-                        temp = storage.get(keys.account.tempKeystore)
-                        if(!temp){
-                        }else{
-                            clearInterval(invetId);
-                            ac.CopyTempKeystore().then(()=>{
-                                sessionStorage.removeItem("MnemonicType");
-                                sessionStorage.removeItem("worddata");
-                                Toast.success(lang.e().toast.success.create,2);
-                                setTimeout(function () {
-                                    url.goPage(url.Home)
-                                    // window.location.href="/"
-                                },1500)
-                            }).catch(e=>{
-                                Toast.fail(e,2);
-                            });
-                        }
-                    }catch (e) {
-                        Toast.fail(e.message,2)
-                    }
-                },1000);
+                that._create().then();
             }else if (type === "export"){
                 sessionStorage.removeItem("MnemonicType");
                 sessionStorage.removeItem("worddata");
@@ -63,6 +41,35 @@ class AccountCreateStep4 extends Component {
         }catch (e) {
             console.log(e.message());
         }
+    }
+
+    async _create(){
+        // let temp = storage.get(keys.account.tempKeystore);
+        // let temp = await ac.getTempKeystore();
+        let invetId;
+        invetId = setInterval(function () {
+            try{
+                ac.getTempKeystore().then(temp=>{
+                    if(!temp){
+                    }else{
+                        clearInterval(invetId);
+                        ac.CopyTempKeystore().then(()=>{
+                            sessionStorage.removeItem("MnemonicType");
+                            sessionStorage.removeItem("worddata");
+                            Toast.success(lang.e().toast.success.create,2);
+                            setTimeout(function () {
+                                url.goPage(url.Home)
+                                // window.location.href="/"
+                            },1500)
+                        }).catch(e=>{
+                            Toast.fail(e.message,2);
+                        });
+                    }
+                })
+            }catch (e) {
+                Toast.fail(e.message,2)
+            }
+        },1000);
     }
 
     triggerA = (w,index) => {

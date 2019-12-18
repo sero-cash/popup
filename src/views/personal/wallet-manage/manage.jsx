@@ -74,9 +74,11 @@ class Manage extends Component {
                         if(password){
                             Toast.loading(lang.e().toast.loading.exporting,60)
                             ac.exportMnemonic(that.props.match.params.address,password).then(()=>{
-                                Toast.success(lang.e().toast.export,2)
+                                Toast.success(lang.e().toast.success.export,2)
                                 resolve();
-                                url.goPage(url.AccountCreate2,url.manage(that.props.match.params.address));
+                                setTimeout(function () {
+                                    url.goPage(url.AccountCreate2,url.manage(that.props.match.params.address));
+                                },2000)
                             }).catch(e=>{
                                 if (e.indexOf("wrong passphrase") > -1) {
                                     Toast.fail(lang.e().toast.error.passwordError, 2);

@@ -90,7 +90,8 @@ class Sqlite {
         })
     }
 
-    executeSql(sql) {
+    async executeSql(sql) {
+        console.log(sql)
         let that = this;
         console.log(sql);
         return new Promise(function (resolve, reject) {
@@ -113,7 +114,8 @@ class Sqlite {
         })
     }
 
-    selectSql(sql) {
+    async selectSql(sql) {
+        console.log(sql)
         let that = this;
         return new Promise(function (resolve, reject) {
             if(plus && plus.sqlite){

@@ -148,7 +148,7 @@ class Transactions {
         txReq.GasPrice=new BigNumber(gasPrice).toString(16);
         txReq.SK = await act.getSK(password);
 
-        await assetService.commitTx(txReq)
+        return assetService.commitTx(txReq)
 
     }
 

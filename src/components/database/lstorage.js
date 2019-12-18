@@ -7,45 +7,76 @@ function isPlus(){
 
 class Lstorage {
 
+    constructor(){
+        this.init();
+    }
+
+    init(){
+        appPlus.db.executeSql(`create table if not exists lstorage("key" CHAR(1000),"value" CHAR(1000))`).then(data=>{
+            console.log("create table>>> " + data);
+        }).catch(error=>{
+            console.log("create table>>> " + error);
+        });
+    }
+
     async set(key,value){
+        storage.set(key,value);
         if(isPlus()){
-            return this.setWithSqlLite(key,value);
-        }else{
-            return this.setWithStorage(key,value);
+            this.setWithSqlLite(key,value).then().catch();
         }
+        return new Promise(function (resolve) {
+            resolve();
+        })
     }
 
     async get(key){
-        if(isPlus()){
-            return this.getWithSqlLite(key);
-        }else{
-            return this.getWithStorage(key);
-        }
+        const that = this;
+        const v = storage.get(key);
+        return new Promise(function (resolve) {
+            if(!v){
+                if(isPlus()){
+                    that.getWithSqlLite(key).then(value => {
+                        if(value){
+                            storage.set(key,value);
+                            resolve(value);
+                        }else{
+                            resolve("");
+                        }
+                    });
+                }else{
+                    resolve("");
+                }
+            }else{
+                resolve(v);
+            }
+        })
     }
 
     async delete(key){
+        storage.delete(key);
         if(isPlus()){
-            return this.deleteWithSqlLite(key);
-        }else{
-            return this.deleteWithStorage(key);
+            this.deleteWithSqlLite(key).then();
         }
+        return new Promise(function (resolve) {
+            resolve();
+        })
     }
 
-    setWithStorage(key, value){
+    async setWithStorage(key, value){
         return new Promise(function (resolve) {
             storage.set(key,value);
             resolve()
         })
     }
 
-    getWithStorage(key){
+    async getWithStorage(key){
         return new Promise(function (resolve) {
             const v = storage.get(key)
             resolve(v);
         })
     }
 
-    deleteWithStorage(key){
+    async deleteWithStorage(key){
         return new Promise(function (resolve) {
             storage.delete(key);
             resolve()
@@ -53,7 +84,6 @@ class Lstorage {
     }
 
     async setWithSqlLite(key, value) {
-        await appPlus.db.executeSql(`create table if not exists lstorage("key" CHAR(1000),"value" CHAR(1000))`);
         const data = await appPlus.db.selectSql(`select value from lstorage where key='${key}' `);
         if (!data || data.length === 0){
             await appPlus.db.executeSql(`insert into lstorage values('${key}','${JSON.stringify(value)}')`);
@@ -65,12 +95,23 @@ class Lstorage {
         })
     }
 
-    getWithSqlLite(key) {
-        return appPlus.db.selectSql(`select value from lstorage where key ='${key}'`)
+    async getWithSqlLite(key) {
+        const that = this;
+        return new Promise(function (resolve) {
+            appPlus.db.selectSql(`select value from lstorage where key ='${key}'`).then(datas=>{
+                if(datas && datas.length>0){
+                    resolve(JSON.parse(datas[0].value))
+                }else{
+                    resolve("")
+                }
+            }).catch(error=>{
+                that.init();
+            });
+        })
     }
 
-    deleteWithSqlLite(key) {
-        return appPlus.db.executeSql(`delete from lstorage where key ='${key}'`)
+    async deleteWithSqlLite(key) {
+        await appPlus.db.executeSql(`delete from lstorage where key ='${key}'`)
     }
 
 

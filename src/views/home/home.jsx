@@ -43,7 +43,7 @@ class Home extends Component {
     componentDidMount() {
         let that = this;
         try {
-            that.accounts();
+            that.accounts().then();
             that.calSeroTotal();
 
             setTimeout(function () {
@@ -55,7 +55,7 @@ class Home extends Component {
                         },1500)
                     }
 
-                    that.accounts();
+                    that.accounts().then();
                     that.calSeroTotal();
                 });
             }, 1500)
@@ -66,7 +66,7 @@ class Home extends Component {
             }
             homeInterverId = setInterval(function () {
                 if(that.state.healthy !== 'syncing'){
-                    that.accounts();
+                    that.accounts().then();
                 }
             },  10 * 1000)
 
@@ -128,7 +128,7 @@ class Home extends Component {
                     items.push(
                         <Item thumb={<Icon type={ac.avatar} className="icon-avatar"/>} multipleLine onClick={() => {
                             account.setCurrent(ac).then(()=>{
-                                that.accounts();
+                                that.accounts().then();
                                 modalId.close();
                             });
                         }}>
@@ -188,28 +188,26 @@ class Home extends Component {
         })
     }
 
-    accounts() {
+    async accounts() {
         const that = this;
-        account.getCurrent().then(current=>{
-            if (current) {
-                account.Detail(current.address).then(detail=>{
-                    // let assets = acmng.balancesOf(detail.tk);
-                    that.setState({
-                        current: current,
-                        account: account,
-                        detail: detail,
-                    })
+        const current = await account.getCurrent();
+        that.setState({
+            current: current,
+            account: account
+        })
 
-                    assetService.balanceOf(detail.tk).then(assets=>{
-                        that.setState({
-                            assets: assets,
-                        })
-                    }).catch(err=>{
-                        console.log(err);
-                    })
-                });
-            }
-        });
+        if (current) {
+            const detail = await account.Detail(current.address);
+            that.setState({
+                detail: detail,
+            })
+
+            assetService.balanceOf(detail.tk).then(assets=>{
+                that.setState({
+                    assets: assets,
+                })
+            })
+        }
     }
 
     render() {

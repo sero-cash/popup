@@ -2,10 +2,10 @@ import Utils from "../../config/utils";
 import {keys} from "../../config/common";
 import lstorage from "../database/lstorage";
 import {accountService} from './accountService'
-import {assetService} from "../service/service";
 
 const jsuperzk = require('jsuperzk')
 const utils = new Utils();
+import {assetService} from "../service/service";
 
 
 class Account {
@@ -74,7 +74,6 @@ class Account {
 
     async CopyTempKeystore() {
         const tempKeystore = await lstorage.get(keys.account.tempKeystore);
-
         if (!tempKeystore) {
             return new Promise(function (resolve, reject) {
                 reject("create account failed! please try again!");
@@ -92,6 +91,10 @@ class Account {
         await lstorage.set(keys.detailKey(keystore.address), tempKeystore.detail);
         await this.setCurrent(tempKeystore.detail);
         await lstorage.delete(keys.account.tempKeystore);
+    }
+
+    async getTempKeystore(){
+        return lstorage.get(keys.account.tempKeystore);
     }
 
     async exportMnemonic(address, password) {
@@ -118,7 +121,7 @@ class Account {
                     reject(msg.error)
                 }else{
                     const keystore = msg.data;
-                    that._setStorage(keystore).then(()=>{
+                    that._setStorage(keystore,name,hint).then(()=>{
                         resolve(true);
                     }).then(error=>{
                         reject(error);
@@ -221,9 +224,12 @@ class Account {
                 if(!detail.currentPKr){
                     detail.currentPKr =  jsuperzk.createPkrHash(keystore.tk, 1,keystore.version);
                 }
-                await assetService.getPKrIndex(keystore.tk).then(info=>{
-                    detail.currentPKr = jsuperzk.createPkrHash( keystore.tk, info.PkrIndex,keystore.version);
-                    lstorage.set(keys.detailKey(address), detail).then();
+                assetService.getPKrIndex(keystore.tk).then(info=>{
+                    const _pkr = jsuperzk.createPkrHash( keystore.tk, info.PkrIndex,keystore.version);
+                    if(detail.currentPKr !== _pkr){
+                        detail.currentPKr = _pkr;
+                        lstorage.set(keys.detailKey(address), detail).then();
+                    }
                 })
             }
             return new Promise(function (resolve, reject) {

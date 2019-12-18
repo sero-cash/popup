@@ -72,7 +72,6 @@ class AssetService {
     }
 
     commitTx(tx){
-        console.log("commitTx:",tx)
         return new Promise(function (resolve, reject) {
             popservice.commitTx(tx,function (msg) {
                 if (msg.error) {

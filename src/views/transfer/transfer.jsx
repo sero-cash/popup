@@ -311,7 +311,7 @@ class Transfer extends Component {
         const current = await account.getCurrent();
         // account = new Account(current.address);
         const detail = await account.Detail(current.address);
-        const data = assetService.balanceOf(detail.tk);
+        const data = await assetService.balanceOf(detail.tk);
         if(data && typeof data === 'object'){
             data.forEach((amount,cy)=>{
                 if(cy ===  currency){

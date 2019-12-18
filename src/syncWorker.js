@@ -11,7 +11,7 @@ export function register() {
 
     setInterval(function () {
         initAccountSyncService();
-    }, 1000)
+    }, 100* 1000)
 }
 
 document.onvisibilitychange = ()=>{

@@ -40,18 +40,20 @@ class HistoryPkr extends Component{
                 const pkrIndex = data.PkrIndex;
                 const currentBlock =  data.CurrentBlock;
                 account = new Account(current.address);
-                let version = account.Keystore().version;
-                let pkrTemp = [];
-                pkrTemp.push(<Item extra={"Index"} style={{background:"#fdfdfd"}}><span style={{fontSize:"14px"}}>PKr</span></Item>)
-                for (let i=pkrIndex;i>0;i--){
-                    let tempPkr = jsuperzk.createPkrHash(current.tk,i,version);
-                    pkrTemp.push(<Item extra={i}><span style={{fontSize:"14px"}}>{utils.ellipsisAddress(tempPkr)}</span></Item>)
-                }
-                that.setState({
-                    pkrs : pkrTemp,
-                    currentBlock:currentBlock
+                account.Keystore().then(keystore=>{
+                    console.log(keystore);
+                    let version = keystore.version;
+                    let pkrTemp = [];
+                    pkrTemp.push(<Item extra={"Index"} style={{background:"#fdfdfd"}}><span style={{fontSize:"14px"}}>PKr</span></Item>)
+                    for (let i=pkrIndex;i>0;i--){
+                        let tempPkr = jsuperzk.createPkrHash(current.tk,i,version);
+                        pkrTemp.push(<Item extra={i}><span style={{fontSize:"14px"}}>{utils.ellipsisAddress(tempPkr)}</span></Item>)
+                    }
+                    that.setState({
+                        pkrs : pkrTemp,
+                        currentBlock:currentBlock
+                    })
                 })
-
             })
         });
 

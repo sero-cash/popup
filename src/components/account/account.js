@@ -203,7 +203,7 @@ class Account {
     }
 
     async Keystore() {
-        await lstorage.get(keys.infoKey(this.address));
+        return lstorage.get(keys.infoKey(this.address));
     }
 
     async Detail(address) {

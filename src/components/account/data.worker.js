@@ -69,8 +69,10 @@ function getSK(msg){
     try {
         const password = msg.data.password;
         const keystore = msg.data.keystore;
+        console.log("getSK begin>>>>"+ new Date().getTime());
         wallet.fromKeystore(keystore);
         msg.data = wallet.getSk(password)
+        console.log("getSK end >>>>"+ new Date().getTime());
         _postMessage(msg)
     } catch (error) {
         msg.error=error.message;

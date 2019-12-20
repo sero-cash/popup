@@ -56,7 +56,7 @@ class Settings extends Component {
                 setTimeout(function () {
                     Modal.alert(lang.e().modal.clearData, lang.e().modal.clearTip, [{
                         text: lang.e().button.confirm, onPress: () => {
-                            window.location.href="./"
+                            window.location.href="./index.html"
                         },
                     }])
                 },2000)

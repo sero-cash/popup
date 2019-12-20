@@ -180,12 +180,12 @@ class Home extends Component {
     }
 
     calSeroTotal() {
-        // let that = this;
-        // priceService.seroTotal(1, function (res) {
-        //     that.setState({
-        //         seroPriceInfo: res
-        //     })
-        // })
+        let that = this;
+        priceService.seroTotal(1, function (res) {
+            that.setState({
+                seroPriceInfo: res
+            })
+        })
     }
 
     async accounts() {

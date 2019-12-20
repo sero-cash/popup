@@ -1,29 +1,38 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="google" value="notranslate">
-  <meta content='width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover, shrink-to-fit=no' name='viewport'>
-  <meta content='yes' name='apple-mobile-web-app-capable'>
-  <meta content='yes' name='mobile-web-app-capable'>
-  <meta content="telephone=no" name="format-detection">
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta content='white' name='apple-mobile-web-app-status-bar-style'>
-  <meta content='webkit' name='renderer'>
-  <meta name="theme-color" content="#000000">
+    <meta charset="utf-8">
+    <meta name="google" value="notranslate">
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover, shrink-to-fit=no'
+          name='viewport'>
+    <meta content='yes' name='apple-mobile-web-app-capable'>
+    <meta content='yes' name='mobile-web-app-capable'>
+    <meta content="telephone=no" name="format-detection">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta content='white' name='apple-mobile-web-app-status-bar-style'>
+    <meta content='webkit' name='renderer'>
+    <meta name="theme-color" content="#000000">
 
-  <link rel="shortcut icon" href="./assets/for-apple/touch/icon_64.png" type="image/x-icon">
-  <link rel="icon" sizes="180x180" href="./assets/for-apple/touch/icon_180.png">
-  <link rel="apple-touch-icon" href="./assets/for-apple/touch/icon_120.png" sizes="120x120"/>
-  <link rel="apple-touch-icon" href="./assets/for-apple/touch/icon_152.png" sizes="152x152"/>
-  <link rel="apple-touch-icon" href="./assets/for-apple/touch/icon_167.png" sizes="167x167"/>
-  <link rel="apple-touch-icon" href="./assets/for-apple/touch/icon_180.png" sizes="180x180"/>
-  <link rel="apple-touch-icon" href="./assets/for-apple/touch/icon_234.png" sizes="234x234"/>
+    <link rel="shortcut icon" href="./assets/for-apple/touch/icon_64.png" type="image/x-icon">
+    <link rel="icon" sizes="180x180" href="./assets/for-apple/touch/icon_180.png">
+    <link rel="apple-touch-icon" href="./assets/for-apple/touch/icon_120.png" sizes="120x120"/>
+    <link rel="apple-touch-icon" href="./assets/for-apple/touch/icon_152.png" sizes="152x152"/>
+    <link rel="apple-touch-icon" href="./assets/for-apple/touch/icon_167.png" sizes="167x167"/>
+    <link rel="apple-touch-icon" href="./assets/for-apple/touch/icon_180.png" sizes="180x180"/>
+    <link rel="apple-touch-icon" href="./assets/for-apple/touch/icon_234.png" sizes="234x234"/>
 
-  <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
-  <link rel="shortcut icon" href="%PUBLIC_URL%/icon32.png">
-  <script src="https://at.alicdn.com/t/font_1427380_yygthjcg0kr.js"></script>
-  <title>SERO Popup</title>
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
+    <link rel="shortcut icon" href="%PUBLIC_URL%/icon32.png">
+    <script src="https://at.alicdn.com/t/font_1427380_yygthjcg0kr.js"></script>
+    <title>SERO Popup</title>
+
+    <script type="application/javascript">
+        document.addEventListener('plusready', function() {
+            //console.log("所有plus api都应该在此事件发生后调用，否则会出现plus is undefined。"
+            plus.navigator.setStatusBarBackground("#F7F7F7");
+            plus.navigator.setStatusBarStyle("dark");
+        });
+    </script>
 </head>
 <body>
 <div id="root"></div>

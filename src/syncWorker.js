@@ -11,12 +11,11 @@ export function register() {
 
     setInterval(function () {
         initAccountSyncService();
-    }, 100* 1000)
+    }, 10* 1000)
 }
 
 document.onvisibilitychange = ()=>{
     let visibility = document.visibilityState;
-    console.log("document.visibilityState:",visibility);
     if(visibility === "visible"){
         assetService.init();
     }

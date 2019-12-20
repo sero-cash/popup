@@ -1,8 +1,12 @@
 import {appPlus} from "../app/app-plus";
 import {storage} from "../../config/common";
 
-function isPlus(){
-    return !!(plus && plus.sqlite);
+function isPlus() {
+    try {
+        return !!(plus && plus.sqlite);
+    } catch (e) {
+        return false
+    }
 }
 
 class Lstorage {
@@ -12,11 +16,13 @@ class Lstorage {
     }
 
     init(){
-        appPlus.db.executeSql(`create table if not exists lstorage("key" CHAR(1000),"value" CHAR(1000))`).then(data=>{
-            console.log("create table>>> " + data);
-        }).catch(error=>{
-            console.log("create table>>> " + error);
-        });
+        if(isPlus()){
+            appPlus.db.executeSql(`create table if not exists lstorage("key" CHAR(1000),"value" CHAR(1000))`).then(data=>{
+                console.log("create table>>> " + data);
+            }).catch(error=>{
+                console.log("create table>>> " + error);
+            });
+        }
     }
 
     async set(key,value){

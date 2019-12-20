@@ -3,7 +3,6 @@ import {NavBar, Icon, Toast, Modal, List, InputItem, Button} from "antd-mobile";
 import {storage, url, keys, lang, config} from "../../config/common";
 import BigNumber from 'bignumber.js'
 import Account from '../../components/account/account'
-import {acmng} from "../../components/data/assetmanager";
 import {Transactions} from "../../components/tx/transactions";
 import Web3 from 'sero-web3'
 import {decimals} from "../../components/tx/decimals";

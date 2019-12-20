@@ -1,4 +1,4 @@
-import {webworker} from './webworker'
+const webworker = new Worker('./data.worker.js', {type: 'module'});
 
 class AccountService {
 

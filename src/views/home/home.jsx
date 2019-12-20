@@ -193,13 +193,13 @@ class Home extends Component {
         const current = await account.getCurrent();
         that.setState({
             current: current,
-            account: account
         })
 
         if (current) {
             const detail = await account.Detail(current.address);
             that.setState({
                 detail: detail,
+                account: account
             })
 
             assetService.balanceOf(detail.tk).then(assets=>{

@@ -2,7 +2,6 @@ import React, {Component} from 'react'
 import {NavBar, Modal, Icon, WingBlank, WhiteSpace, List, Toast, InputItem, Button} from 'antd-mobile'
 import {config, url, lang} from "../../../config/common";
 import {assetService} from "../../../components/service/service";
-import axois from 'axios'
 
 class Settings extends Component {
 

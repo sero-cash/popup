@@ -1,14 +1,9 @@
 import {keys, config} from "../../config/common";
 import Storage from "../../config/storage";
-import utils from 'jsuperzk/dist/utils/utils'
-import {genTxParam, signTx} from 'jsuperzk/dist/tx/tx'
-import TxGenrator from "./txGenrator";
-import TxState from "./txState";
 import Account from "../account/account";
-import {genTxMap, genTxInfo, convertTx, sortTxMap} from "./utils";
+import {genTxMap, genTxInfo, sortTxMap} from "./utils";
 import BigNumber from "bignumber.js";
 import {assetService} from "../service/service";
-import {Toast} from "antd-mobile";
 
 let account = new Account();
 

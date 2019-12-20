@@ -158,6 +158,8 @@ class Form extends Component {
                                 }
                                 if (e.indexOf("wrong passphrase") > -1) {
                                     Toast.fail(lang.e().toast.error.passwordError, 2);
+                                } else if (e.indexOf("no enough") > -1) {
+                                    Toast.fail(lang.e().toast.error.notEnough, 2);
                                 } else {
                                     Toast.fail(e, 3);
                                 }

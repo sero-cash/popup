@@ -1,12 +1,10 @@
 import Utils from "../../config/utils";
 import {keys} from "../../config/common";
 import lstorage from "../database/lstorage";
+import {assetService} from "../service/service";
 import {accountService} from './accountService'
-
 const jsuperzk = require('jsuperzk')
 const utils = new Utils();
-import {assetService} from "../service/service";
-
 
 class Account {
 
@@ -30,8 +28,8 @@ class Account {
         const that = this;
         let address = that.address;
         if(!address){
-            const current = await that.getCurrent()
-            address = current.address
+            const current = await that.getCurrent();
+            address = current.address;
         }
         const keystore = await lstorage.get(keys.infoKey(address));
         return new Promise(function (resolve,reject) {

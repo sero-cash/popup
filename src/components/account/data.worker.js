@@ -11,7 +11,7 @@ const operations = {
 
 
 self.addEventListener('message', e => {
-    // console.log("account receive data: ", e.data);
+    console.log("account receive data: ", e.data);
     if (e.data && e.data.method) {
         if (operations[e.data.method]) {
             operations[e.data.method](e.data)

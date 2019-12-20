@@ -40,9 +40,9 @@ const data = [
         url:"https://asnowhero.gitee.io/asnow-popup/",
     },
     {
-        icon: <div className="dapp-icon"><img src="https://sanguo.artfuture.store/slg/icon.png"  className="dapp-img"/></div>,
+        icon: <div className="dapp-icon"><img src="http://sanguo.artfuture.store/slg/icon.png"  className="dapp-img"/></div>,
         text: `超零三国`,
-        url:"https://sanguo.artfuture.store/slg/slg.html",
+        url:"http://sanguo.artfuture.store/slg/slg.html",
     },
     {
         icon: <div className="dapp-icon"><img src="http://47.92.113.69/logo.png"  className="dapp-img"/></div>,

@@ -8,7 +8,6 @@ class Price {
 
 
     seroTotal(amount, cb) {
-        let that = this;
         let resData = {}
         rpc.get(config.host.price+"sero_usdt", function (rest) {
             if(rest && rest!==""){

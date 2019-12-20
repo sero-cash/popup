@@ -188,11 +188,13 @@ class Settings extends Component {
 
                         {
                             plus?
-                            <List.Item  arrow="horizontal" onClick={() => {
+                            <List.Item  arrow="horizontal" extra={
+                                <span style={{fontSize: "14px"}}>{window.location.host?window.location.host:"localhost"}</span>
+                            } onClick={() => {
                                 setTimeout(function () {
                                     window.location.href="./enter.html"
                                 },1000)
-                            }}><span>设置钱包开源社区</span></List.Item>:""
+                            }}><span>{lang.e().page.setting.source}</span></List.Item>:""
                         }
 
                     </WingBlank>

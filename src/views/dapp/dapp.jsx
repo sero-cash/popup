@@ -32,7 +32,7 @@ const data = [
     {
         icon: <div className="dapp-icon"><img src="https://edenworkroom.github.io/dapp/dapp.png"  className="dapp-img"/></div>,
         text: `SC Tool`,
-        url:"http://edenworkroom.gitee.io/sctool/",
+        url:"https://edenworkroom.gitee.io/sctool/",
     },
     {
         icon: <div className="dapp-icon"><img src="https://asnowhero.gitee.io/asnow-popup/logo.png"  className="dapp-img"/></div>,
@@ -40,9 +40,9 @@ const data = [
         url:"https://asnowhero.gitee.io/asnow-popup/",
     },
     {
-        icon: <div className="dapp-icon"><img src="http://sanguo.artfuture.store/slg/icon.png"  className="dapp-img"/></div>,
+        icon: <div className="dapp-icon"><img src="https://sanguo.artfuture.store/slg/icon.png"  className="dapp-img"/></div>,
         text: `超零三国`,
-        url:"http://sanguo.artfuture.store/slg/slg.html",
+        url:"https://sanguo.artfuture.store/slg/slg.html",
     },
     {
         icon: <div className="dapp-icon"><img src="http://47.92.113.69/logo.png"  className="dapp-img"/></div>,
@@ -50,9 +50,9 @@ const data = [
         url:"http://47.92.113.69/",
     },
     {
-        icon: <div className="dapp-icon"><img src="http://alpha-live.gitee.io/alpha/logo.png"  className="dapp-img"/></div>,
+        icon: <div className="dapp-icon"><img src="https://alpha-live.gitee.io/alpha/logo.png"  className="dapp-img"/></div>,
         text: `ALPHA`,
-        url:"http://alpha-live.gitee.io/alpha/index.html",
+        url:"https://alpha-live.gitee.io/alpha/index.html",
     },
 ];
 

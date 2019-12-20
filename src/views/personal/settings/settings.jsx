@@ -189,8 +189,10 @@ class Settings extends Component {
                         {
                             plus?
                             <List.Item  arrow="horizontal" onClick={() => {
-                                window.location.href="./enter.html"
-                            }}><span>Select  Wallet Source</span></List.Item>:""
+                                setTimeout(function () {
+                                    window.location.href="./enter.html"
+                                },1000)
+                            }}><span>设置钱包开源社区</span></List.Item>:""
                         }
 
                     </WingBlank>
@@ -245,31 +247,5 @@ class Settings extends Component {
     }
 }
 
-//
-// function actionSheet(data) {
-//     var btns = [];
-//     for(var i =0;i<data.length;i++){
-//         btns.push({title:data[i].url})
-//     }
-//
-//     plus.nativeUI.actionSheet(
-//         {
-//             title:"Select node host",
-//             buttons:btns
-//         },
-//         function(e){
-//             var i=e.index;
-//             if(i<=0){
-//                 actionSheet(data);
-//             }else{
-//                 var _url = data[i-1].url;
-//                 // embed=plus.webview.create(_url, 'SERO Popup', {"titleNView": false,statusbar:{"background": "#f7f7f7"}});
-//                 ws.show();
-//                 ws.loadURL(_url, {Referer:'https://sero.cash/'});
-//             }
-//
-//         }
-//     );
-// }
 
 export default Settings

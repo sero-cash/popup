@@ -11,6 +11,7 @@
     <script type="text/javascript" src="./js/popper.js"></script>
     <script type="text/javascript">
 
+        console.log("########################################################");
         document.addEventListener('plusready', function() {
             //console.log("所有plus api都应该在此事件发生后调用，否则会出现plus is undefined。"
             plus.navigator.setStatusBarBackground("#F7F7F7");
@@ -90,17 +91,11 @@
         }
 
         function go(url){
-            localStorage.setItem("currentUrl",url);
             window.location.href = url;
         }
 
         window.onload=function(){
-            var currentUrl = localStorage.getItem("currentUrl")
-            if (currentUrl){
-                window.location.href = currentUrl;
-            }else{
-                load();
-            }
+            load();
         }
 
     </script>

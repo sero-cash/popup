@@ -168,7 +168,8 @@ class Language {
                 language: "Language",
                 unit: "Currency Unit",
                 node: "Node Settings",
-                pkr: "Check synchronization status"
+                pkr: "Check synchronization status",
+                source:"Select Wallet Source"
             },
 
             create: {
@@ -382,7 +383,8 @@ class Language {
                 language: "语言",
                 unit: "币种单位",
                 node: "节点设置",
-                pkr: "查看同步状态"
+                pkr: "查看同步状态",
+                source:"设置钱包开源社区",
             },
 
             create: {
@@ -426,7 +428,7 @@ class Language {
             my: {
                 addressBook: "地址簿",
                 walletManage: "钱包管理",
-                settings: "使用设置  ",
+                settings: "使用设置",
                 termOfUse: "用户协议",
                 about: "关于我们",
                 clear: "清除缓存",
@@ -597,7 +599,8 @@ class Language {
                 language: "言語",
                 unit: "通貨単位",
                 node: "ノード設定",
-                pkr: "PKrを確認する"
+                pkr: "PKrを確認する",
+                source:"ウォレットをオープンソースに設定します",
             },
 
             create: {
@@ -811,7 +814,8 @@ class Language {
                 language: "язык",
                 unit: "Валютная единица",
                 node: "Настройки узла",
-                pkr: "Проверьте PKr"
+                pkr: "Проверьте PKr",
+                source:"Выберите источник кошелька",
             },
 
             create: {
@@ -1025,7 +1029,8 @@ class Language {
                 language: "언어",
                 unit: "통화 단위",
                 node: "노드 설정",
-                pkr: "PKr 확인"
+                pkr: "PKr 확인",
+                source:"월렛 오픈 소스 커뮤니티 설정",
             },
 
             create: {

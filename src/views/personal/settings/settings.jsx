@@ -182,12 +182,16 @@ class Settings extends Component {
                             })
                         }}><span>{lang.e().page.setting.node}</span></List.Item>
 
-                        <List.Item  arrow="horizontal" onClick={() => {
-                            url.goPage(url.HistoryPKr,url.Settings)
-                        }}><span>{lang.e().page.setting.pkr}</span></List.Item>
+                    </WingBlank>
+                </List>
+                <WhiteSpace/>
+                <List>
+                    <List.Item  arrow="horizontal" onClick={() => {
+                        url.goPage(url.HistoryPKr,url.Settings)
+                    }}><span>{lang.e().page.setting.pkr}</span></List.Item>
 
-                        {
-                            plus?
+                    {
+                        plus?
                             <List.Item  arrow="horizontal" extra={
                                 <span style={{fontSize: "14px"}}>{window.location.host?window.location.host:"localhost"}</span>
                             } onClick={() => {
@@ -195,11 +199,8 @@ class Settings extends Component {
                                     window.location.href="./enter.html?source=wallet"
                                 },1000)
                             }}><span>{lang.e().page.setting.source}</span></List.Item>:""
-                        }
-
-                    </WingBlank>
+                    }
                 </List>
-
                 <WhiteSpace/>
                 <List>
                     <List.Item onClick={() => {

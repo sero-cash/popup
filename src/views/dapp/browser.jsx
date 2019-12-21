@@ -109,11 +109,9 @@ class Browser extends Component {
                     data.uuid = plus.device.uuid;
                     resolve(data)
                 }else{
-                    alert("plus not defined");
                     resolve(data)
                 }
             }catch (e) {
-                alert(e.message);
                 console.log('getInfo fail:',e.message);
                 resolve(data)
             }

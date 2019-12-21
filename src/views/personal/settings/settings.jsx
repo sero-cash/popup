@@ -192,7 +192,7 @@ class Settings extends Component {
                                 <span style={{fontSize: "14px"}}>{window.location.host?window.location.host:"localhost"}</span>
                             } onClick={() => {
                                 setTimeout(function () {
-                                    window.location.href="./enter.html"
+                                    window.location.href="./enter.html?source=wallet"
                                 },1000)
                             }}><span>{lang.e().page.setting.source}</span></List.Item>:""
                         }

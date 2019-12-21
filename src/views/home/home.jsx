@@ -49,16 +49,14 @@ class Home extends Component {
             setTimeout(function () {
                 account.getCurrent().then(current=>{
                     if (!current || !current.address) {
-                        Toast.info(lang.e().toast.info.createWallet,1.5);
-                        setTimeout(function () {
-                            url.goPage(url.AccountCreate1, url.Home);
-                        },1500)
+                        Toast.info(lang.e().toast.info.createWallet,2);
+                        url.goPage(url.AccountCreate1, url.Home);
                     }
 
                     that.accounts().then();
                     that.calSeroTotal();
                 });
-            }, 1500)
+            }, 3000)
 
 
             if(homeInterverId){

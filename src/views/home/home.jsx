@@ -20,9 +20,11 @@ let Item = List.Item;
 let Brief = Item.Brief;
 let account = new Account();
 
+let homeInterverId0 = null;
 let homeInterverId = null;
 let homeInterverId2 = null;
 let homeInterverId3 = null;
+
 class Home extends Component {
 
     constructor(props) {
@@ -46,18 +48,23 @@ class Home extends Component {
             that.accounts().then();
             that.calSeroTotal();
 
-            setTimeout(function () {
-                account.getCurrent().then(current=>{
-                    if (!current || !current.address) {
-                        Toast.info(lang.e().toast.info.createWallet,2);
-                        url.goPage(url.AccountCreate1, url.Home);
-                    }
-
-                    that.accounts().then();
-                    that.calSeroTotal();
-                });
-            }, 3000)
-
+            if(!homeInterverId0){
+                homeInterverId0 = setInterval(function () {
+                    account.getCurrent().then(current=>{
+                        clearInterval(homeInterverId0);
+                        if (!current || !current.address) {
+                            Toast.info(lang.e().toast.info.createWallet,1.5);
+                            setTimeout(function () {
+                                url.goPage(url.AccountCreate1, url.Home);
+                            },1000)
+                        }else{
+                            that.accounts().then();
+                            that.calSeroTotal();
+                        }
+                    }).catch((e)=>{
+                    });
+                },1000);
+            }
 
             if(homeInterverId){
                 clearInterval(homeInterverId);

@@ -17,11 +17,13 @@ class Lstorage {
 
     init(){
         if(isPlus()){
-            appPlus.db.executeSql(`create table if not exists lstorage("key" CHAR(1000),"value" CHAR(1000))`).then(data=>{
-                console.log("create table>>> " + data);
-            }).catch(error=>{
-                console.log("create table>>> " + error);
-            });
+            appPlus.db.openDatabase().then(()=>{
+                appPlus.db.executeSql(`create table if not exists lstorage("key" CHAR(1000),"value" CHAR(1000))`).then(data=>{
+                    console.log("create table>>> " + data);
+                }).catch(error=>{
+                    console.log("create table>>> " + error);
+                });
+            })
         }
     }
 
@@ -48,6 +50,9 @@ class Lstorage {
                         }else{
                             resolve("");
                         }
+                    }).catch((e)=>{
+                        console.log(e);
+                        resolve("");
                     });
                 }else{
                     resolve("");

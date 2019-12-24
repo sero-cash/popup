@@ -186,7 +186,7 @@ class Account {
     }
 
     async getCurrent() {
-        return lstorage.get(keys.account.current);
+        return await lstorage.get(keys.account.current);
     }
 
     async setCurrent(info) {

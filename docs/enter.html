@@ -11,7 +11,7 @@
     <script type="text/javascript" src="./js/popper.js"></script>
     <script type="text/javascript">
         console.log("########################################################");
-        
+
         var datas = [
             {
                 "host": "Native",
@@ -92,7 +92,7 @@
                 if(flag === false){
                     alert("cache failed!");
                 }
-				plus.nativeUI.showWaiting("Loading...")
+                plus.nativeUI.showWaiting("Loading...")
                 window.location.href = url;
             });
         }
@@ -140,9 +140,9 @@
         }
 
         function onloadSource(){
-			console.log("onload........ ");
+            console.log("onload........ ");
             var source = GetQueryString("source");
-			console.log("source>>>>>>> " + source);
+            console.log("source>>>>>>> " + source);
             if(!source){
                 plus.sqlite.selectSql({
                     name: 'cache',
@@ -160,10 +160,10 @@
                 });
             }
         }
-		
-		window.onload = function(){
-			load();
-		}
+
+        window.onload = function(){
+            load();
+        }
 
         function GetQueryString(name) {
             var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
@@ -173,7 +173,7 @@
             return null;
         }
 
-		document.addEventListener('plusready', function() {
+        document.addEventListener('plusready', function() {
             //console.log("所有plus api都应该在此事件发生后调用，否则会出现plus is undefined。"
             plus.navigator.setStatusBarBackground("#F7F7F7");
             plus.navigator.setStatusBarStyle("dark");
@@ -182,16 +182,16 @@
                 name: 'cache',
                 path: '_doc/cache.db',
                 success: function(e){
-					onloadSource();
+                    onloadSource();
                     console.log('openDatabase success!');
                 },
                 fail: function(e){
-					onloadSource();
+                    onloadSource();
                     console.log('openDatabase failed: '+JSON.stringify(e));
                 }
             });
         });
-		
+
     </script>
 
 

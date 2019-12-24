@@ -35,6 +35,40 @@ class AboutUs extends Component {
 
     }
 
+    checkUpdate(){
+        //TODO wap2app其它初始化代码
+
+        /************升级检测代码开始********** */
+        const ua = navigator.userAgent;
+        //Html5Plus环境，但不是流应用环境
+        if(ua.indexOf('Html5Plus')>-1 && ua.indexOf('StreamApp')==-1){
+            let url = "http://sero-cash.gitee.io/popup";//检查更新地址
+            const localUtc = new Date().getTimezoneOffset() / 60;
+            if (localUtc === -8){
+
+            }
+
+
+
+            var req = {//升级检测数据
+                "appid": plus.runtime.appid,
+                "version": plus.runtime.version
+            };
+
+            wap2app.ajax.get(url, req, function(rsp) {
+                if(rsp && rsp.status){
+                    //需要更新，提示用户
+                    plus.nativeUI.confirm(rsp.note, function(event) {
+                        if(0 == event.index) {//用户点击了“立即更新”按钮
+                            plus.runtime.openURL(rsp.url);
+                        }
+                    }, rsp.title, ["立即更新", "取　　消"]);
+                }
+            });
+        }
+        /************升级检测代码结束********** */
+    }
+
     render() {
 
         let abouts = [];

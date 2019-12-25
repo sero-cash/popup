@@ -44,7 +44,7 @@ class AboutUs extends Component {
             if (localUtc === -8) {
                 url = "http://sero-cash.gitee.io/popup/client.json";
             }
-            console.log("plus.runtime.",plus.runtime.version);
+
             that.getReq(url,function (data,err) {
                 if(data){
                     const rData = JSON.parse(data);
@@ -56,9 +56,8 @@ class AboutUs extends Component {
                                 plus.runtime.openURL(rsp["url"]);
                             }
                         }, rsp["title"], [lang.e().button.update, lang.e().button.cancel]);
-                    }else{
-                        plus.nativeUI.alert(lang.e().toast.info.isLatest, function(){
-                        }, "SERO Popup", "OK");
+                    } else {
+                        plus.nativeUI.alert(lang.e().toast.info.isLatest, function(){}, "SERO Popup", "OK");
                     }
                 }
             })

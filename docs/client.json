@@ -4,7 +4,7 @@
     "version":"1.0.0",
     "title":"1.0.0版本更新",
     "note":"1.0.0发布",
-    "url":"http://sero-cash.gitee.io/popup/client.json"
+    "url":"https://sero.cash/app/popup.html"
   },
 
   "en_US":{
@@ -12,7 +12,7 @@
     "version":"1.0.0",
     "title":"1.0.0 release",
     "note":"1.0.0 release",
-    "url":"http://popup-github.sero.cash/client.json"
+    "url":"https://sero.cash/app/popup.html"
   },
 
   "ja_JP":{
@@ -20,7 +20,7 @@
     "version":"1.0.0",
     "title":"1.0.0リリース",
     "note":"1.0.0リリース",
-    "url":"http://popup-github.sero.cash/client.json"
+    "url":"https://sero.cash/app/popup.html"
   },
 
   "be_BY":{
@@ -28,7 +28,7 @@
     "version":"1.0.0",
     "title":"1.0.0 выпуск",
     "note":"1.0.0 выпуск",
-    "url":"http://popup-github.sero.cash/client.json"
+    "url":"https://sero.cash/app/popup.html"
   },
 
   "ko_KR":{
@@ -36,7 +36,6 @@
     "version":"1.0.0",
     "title":"1.0.0 릴리스",
     "note":"1.0.0 릴리스",
-    "url":"http://popup-github.sero.cash/client.json"
+    "url":"https://sero.cash/app/popup.html"
   }
-
 }

@@ -49,6 +49,7 @@ class Language {
             import: "Import",
             ok: "OK",
             openTip: "Open on October 31",
+            update: "Update",
         },
 
         navbar: {
@@ -263,6 +264,7 @@ class Language {
             import: "导入",
             ok: "好的",
             openTip: "10月31号开启此功能",
+            update: "立即更新",
         },
 
         navbar: {
@@ -480,6 +482,7 @@ class Language {
             import: "完了",
             ok: "OK",
             openTip: "10月31日にオープン",
+            update: "今すぐ更新",
         },
 
         navbar: {
@@ -695,6 +698,7 @@ class Language {
             import: "импорт",
             ok: "OK",
             openTip: "Открыт 31 октября",
+            update: "обновление",
         },
 
         navbar: {
@@ -910,6 +914,7 @@ class Language {
             import: "가져오기",
             ok: "OK",
             openTip: "10 월 31 일 오픈",
+            update: "업데이트",
         },
 
         navbar: {

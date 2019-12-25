@@ -1,16 +1,42 @@
 {
-  "urls": [
-    {
-      "host": "gitee",
-      "url": "http://sero-cash.gitee.io/popup"
-    },
-    {
-      "host": "github",
-      "url": "https://sero-cash.github.io/popup"
-    },
-    {
-      "host": "localhost",
-      "url": "http://192.168.19.145:3001"
-    }
-  ]
+  "zh_CN":{
+    "appid":"﻿cash.sero.popup.community",
+    "version":"1.0.0",
+    "title":"1.0.0版本更新",
+    "note":"1.0.0发布",
+    "url":"http://sero-cash.gitee.io/popup/client.json"
+  },
+
+  "en_US":{
+    "appid":"cash.sero.popup.community",
+    "version":"1.0.0",
+    "title":"1.0.0 release",
+    "note":"1.0.0 release",
+    "url":"http://popup-github.sero.cash/client.json"
+  },
+
+  "ja_JP":{
+    "appid":"cash.sero.popup.community",
+    "version":"1.0.0",
+    "title":"1.0.0リリース",
+    "note":"1.0.0リリース",
+    "url":"http://popup-github.sero.cash/client.json"
+  },
+
+  "be_BY":{
+    "appid":"cash.sero.popup.community",
+    "version":"1.0.0",
+    "title":"1.0.0 выпуск",
+    "note":"1.0.0 выпуск",
+    "url":"http://popup-github.sero.cash/client.json"
+  },
+
+  "ko_KR":{
+    "appid":"cash.sero.popup.community",
+    "version":"1.0.0",
+    "title":"1.0.0 릴리스",
+    "note":"1.0.0 릴리스",
+    "url":"http://popup-github.sero.cash/client.json"
+  }
+
 }

@@ -1,4 +1,5 @@
 import Wallet from "jsuperzk/dist/wallet/wallet"
+import axios from 'axios'
 
 const wallet = new Wallet();
 

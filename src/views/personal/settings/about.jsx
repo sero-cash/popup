@@ -1,9 +1,8 @@
 import React, {Component} from 'react'
-import {Icon, List, NavBar,Toast,Button} from "antd-mobile";
+import {Icon, List, NavBar} from "antd-mobile";
 import {lang, url} from "../../../config/common";
 import sero from "../../../logo.png";
 import './about.css'
-import axios from 'axios'
 
 const urls = [
     {
@@ -37,6 +36,7 @@ class AboutUs extends Component {
     }
 
     checkUpdate() {
+        const that = this;
         const ua = navigator.userAgent;
         if (ua.indexOf('Html5Plus') > -1 && ua.indexOf('StreamApp') === -1) {
             let url = "http://popup-github.sero.cash/client.json";
@@ -44,24 +44,50 @@ class AboutUs extends Component {
             if (localUtc === -8) {
                 url = "http://sero-cash.gitee.io/popup/client.json";
             }
-
             console.log("plus.runtime.",plus.runtime.version);
-
-            axios.get(url).then(response=>{
-                const rsp = response.data[lang.e().key];
-                const version = rsp["version"];
-                if (version !== plus.runtime.version) {
-                    plus.nativeUI.confirm(rsp["note"], function (event) {
-                        if (0 === event.index) {
-                            plus.runtime.openURL(rsp["url"]);
-                        }
-                    }, rsp["title"], [lang.e().button.update, lang.e().button.cancel]);
+            alert(plus.runtime.version);
+            that.getReq(url,function (data,err) {
+                console.log(data)
+                if(data){
+                    const rData = JSON.parse(data);
+                    const rsp = rData[lang.e().key];
+                    const version = rsp["version"];
+                    if (version !== plus.runtime.version) {
+                        plus.nativeUI.confirm(rsp["note"], function (event) {
+                            if (0 === event.index) {
+                                plus.runtime.openURL(rsp["url"]);
+                            }
+                        }, rsp["title"], [lang.e().button.update, lang.e().button.cancel]);
+                    }
                 }
-            }).catch(err=>{
-                console.log(JSON.stringify(err));
             })
         }
     }
+
+    getReq(url,cb){
+        const xhr = new plus.net.XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            switch ( xhr.readyState ) {
+                case 0:
+                case 1:
+                case 2:
+                case 3:
+                    break;
+                case 4:
+                    if ( xhr.status === 200 ) {
+                        cb(xhr.responseText,null);
+                    } else {
+                        cb(null,xhr.readyState);
+                    }
+                    break;
+                default :
+                    break;
+            }
+        }
+        xhr.open( "GET", url);
+        xhr.send();
+    }
+
 
     render() {
 

@@ -94,9 +94,9 @@ class AboutUs extends Component {
                     </div>
                     <List>
                         {abouts}
-                        <List.Item key={i++} arrow="horizontal" extra={<span onClick={
+                        <List.Item key={i++} arrow="horizontal" onClick={
                             () => this.checkUpdate()
-                        }>1.1.0</span>}>Version</List.Item>
+                        } extra={<span>1.1.0</span>}>Version</List.Item>
                     </List>
                 </div>
             </div>

@@ -61,6 +61,7 @@ class Language {
         toast: {
             info: {
                 quitApp: "Press again to exit App !",
+                isLatest: "You are the latest version!",
                 createWallet: "Please create wallet first !"
             },
             success: {
@@ -276,6 +277,7 @@ class Language {
         toast: {
             info: {
                 quitApp: "再按一次退出应用!",
+                isLatest: "已经是最新版本!",
                 createWallet: "请先创建钱包账户 !"
             },
             success: {
@@ -494,6 +496,7 @@ class Language {
         toast: {
             info: {
                 quitApp: "もう一度押すとアプリが終了します！",
+                isLatest: "すでに最新バージョンです!",
                 createWallet: "最初にウォレットを作成してください!"
             },
             success: {
@@ -710,6 +713,7 @@ class Language {
         toast: {
             info: {
                 quitApp: "Нажмите еще раз, чтобы выйти из приложения!",
+                isLatest: "Уже последняя версия!",
                 createWallet: "Пожалуйста, сначала создайте кошелек!"
             },
             success: {
@@ -926,6 +930,7 @@ class Language {
         toast: {
             info: {
                 quitApp: "다시 누르면 앱이 종료됩니다!",
+                isLatest: "이미 최신 버전입니다!",
                 createWallet: "먼저 지갑을 만드십시오!"
             },
             success: {

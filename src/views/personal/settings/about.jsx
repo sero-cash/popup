@@ -45,9 +45,7 @@ class AboutUs extends Component {
                 url = "http://sero-cash.gitee.io/popup/client.json";
             }
             console.log("plus.runtime.",plus.runtime.version);
-            alert(plus.runtime.version);
             that.getReq(url,function (data,err) {
-                console.log(data)
                 if(data){
                     const rData = JSON.parse(data);
                     const rsp = rData[lang.e().key];
@@ -58,6 +56,9 @@ class AboutUs extends Component {
                                 plus.runtime.openURL(rsp["url"]);
                             }
                         }, rsp["title"], [lang.e().button.update, lang.e().button.cancel]);
+                    }else{
+                        plus.nativeUI.alert(lang.e().toast.info.isLatest, function(){
+                        }, "SERO Popup", "OK");
                     }
                 }
             })

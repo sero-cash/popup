@@ -69,6 +69,9 @@
             }
 
             for(var i=0;i<datas.length;i++){
+                if(isIOS() && i === 0){
+                    continue;
+                }
                 var _data = datas[i];
                 var url = _data.url;
                 var text =`<div class="am-list" onclick='go("`+_data.url+`")'>
@@ -84,6 +87,18 @@
 						</div>`;
                 $('#content').append(text);
             }
+        }
+
+        function isAndroid(){
+            var localUtc = new Date().getTimezoneOffset() /60;
+            var u = navigator.userAgent, app = navigator.appVersion;
+            return u.indexOf('Android') > -1 || u.indexOf('Linux') > -1; //g
+        }
+
+        function isIOS(){
+            var localUtc = new Date().getTimezoneOffset() /60;
+            var u = navigator.userAgent, app = navigator.appVersion;
+            return !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
         }
 
         function go(url){

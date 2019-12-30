@@ -54,6 +54,17 @@ const data = [
         text: `ALPHA`,
         url:"https://alpha-live.gitee.io/alpha/index.html",
     },
+    {
+        icon: <div className="dapp-icon"><img src="http://liutyler.gitee.io/goFighting/logo.png"  className="dapp-img"/></div>,
+        text: `GO Fighting`,
+        url:"http://liutyler.gitee.io/goFighting",
+    },
+    {
+        icon: <div className="dapp-icon"><img src="http://table.supernode.vip:3000/logo192.png"  className="dapp-img"/></div>,
+        text: `Table Game`,
+        url:"http://table.supernode.vip:3000/",
+    },
+
 ];
 
 class DApp extends Component {
@@ -109,38 +120,31 @@ class DApp extends Component {
                 }}/>
             </div>
 
-            <div style={{marginTop:"45px",background:"#fdfdfd"}}>
-            </div>
+            <div style={{padding:'45px 0 60px',overflow:'scroll',background:"#fdfdfd"}} >
+                <div className="sub-title">{lang.e().page.dapp.recommended} </div>
+                <div style={{textAlign: 'center'}}>
+                    <Grid data={data} activeStyle={false}  onClick={
+                        (e,index)=>{
+                            url.goPage(url.browser(e.url),url.DApp)
+                        }
+                    } hasLine={false}/>
+                </div>
 
+                <div>
+                    {
+                        dataRecent.length>0?<div>
+                            <div className="sub-title">{lang.e().page.dapp.recent} </div>
+                            <div style={{textAlign: 'center'}}>
+                                <Grid data={dataRecent} activeStyle={false} onClick={
+                                    (e,index)=>{
+                                        url.goPage(url.browser(e.url),url.DApp)
+                                    }
+                                } hasLine={false}/>
 
-
-            <div className="sub-title">{lang.e().page.dapp.recommended} </div>
-            <div style={{textAlign: 'center'}}>
-                <Grid data={data} activeStyle={false} onClick={
-                    (e,index)=>{
-                        url.goPage(url.browser(e.url),url.DApp)
+                            </div>
+                        </div>:""
                     }
-                } hasLine={false}/>
-            </div>
-
-            <div>
-                {
-                    dataRecent.length>0?<div>
-                        <div className="sub-title">{lang.e().page.dapp.recent} </div>
-                        <div style={{textAlign: 'center'}}>
-                            <Grid data={dataRecent} activeStyle={false} onClick={
-                                (e,index)=>{
-                                    url.goPage(url.browser(e.url),url.DApp)
-                                }
-                            } hasLine={false}/>
-
-                        </div>
-                    </div>:""
-                }
-            </div>
-
-            <div style={{minHeight:"45px"}}>
-
+                </div>
             </div>
 
         </Layout>

@@ -16,6 +16,7 @@
         "email" : "", /*开发者邮箱地址*/
         "url" : "" /*开发者个人主页地址*/
     },
+
     "permissions" : {
         "Accelerometer" : {
             "description" : "访问加速度感应器"

@@ -28,11 +28,17 @@ class AboutUs extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {}
+        this.state = {
+            version:"1.1.0"
+        }
     }
 
     componentDidMount() {
-
+        if(plus && plus.runtime){
+            this.setState({
+                version:plus.runtime.version
+            })
+        }
     }
 
     checkUpdate() {
@@ -50,6 +56,8 @@ class AboutUs extends Component {
                     const rData = JSON.parse(data);
                     const rsp = rData[lang.e().key];
                     const version = rsp["version"];
+                    console.log("latest version:"+version);
+                    console.log("plus.runtime.version:"+plus.runtime.version);
                     if (version !== plus.runtime.version) {
                         plus.nativeUI.confirm(rsp["note"], function (event) {
                             if (0 === event.index) {
@@ -117,12 +125,13 @@ class AboutUs extends Component {
                     <div className="my-header"
                          style={{"height": document.documentElement.clientHeight * 0.15, padding: "30px 0px"}}>
                         <img src={sero} style={{width: "60px"}}/>
+
                     </div>
                     <List>
                         {abouts}
                         <List.Item key={i++} arrow="horizontal" onClick={
                             () => this.checkUpdate()
-                        } extra={<span>1.1.0</span>}>Version</List.Item>
+                        } extra={<span>{this.state.version}</span>}>Version</List.Item>
                     </List>
                 </div>
             </div>

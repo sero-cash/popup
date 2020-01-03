@@ -64,6 +64,11 @@ const data = [
         text: `Table Game`,
         url:"http://table.supernode.vip:3000/",
     },
+    {
+        icon: <div className="dapp-icon"><img src="https://edenworkroom.gitee.io/market/logo.png"  className="dapp-img"/></div>,
+        text: `Rhino Market`,
+        url:"https://edenworkroom.gitee.io/market/",
+    },
 
 ];
 

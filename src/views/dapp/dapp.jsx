@@ -56,7 +56,7 @@ const versionControlData = [
     },
 ]
 
-const showDataVersion = ['1.1.3']
+const showDataVersion = ['1.1.2']
 
 
 class DApp extends Component {

@@ -13,27 +13,7 @@ let dataRecent =[
     // }
 ];
 
-const data = [
-    {
-        icon: <div className="dapp-icon"><img src={sero}  className="dapp-img"/></div>,
-        text: `Explorer`,
-        url:"https://explorer.sero.cash",
-    },
-    // {
-    //     icon: <div className="dapp-icon"><img src={sero} style={{witdh:"36px",height:"36px"}}/></div>,
-    //     text: `SERO`,
-    //     url:"https://sero.cash",
-    // },
-    {
-        icon: <div className="dapp-icon"><img src={sero}  className="dapp-img"/></div>,
-        text: `Wiki`,
-        url:"https://wiki.sero.cash",
-    },
-    {
-        icon: <div className="dapp-icon"><img src="https://edenworkroom.github.io/dapp/dapp.png"  className="dapp-img"/></div>,
-        text: `SC Tool`,
-        url:"https://edenworkroom.gitee.io/sctool/",
-    },
+const versionControlData = [
     {
         icon: <div className="dapp-icon"><img src="https://asnowhero.gitee.io/asnow-popup/logo.png"  className="dapp-img"/></div>,
         text: `ASNOW`,
@@ -69,29 +49,67 @@ const data = [
         text: `Rhino Market`,
         url:"https://edenworkroom.gitee.io/market/",
     },
+    {
+        icon: <div className="dapp-icon"><img src="https://fpsc2019.github.io/fpsc-popup/logo.png"  className="dapp-img"/></div>,
+        text: `HAPY`,
+        url:"https://fpsc2019.github.io/fpsc-popup/",
+    },
+]
 
-];
+const showDataVersion = ['1.1.3']
+
 
 class DApp extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            data: ['1', '2', '3'],
+            data: [
+                {
+                    icon: <div className="dapp-icon"><img src={sero}  className="dapp-img"/></div>,
+                    text: `Explorer`,
+                    url:"https://explorer.sero.cash",
+                },
+                {
+                    icon: <div className="dapp-icon"><img src={sero}  className="dapp-img"/></div>,
+                    text: `Wiki`,
+                    url:"https://wiki.sero.cash",
+                },
+                {
+                    icon: <div className="dapp-icon"><img src="https://edenworkroom.github.io/dapp/dapp.png"  className="dapp-img"/></div>,
+                    text: `SC Tool`,
+                    url:"https://edenworkroom.gitee.io/sctool/",
+                }
+            ],
         }
     }
 
     componentDidMount() {
-        // simulate img loading
-        setTimeout(() => {
-            this.setState({
-                // data: ['AiyWuByWklrrUDlFignR', 'TekJlZRVCjLFexlOCuWn', 'IJOtIlfsYdTyaDTRVrLI'],
-            });
-        }, 100);
+        const that = this;
+        if(plus && plus.runtime){
+            const dataBase = that.state.data;
+            const version = plus.runtime.version;
+            showDataVersion.forEach((v)=>{
+                if(version === v){
+                    const cdata = dataBase.concat(versionControlData);
+                    that.setState({
+                        data:cdata,
+                    })
+                }
+            })
+        }else{
+            const dataBase = that.state.data;
+            const cdata = dataBase.concat(versionControlData);
+            that.setState({
+                data:cdata,
+            })
+        }
+
     }
 
     render() {
 
+        const {data} = this.state;
         let dapps = storage.get(keys.dapp.list);
         if(dapps) {
             dataRecent=[];

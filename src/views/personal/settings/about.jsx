@@ -29,7 +29,7 @@ class AboutUs extends Component {
         super(props);
 
         this.state = {
-            version:"1.1.3"
+            version:"1.1.4"
         }
     }
 

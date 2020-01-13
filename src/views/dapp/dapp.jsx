@@ -56,9 +56,6 @@ const versionControlData = [
     },
 ]
 
-const showDataVersion = ['1.1.2']
-
-
 class DApp extends Component {
 
     constructor(props) {
@@ -88,14 +85,9 @@ class DApp extends Component {
         const that = this;
         if(plus && plus.runtime){
             const dataBase = that.state.data;
-            const version = plus.runtime.version;
-            showDataVersion.forEach((v)=>{
-                if(version === v){
-                    const cdata = dataBase.concat(versionControlData);
-                    that.setState({
-                        data:cdata,
-                    })
-                }
+            const cdata = dataBase.concat(versionControlData);
+            that.setState({
+                data:cdata,
             })
         }else{
             const dataBase = that.state.data;

@@ -3,14 +3,38 @@ import {NavBar, TabBar, Icon} from 'antd-mobile'
 import './layout.css'
 import {storage, keys, config, url, baseDecimal, lang} from "../../config/common";
 
+const showDataVersion = ['1.1.3']
+
 class Layout extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = {
+            showDApp:false
+        }
+    }
+
+    componentDidMount() {
+        const that = this;
+        if(plus && plus.runtime){
+            const version = plus.runtime.version;
+            showDataVersion.forEach((v)=>{
+                if(version === v){
+                    that.setState({
+                        showDApp:true,
+                    })
+                }
+            })
+        }else{
+            that.setState({
+                showDApp:true,
+            })
+        }
     }
 
     render() {
+        const { showDApp } = this.state;
+
         return <div>
 
             {this.props.children}
@@ -39,17 +63,19 @@ class Layout extends Component {
                     {/*    }}*/}
                     {/*>*/}
                     {/*</TabBar.Item>*/}
-                    <TabBar.Item
-                        icon={<Icon type="icondapp"/>}
-                        selectedIcon={<Icon type="icondapp1"/>}
-                        title={lang.e().navbar.dapp}
-                        key="dapp"
-                        selected={this.props.selectedTab === 'dapp'}
-                        onPress={()=>{
-                            url.goPage(url.DApp,"")
-                        }}
-                    >
-                    </TabBar.Item>
+                    {
+                        showDApp===true?<TabBar.Item
+                                icon={<Icon type="icondapp"/>}
+                                selectedIcon={<Icon type="icondapp1"/>}
+                                title={lang.e().navbar.dapp}
+                                key="dapp"
+                                selected={this.props.selectedTab === 'dapp'}
+                                onPress={()=>{
+                                    url.goPage(url.DApp,"")
+                                }}
+                            > </TabBar.Item>:""
+
+                    }
                     <TabBar.Item
                         icon={<Icon type="iconmy2"/>}
                         selectedIcon={<Icon type="iconmy1"/>}

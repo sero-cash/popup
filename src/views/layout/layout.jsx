@@ -3,7 +3,7 @@ import {NavBar, TabBar, Icon} from 'antd-mobile'
 import './layout.css'
 import {storage, keys, config, url, baseDecimal, lang} from "../../config/common";
 
-const showDataVersion = ['1.1.3']
+const showDataVersion = ['1.0','1.1.4']
 
 class Layout extends Component {
 

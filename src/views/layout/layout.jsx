@@ -3,33 +3,33 @@ import {NavBar, TabBar, Icon} from 'antd-mobile'
 import './layout.css'
 import {storage, keys, config, url, baseDecimal, lang} from "../../config/common";
 
-const showDataVersion = ['1.0','1.1.4']
+// const showDataVersion = ['1.0','1.1.4']
 
 class Layout extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            showDApp:false
+            showDApp:true
         }
     }
 
     componentDidMount() {
-        const that = this;
-        if(plus && plus.runtime){
-            const version = plus.runtime.version;
-            showDataVersion.forEach((v)=>{
-                if(version === v){
-                    that.setState({
-                        showDApp:true,
-                    })
-                }
-            })
-        }else{
-            that.setState({
-                showDApp:true,
-            })
-        }
+        // const that = this;
+        // if(plus && plus.runtime){
+        //     const version = plus.runtime.version;
+        //     showDataVersion.forEach((v)=>{
+        //         if(version === v){
+        //             that.setState({
+        //                 showDApp:true,
+        //             })
+        //         }
+        //     })
+        // }else{
+        //     that.setState({
+        //         showDApp:true,
+        //     })
+        // }
     }
 
     render() {

@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {NavBar, Toast, Icon, Modal, WingBlank, WhiteSpace, List} from 'antd-mobile'
+import {NavBar, Toast, Icon, Modal, WingBlank, WhiteSpace, List,Button} from 'antd-mobile'
 import Account from "../../../components/account/account";
 import {storage, keys, config, url, baseDecimal, lang} from "../../../config/common";
 const ac = new Account();
@@ -29,6 +29,38 @@ class Manage extends Component {
             }
         });
 
+    }
+
+    removeAccount = () =>{
+        const that = this;
+        Modal.prompt(lang.e().page.txTransfer.inputPassword,lang.e().toast.info.removeAccount,[{
+            text:lang.e().button.cancel,
+            onPress:function () {
+            }
+        },{
+            text: lang.e().button.confirm,
+            onPress:function (password) {
+                if(!password){
+                    Toast.fail(lang.e().page.txTransfer.inputPassword,2);
+                }else{
+                    Toast.loading(lang.e().toast.loading.deleting,60)
+                    const address = that.props.match.params.address;
+                    ac.remove(address,password).then(()=>{
+                        ac.getCurrent().then(current=>{
+                            if(current.address === address){
+                                ac.setDefaultCurrent().then()
+                            }
+                        });
+                        Toast.success(lang.e().toast.success.operation,2)
+                        setTimeout(function () {
+                            url.goBack()
+                        },2000)
+                    }).catch(()=>{
+                        Toast.fail(lang.e().toast.error.passwordError,2)
+                    })
+                }
+            }
+        }],'secure-text', null, [lang.e().page.txTransfer.inputPassword])
     }
 
     changePasswordHint = ()=>{
@@ -135,6 +167,8 @@ class Manage extends Component {
                         <List.Item arrow="horizontal" onClick={this.exportMnemonicPhrase} thumb={<Icon type="iconword" color="gray"/>}><span >{lang.e().page.walletManage.export}</span></List.Item>
                     </WingBlank>
                 </List>
+                <WhiteSpace size="lg"/>
+                <Button style={{color:'red'}} onClick={()=>{this.removeAccount()}}>{lang.e().button.deleteAddress}</Button>
             </div>
         </div>
     }

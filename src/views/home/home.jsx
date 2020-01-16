@@ -152,7 +152,7 @@ class Home extends Component {
                         // window.location.replace("/#/walletManage")
                     }}/>
                 </div>
-                , <div>
+                , <div style={{maxHeight: '400px',overflowY: 'scroll'}}>
                     <List>
                         {items}
                     </List>

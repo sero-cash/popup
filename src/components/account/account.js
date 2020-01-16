@@ -91,6 +91,30 @@ class Account {
         await lstorage.delete(keys.account.tempKeystore);
     }
 
+    async remove(address,password){
+        const keystore = await lstorage.get(keys.infoKey(address));
+        let addressArray = await lstorage.get(keys.account.addresses);
+        return new Promise(function (resolve, reject) {
+            accountService.getSK({password:password,keystore:keystore},function (msg) {
+                if(msg.error){
+                    reject(msg.error);
+                }else{
+                    if (addressArray) {
+                        let tmpArray = [];
+                        for(let addr of addressArray){
+                            if(addr === address){
+                            }else{
+                                tmpArray.push(addr)
+                            }
+                        }
+                        lstorage.set(keys.account.addresses, tmpArray).then();
+                    }
+                    resolve();
+                }
+            })
+        })
+    }
+
     async getTempKeystore(){
         return lstorage.get(keys.account.tempKeystore);
     }
@@ -192,6 +216,15 @@ class Account {
     async setCurrent(info) {
         // console.log(JSON.stringify(info))
         await lstorage.set(keys.account.current, info);
+    }
+
+    async setDefaultCurrent() {
+        const that = this;
+        let addresses = await lstorage.get(keys.account.addresses);
+        if (addresses) {
+            const detail = await that.Detail(addresses[0]);
+            await lstorage.set(keys.account.current, detail);
+        }
     }
 
     async setDetail(detail) {

@@ -185,11 +185,11 @@ class Settings extends Component {
                     </WingBlank>
                 </List>
                 <WhiteSpace/>
-                <List>
+                {
+                    plus&&plus.runtime&&plus.runtime.version!=='1.0'&&plus.runtime.version!=='1.1'?<List>
                     <List.Item  arrow="horizontal" onClick={() => {
-                        url.goPage(url.HistoryPKr,url.Settings)
-                    }}><span>{lang.e().page.setting.pkr}</span></List.Item>
-
+                    url.goPage(url.HistoryPKr,url.Settings)
+                }}><span>{lang.e().page.setting.pkr}</span></List.Item>
                     {
                         plus?
                             <List.Item  arrow="horizontal" extra={
@@ -200,7 +200,8 @@ class Settings extends Component {
                                 },1000)
                             }}><span>{lang.e().page.setting.source}</span></List.Item>:""
                     }
-                </List>
+                    </List>:""
+                }
                 <WhiteSpace/>
                 <List>
                     <List.Item onClick={() => {

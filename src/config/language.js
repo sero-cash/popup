@@ -41,7 +41,7 @@ class Language {
             transfer: "Transfer",
             add: "Add",
             save: "Save",
-            deleteAddress: "Delete Address",
+            deleteAddress: "Delete",
             createWallet: "Create Wallet",
             importWallet: "Import Wallet",
             create: "Create",
@@ -62,7 +62,8 @@ class Language {
             info: {
                 quitApp: "Press again to exit App !",
                 isLatest: "You are the latest version!",
-                createWallet: "Please create wallet first !"
+                createWallet: "Please create wallet first !",
+                removeAccount: "Warning: If you do not back up properly, you will not be able to retrieve your wallet after deleting it. Please handle this operation carefully"
             },
             success: {
                 add: "Add Successfully",
@@ -72,13 +73,15 @@ class Language {
                 save: "Save Successfully",
                 import: "Import Successfully",
                 send: "Send Successfully",
-                clear: "Clear Successfully"
+                clear: "Clear Successfully",
+                operation: "Operation Successfully"
             },
             loading: {
                 creating: "Creating...",
                 exporting: "Exporting...",
                 importing: "Importing...",
-                sending: "Sending..."
+                sending: "Sending...",
+                deleting: "Deleting..."
             },
             error: {
                 passwordVerify: "Password at least 8 characters!",
@@ -278,7 +281,8 @@ class Language {
             info: {
                 quitApp: "再按一次退出应用!",
                 isLatest: "已经是最新版本!",
-                createWallet: "请先创建钱包账户 !"
+                createWallet: "请先创建钱包账户 !",
+                removeAccount: "警告：若无妥善备份，删除钱包后将无法找回钱包，请慎重处理该操作"
             },
             success: {
                 add: "增加成功",
@@ -288,13 +292,15 @@ class Language {
                 save: "保存成功",
                 import: "导入成功",
                 send: "发送成功",
-                clear: "清理成功"
+                clear: "清理成功",
+                operation: "操作成功"
             },
             loading: {
                 creating: "创建中...",
                 exporting: "导出中...",
                 importing: "导入中...",
-                sending: "发送中..."
+                sending: "发送中...",
+                deleting: "删除中..."
             },
             error: {
                 passwordVerify: "密码为8位以上字符长度!",
@@ -476,7 +482,7 @@ class Language {
             transfer: "転送",
             add: "加える",
             save: "セーブ",
-            deleteAddress: "住所を削除",
+            deleteAddress: "削除",
             createWallet: "ウォレットを作成",
             importWallet: "ウォレットをインポート",
             create: "ート",
@@ -497,7 +503,8 @@ class Language {
             info: {
                 quitApp: "もう一度押すとアプリが終了します！",
                 isLatest: "すでに最新バージョンです!",
-                createWallet: "最初にウォレットを作成してください!"
+                createWallet: "最初にウォレットを作成してください!",
+                removeAccount: "警告：適切にバックアップしないと、ウォレットを削除した後、ウォレットを取得できません。この操作は慎重に処理してください。"
             },
             success: {
                 add: "正常に追加されました",
@@ -507,13 +514,15 @@ class Language {
                 save: "正常に保存",
                 import: "正常にインポートされました",
                 send: "正常に送信されました",
-                clear: "正常にクリアされました"
+                clear: "正常にクリアされました",
+                operation: "操作が成功しました"
             },
             loading: {
                 creating: "作成...",
                 exporting: "エクスポートしています...",
                 importing: "インポートしています...",
-                sending: "送信 ..."
+                sending: "送信 ...",
+                deleting: "削除中..."
             },
             error: {
                 passwordVerify: "少なくとも8文字のパスワード！",
@@ -693,7 +702,7 @@ class Language {
             transfer: "перечислить",
             add: "Добавлять",
             save: "Сохранить",
-            deleteAddress: "Удалить адрес",
+            deleteAddress: "Удалить",
             createWallet: "Создать кошелек",
             importWallet: "Импортный кошелек",
             create: "Создайте",
@@ -714,7 +723,8 @@ class Language {
             info: {
                 quitApp: "Нажмите еще раз, чтобы выйти из приложения!",
                 isLatest: "Уже последняя версия!",
-                createWallet: "Пожалуйста, сначала создайте кошелек!"
+                createWallet: "Пожалуйста, сначала создайте кошелек!",
+                removeAccount:"Предупреждение: если вы не сделаете резервную копию должным образом, вы не сможете получить свой кошелек после удаления. Пожалуйста, выполняйте эту операцию осторожно"
             },
             success: {
                 add: "Добавлено Успешно",
@@ -724,13 +734,15 @@ class Language {
                 save: "Сохранено Успешно",
                 import: "Импортировано Успешно",
                 send: "Отправлено Успешно",
-                clear: "Успешно очищено"
+                clear: "Успешно очищено",
+                operation: "Операция прошла успешно"
             },
             loading: {
                 creating: "Творя...",
                 exporting: "Экспорт...",
                 importing: "Импортирующий...",
-                sending: "Посылка ..."
+                sending: "Посылка ...",
+                deleting: "Удалить..."
             },
             error: {
                 passwordVerify: "Пароль должен содержать не менее 8 символов!",
@@ -910,7 +922,7 @@ class Language {
             transfer: "보내기",
             add: "더하다",
             save: "구하다",
-            deleteAddress: "주소 삭제",
+            deleteAddress: "삭제",
             createWallet: "월렛 만들기",
             importWallet: "수입 지갑",
             create: "창조하다",
@@ -931,7 +943,8 @@ class Language {
             info: {
                 quitApp: "다시 누르면 앱이 종료됩니다!",
                 isLatest: "이미 최신 버전입니다!",
-                createWallet: "먼저 지갑을 만드십시오!"
+                createWallet: "먼저 지갑을 만드십시오!",
+                removeAccount:"경고 : 제대로 백업하지 않으면 지갑을 삭제 한 후 지갑을 검색 할 수 없으므로이 작업을주의해서 처리하십시오."
             },
             success: {
                 add: "성공적으로 추가되었습니다",
@@ -941,13 +954,15 @@ class Language {
                 save: "성공적으로 저장 되었음",
                 import: "성공적으로 가져오기",
                 send: "성공적으로 보냄",
-                clear: "성공적으로 클리어"
+                clear: "성공적으로 클리어",
+                operation: "작업 성공"
             },
             loading: {
                 creating: "만드는 중 ...",
                 exporting: "내보내는 중 ...",
                 importing: "가져 오기 ...",
-                sending: "보내기..."
+                sending: "보내기...",
+                deleting: "삭제..."
             },
             error: {
                 passwordVerify: "비밀번호 최소 8 글자!",

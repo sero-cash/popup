@@ -223,6 +223,7 @@ class Browser extends Component {
                             <div style={{width: "25%", marginRight: "15px"}}>
                                 <Button onClick={() => {
                                     this.setState({showTxInfo: false})
+                                    cb("")
                                 }}>{lang.e().button.cancel}</Button>
                             </div>
                             <div style={{width: "70%"}}>
@@ -240,6 +241,7 @@ class Browser extends Component {
             })
         } catch (e) {
             Toast.fail(e.message, 3)
+            cb("")
         }
     }
 
@@ -250,11 +252,12 @@ class Browser extends Component {
             </div>, [{
                 text: lang.e().button.cancel, onPress: () => {
                     console.log("cancel");
+                    cb("")
                 }
             }, {
                 text: lang.e().button.confirm, onPress: (password) => {
                     if (!password) {
-                        Toast.fail("Please Input Password!")
+                        Toast.fail(lang.e().page.txTransfer.inputPassword)
                     } else {
                         try {
                             Toast.loading(lang.e().toast.loading.sending,60)
@@ -267,13 +270,16 @@ class Browser extends Component {
                                 }
                                 if (error.indexOf("wrong passphrase") > -1) {
                                     Toast.fail(lang.e().toast.error.passwordError, 2);
+                                    cb("")
                                 } else {
                                     Toast.fail(error, 3);
+                                    cb("")
                                 }
                             })
                             // Toast.fail(lang.e().button.openTip,3)
                         } catch (e) {
                             Toast.fail(e.message);
+                            cb("")
                         }
                     }
                 }
@@ -341,7 +347,11 @@ class Browser extends Component {
                     })
                 } else if (msg.method === operation.method.executeContract) {
                     that.executeContract(msg.data.tx, function (txHash) {
-                        msg.data = txHash;
+                        if(txHash){
+                            msg.data = txHash;
+                        }else{
+                            msg.error = "Operation fail";
+                        }
                         that.sendMessage(msg);
                     });
                 } else if (msg.method === operation.method.call) {

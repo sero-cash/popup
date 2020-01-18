@@ -42,7 +42,11 @@ class Browser extends Component {
             showTxInfo: false,
             txInfo: "",
         }
+
+
     }
+
+
 
     componentWillMount() {
         let url = this.props.match.params.url;
@@ -50,6 +54,8 @@ class Browser extends Component {
         this.setState({
             url: url,
         })
+
+
     }
 
     setPassword = (password) => {
@@ -350,7 +356,12 @@ class Browser extends Component {
                         if(txHash){
                             msg.data = txHash;
                         }else{
-                            msg.error = "Operation fail";
+                            const ifrm = document.getElementsByClassName("h5-iframe");
+                            if(ifrm && ifrm.length>0){
+                                ifrm[0].focus();
+                            }
+                            msg.data = "";
+                            msg.error = "Operation cancel";
                         }
                         that.sendMessage(msg);
                     });

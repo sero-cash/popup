@@ -7,7 +7,6 @@ import {Transactions} from "../../components/tx/transactions";
 import Web3 from 'sero-web3'
 import {decimals} from "../../components/tx/decimals";
 import {assetService} from "../../components/service/service";
-import serojs from 'serojs'
 
 let web3 = new Web3();
 
@@ -18,9 +17,6 @@ const data = {
     method: "init",
     data: "success"
 }
-const ABI =[{"constant":true,"inputs":[],"name":"name","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"pure","type":"function"},{"constant":false,"inputs":[{"name":"refereeCode","type":"string"}],"name":"invest","outputs":[{"name":"","type":"bool"}],"payable":true,"stateMutability":"payable","type":"function"},{"constant":true,"inputs":[],"name":"totalSupply","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"detailsOfIncome","outputs":[{"name":"","type":"uint256"},{"name":"","type":"uint256"},{"name":"","type":"uint256"},{"name":"","type":"uint256"},{"name":"","type":"uint256"},{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[],"name":"triggerStaticProfit","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"decimals","outputs":[{"name":"","type":"uint8"}],"payable":false,"stateMutability":"pure","type":"function"},{"constant":false,"inputs":[{"name":"addr","type":"address"}],"name":"setMarketAddr","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"details","outputs":[{"name":"","type":"string"},{"name":"","type":"string"},{"name":"","type":"uint256"},{"name":"","type":"uint256"},{"name":"","type":"uint256"},{"name":"","type":"uint256"},{"name":"","type":"uint256"},{"name":"","type":"uint256"},{"name":"","type":"uint256"},{"name":"","type":"uint8"},{"name":"","type":"bool"},{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[],"name":"withdrawBalance","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"addr","type":"address"}],"name":"registerNode","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"balanceOf","outputs":[{"name":"amount","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"conversionRate","outputs":[{"name":"","type":"uint256"},{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"owner","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"symbol","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"pure","type":"function"},{"constant":true,"inputs":[],"name":"calcuStaticProfit","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"id","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"flag","type":"bool"}],"name":"setSell","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"balanceOfSero","outputs":[{"name":"amount","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"code","type":"string"}],"name":"codeExist","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[],"name":"paymentAsnow","outputs":[],"payable":true,"stateMutability":"payable","type":"function"},{"constant":false,"inputs":[{"name":"_triggerStaticNum","type":"uint256"}],"name":"setTriggerStaticNum","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"balanceOfAsnow","outputs":[{"name":"amount","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[],"name":"buyAsnow","outputs":[{"name":"asnowAmount","type":"uint256"}],"payable":true,"stateMutability":"payable","type":"function"},{"constant":false,"inputs":[{"name":"newOwner","type":"address"}],"name":"transferOwnership","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"inputs":[{"name":"_marketAddr","type":"address"},{"name":"_codeServiceAddr","type":"address"},{"name":"_otherAddr","type":"address"}],"payable":true,"stateMutability":"payable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"name":"previousOwner","type":"address"},{"indexed":true,"name":"newOwner","type":"address"}],"name":"OwnershipTransferred","type":"event"}];
-
-
 const operation = {
     method: {
         init: "init",
@@ -136,7 +132,7 @@ class Browser extends Component {
                 for (let address of addresses) {
                     let detail = await account.Detail(address)
                     const assets = await assetService.balanceOf(detail.tk);
-                    rest.push({Name: detail.name, PK: detail.address, MainPKr: "U7aNj78GNdh1XJJ2LBEx4D5mheUEFg2ZZZtnAqgG3GFz8NY7SH3sb9EEcLXGJUojPmbN4wkghgoCV9zXxhVxihF2Fm3hpeMpM4KQ631SJMS3EXXzK8VNDjyYWGw9mNVLEvo", Balance: assets})
+                    rest.push({Name: detail.name, PK: detail.address, MainPKr: detail.mainPKr, Balance: assets})
                 }
             }
             msg.data=rest
@@ -155,7 +151,7 @@ class Browser extends Component {
                 // let detail = storage.get(keys.detailKey(address));
                 let detail = await account.Detail(address)
                 const assets = await assetService.balanceOf(detail.tk);
-                msg.data = {Name: detail.name, PK: detail.address, MainPKr: "U7aNj78GNdh1XJJ2LBEx4D5mheUEFg2ZZZtnAqgG3GFz8NY7SH3sb9EEcLXGJUojPmbN4wkghgoCV9zXxhVxihF2Fm3hpeMpM4KQ631SJMS3EXXzK8VNDjyYWGw9mNVLEvo", Balance: assets}
+                msg.data = {Name: detail.name, PK: detail.address, MainPKr: detail.mainPKr, Balance: assets}
                 return msg
             }
         } catch (e) {
@@ -169,15 +165,6 @@ class Browser extends Component {
     call = (data, msg) => {
         try {
             let rest = web3.sero.call(data, "latest");
-
-            let contract = serojs.callContract(ABI, "2FrgwB3rm4tiRnACxWeDoEZbe57zaAHPFT7YbYVrUB1VTs8Naoz1j44kLU7ybjXmq14fD81HkTc8gV4tGgikCMr6");
-            let res = contract.unPackData("details", rest);
-            console.log("res>>>>>>",res)
-            for(let i=2;i<10;i++){
-                let d = res[i];
-                console.log(i,"----------->>",new BigNumber(d).toFixed(10));
-            }
-
             msg.data = rest
             return msg
         } catch (e) {

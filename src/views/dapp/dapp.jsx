@@ -54,6 +54,11 @@ const versionControlData = [
         text: `HAPY`,
         url:"https://fpsc2019.github.io/fpsc-popup/",
     },
+    {
+        icon: <div className="dapp-icon"><img src="https://ubsgame.gitee.io/ubs/logo.png"  className="dapp-img"/></div>,
+        text: `UBS`,
+        url:"https://ubsgame.gitee.io/ubs/index.html?v=2",
+    },
 ]
 
 class DApp extends Component {

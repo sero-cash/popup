@@ -62,6 +62,15 @@ class Config {
 
     }
 
+    isZH(){
+        let localUtc = new Date().getTimezoneOffset() / 60;
+        if (localUtc === -8) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     seroRpc() {
         let v = storage.get(keys.settings.seroRpcHost)
         if (!v) {

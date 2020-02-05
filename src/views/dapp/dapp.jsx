@@ -1,107 +1,35 @@
 import React, {Component} from 'react'
-import {Grid, WhiteSpace, SearchBar,Carousel,Toast} from 'antd-mobile'
+import {Grid, SearchBar,Toast} from 'antd-mobile'
 import Layout from "../layout/layout";
-import {storage, keys, config, url, baseDecimal, lang} from "../../config/common";
-import sero from '../../sero.png'
+import {storage, keys, url, lang,config} from "../../config/common";
 import './dapp.css'
+import {versionControlDataEn,versionControlDataCn} from './dapp-data'
 
-let dataRecent =[
-    // {
-    //     icon: <div className="dapp-icon"><img src={sero} style={{witdh:"36px",height:"36px"}}/></div>,
-    //     text: `Token Tracker`,
-    //     url:"https://wiki.sero.cash",
-    // }
-];
+let dataRecent =[];
 
-const versionControlData = [
-    {
-        icon: <div className="dapp-icon"><img src="https://asnowhero.gitee.io/asnow-popup/logo.png"  className="dapp-img"/></div>,
-        text: `ASNOW`,
-        url:"https://asnowhero.gitee.io/asnow-popup/",
-    },
-    {
-        icon: <div className="dapp-icon"><img src="http://sanguo.artfuture.store/slg/icon.png"  className="dapp-img"/></div>,
-        text: `超零三国`,
-        url:"http://sanguo.artfuture.store/slg/slg.html",
-    },
-    {
-        icon: <div className="dapp-icon"><img src="http://47.92.113.69/logo.png"  className="dapp-img"/></div>,
-        text: `ACES`,
-        url:"http://47.92.113.69/",
-    },
-    {
-        icon: <div className="dapp-icon"><img src="https://alpha-live.gitee.io/alpha/logo.png"  className="dapp-img"/></div>,
-        text: `ALPHA`,
-        url:"https://alpha-live.gitee.io/alpha/index.html",
-    },
-    {
-        icon: <div className="dapp-icon"><img src="http://liutyler.gitee.io/goFighting/logo.png"  className="dapp-img"/></div>,
-        text: `GO Fighting`,
-        url:"http://liutyler.gitee.io/goFighting",
-    },
-    {
-        icon: <div className="dapp-icon"><img src="http://table.supernode.vip:3000/logo192.png"  className="dapp-img"/></div>,
-        text: `Table Game`,
-        url:"http://table.supernode.vip:3000/",
-    },
-    {
-        icon: <div className="dapp-icon"><img src="https://edenworkroom.gitee.io/market/logo.png"  className="dapp-img"/></div>,
-        text: `Rhino Market`,
-        url:"https://edenworkroom.gitee.io/market/",
-    },
-    {
-        icon: <div className="dapp-icon"><img src="https://fpsc2019.github.io/fpsc-popup/logo.png"  className="dapp-img"/></div>,
-        text: `HAPY`,
-        url:"https://fpsc2019.github.io/fpsc-popup/",
-    },
-    {
-        icon: <div className="dapp-icon"><img src="https://ubsgame.gitee.io/ubs/logo.png"  className="dapp-img"/></div>,
-        text: `UBS`,
-        url:"https://ubsgame.gitee.io/ubs/index.html?v=2",
-    },
-]
+
 
 class DApp extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            data: [
-                {
-                    icon: <div className="dapp-icon"><img src={sero}  className="dapp-img"/></div>,
-                    text: `Explorer`,
-                    url:"https://explorer.sero.cash",
-                },
-                {
-                    icon: <div className="dapp-icon"><img src={sero}  className="dapp-img"/></div>,
-                    text: `Wiki`,
-                    url:"https://wiki.sero.cash",
-                },
-                {
-                    icon: <div className="dapp-icon"><img src="https://edenworkroom.github.io/dapp/dapp.png"  className="dapp-img"/></div>,
-                    text: `SC Tool`,
-                    url:"https://edenworkroom.gitee.io/sctool/",
-                }
-            ],
+            data:versionControlDataEn
         }
     }
 
     componentDidMount() {
-        const that = this;
-        if(plus && plus.runtime){
-            const dataBase = that.state.data;
-            const cdata = dataBase.concat(versionControlData);
-            that.setState({
-                data:cdata,
+
+        console.log("config.isZH()==>",config.isZH())
+        if(config.isZH()){
+            this.setState({
+                data:versionControlDataCn
             })
         }else{
-            const dataBase = that.state.data;
-            const cdata = dataBase.concat(versionControlData);
-            that.setState({
-                data:cdata,
+            this.setState({
+                data:versionControlDataEn
             })
         }
-
     }
 
     render() {

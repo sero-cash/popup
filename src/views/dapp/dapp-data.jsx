@@ -13,11 +13,6 @@ const versionControlDataEn = [
         url:"https://wiki.sero.cash",
     },
     {
-        icon: <div className="dapp-icon"><img src="https://edenworkroom.github.io/sctool/sctool.png"  className="dapp-img"/></div>,
-        text: `SC Tool`,
-        url:"https://edenworkroom.github.io/sctool/",
-    },
-    {
         icon: <div className="dapp-icon"><img src="https://asnowhero.github.io/asnow-popup/logo.png"  className="dapp-img"/></div>,
         text: `ASNOW`,
         url:"https://asnowhero.github.io/asnow-popup",
@@ -73,11 +68,6 @@ const versionControlDataCn = [
         icon: <div className="dapp-icon"><img src={sero}  className="dapp-img"/></div>,
         text: `Wiki`,
         url:"https://wiki.sero.cash",
-    },
-    {
-        icon: <div className="dapp-icon"><img src="https://edenworkroom.gitee.io/sctool/sctool.png"  className="dapp-img"/></div>,
-        text: `SC Tool`,
-        url:"https://edenworkroom.gitee.io/sctool/",
     },
     {
         icon: <div className="dapp-icon"><img src="https://asnowhero.gitee.io/asnow-popup/logo.png"  className="dapp-img"/></div>,

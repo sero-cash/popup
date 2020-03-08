@@ -22,7 +22,7 @@ let account = new Account();
 
 let homeInterverId0 = null;
 let homeInterverId = null;
-let homeInterverId2 = null;
+// let homeInterverId2 = null;
 let homeInterverId3 = null;
 
 class Home extends Component {
@@ -46,7 +46,7 @@ class Home extends Component {
         let that = this;
         try {
             that.accounts().then();
-            that.calSeroTotal();
+            // that.calSeroTotal();
 
             if(!homeInterverId0){
                 homeInterverId0 = setInterval(function () {
@@ -59,7 +59,7 @@ class Home extends Component {
                             },1000)
                         }else{
                             that.accounts().then();
-                            that.calSeroTotal();
+                            // that.calSeroTotal();
                         }
                     }).catch((e)=>{
                     });
@@ -84,12 +84,12 @@ class Home extends Component {
             },  1 * 1000)
 
 
-            if(homeInterverId2){
-                clearInterval(homeInterverId2);
-            }
-            homeInterverId2 = setInterval(function () {
-                that.calSeroTotal();
-            },  60 * 1000)
+            // if(homeInterverId2){
+            //     clearInterval(homeInterverId2);
+            // }
+            // homeInterverId2 = setInterval(function () {
+            //     that.calSeroTotal();
+            // },  60 * 1000)
 
         } catch (e) {
             console.log(e)
@@ -271,8 +271,8 @@ class Home extends Component {
                                 <div>
                                     <div className="home-list-item-number">{amount}</div>
                                     <Brief>
-                                        <div
-                                            className="home-list-item-money">{that.state.seroPriceInfo.type}{cyAmount.toFixed(3)}</div>
+                                        {/*<div className="home-list-item-money">{that.state.seroPriceInfo.type}{cyAmount.toFixed(3)}</div>*/}
+                                        <div className="home-list-item-money"></div>
                                     </Brief>
                                 </div>} align="top"
                                   thumb={<div className="currency-icon-border"><img src={logo} width={16}/>
@@ -378,8 +378,8 @@ class Home extends Component {
                                 }}/>
                             </div>
                         </Card.Body>
-                        <Card.Footer
-                            extra={<span>{that.state.seroPriceInfo.type}{new BigNumber(seroTotal).toFixed(3)}</span>}/>
+                        {/*<Card.Footer extra={<span>{that.state.seroPriceInfo.type}{new BigNumber(seroTotal).toFixed(3)}</span>}/>*/}
+                        <Card.Footer extra={<span>&nbsp;</span>}/>
                     </Card>
                 </div>
 

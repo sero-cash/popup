@@ -40,8 +40,14 @@ class Settings extends Component {
                 {
                     id: "3",
                     network: "main",
-                    name: "JAPAN",
+                    name: "Japan",
                     rpc: "http://52.199.145.159:8545",
+                },
+                {
+                    id: "4",
+                    network: "main",
+                    name: "Frankfurt",
+                    rpc: "http://3.122.152.29:8545",
                 }
             ]
         })
@@ -185,11 +191,15 @@ class Settings extends Component {
                     </WingBlank>
                 </List>
                 <WhiteSpace/>
+                <List>
+                    <List.Item  arrow="horizontal" onClick={() => {
+                        url.goPage(url.HistoryPKr,url.Settings)
+                    }}><span>{lang.e().page.setting.pkr}</span></List.Item>
+                </List>
+
+                <WhiteSpace/>
                 {
                     plus&&plus.runtime&&plus.runtime.version!=='1.0'&&plus.runtime.version!=='1.1'?<List>
-                    <List.Item  arrow="horizontal" onClick={() => {
-                    url.goPage(url.HistoryPKr,url.Settings)
-                }}><span>{lang.e().page.setting.pkr}</span></List.Item>
                     {
                         plus?
                             <List.Item  arrow="horizontal" extra={

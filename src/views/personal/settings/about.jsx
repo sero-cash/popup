@@ -29,15 +29,18 @@ class AboutUs extends Component {
         super(props);
 
         this.state = {
-            version:"1.1.4"
+            version:"1.1.5"
         }
     }
 
     componentDidMount() {
+        const that = this;
         if(plus && plus.runtime){
-            this.setState({
-                version:plus.runtime.version
-            })
+            plus.runtime.getProperty(plus.runtime.appid,function(inf){
+                that.setState({
+                    version:inf.version
+                })
+            });
         }
     }
 

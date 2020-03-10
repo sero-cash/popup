@@ -3,20 +3,19 @@
     "id" : "cash.sero.popup.community", /*应用的标识*/
     "name" : "SERO Popup Community", /*应用名称，程序桌面图标名称*/
     "version" : {
-        "name" : "1.1.4", /*应用版本名称*/
-        "code" : 114
+        "name" : "1.1.5", /*应用版本名称*/
+        "code" : 115
     },
     "description" : "", /*应用描述信息*/
     "icons" : {
         "72" : "icon.png"
     },
-    "launch_path" : "enter.html", /*应用的入口页面，默认为根目录下的index.html；支持网络地址，必须以http://或https://开头*/
+    "launch_path" : "default.html", /*应用的入口页面，默认为根目录下的index.html；支持网络地址，必须以http://或https://开头*/
     "developer" : {
         "name" : "", /*开发者名称*/
         "email" : "", /*开发者邮箱地址*/
         "url" : "" /*开发者个人主页地址*/
     },
-
     "permissions" : {
         "Accelerometer" : {
             "description" : "访问加速度感应器"
@@ -78,9 +77,6 @@
         "Barcode" : {
             "description" : "管理二维码扫描插件"
         },
-        "Maps" : {
-            "description" : "管理地图插件"
-        },
         "Webview" : {
             "description" : "窗口管理"
         },
@@ -95,16 +91,15 @@
         },
         "SQLite" : {},
         "Fingerprint" : {},
-        "Statistic" : {},
         "VideoPlayer" : {}
     },
     "plus" : {
         "splashscreen" : {
-            "autoclose" : true, /*是否自动关闭程序启动界面，true表示应用加载应用入口页面后自动关闭；false则需调plus.navigator.closeSplashscreen()关闭*/
-            "waiting" : true /*是否在程序启动界面显示等待雪花，true表示显示，false表示不显示。*/
+            "autoclose" : false, /*是否自动关闭程序启动界面，true表示应用加载应用入口页面后自动关闭；false则需调plus.navigator.closeSplashscreen()关闭*/
+            "waiting" : false /*是否在程序启动界面显示等待雪花，true表示显示，false表示不显示。*/
         },
         "popGesture" : "close", /*设置应用默认侧滑返回关闭Webview窗口，"none"为无侧滑返回功能，"hide"为侧滑隐藏Webview窗口。参考http://ask.dcloud.net.cn/article/102*/
-        "runmode" : "normal", /*应用的首次启动运行模式，可取liberate或normal，liberate模式在第一次启动时将解压应用资源（Android平台File API才可正常访问_www目录）*/
+        "runmode" : "liberate", /*应用的首次启动运行模式，可取liberate或normal，liberate模式在第一次启动时将解压应用资源（Android平台File API才可正常访问_www目录）*/
         "signature" : "Sk9JTiBVUyBtYWlsdG86aHIyMDEzQGRjbG91ZC5pbw==", /*可选，保留给应用签名，暂不使用*/
         "distribute" : {
             "apple" : {
@@ -135,16 +130,13 @@
                     "<uses-permission android:name=\"android.permission.INTERNET\"/>",
                     "<uses-permission android:name=\"android.permission.MODIFY_AUDIO_SETTINGS\"/>",
                     "<uses-permission android:name=\"android.permission.MOUNT_UNMOUNT_FILESYSTEMS\"/>",
-                    "<uses-permission android:name=\"android.permission.READ_LOGS\"/>",
                     "<uses-permission android:name=\"android.permission.READ_PHONE_STATE\"/>",
-                    "<uses-permission android:name=\"android.permission.RECEIVE_BOOT_COMPLETED\"/>",
                     "<uses-permission android:name=\"android.permission.RECORD_AUDIO\"/>",
                     "<uses-permission android:name=\"android.permission.USE_FINGERPRINT\"/>",
                     "<uses-permission android:name=\"android.permission.VIBRATE\"/>",
                     "<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>",
                     "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\"/>",
-                    "<uses-permission android:name=\"android.permission.WRITE_SETTINGS\"/>",
-                    "<uses-permission android:name=\"android.permission.RECEIVE_USER_PRESENT\"/>"
+                    "<uses-permission android:name=\"android.permission.WRITE_SETTINGS\"/>"
                 ]
             },
             /*使用Native.js调用原生安卓API需要使用到的系统权限*/
@@ -209,11 +201,14 @@
                 "ios" : {
                     "iphone" : {
                         "default" : "", /*iPhone3启动图片选，分辨率：320x480*/
-                        "retina35" : "", /*3.5英寸设备(iPhone4)启动图片，分辨率：640x960*/
-                        "retina40" : "", /*4.0 英寸设备(iPhone5/iPhone5s)启动图片，分辨率：640x1136*/
-                        "retina47" : "", /*4.7 英寸设备(iPhone6)启动图片，分辨率：750x1334*/
-                        "retina55" : "", /*5.5 英寸设备(iPhone6 Plus)启动图片，分辨率：1242x2208*/
-                        "retina55l" : "" /*5.5 英寸设备(iPhone6 Plus)横屏启动图片，分辨率：2208x1242*/
+                        "retina35" : "unpackage/res/start/640x960.png", /*3.5英寸设备(iPhone4)启动图片，分辨率：640x960*/
+                        "retina40" : "unpackage/res/start/640x1136.png", /*4.0 英寸设备(iPhone5/iPhone5s)启动图片，分辨率：640x1136*/
+                        "retina47" : "unpackage/res/start/750x1334.png", /*4.7 英寸设备(iPhone6)启动图片，分辨率：750x1334*/
+                        "retina55" : "unpackage/res/start/1242X2208.png", /*5.5 英寸设备(iPhone6 Plus)启动图片，分辨率：1242x2208*/
+                        "retina55l" : "", /*5.5 英寸设备(iPhone6 Plus)横屏启动图片，分辨率：2208x1242*/
+                        "portrait-896h@3x" : "unpackage/res/start/1242X2688.png",
+                        "portrait-896h@2x" : "unpackage/res/start/828X1792.png",
+                        "iphonex" : "unpackage/res/start/1125X2436.png"
                     },
                     "ipad" : {
                         "portrait" : "", /*iPad竖屏启动图片，分辨率：768x1004*/
@@ -229,14 +224,16 @@
                 "android" : {
                     "mdpi" : "", /*普通屏启动图片，分辨率：240x282*/
                     "ldpi" : "", /*大屏启动图片，分辨率：320x442*/
-                    "hdpi" : "", /*高分屏启动图片，分辨率：480x762*/
-                    "xhdpi" : "", /*720P高分屏启动图片，分辨率：720x1242*/
-                    "xxhdpi" : "" /*1080P高分屏启动图片，分辨率：1080x1882*/
+                    "hdpi" : "unpackage/res/start/480X762.png", /*高分屏启动图片，分辨率：480x762*/
+                    "xhdpi" : "unpackage/res/start/720x1242.png", /*720P高分屏启动图片，分辨率：720x1242*/
+                    "xxhdpi" : "unpackage/res/start/1080x1882.png" /*1080P高分屏启动图片，分辨率：1080x1882*/
                 }
             },
             "plugins" : {
                 "speech" : {}
             }
-        }
-    }
+        },
+        "screenOrientation" : [ "portrait-primary" ]
+    },
+    "fullscreen" : false
 }

@@ -50,6 +50,7 @@ class Language {
             ok: "OK",
             openTip: "Open on October 31",
             update: "Update",
+            repair: "Repair data",
         },
 
         navbar: {
@@ -81,7 +82,9 @@ class Language {
                 exporting: "Exporting...",
                 importing: "Importing...",
                 sending: "Sending...",
-                deleting: "Deleting..."
+                deleting: "Deleting...",
+                synchronizing: "Synchronizing...",
+                synccompleted:"Sync completed!"
             },
             error: {
                 passwordVerify: "Password at least 8 characters!",
@@ -91,7 +94,8 @@ class Language {
                 accountExisted: "The account has existed!",
                 notEnough: "The balance is not enough!",
                 passwordError: "Password is incorrect!",
-                notEnoughFee: "Not enough SERO to pay gas fee !"
+                notEnoughFee: "Not enough SERO to pay gas fee !",
+                invalidMnemonic: "Invalid Mnemonic!",
             }
         },
 
@@ -105,6 +109,7 @@ class Language {
             clearData: "Clear app data",
             confirmClear: "Please confirm that you have backed up your account. Cleared will resynchronize transaction data",
             clearTip: 'Click "Confirm" to start syncing data. There may be a white screen during the process. Please wait patiently for data synchronization to complete, do not end the process easily.',
+            blockHeight:'For asset security, 12 blocks behind the main chain',
         },
 
         page: {
@@ -174,7 +179,9 @@ class Language {
                 unit: "Currency Unit",
                 node: "Node Settings",
                 pkr: "Check synchronization status",
-                source:"Select Wallet Source"
+                source:"Select Wallet Source",
+                cnNode: "Node 2 (Mainland China)",
+                enNode: "Node 1 (Global)"
             },
 
             create: {
@@ -269,6 +276,7 @@ class Language {
             ok: "好的",
             openTip: "10月31号开启此功能",
             update: "立即更新",
+            repair: "修复数据",
         },
 
         navbar: {
@@ -300,7 +308,9 @@ class Language {
                 exporting: "导出中...",
                 importing: "导入中...",
                 sending: "发送中...",
-                deleting: "删除中..."
+                deleting: "删除中...",
+                synchronizing: "正在同步...",
+                synccompleted:"同步完成!"
             },
             error: {
                 passwordVerify: "密码为8位以上字符长度!",
@@ -311,6 +321,7 @@ class Language {
                 notEnough: "余额不足!",
                 passwordError: "密码不正确!",
                 notEnoughFee: "没有足够的SERO支付矿工费用",
+                invalidMnemonic: "无效的助记词!",
             }
 
         },
@@ -324,7 +335,8 @@ class Language {
             importWallet: "导入钱包",
             clearData: "清除应用数据",
             confirmClear: "请确认你已经备份好账户。清除后将重新同步交易数据",
-            clearTip: "点击“确认”开始同步数据，过程中可能会出现白屏，请耐心等待数据同步完成，不要轻易结束进程。",
+            clearTip: "点击“确认”后，将会重新同步数据，同步过程中保持钱包在手机前端运行，直到等待数据同步完成。",
+            blockHeight:'为了资产的安全性，钱包同步的区块比主链落后了12个区块',
         },
 
         page: {
@@ -393,8 +405,10 @@ class Language {
                 language: "语言",
                 unit: "币种单位",
                 node: "节点设置",
-                pkr: "查看同步状态",
+                pkr: "同步状态",
                 source:"设置钱包开源社区",
+                cnNode:"节点2(中国大陆)",
+                enNode:"节点1(全球)"
             },
 
             create: {
@@ -491,6 +505,7 @@ class Language {
             ok: "OK",
             openTip: "10月31日にオープン",
             update: "今すぐ更新",
+            repair: "修理データ",
         },
 
         navbar: {
@@ -522,7 +537,10 @@ class Language {
                 exporting: "エクスポートしています...",
                 importing: "インポートしています...",
                 sending: "送信 ...",
-                deleting: "削除中..."
+                deleting: "削除中...",
+                synchronizing: "同期中...",
+                synccompleted: "同期が完了しました！"
+
             },
             error: {
                 passwordVerify: "少なくとも8文字のパスワード！",
@@ -532,7 +550,8 @@ class Language {
                 accountExisted: "アカウントは既に存在します！",
                 notEnough: "バランスが十分ではありません！",
                 passwordError: "間違ったパスワード！",
-                notEnoughFee: "料金を支払うのに十分なSEROがありません！"
+                notEnoughFee: "料金を支払うのに十分なSEROがありません！",
+                invalidMnemonic: "無効なニーモニック!",
             }
         },
 
@@ -545,7 +564,8 @@ class Language {
             importWallet: "ウォレットをインポート",
             clearData: "アプリデータを消去する",
             confirmClear: "アカウントをバックアップしたことを確認してください。トランザクションデータはクリア後に再同期されます",
-            clearTip: '[確認]をクリックして、データの同期を開始します。プロセス中に白い画面が表示される場合があります。データの同期が完了するまでお待ちください。プロセスを突然終了しないでください。'
+            clearTip: '[確認]をクリックして、データの同期を開始します。プロセス中に白い画面が表示される場合があります。データの同期が完了するまでお待ちください。プロセスを突然終了しないでください。',
+            blockHeight:'資産セキュリティのために、メインチェーンの背後に12ブロック',
         },
 
         page: {
@@ -616,6 +636,8 @@ class Language {
                 node: "ノード設定",
                 pkr: "PKrを確認する",
                 source:"ウォレットをオープンソースに設定します",
+                cnNode:"ノード2（中国本土）",
+                enNode:"ノード1（グローバル）"
             },
 
             create: {
@@ -711,6 +733,7 @@ class Language {
             ok: "OK",
             openTip: "Открыт 31 октября",
             update: "обновление",
+            repair: "Рамонт дадзеных",
         },
 
         navbar: {
@@ -742,7 +765,9 @@ class Language {
                 exporting: "Экспорт...",
                 importing: "Импортирующий...",
                 sending: "Посылка ...",
-                deleting: "Удалить..."
+                deleting: "Сінхранізацыя...",
+                synchronizing: "Сінхранізацыя...",
+                synccompleted:"Сінхранізацыя завершана!"
             },
             error: {
                 passwordVerify: "Пароль должен содержать не менее 8 символов!",
@@ -752,7 +777,8 @@ class Language {
                 accountExisted: "Аккаунт уже существует!",
                 notEnough: "Баланса недостаточно!",
                 passwordError: "Неверный пароль!",
-                notEnoughFee: "Недостаточно SERO для оплаты платы за газ!"
+                notEnoughFee: "Недостаточно SERO для оплаты платы за газ!",
+                invalidMnemonic: "Няправільны мнеманічны характар !",
             }
         },
 
@@ -765,7 +791,8 @@ class Language {
             importWallet: "Импортный кошелек",
             clearData: "Очистить данные приложения",
             confirmClear: "Пожалуйста, подтвердите, что вы создали резервную копию своей учетной записи. Очистка данных приложения приведет к повторной синхронизации данных транзакции",
-            clearTip: 'Нажмите «Подтвердить», чтобы начать синхронизацию данных. Во время процесса может быть белый экран. Пожалуйста, терпеливо дождитесь завершения синхронизации данных, не прерывайте процесс внезапно.'
+            clearTip: 'Нажмите «Подтвердить», чтобы начать синхронизацию данных. Во время процесса может быть белый экран. Пожалуйста, терпеливо дождитесь завершения синхронизации данных, не прерывайте процесс внезапно.',
+            blockHeight:'Для бяспекі актываў 12 блокаў за асноўнай ланцужком',
         },
 
         page: {
@@ -836,6 +863,9 @@ class Language {
                 node: "Настройки узла",
                 pkr: "Проверьте PKr",
                 source:"Выберите источник кошелька",
+                cnNode:"Вузел 2 (Кітай)",
+                enNode:"Вузел 1 (глабальны)"
+
             },
 
             create: {
@@ -931,6 +961,7 @@ class Language {
             ok: "OK",
             openTip: "10 월 31 일 오픈",
             update: "업데이트",
+            repair: "수리 데이터",
         },
 
         navbar: {
@@ -962,7 +993,9 @@ class Language {
                 exporting: "내보내는 중 ...",
                 importing: "가져 오기 ...",
                 sending: "보내기...",
-                deleting: "삭제..."
+                deleting: "삭제...",
+                synchronizing:"동기화",
+                synccompleted: "동기화 완료!"
             },
             error: {
                 passwordVerify: "비밀번호 최소 8 글자!",
@@ -972,7 +1005,8 @@ class Language {
                 accountExisted: "계정이 이미 존재합니다!",
                 notEnough: "균형이 충분하지 않습니다!",
                 passwordError: "비밀번호가 맞지 않습니다!",
-                notEnoughFee: "SERO는 가스를 지불하기에 충분하지 않습니다수수료!"
+                notEnoughFee: "SERO는 가스를 지불하기에 충분하지 않습니다수수료!",
+                invalidMnemonic: "잘못된 니모닉 !",
             }
         },
 
@@ -985,7 +1019,8 @@ class Language {
             importWallet: "가져오기 지갑",
             clearData:"명확한 앱 데이터",
             confirmClear:"계정을 백업했는지 확인하십시오. 앱 데이터를 지운 후 트랜잭션 데이터가 다시 동기화됩니다.",
-            clearTip:'"확인"을 클릭하여 데이터 동기화를 시작하십시오. 처리하는 동안 흰색 화면이 표시 될 수 있습니다. 데이터 동기화가 완료 될 때까지 기다리십시오. 프로세스를 갑자기 종료하지 마십시오.'
+            clearTip:'"확인"을 클릭하여 데이터 동기화를 시작하십시오. 처리하는 동안 흰색 화면이 표시 될 수 있습니다. 데이터 동기화가 완료 될 때까지 기다리십시오. 프로세스를 갑자기 종료하지 마십시오.',
+            blockHeight:'자산 보안을 위해 메인 체인 뒤 12 블록'
         },
 
         page: {
@@ -1056,6 +1091,8 @@ class Language {
                 node: "노드 설정",
                 pkr: "PKr 확인",
                 source:"월렛 오픈 소스 커뮤니티 설정",
+                cnNode:"노드 2 (중국 본토)",
+                enNode:"노드 1 (글로벌)"
             },
 
             create: {

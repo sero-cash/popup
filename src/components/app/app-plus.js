@@ -37,6 +37,41 @@ class AppPlus {
         }, 1000);
     }
 
+    get(url, cb) {
+        if (plus && plus.net) {
+            const xhr = new plus.net.XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+                switch (xhr.readyState) {
+                    case 0:
+                        console.log("xhr请求已初始化");
+                        break;
+                    case 1:
+                        console.log("xhr请求已打开");
+                        break;
+                    case 2:
+                        console.log("xhr请求已发送");
+                        break;
+                    case 3:
+                        console.log("xhr请求已响应");
+                        break;
+                    case 4:
+                        if (xhr.status === 200) {
+                            cb(xhr.responseText, null)
+                            // alert( "xhr请求成功："+xhr.responseText );
+                        } else {
+                            // alert( "xhr请求失败："+xhr.readyState );
+                            cb(null, xhr.readyState)
+                        }
+                        break;
+                    default :
+                        break;
+                }
+            }
+            xhr.open("GET", url);
+            xhr.send();
+        }
+    }
+
 }
 
 const appPlus = new AppPlus();

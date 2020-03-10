@@ -1,4 +1,4 @@
-import {config, keys, storage} from "./common";
+import {config, keys, lang, storage} from "./common";
 
 class Config {
 
@@ -16,15 +16,8 @@ class Config {
         }
 
         this.host = {
-            // host: "http://192.168.50.86:3000/#/",
-            // rpc :"http://192.168.19.145:8545",
-
-            // host: "http://192.168.15.131:3001/#/",
-            // rpc: "http://192.168.15.131:8545",
-            // price: "http://192.168.15.131:8987/ticket?t=",
-
             host: "http://popup.sero.cash/#/",
-            rpc: "http://148.70.169.73:8545",
+            rpc: "http://sero-light-node.ririniannian.com:8545",
             price: "http://129.211.98.114:8987/ticket?t=",
 
         }
@@ -55,20 +48,20 @@ class Config {
 
         let seroRpcHost = storage.get(keys.settings.seroRpcHost);
         if (seroRpcHost) {
-            console.log("seroRpcHost:", seroRpcHost)
             this.host.rpc = seroRpcHost;
+        }else{
+            if(!this.isZH()){
+                this.host.rpc = "http://f-sero-light-node.ririniannian.com:8545"
+            }else{
+                this.host.rpc = "http://sero-light-node.ririniannian.com:8545"
+            }
         }
-
 
     }
 
-    isZH(){
+    isZH =()=>{
         let localUtc = new Date().getTimezoneOffset() / 60;
-        if (localUtc === -8) {
-            return true;
-        } else {
-            return false;
-        }
+        return localUtc === -8;
     }
 
     seroRpc() {
@@ -80,13 +73,27 @@ class Config {
         }
     }
 
+    seroRpcName() {
+        let v = storage.get(keys.settings.seroRpcName)
+        if (!v) {
+            if(!this.isZH()){
+                return lang.e().page.setting.enNode;
+            }else{
+                return lang.e().page.setting.cnNode;
+            }
+        } else {
+            return v
+        }
+    }
+
     setLanguage(v) {
         storage.set(keys.settings.language, v)
         this.init();
     }
 
-    setRpc(v) {
+    setRpc(v,name) {
         storage.set(keys.settings.seroRpcHost, v)
+        storage.set(keys.settings.seroRpcName, name?name:v)
         this.host.rpc = v
         this.init();
     }

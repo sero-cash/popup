@@ -40,6 +40,7 @@ class Keys {
         this.settings = {
             moneyType: "settings:moneyType",
             seroRpcHost: "settings:seroRpcHost",
+            seroRpcName: "settings:seroRpcName",
             language: "settings:language"
         }
 

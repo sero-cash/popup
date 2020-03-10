@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<script type="application/javascript">
+		// 扩展API加载完毕后调用onPlusReady回调函数 
+		document.addEventListener( "plusready", onPlusReady, false );
+		// 扩展API加载完毕，现在可以正常调用扩展API
+		function onPlusReady() {
+			plus.io.resolveLocalFileSystemURL( "_www/default.html", function( entry ) {
+				// plus.nativeUI.showWaiting("Loading...");
+				// window.location.href = "http://localhost:13131/_www/index.html";
+			}, function ( e ) {
+				alert( "Resolve file URL failed: " + e.message );
+			} );
+			
+			checkVersion();
+			
+			setInterval(function(){
+				showtaskstate()
+			},1000)
+			
+		}
+		
+		function showtaskstate(){
+			plus.downloader.enumerate(function(tasks){
+				console.log("Unfinished task count: " + tasks.length);
+				for(var i=0;i<tasks.length;i++){
+					var task = tasks[i];
+					console.log(task.state+"---"+task.downloadedSize+"---"+task.totalSize)
+				}
+			});
+		}
+		
+		
+		function checkVersion(){
+			var versionUrl = "https://github.com/sero-cash/pullup/releases/download/v0.1.15/pullup-mac-v0.1.15.tar.gz";
+			// if(isZH()){
+			// 	versionUrl = "";
+			// }
+			var dtask = plus.downloader.createDownload(versionUrl, {}, function(d, status){
+				// 下载完成
+				if(status == 200){ 
+					console.log("Download success: " + d.filename);
+				} else {
+					 console.log("Download failed: " + status); 
+				}  
+			});
+			//dtask.addEventListener("statechanged", onStateChanged, false);
+			dtask.start(); 
+		}
+		
+		function isZH(){
+			let localUtc = new Date().getTimezoneOffset() / 60;
+			if (localUtc === -8) {
+				return true;
+			}
+			return false;
+		}
+		
+		function isAndroid(){
+		    var u = navigator.userAgent, app = navigator.appVersion;
+		    return u.indexOf('Android') > -1 || u.indexOf('Linux') > -1; //g
+		}
+		
+		function isIOS(){
+		    var u = navigator.userAgent, app = navigator.appVersion;
+		    return !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+		}
+	</script>
+	<body>
+	</body>
+</html>

@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Grid, SearchBar,Toast} from 'antd-mobile'
+import {Grid, SearchBar,Toast,Modal,List,Button} from 'antd-mobile'
 import Layout from "../layout/layout";
 import {storage, keys, url, lang,config} from "../../config/common";
 import './dapp.css'
@@ -12,13 +12,15 @@ class DApp extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            data:versionControlDataEn
+            data:versionControlDataEn,
+            modal2:false,
+            dapp:'',
+            dappUrl:''
         }
     }
 
     componentDidMount() {
 
-        console.log("config.isZH()==>",config.isZH())
         if(config.isZH()){
             this.setState({
                 data:versionControlDataCn
@@ -29,6 +31,22 @@ class DApp extends Component {
             })
         }
     }
+
+    showModal = (e) => {
+        this.setState({
+            "modal2": true,
+            "dapp":e.text,
+            "dappUrl":e.url
+        });
+    }
+
+    onClose = () => {
+        this.setState({
+            "modal2": false,
+        });
+    }
+
+
 
     render() {
 
@@ -71,7 +89,11 @@ class DApp extends Component {
                 <div style={{textAlign: 'center'}}>
                     <Grid data={data} activeStyle={false}  onClick={
                         (e,index)=>{
-                            url.goPage(url.browser(e.url),url.DApp)
+                            if(config.isZH() && e.text!=='Explorer' && e.text!=='Wiki'){
+                                this.showModal(e)
+                            }else{
+                                url.goPage(url.browser(e.url),url.DApp);
+                            }
                         }
                     } hasLine={false}/>
                 </div>
@@ -92,6 +114,25 @@ class DApp extends Component {
                     }
                 </div>
             </div>
+
+            <Modal
+                popup
+                visible={this.state.modal2}
+                onClose={()=>this.onClose()}
+                animationType="slide-up"
+            >
+                <List renderHeader={() => <div><h3>你正在访问第三方DApp</h3></div>} >
+                    <List.Item key={1}>
+                        <p className="popup-list">你在第三方DApp上的食用行为将适用该第三方DApp的《用户协议》和《隐私政策》，由《{this.state.dapp}》直接并单独向你承担责任。</p>
+                    </List.Item>
+                    <List.Item>
+                        <Button type="primary" onClick={()=>{
+                            this.onClose();
+                            url.goPage(url.browser(this.state.dappUrl),url.DApp);
+                        }}>确定</Button>
+                    </List.Item>
+                </List>
+            </Modal>
 
         </Layout>
     }

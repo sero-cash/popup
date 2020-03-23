@@ -18,36 +18,17 @@ class Settings extends Component {
 
         this.setState({
             network: [
-
-                {
-                    id: "1",
-                    network: "main",
-                    name: "华南(成都)",
-                    rpc: "http://148.70.169.73:8545",
-                },
-                {
-                    id: "1",
-                    network: "main",
-                    name: "华南(成都)",
-                    rpc: "http://140.143.83.98:8545",
-                },
                 {
                     id: "2",
                     network: "main",
-                    name: "华南(广州)",
-                    rpc: "http://129.204.197.105:8545",
+                    name: lang.e().page.setting.enNode,
+                    rpc: "http://f-sero-light-node.ririniannian.com:8545",
                 },
                 {
-                    id: "3",
+                    id: "1",
                     network: "main",
-                    name: "Japan",
-                    rpc: "http://52.199.145.159:8545",
-                },
-                {
-                    id: "4",
-                    network: "main",
-                    name: "Frankfurt",
-                    rpc: "http://3.122.152.29:8545",
+                    name: lang.e().page.setting.cnNode,
+                    rpc: "http://sero-light-node.ririniannian.com:8545",
                 }
             ]
         })
@@ -57,7 +38,7 @@ class Settings extends Component {
     clearData = () => {
         try {
             Toast.loading("Clearing...")
-            assetService.clearData().then(res=>{
+            assetService.clearData("").then(res=>{
                 Toast.success(lang.e().toast.success.clear,2)
                 setTimeout(function () {
                     Modal.alert(lang.e().modal.clearData, lang.e().modal.clearTip, [{
@@ -76,9 +57,9 @@ class Settings extends Component {
         }
     }
 
-    setRpc(rpc){
+    setRpc(rpc,name){
         if(rpc){
-            config.setRpc(rpc)
+            config.setRpc(rpc,name)
             assetService.init()
         }
         this.setState({
@@ -158,60 +139,46 @@ class Settings extends Component {
                                        ])
                                    }}
                         ><span>{lang.e().page.setting.language}</span></List.Item>
+
+                        {/*<List.Item extra={*/}
+                        {/*    <span style={{fontSize: "14px"}}>{config.moneyType.toUpperCase()}</span>*/}
+                        {/*} arrow="horizontal" onClick={() => {*/}
+                        {/*    Modal.operation([*/}
+                        {/*        {*/}
+                        {/*            text: "USD", onPress: () => {*/}
+                        {/*                config.setMoneyType("usd")*/}
+                        {/*                this.setState({*/}
+                        {/*                    moneyType: "usd"*/}
+                        {/*                })*/}
+                        {/*            }*/}
+                        {/*        },*/}
+                        {/*        {*/}
+                        {/*            text: "CNY", onPress: () => {*/}
+                        {/*                config.setMoneyType("cny")*/}
+                        {/*                this.setState({*/}
+                        {/*                    moneyType: "cny"*/}
+                        {/*                })*/}
+                        {/*            }*/}
+                        {/*        }*/}
+                        {/*    ])*/}
+                        {/*}}><span>{lang.e().page.setting.unit}</span></List.Item>*/}
+
+
                         <List.Item extra={
-                            <span style={{fontSize: "14px"}}>{config.moneyType.toUpperCase()}</span>
-                        } arrow="horizontal" onClick={() => {
-                            Modal.operation([
-                                {
-                                    text: "USD", onPress: () => {
-                                        config.setMoneyType("usd")
-                                        this.setState({
-                                            moneyType: "usd"
-                                        })
-                                    }
-                                },
-                                {
-                                    text: "CNY", onPress: () => {
-                                        config.setMoneyType("cny")
-                                        this.setState({
-                                            moneyType: "cny"
-                                        })
-                                    }
-                                }
-                            ])
-                        }}><span>{lang.e().page.setting.unit}</span></List.Item>
-                        <List.Item extra={
-                            <span style={{fontSize: "14px"}}>{config.host.rpc}</span>
+                            <span style={{fontSize: "14px"}}>{config.seroRpcName()}</span>
                         } arrow="horizontal" onClick={() => {
                             this.setState({
                                 showNetwork: true
                             })
                         }}><span>{lang.e().page.setting.node}</span></List.Item>
 
+                        <List.Item  arrow="horizontal" onClick={() => {
+                            url.goPage(url.HistoryPKr,url.Settings)
+                        }}><span>{lang.e().page.setting.pkr}</span></List.Item>
+
+
                     </WingBlank>
                 </List>
-                <WhiteSpace/>
-                <List>
-                    <List.Item  arrow="horizontal" onClick={() => {
-                        url.goPage(url.HistoryPKr,url.Settings)
-                    }}><span>{lang.e().page.setting.pkr}</span></List.Item>
-                </List>
-
-                <WhiteSpace/>
-                {
-                    plus&&plus.runtime&&plus.runtime.version!=='1.0'&&plus.runtime.version!=='1.1'?<List>
-                    {
-                        plus?
-                            <List.Item  arrow="horizontal" extra={
-                                <span style={{fontSize: "14px"}}>{window.location.host?window.location.host:"localhost"}</span>
-                            } onClick={() => {
-                                setTimeout(function () {
-                                    window.location.href="./enter.html?source=wallet"
-                                },1000)
-                            }}><span>{lang.e().page.setting.source}</span></List.Item>:""
-                    }
-                    </List>:""
-                }
                 <WhiteSpace/>
                 <List>
                     <List.Item onClick={() => {
@@ -240,12 +207,14 @@ class Settings extends Component {
                 >
                     <List renderHeader={() => <div>{lang.e().page.setting.node}</div>} className="popup-list">
                         {network.map((v, index) => (
-                            <List.Item key={index} onClick={() => {
-                                this.setRpc(v.rpc);
-                            }}>{v.rpc}({v.name})</List.Item>
+                            <WingBlank>
+                                <List.Item key={index} onClick={() => {
+                                    this.setRpc(v.rpc,v.name);
+                                }}>{v.name}</List.Item>
+                            </WingBlank>
                         ))}
                         <List.Item>
-                            <InputItem placeholder={"Input node host"} id="customer"/>
+                            <InputItem placeholder={"http://"} id="customer"/>
                             <div style={{marginTop:"15px"}}>
                                 <Button type="primary" onClick={()=>{
                                     let customer = document.getElementById("customer").value;

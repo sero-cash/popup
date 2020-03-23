@@ -95,9 +95,9 @@ class AssetService {
         })
     }
 
-    clearData(){
+    clearData(tk){
         return new Promise(function (resolve, reject) {
-            popservice.clearData(function (msg) {
+            popservice.clearData(tk,function (msg) {
                 if (msg.error) {
                     reject(msg.error)
                 } else {
@@ -107,9 +107,9 @@ class AssetService {
         })
     }
 
-    getSyncState(){
+    getSyncState(tk){
         return new Promise(function (resolve, reject) {
-            popservice.getSyncState(function (msg) {
+            popservice.getSyncState(tk,function (msg) {
                 if (msg.error) {
                     reject(msg.error)
                 } else {

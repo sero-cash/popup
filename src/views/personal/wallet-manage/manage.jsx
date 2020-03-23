@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {NavBar, Toast, Icon, Modal, WingBlank, WhiteSpace, List,Button} from 'antd-mobile'
 import Account from "../../../components/account/account";
 import {storage, keys, config, url, baseDecimal, lang} from "../../../config/common";
+import {assetService} from "../../../components/service/service";
 const ac = new Account();
 class Manage extends Component {
 
@@ -61,6 +62,33 @@ class Manage extends Component {
                 }
             }
         }],'secure-text', null, [lang.e().page.txTransfer.inputPassword])
+    }
+
+    clearData = () => {
+        const that = this;
+        try {
+            Modal.alert(lang.e().modal.clearData, lang.e().modal.clearTip, [
+                {text:lang.e().button.cancel,onPress:()=>{
+                }},{
+                text: lang.e().button.confirm, onPress: () => {
+                    Toast.loading("Repairing...")
+                    assetService.clearData(that.state.detail.tk).then(res=>{
+                        ac.setCurrent(that.state.detail).then(rest=>{
+                            Toast.success(lang.e().toast.success.clear,2)
+                            setTimeout(function () {
+                                url.goPage(url.Home)
+                            },2000)
+                        })
+                    }).catch(err=>{
+                        Toast.fail(err,3)
+                        console.log(err)
+                    })
+                }
+            }])
+        } catch (e) {
+            Toast.fail(e.message,3)
+            console.log("clear Data:",e.message)
+        }
     }
 
     changePasswordHint = ()=>{
@@ -167,6 +195,8 @@ class Manage extends Component {
                         <List.Item arrow="horizontal" onClick={this.exportMnemonicPhrase} thumb={<Icon type="iconword" color="gray"/>}><span >{lang.e().page.walletManage.export}</span></List.Item>
                     </WingBlank>
                 </List>
+                <WhiteSpace size="lg"/>
+                <Button style={{color:'#009688'}} onClick={()=>{this.clearData()}}>{lang.e().button.repair}</Button>
                 <WhiteSpace size="lg"/>
                 <Button style={{color:'red'}} onClick={()=>{this.removeAccount()}}>{lang.e().button.deleteAddress}</Button>
             </div>

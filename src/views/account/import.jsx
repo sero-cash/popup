@@ -68,9 +68,27 @@ class Form extends Component{
                         checkConfirming: false
                     });
                 }else{
+                    let words = value["word"];
+                    words = words.trim();
+                    let warray = words.split(" ");
+
+                    let formatWords = [];
+                    for(let i=0;i<warray.length;i++){
+                        const w = warray[i].trim();
+                        if( w !== ""){
+                            formatWords.push(w)
+                        }
+                    }
+                    if(formatWords.length < 24){
+                        Toast.fail(lang.e().toast.error.invalidMnemonic,1.5);
+                        that.setState({
+                            checkConfirming: false
+                        });
+                    }else{
+                        words = formatWords.join(" ")
                         Toast.loading(lang.e().toast.loading.importing,60);
                         setTimeout(function () {
-                            account.importMnemonic(value["name"],value["hint"],value["word"],value["password"]).then(function (data) {
+                            account.importMnemonic(value["name"],value["hint"],words,value["password"]).then(function (data) {
                                 Toast.success(lang.e().toast.success.import,1.5);
                                 setTimeout(function () {
                                     url.goPage(url.Home)
@@ -83,7 +101,7 @@ class Form extends Component{
                                 });
                             })
                         },500)
-
+                    }
                 }
             }
         })

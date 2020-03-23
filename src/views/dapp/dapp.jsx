@@ -7,8 +7,6 @@ import {versionControlDataEn,versionControlDataCn} from './dapp-data'
 
 let dataRecent =[];
 
-
-
 class DApp extends Component {
 
     constructor(props) {

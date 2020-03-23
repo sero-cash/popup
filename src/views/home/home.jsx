@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {WhiteSpace, Card, Icon, List, NavBar, Button, Modal, Toast, SwipeAction} from 'antd-mobile'
+import {WhiteSpace, Card, Icon, List, NavBar, Button, Modal, Toast, SwipeAction, Progress} from 'antd-mobile'
 import Account from "../../components/account/account";
 import Utils from "../../config/utils";
 import Layout from "../layout/layout";
@@ -24,6 +24,7 @@ let homeInterverId0 = null;
 let homeInterverId = null;
 // let homeInterverId2 = null;
 let homeInterverId3 = null;
+let healthCheckCount = 0;
 
 class Home extends Component {
 
@@ -39,6 +40,8 @@ class Home extends Component {
             detail: '',
             assets: new Map(),
             healthy:'normal',//red dead,yellow syncing,green:normal
+            healthData:'',
+            tk:''
         }
     }
 
@@ -80,6 +83,9 @@ class Home extends Component {
                 clearInterval(homeInterverId3);
             }
             homeInterverId3 = setInterval(function () {
+                // if(healthCheckCount===5){
+                //     Toast.loading(lang.e().toast.loading.synchronizing,120)
+                // }
                 that.getSyncState();
             },  1 * 1000)
 
@@ -96,31 +102,41 @@ class Home extends Component {
         }
     }
 
-    getSyncState=()=>{
+    getSyncState(){
         let that = this;
-        assetService.getSyncState().then(data=>{
-            if(data){
-                if(data.health === true){
-                    if(data.isSyncing=== true){
-                        that.setState({
-                            healthy:'syncing'
-                        })
+        if(that.state.tk){
+            assetService.getSyncState(that.state.tk).then(data=>{
+                if(data){
+                    let healthy = 'normal'
+                    if(data.health === true){
+                        if(data.isSyncing=== true){
+                            healthy = 'syncing'
+                            healthCheckCount ++
+                        }else{
+                            healthy = 'normal'
+                            // if(healthCheckCount>=5){
+                                // Toast.info(lang.e().toast.loading.synccompleted,2)
+                            // }
+                            healthCheckCount =0
+                        }
                     }else{
-                        that.setState({
-                            healthy:'normal'
-                        })
+                        healthy = 'dead'
+                        // if(healthCheckCount>=5){
+                        //     Toast.info("Sync failed!",2)
+                        // }
+                        healthCheckCount =0
                     }
-                }else{
                     that.setState({
-                        healthy:'dead'
+                        healthy:healthy,
+                        healthData:data
                     })
                 }
-            }
-        }).catch(e=>{
-            that.setState({
-                healthy:'dead'
+            }).catch(e=>{
+                that.setState({
+                    healthy:'dead'
+                })
             })
-        })
+        }
     }
 
     showWallet = () => {
@@ -204,7 +220,8 @@ class Home extends Component {
             const detail = await account.Detail(current.address);
             that.setState({
                 detail: detail,
-                account: account
+                account: account,
+                tk:detail.tk
             })
 
             assetService.balanceOf(detail.tk).then(assets=>{
@@ -218,22 +235,26 @@ class Home extends Component {
     render() {
         let that = this;
         let assetsArr = [];
-        let {current, detail, assets,healthy} = this.state;
+        let {current, detail, assets,healthy,healthData} = this.state;
         let mainPKr = "";
         let currentPKr = "";
         let seroTotal = 0;
         let syncState = "check-circle"
         let stateColor="green"
+        let stateDesc = lang.e().toast.loading.synchronizing;
         if(healthy === "normal"){
             syncState = "check-circle"
             stateColor="green"
+            stateDesc=''
         }else if(healthy === "syncing"){
             syncState = "loading"
             stateColor="yellow"
         }else if(healthy === "dead"){
             syncState = "cross-circle"
             stateColor="red"
+            stateDesc='Synchronization failed!'
         }
+
 
         if (current) {
             mainPKr = detail.mainPKr;
@@ -310,7 +331,7 @@ class Home extends Component {
                         <div>
                             <div className="home-list-item-number">0.00</div>
                             <Brief>
-                                <div className="home-list-item-money">$ 0.00</div>
+                                <div className="home-list-item-money">&nbsp;</div>
                             </Brief>
                         </div>}
                           align="top"
@@ -379,13 +400,18 @@ class Home extends Component {
                             </div>
                         </Card.Body>
                         {/*<Card.Footer extra={<span>{that.state.seroPriceInfo.type}{new BigNumber(seroTotal).toFixed(3)}</span>}/>*/}
-                        <Card.Footer extra={<span>&nbsp;</span>}/>
+                        <Card.Footer extra={<span>
+                            <span style={{fontSize:'14px'}}>Block Height: {healthData.latestBlock?healthData.latestBlock:0}</span>
+                            &nbsp;<Icon type="iconhelp" className="icon-pkr" onClick={() => {
+                                this.modalTips(lang.e().modal.blockHeight)
+                            }}/>
+                        </span>}/>
                     </Card>
                 </div>
 
                 <div className="am-list">
                     <div className="am-list-header" style={{background: "#fdfdfd"}}>
-                        <div className="home-list-title"><Icon type={syncState} color={stateColor} size="small" style={{width:"14px",height:"14px"}}/> {lang.e().page.wallet.Assets}</div>
+                        <div className="home-list-title"><Icon type={syncState} color={stateColor} size="small" style={{width:"14px",height:"14px"}}/> {lang.e().page.wallet.Assets} {<span style={{fontSize:'12px'}}>{stateDesc}</span>} </div>
                     </div>
                 </div>
                 <WhiteSpace size="lg"/>

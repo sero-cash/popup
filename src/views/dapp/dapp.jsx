@@ -123,7 +123,7 @@ class DApp extends Component {
             >
                 <List renderHeader={() => <div><h3>你正在访问第三方DApp</h3></div>} >
                     <List.Item key={1}>
-                        <p className="popup-list">你在第三方DApp上的食用行为将适用该第三方DApp的《用户协议》和《隐私政策》，由《{this.state.dapp}》直接并单独向你承担责任。</p>
+                        <p className="popup-list">你在第三方DApp上的使用行为将适用该第三方DApp的《用户协议》和《隐私政策》，由《{this.state.dapp}》直接并单独向你承担责任。</p>
                     </List.Item>
                     <List.Item>
                         <Button type="primary" onClick={()=>{

@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {Icon, List, NavBar} from "antd-mobile";
-import {lang, url} from "../../../config/common";
+import {lang, url,config} from "../../../config/common";
 import sero from "../../../logo.png";
 import './about.css'
 
@@ -41,37 +41,6 @@ class AboutUs extends Component {
                     version:inf.version
                 })
             });
-        }
-    }
-
-    checkUpdate() {
-        const that = this;
-        const ua = navigator.userAgent;
-        if (ua.indexOf('Html5Plus') > -1 && ua.indexOf('StreamApp') === -1) {
-            let url = "http://popup-github.sero.cash/client.json";
-            const localUtc = new Date().getTimezoneOffset() / 60;
-            if (localUtc === -8) {
-                url = "http://sero-cash.gitee.io/popup/client.json";
-            }
-
-            that.getReq(url,function (data,err) {
-                if(data){
-                    const rData = JSON.parse(data);
-                    const rsp = rData[lang.e().key];
-                    const version = rsp["version"];
-                    console.log("latest version:"+version);
-                    console.log("plus.runtime.version:"+plus.runtime.version);
-                    if (version !== plus.runtime.version) {
-                        plus.nativeUI.confirm(rsp["note"], function (event) {
-                            if (0 === event.index) {
-                                plus.runtime.openURL(rsp["url"]);
-                            }
-                        }, rsp["title"], [lang.e().button.update, lang.e().button.cancel]);
-                    } else {
-                        plus.nativeUI.alert(lang.e().toast.info.isLatest, function(){}, "SERO Popup", "OK");
-                    }
-                }
-            })
         }
     }
 
@@ -132,9 +101,7 @@ class AboutUs extends Component {
                     </div>
                     <List>
                         {abouts}
-                        <List.Item key={i++} arrow="horizontal" onClick={
-                            () => this.checkUpdate()
-                        } extra={<span>{this.state.version}</span>}>Version</List.Item>
+                        <List.Item key={i++} arrow="horizontal" extra={<span>{this.state.version}</span>}>Version</List.Item>
                     </List>
                 </div>
             </div>

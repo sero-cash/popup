@@ -1,9 +1,9 @@
 {
   "zh": {
     "docs": {
-      "version": "1.1.6",
+      "version": "1.1.5",
       "url": "https://sero-media-1256272584.cos.ap-shanghai.myqcloud.com/popup/wgt/1.1.6/cash.sero.popup.community.wgt",
-      "show": true,
+      "show": false,
       "description": [
         "1. 优化了钱包页面打不开的问题",
         "2. 增加了钱包热更新的功能",
@@ -23,9 +23,9 @@
 
   "en": {
     "docs": {
-      "version": "1.1.6",
+      "version": "1.1.5",
       "url": "https://sero-popup.s3-ap-southeast-1.amazonaws.com/wgt/1.1.6/cash.sero.popup.community.wgt",
-      "show": true,
+      "show": false,
       "description": [
         "1. Optimized the problem that the wallet page cannot be opened",
         "2. Added the function of hot wallet update",

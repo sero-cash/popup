@@ -32,12 +32,20 @@
     }
 
     function checkUpdate(wgtVer){
-        var checkUrl="https://sero-media-1256272584.cos.ap-shanghai.myqcloud.com/popup/version.json";
+        var checkUrl="https://sero-media-1256272584.cos.ap-shanghai.myqcloud.com/popup/version.json?"+new Date().getTime();
         if(!isZH()){
-            checkUrl = "http://popup-github.sero.cash/version.json";
+            checkUrl = "http://popup-github.sero.cash/version.json?"+new Date().getTime();
         }
+        if(isAndroid){
+            checkUrl="https://sero-media-1256272584.cos.ap-shanghai.myqcloud.com/popup/android.json?"+new Date().getTime();
+            if(!isZH()){
+                checkUrl = "http://popup-github.sero.cash/android.json?"+new Date().getTime();
+            }
+        }
+        console.log(checkUrl);
         httpGet(checkUrl,function(resp,err){
             if(!err){
+                console.log(resp);
                 var data= JSON.parse(resp);
                 var _remoteObj = null;
                 if(isZH()){
@@ -45,6 +53,7 @@
                 }else{
                     _remoteObj = data["en"];
                 }
+
                 if(wgtVer&&_remoteObj.docs&&(wgtVer!==_remoteObj.docs.version)){
                     plus.nativeUI.closeWaiting();
                     downWgt(_remoteObj);

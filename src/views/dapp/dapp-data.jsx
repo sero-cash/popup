@@ -1,7 +1,8 @@
 import React from 'react'
 import sero from "../../sero.png";
 
-const versionControlDataEn = [
+const popupDataEn = [
+
     {
         icon: <div className="dapp-icon"><img src={sero}  className="dapp-img"/></div>,
         text: `Explorer`,
@@ -11,7 +12,25 @@ const versionControlDataEn = [
         icon: <div className="dapp-icon"><img src={sero}  className="dapp-img"/></div>,
         text: `Wiki`,
         url:"https://wiki.sero.cash",
+    }
+]
+
+
+const popupDataCn = [
+    {
+        icon: <div className="dapp-icon"><img src={sero}  className="dapp-img"/></div>,
+        text: `Explorer`,
+        url:"http://118.24.17.141:8081/",
     },
+    {
+        icon: <div className="dapp-icon"><img src={sero}  className="dapp-img"/></div>,
+        text: `Wiki`,
+        url:"https://wiki.sero.cash",
+    },
+]
+
+
+const versionControlDataEn = [
     {
         icon: <div className="dapp-icon"><img src="https://asnowhero.github.io/asnow-popup/logo.png"  className="dapp-img"/></div>,
         text: `ASNOW`,
@@ -60,16 +79,6 @@ const versionControlDataEn = [
 ];
 const versionControlDataCn = [
     {
-        icon: <div className="dapp-icon"><img src={sero}  className="dapp-img"/></div>,
-        text: `Explorer`,
-        url:"http://118.24.17.141:8081/",
-    },
-    {
-        icon: <div className="dapp-icon"><img src={sero}  className="dapp-img"/></div>,
-        text: `Wiki`,
-        url:"https://wiki.sero.cash",
-    },
-    {
         icon: <div className="dapp-icon"><img src="https://asnowhero.gitee.io/asnow-popup/logo.png"  className="dapp-img"/></div>,
         text: `ASNOW`,
         url:"https://asnowhero.gitee.io/asnow-popup/",
@@ -117,5 +126,5 @@ const versionControlDataCn = [
 ];
 
 export {
-    versionControlDataEn,versionControlDataCn
+    versionControlDataEn,versionControlDataCn,popupDataEn,popupDataCn
 }

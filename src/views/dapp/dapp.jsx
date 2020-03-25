@@ -3,7 +3,7 @@ import {Grid, SearchBar,Toast,Modal,List,Button} from 'antd-mobile'
 import Layout from "../layout/layout";
 import {storage, keys, url, lang,config} from "../../config/common";
 import './dapp.css'
-import {versionControlDataEn,versionControlDataCn} from './dapp-data'
+import {versionControlDataEn,versionControlDataCn,popupDataEn,popupDataCn} from './dapp-data'
 
 let dataRecent =[];
 
@@ -13,6 +13,7 @@ class DApp extends Component {
         super(props);
         this.state = {
             data:versionControlDataEn,
+            popupData:popupDataEn,
             modal2:false,
             dapp:'',
             dappUrl:''
@@ -23,11 +24,13 @@ class DApp extends Component {
 
         if(config.isZH()){
             this.setState({
-                data:versionControlDataCn
+                data:versionControlDataCn,
+                popupData:popupDataCn
             })
         }else{
             this.setState({
-                data:versionControlDataEn
+                data:versionControlDataEn,
+                popupData:popupDataEn
             })
         }
     }
@@ -50,7 +53,7 @@ class DApp extends Component {
 
     render() {
 
-        const {data} = this.state;
+        const {data,popupData} = this.state;
         let dapps = storage.get(keys.dapp.list);
         if(dapps) {
             dataRecent=[];
@@ -85,15 +88,20 @@ class DApp extends Component {
             </div>
 
             <div style={{padding:'45px 0 60px',overflow:'scroll',background:"#fdfdfd"}} >
+                <div className="sub-title">{lang.e().page.dapp.popup} </div>
+                <div style={{textAlign: 'center'}}>
+                    <Grid data={popupData} activeStyle={false}  onClick={
+                        (e,index)=>{
+                            url.goPage(url.browser(e.url),url.DApp);
+                        }
+                    } hasLine={false}/>
+                </div>
+
                 <div className="sub-title">{lang.e().page.dapp.recommended} </div>
                 <div style={{textAlign: 'center'}}>
                     <Grid data={data} activeStyle={false}  onClick={
                         (e,index)=>{
-                            if(config.isZH() && e.text!=='Explorer' && e.text!=='Wiki'){
-                                this.showModal(e)
-                            }else{
-                                url.goPage(url.browser(e.url),url.DApp);
-                            }
+                            this.showModal(e)
                         }
                     } hasLine={false}/>
                 </div>
@@ -105,7 +113,7 @@ class DApp extends Component {
                             <div style={{textAlign: 'center'}}>
                                 <Grid data={dataRecent} activeStyle={false} onClick={
                                     (e,index)=>{
-                                        url.goPage(url.browser(e.url),url.DApp)
+                                        this.showModal(e)
                                     }
                                 } hasLine={false}/>
 
@@ -121,15 +129,15 @@ class DApp extends Component {
                 onClose={()=>this.onClose()}
                 animationType="slide-up"
             >
-                <List renderHeader={() => <div><h3>你正在访问第三方DApp</h3></div>} >
+                <List renderHeader={() => <div><h3>{lang.e().modal.dappTip1}</h3></div>} >
                     <List.Item key={1}>
-                        <p className="popup-list">你在第三方DApp上的使用行为将适用该第三方DApp的《用户协议》和《隐私政策》，由《{this.state.dapp}》直接并单独向你承担责任。</p>
+                        <p className="popup-list">{lang.e().modal.dappTip2}{this.state.dapp}{lang.e().modal.dappTip3}</p>
                     </List.Item>
                     <List.Item>
                         <Button type="primary" onClick={()=>{
                             this.onClose();
                             url.goPage(url.browser(this.state.dappUrl),url.DApp);
-                        }}>确定</Button>
+                        }}>{lang.e().button.ok}</Button>
                     </List.Item>
                 </List>
             </Modal>

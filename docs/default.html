@@ -137,7 +137,7 @@
 
     function openApp() {
         plus.io.resolveLocalFileSystemURL( "_www/index.html", function( entry ) {
-            if(isIOS){
+            if(!isAndroid){
                 plus.webview.open(entry.toRemoteURL());
             }else{
                 window.location.replace('./index.html#')

@@ -110,6 +110,10 @@ class Language {
             confirmClear: "Please confirm that you have backed up your account. Cleared will resynchronize transaction data",
             clearTip: 'Click "Confirm" to start syncing data. There may be a white screen during the process. Please wait patiently for data synchronization to complete, do not end the process easily.',
             blockHeight:'For asset security, 12 blocks behind the main chain',
+
+            dappTip1: "You are accessing a third-party DApp",
+            dappTip2: "Your use on a third-party DApp will apply to that third-party DApp's《 User Agreement 》《 Privacy Policy 》, which is governed by《 ",
+            dappTip3: "》 I assume responsibility directly and solely to you."
         },
 
         page: {
@@ -250,7 +254,8 @@ class Language {
                 search: "Enter DApp url",
                 invalidDApp: "Invalid DApp url",
                 recent: "Recent",
-                recommended: "Recommended",
+                popup: "Recommended",
+                recommended: "Community voted Dapps",
             }
 
         }
@@ -337,6 +342,9 @@ class Language {
             confirmClear: "请确认你已经备份好账户。清除后将重新同步交易数据",
             clearTip: "点击“确认”后，将会重新同步数据，同步过程中保持钱包在手机前端运行，直到等待数据同步完成。",
             blockHeight:'为了资产的安全性，钱包同步的区块比主链落后了12个区块',
+            dappTip1:"你正在访问第三方DApp",
+            dappTip2:"你在第三方DApp上的使用行为将适用该第三方DApp的《用户协议》和《隐私政策》，由《",
+            dappTip3:"》直接并单独向你承担责任。"
         },
 
         page: {
@@ -479,7 +487,8 @@ class Language {
                 search: "输入DApp的地址",
                 invalidDApp: "无效的DApp url",
                 recent: "最近使用",
-                recommended: "推荐",
+                popup:"推荐",
+                recommended: "社区投票的Dapps",
             }
 
         }
@@ -566,6 +575,9 @@ class Language {
             confirmClear: "アカウントをバックアップしたことを確認してください。トランザクションデータはクリア後に再同期されます",
             clearTip: '[確認]をクリックして、データの同期を開始します。プロセス中に白い画面が表示される場合があります。データの同期が完了するまでお待ちください。プロセスを突然終了しないでください。',
             blockHeight:'資産セキュリティのために、メインチェーンの背後に12ブロック',
+            dappTip1: "サードパーティのDAppにアクセスしています",
+            dappTip2: "サードパーティDAppでの使用は、そのサードパーティDAppの「ユーザー契約」と「プライバシーポリシー」に適用されます「",
+            dappTip3: "」私は直接あなたにのみ責任を負います。"
         },
 
         page: {
@@ -706,7 +718,8 @@ class Language {
                 search: "DApp URLを入力してください",
                 invalidDApp: "無効なDApp URL",
                 recent: "最近",
-                recommended: "お勧め",
+                popup:"お勧め",
+                recommended: "コミュニティがDappsに投票しました",
             }
 
         }
@@ -793,6 +806,9 @@ class Language {
             confirmClear: "Пожалуйста, подтвердите, что вы создали резервную копию своей учетной записи. Очистка данных приложения приведет к повторной синхронизации данных транзакции",
             clearTip: 'Нажмите «Подтвердить», чтобы начать синхронизацию данных. Во время процесса может быть белый экран. Пожалуйста, терпеливо дождитесь завершения синхронизации данных, не прерывайте процесс внезапно.',
             blockHeight:'Для бяспекі актываў 12 блокаў за асноўнай ланцужком',
+            dappTip1: "Вы атрымліваеце доступ да старонняга DApp",
+            dappTip2: "Ваша выкарыстанне DApp для трэціх бакоў будзе прымяняцца да (Пагаднення карыстальнікаў ) (Палітыкі прыватнасці) трэцяга боку DApp, якое рэгулюецца(",
+            dappTip3: ") Я бяру на сябе адказнасць непасрэдна і выключна перад вамі."
         },
 
         page: {
@@ -934,7 +950,8 @@ class Language {
                 search: "Введите DApp URL",
                 invalidDApp: "Неверный DApp URL",
                 recent: "Недавний",
-                recommended: "рекомендуемые",
+                popup:"рекомендуемые",
+                recommended: "Даччыны DAppsСуполка прагаласавала за Допса",
             }
         }
     };
@@ -1020,7 +1037,10 @@ class Language {
             clearData:"명확한 앱 데이터",
             confirmClear:"계정을 백업했는지 확인하십시오. 앱 데이터를 지운 후 트랜잭션 데이터가 다시 동기화됩니다.",
             clearTip:'"확인"을 클릭하여 데이터 동기화를 시작하십시오. 처리하는 동안 흰색 화면이 표시 될 수 있습니다. 데이터 동기화가 완료 될 때까지 기다리십시오. 프로세스를 갑자기 종료하지 마십시오.',
-            blockHeight:'자산 보안을 위해 메인 체인 뒤 12 블록'
+            blockHeight:'자산 보안을 위해 메인 체인 뒤 12 블록',
+            dappTip1 : "타사 DApp에 액세스하고 있습니다",
+            dappTip2 : "타사 DApp을 사용하면 타사 DApp의 사용자 계약 및 개인 정보 보호 정책에 적용됩니다.《",
+            dappTip3 : "》 직접 및 별도로 귀하에게 책임이 있습니다."
         },
 
         page: {
@@ -1160,7 +1180,8 @@ class Language {
                 search:"DApp URL 입력",
                 invalidDApp:"잘못된 DApp URL",
                 recent:"충적세",
-                recommended:"제안 됨",
+                popup:"제안 됨",
+                recommended: "커뮤니티 투표 Dapps",
             }
         }
     };

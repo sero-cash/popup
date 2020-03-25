@@ -255,7 +255,7 @@ class Language {
                 invalidDApp: "Invalid DApp url",
                 recent: "Recent",
                 popup: "Recommended",
-                recommended: "Community voted Dapps",
+                recommended: "Community voted DApps",
             }
 
         }
@@ -488,7 +488,7 @@ class Language {
                 invalidDApp: "无效的DApp url",
                 recent: "最近使用",
                 popup:"推荐",
-                recommended: "社区投票的Dapps",
+                recommended: "社区投票的DApps",
             }
 
         }
@@ -719,7 +719,7 @@ class Language {
                 invalidDApp: "無効なDApp URL",
                 recent: "最近",
                 popup:"お勧め",
-                recommended: "コミュニティがDappsに投票しました",
+                recommended: "コミュニティがDAppsに投票しました",
             }
 
         }
@@ -1181,7 +1181,7 @@ class Language {
                 invalidDApp:"잘못된 DApp URL",
                 recent:"충적세",
                 popup:"제안 됨",
-                recommended: "커뮤니티 투표 Dapps",
+                recommended: "커뮤니티 투표 DApps",
             }
         }
     };

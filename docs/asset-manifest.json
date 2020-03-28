@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "./static/css/main.81cfa7e7.chunk.css",
-    "main.js": "./static/js/main.77183cd6.chunk.js",
+    "main.js": "./static/js/main.e745ea04.chunk.js",
     "runtime~main.js": "./static/js/runtime~main.ca7cb530.js",
     "static/css/2.5235f9c7.chunk.css": "./static/css/2.5235f9c7.chunk.css",
     "static/js/2.af5a3a7a.chunk.js": "./static/js/2.af5a3a7a.chunk.js",
     "index.html": "./index.html",
-    "precache-manifest.e1cc979b3afad95bcda4d65c1b2e02c2.js": "./precache-manifest.e1cc979b3afad95bcda4d65c1b2e02c2.js",
+    "precache-manifest.a8fdfdad27c654fa92f34d9a1bc0aa43.js": "./precache-manifest.a8fdfdad27c654fa92f34d9a1bc0aa43.js",
     "service-worker.js": "./service-worker.js",
-    "static/js/0.10d23c1b.chunk.worker.js": "./static/js/0.10d23c1b.chunk.worker.js",
-    "static/js/1.a0255f13.chunk.worker.js": "./static/js/1.a0255f13.chunk.worker.js",
+    "static/js/0.6c3c8744.chunk.worker.js": "./static/js/0.6c3c8744.chunk.worker.js",
+    "static/js/1.3d0060a0.chunk.worker.js": "./static/js/1.3d0060a0.chunk.worker.js",
     "static/media/logo.png": "./static/media/logo.2f0a4ff7.png",
     "static/media/sero.png": "./static/media/sero.ef3f4514.png"
   }

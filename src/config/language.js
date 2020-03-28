@@ -112,8 +112,8 @@ class Language {
             blockHeight:'For asset security, 12 blocks behind the main chain',
 
             dappTip1: "You are accessing a third-party DApp",
-            dappTip2: "Your use on a third-party DApp will apply to that third-party DApp's《 User Agreement 》《 Privacy Policy 》, which is governed by《 ",
-            dappTip3: "》 I assume responsibility directly and solely to you."
+            dappTip2: "Your use on a third-party DApp will apply to the third-party DApp's 《User Agreement》,《Privacy Policy》of《 ",
+            dappTip3: "》and will be directly and solely responsible to you."
         },
 
         page: {
@@ -345,6 +345,7 @@ class Language {
             dappTip1:"你正在访问第三方DApp",
             dappTip2:"你在第三方DApp上的使用行为将适用该第三方DApp的《用户协议》和《隐私政策》，由《",
             dappTip3:"》直接并单独向你承担责任。"
+
         },
 
         page: {
@@ -805,10 +806,10 @@ class Language {
             clearData: "Очистить данные приложения",
             confirmClear: "Пожалуйста, подтвердите, что вы создали резервную копию своей учетной записи. Очистка данных приложения приведет к повторной синхронизации данных транзакции",
             clearTip: 'Нажмите «Подтвердить», чтобы начать синхронизацию данных. Во время процесса может быть белый экран. Пожалуйста, терпеливо дождитесь завершения синхронизации данных, не прерывайте процесс внезапно.',
-            blockHeight:'Для бяспекі актываў 12 блокаў за асноўнай ланцужком',
+            blockHeight:'Вы собираетесь получить доступ к стороннему DApp',
             dappTip1: "Вы атрымліваеце доступ да старонняга DApp",
-            dappTip2: "Ваша выкарыстанне DApp для трэціх бакоў будзе прымяняцца да (Пагаднення карыстальнікаў ) (Палітыкі прыватнасці) трэцяга боку DApp, якое рэгулюецца(",
-            dappTip3: ") Я бяру на сябе адказнасць непасрэдна і выключна перад вамі."
+            dappTip2: "Использование вами стороннего DApp будет применяться к« Пользовательскому соглашению »,« Политике конфиденциальности »и«",
+            dappTip3: "»стороннего DApp и будет нести исключительную ответственность перед вами."
         },
 
         page: {

@@ -1,20 +1,10 @@
 {
   "zh": {
     "docs": {
-      "version": "1.1.6",
+      "version": "1.1.6-r1",
       "url": "https://sero-media-1256272584.cos.ap-shanghai.myqcloud.com/popup/wgt/1.1.6/cash.sero.popup.community.wgt",
       "show": false,
       "description": [
-        "1. 优化了钱包页面打不开的问题",
-        "2. 增加了钱包热更新的功能",
-        "3. 优化了同步区块数据的核心代码",
-        "4. 优化了同步过程的状态提示",
-        "5. 在钱包管理界面，增加了修复数据的功能，可对单个账户修复数据",
-        "6. 删除了开源社区的选择功能",
-        "7. 优化了助记词导入的功能，自动格式化助记词（去空格和去回车符）。",
-        "8. 显示了当前账号同步的最新区块高度（为了资产的安全性，钱包同步的区块比主链落后了12个区块）",
-        "9. 增加了域名节点，自动适配国内外用户",
-        "10. 增加了钱包启动图"
       ]
     },
     "dapps": {
@@ -23,20 +13,10 @@
 
   "en": {
     "docs": {
-      "version": "1.1.6",
+      "version": "1.1.6-r1",
       "url": "https://sero-popup.s3-ap-southeast-1.amazonaws.com/wgt/1.1.6/cash.sero.popup.community.wgt",
       "show": false,
       "description": [
-        "1. Optimized the problem that the wallet page cannot be opened",
-        "2. Added the function of hot wallet update",
-        "3. Optimized core code for synchronizing block data",
-        "4. Optimized status prompt for synchronization process",
-        "5. In the wallet management interface, the function of repairing data has been added, which can repair data for a single account",
-        "6. Removed the selection function of the open source community",
-        "7. Optimized the function of importing mnemonics, and automatically format the mnemonics (remove spaces and carriage returns).",
-        "8. Shows the latest block height of the current account synchronization (for asset security, the wallet synchronized block is 12 blocks behind the main chain)",
-        "9. Added domain name nodes, automatically adapt to domestic and foreign users",
-        "10. Added wallet startup image"
       ]
     },
     "dapps": {

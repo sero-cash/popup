@@ -7,7 +7,7 @@ import logo from '../../sero.png'
 import QRCode from 'qrcode';
 import copy from "copy-text-to-clipboard/index"
 import './home.css'
-import {url, lang} from "../../config/common";
+import {url, lang, storage, keys} from "../../config/common";
 import BigNumber from "bignumber.js";
 import {Price} from '../../components/tx/price';
 import {decimals} from "../../components/tx/decimals";
@@ -30,6 +30,12 @@ class Home extends Component {
 
     constructor(props) {
         super(props);
+        let _assets = storage.get(keys.account.assets);
+        if(_assets){
+            _assets =  this._objToMap(_assets)
+        }else{
+            _assets = new Map();
+        }
         this.state = {
             accountHtml: [],
             address: "",
@@ -38,7 +44,7 @@ class Home extends Component {
             current: '',
             account: '',
             detail: '',
-            assets: new Map(),
+            assets: _assets,
             healthy:'normal',//red dead,yellow syncing,green:normal
             healthData:'',
             tk:''
@@ -73,34 +79,22 @@ class Home extends Component {
                 clearInterval(homeInterverId);
             }
             homeInterverId = setInterval(function () {
-                if(that.state.healthy !== 'syncing'){
-                    that.accounts().then();
-                }
+                that.accounts().then();
             },  10 * 1000)
-
 
             if(homeInterverId3){
                 clearInterval(homeInterverId3);
             }
             homeInterverId3 = setInterval(function () {
-                // if(healthCheckCount===5){
-                //     Toast.loading(lang.e().toast.loading.synchronizing,120)
-                // }
                 that.getSyncState();
             },  1 * 1000)
-
-
-            // if(homeInterverId2){
-            //     clearInterval(homeInterverId2);
-            // }
-            // homeInterverId2 = setInterval(function () {
-            //     that.calSeroTotal();
-            // },  60 * 1000)
 
         } catch (e) {
             console.log(e)
         }
     }
+
+
 
     getSyncState(){
         let that = this;
@@ -114,16 +108,10 @@ class Home extends Component {
                             healthCheckCount ++
                         }else{
                             healthy = 'normal'
-                            // if(healthCheckCount>=5){
-                                // Toast.info(lang.e().toast.loading.synccompleted,2)
-                            // }
                             healthCheckCount =0
                         }
                     }else{
                         healthy = 'dead'
-                        // if(healthCheckCount>=5){
-                        //     Toast.info("Sync failed!",2)
-                        // }
                         healthCheckCount =0
                     }
                     that.setState({
@@ -218,21 +206,37 @@ class Home extends Component {
 
         if (current) {
             const detail = await account.Detail(current.address);
+            const assets = await assetService.balanceOf(detail.tk);
+            if(assets){
+                storage.set(keys.account.assets,that._mapToObj(assets))
+            }
             that.setState({
                 detail: detail,
                 account: account,
-                tk:detail.tk
-            })
-
-            assetService.balanceOf(detail.tk).then(assets=>{
-                that.setState({
-                    assets: assets,
-                })
+                tk:detail.tk,
+                assets: assets,
             })
         }
     }
 
-    render() {
+    _mapToObj(strMap) {
+        let obj = Object.create(null);
+        for (let [k, v] of strMap) {
+            obj[k] = v;
+        }
+        return obj;
+    }
+
+
+    _objToMap(obj) {
+        let strMap = new Map();
+        for (let k of Object.keys(obj)) {
+            strMap.set(k, obj[k]);
+        }
+        return strMap;
+    }
+
+        render() {
         let that = this;
         let assetsArr = [];
         let {current, detail, assets,healthy,healthData} = this.state;

@@ -5,7 +5,7 @@ import Utils from "../../../config/utils";
 import sero from "../../../sero.png"
 import "./address.css"
 import copy from "copy-text-to-clipboard";
-import { storage,keys, config, url,baseDecimal} from "../../../config/common";
+import {storage, keys, config, url, baseDecimal, lang} from "../../../config/common";
 
 let utils = new Utils();
 const address = new Address();
@@ -66,12 +66,12 @@ class AddressSelect extends Component {
                         url.goPage(url.AddressAdd,url.addressSelect(this.props.match.params.currency))
                     }}/>}
                 >
-                    Addresses
+                    {lang.e().page.addressBook.title}
                 </NavBar>
 
             </div>
             <WhiteSpace size="lg"/>
-            <div style={{marginTop:"45px"}}>
+            <div style={{marginTop:"45px",overflowY:'scroll'}}>
                 <List>
                     {this.state.addressHtml}
                 </List>

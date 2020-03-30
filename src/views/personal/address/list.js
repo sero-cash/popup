@@ -80,7 +80,7 @@ class AddressList extends Component {
 
             </div>
             <WhiteSpace size="lg"/>
-            <div style={{marginTop:"45px"}}>
+            <div style={{marginTop:"45px",overflowY:'scroll'}}>
                 <List>
                     {this.state.addressHtml}
                 </List>

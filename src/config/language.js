@@ -96,6 +96,7 @@ class Language {
                 passwordError: "Password is incorrect!",
                 notEnoughFee: "Not enough SERO to pay gas fee !",
                 invalidMnemonic: "Invalid Mnemonic!",
+                clearData:"Cleanup failed, please try again later!",
             }
         },
 
@@ -327,6 +328,7 @@ class Language {
                 passwordError: "密码不正确!",
                 notEnoughFee: "没有足够的SERO支付矿工费用",
                 invalidMnemonic: "无效的助记词!",
+                clearData:"正在同步区块，清除失败，请稍后再试!",
             }
 
         },
@@ -360,7 +362,7 @@ class Language {
                 all: "全部",
                 out: "转出",
                 in: "转入",
-                noData: "暂时数据",
+                noData: "暂无数据",
             },
 
             txDetail: {
@@ -562,6 +564,7 @@ class Language {
                 passwordError: "間違ったパスワード！",
                 notEnoughFee: "料金を支払うのに十分なSEROがありません！",
                 invalidMnemonic: "無効なニーモニック!",
+                clearData:"クリーンアップに失敗しました。しばらくしてからもう一度お試しください!",
             }
         },
 
@@ -793,6 +796,7 @@ class Language {
                 passwordError: "Неверный пароль!",
                 notEnoughFee: "Недостаточно SERO для оплаты платы за газ!",
                 invalidMnemonic: "Няправільны мнеманічны характар !",
+                clearData:"Уборка не атрымалася. Паспрабуйце яшчэ раз пазней!",
             }
         },
 
@@ -1025,6 +1029,7 @@ class Language {
                 passwordError: "비밀번호가 맞지 않습니다!",
                 notEnoughFee: "SERO는 가스를 지불하기에 충분하지 않습니다수수료!",
                 invalidMnemonic: "잘못된 니모닉 !",
+                clearData:"정리에 실패했습니다. 나중에 다시 시도하십시오!",
             }
         },
 

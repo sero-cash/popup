@@ -9,6 +9,7 @@ class Keys {
             tempKeystore: "account:keystore:temp",
             current: 'account:current',
             currentPKr: 'account:currentPKr:',
+            assets:'account:assets:',
         }
 
         this.config = {

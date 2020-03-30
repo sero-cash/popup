@@ -43,16 +43,16 @@ class Settings extends Component {
                 setTimeout(function () {
                     Modal.alert(lang.e().modal.clearData, lang.e().modal.clearTip, [{
                         text: lang.e().button.confirm, onPress: () => {
-                            window.location.href="./index.html#/"
+                            window.location.href="./index.html/"
                         },
                     }])
                 },2000)
             }).catch(err=>{
-                Toast.fail(err,3)
+                Toast.success(lang.e().toast.error.clearData,3)
                 console.log(err)
             })
         } catch (e) {
-            Toast.fail(e.message,3)
+            Toast.success(lang.e().toast.error.clearData,3)
             console.log("clear Data:",e.message)
         }
     }

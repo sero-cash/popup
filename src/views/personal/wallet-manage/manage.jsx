@@ -80,14 +80,13 @@ class Manage extends Component {
                             },2000)
                         })
                     }).catch(err=>{
-                        Toast.fail(err,3)
+                        Toast.success(lang.e().toast.error.clearData,3)
                         console.log(err)
                     })
                 }
             }])
         } catch (e) {
-            Toast.fail(e.message,3)
-            console.log("clear Data:",e.message)
+            Toast.success(lang.e().toast.error.clearData,3)
         }
     }
 

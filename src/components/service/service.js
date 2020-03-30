@@ -1,4 +1,4 @@
-import {config} from "../../config/common";
+import {config, lang} from "../../config/common";
 import {PopupService} from 'popup-service'
 const popservice = new PopupService();
 
@@ -75,7 +75,11 @@ class AssetService {
         return new Promise(function (resolve, reject) {
             popservice.commitTx(tx,function (msg) {
                 if (msg.error) {
-                    reject(msg.error)
+                    if ("stx Verify error" === msg.error){
+                        reject(lang.e().page.txTransfer.failed)
+                    }else{
+                        reject(msg.error)
+                    }
                 } else {
                     resolve(msg.data)
                 }

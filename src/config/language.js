@@ -156,7 +156,8 @@ class Language {
                 gas: "Gas",
                 gasPrice: "Gas Price",
                 inputPassword: "Input Password",
-                passwordMsg: "Your account password"
+                passwordMsg: "Your account password",
+                failed: "Transfer failed, please keep synchronized to the latest block!"
             },
 
             addressBook: {
@@ -389,7 +390,8 @@ class Language {
                 gas: "Gas",
                 gasPrice: "Gas Price",
                 inputPassword: "请输入密码",
-                passwordMsg: "账户密码"
+                passwordMsg: "账户密码",
+                failed: "交易发送失败，请保持同步到最新区块!",
             },
 
             addressBook: {
@@ -623,7 +625,8 @@ class Language {
                 gas: "ガス",
                 gasPrice: "ガス価格",
                 inputPassword: "入力パスワード",
-                passwordMsg: "アカウントのパスワード"
+                passwordMsg: "アカウントのパスワード",
+                failed: "トランザクションの送信に失敗しました。最新のブロックに同期してください!"
             },
 
             addressBook: {
@@ -855,7 +858,9 @@ class Language {
                 gas: "газ",
                 gasPrice: "Цена на газ",
                 inputPassword: "Введите пароль",
-                passwordMsg: "Пароль от вашей учетной записи"
+                passwordMsg: "Пароль от вашей учетной записи",
+                failed: "Не атрымалася адправіць транзакцыю. Працягвайце сінхранізаваць апошні блок!"
+
             },
 
             addressBook: {
@@ -1088,7 +1093,8 @@ class Language {
                 gas: "가스",
                 gasPrice: "가스 가격",
                 inputPassword: "입력 비밀번호",
-                passwordMsg: "계정 비밀번호"
+                passwordMsg: "계정 비밀번호",
+                failed: "거래 전송 실패, 최신 블록과 동기화 상태를 유지하십시오!"
             },
 
             addressBook: {

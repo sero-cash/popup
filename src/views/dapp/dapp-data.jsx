@@ -76,6 +76,11 @@ const versionControlDataEn = [
         text: `UBS`,
         url:"https://ubsgame.github.io/ubs/index.html?v=2",
     },
+    {
+        icon: <div className="dapp-icon"><img src="https://add-plus.github.io/add/logo.png"  className="dapp-img"/></div>,
+        text: `ADD`,
+        url:"https://add-plus.github.io/add/",
+    },
 ];
 const versionControlDataCn = [
     {
@@ -122,6 +127,11 @@ const versionControlDataCn = [
         icon: <div className="dapp-icon"><img src="https://ubsgame.gitee.io/ubs/logo.png"  className="dapp-img"/></div>,
         text: `UBS`,
         url:"https://ubsgame.gitee.io/ubs/index.html?v=2",
+    },
+    {
+        icon: <div className="dapp-icon"><img src="https://add-plus.gitee.io/add/logo.png"  className="dapp-img"/></div>,
+        text: `ADD`,
+        url:"https://add-plus.gitee.io/add/",
     },
 ];
 

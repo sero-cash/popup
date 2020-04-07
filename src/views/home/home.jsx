@@ -360,7 +360,9 @@ class Home extends Component {
                     leftContent={<Icon type="iconMenu"/>}
                     rightContent={<Icon type="iconscan" onClick={
                         () => {
-                            url.goPage(url.scan("transfer"), url.Home)
+                            if(plus && plus.barcode){
+                                url.goPage(url.scan("transfer"), url.Home)
+                            }
                         }
                     }/>}
                     onLeftClick={()=>{this.showWallet(this)}}

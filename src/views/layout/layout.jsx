@@ -10,11 +10,20 @@ class Layout extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            showDApp:true
+            showDApp:false
         }
     }
 
     componentDidMount() {
+        if (window.frames.length !== parent.frames.length){
+            this.setState({
+                showDApp:false
+            })
+        }else{
+            this.setState({
+                showDApp:true
+            })
+        }
         // const that = this;
         // if(plus && plus.runtime){
         //     const version = plus.runtime.version;

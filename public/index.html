@@ -26,6 +26,7 @@
     <script src="https://at.alicdn.com/t/font_1427380_qere9hfsutl.js"></script>
     <title>SERO Popup</title>
 
+    <script type="application/javascript" src="./js/index.js"></script>
     <script type="application/javascript">
         document.addEventListener('plusready', function() {
             //console.log("所有plus api都应该在此事件发生后调用，否则会出现plus is undefined。"
@@ -39,22 +40,21 @@
 
         var a = window.location.href;
         var search = location.search;
-        if (search && search.indexOf('dev')>-1){
-            console.log("dev:",search);
-        }else{
-            if(a.indexOf("popup.sero.cash")>-1){
-                var localUtc = new Date().getTimezoneOffset() / 60;
-                if (localUtc === -8
-                    && a.indexOf("http://129.211.98.114:3005") === -1
-                    && a.indexOf("127.0.0.1") === -1
-                    && a.indexOf("localhost") === -1
-                    && a.indexOf("192.168") === -1) {
-                    window.location.href = "http://129.211.98.114:3005/"
-                }
+        if(a.indexOf("popup.sero.cash")>-1){
+            var localUtc = new Date().getTimezoneOffset() / 60;
+            if (localUtc === -8
+                && a.indexOf("http://129.211.98.114:3005") === -1
+                && a.indexOf("127.0.0.1") === -1
+                && a.indexOf("localhost") === -1
+                && a.indexOf("192.168") === -1) {
+                window.location.href = "http://129.211.98.114:3005/"
             }
         }
 
+        Index.init()
+
     </script>
+
 </head>
 <body>
 <div id="root"></div>

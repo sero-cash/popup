@@ -1,5 +1,6 @@
 import Account from "./components/account/account";
 import {assetService} from "./components/service/service";
+import Embed from "./views/embed/embed";
 
 window.hasSet = new Map();
 export function register() {
@@ -13,7 +14,16 @@ export function register() {
         initAccountSyncService();
     }, 10* 1000)
 
+    registerEmbed();
     initConsole();
+
+
+}
+function registerEmbed(){
+    if (window.frames.length !== parent.frames.length){
+        const embed = new Embed()
+        window.addEventListener("message", embed.receiveMessage, {passive: true});
+    }
 }
 
 document.onvisibilitychange = ()=>{
@@ -22,7 +32,6 @@ document.onvisibilitychange = ()=>{
         assetService.init();
     }
 }
-
 
 function initAccountSyncService() {
     if (!window.hasSet) {

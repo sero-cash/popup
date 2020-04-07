@@ -81,7 +81,14 @@ const versionControlDataEn = [
         text: `ADD`,
         url:"https://add-plus.github.io/add/",
     },
+    {
+        icon: <div className="dapp-icon"><img src="https://delos888.github.io/WESTWORLD/logo.png"  className="dapp-img"/></div>,
+        text: `WESTWORLD`,
+        url:"https://delos888.github.io/WESTWORLD/index.html",
+    },
 ];
+
+
 const versionControlDataCn = [
     {
         icon: <div className="dapp-icon"><img src="https://asnowhero.gitee.io/asnow-popup/logo.png"  className="dapp-img"/></div>,
@@ -133,6 +140,12 @@ const versionControlDataCn = [
         text: `ADD`,
         url:"https://add-plus.gitee.io/add/",
     },
+    {
+        icon: <div className="dapp-icon"><img src="https://delos.gitee.io/westworld/logo.png"  className="dapp-img"/></div>,
+        text: `WESTWORLD`,
+        url:"https://delos.gitee.io/westworld/index.html",
+    },
+
 ];
 
 export {

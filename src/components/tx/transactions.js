@@ -142,6 +142,7 @@ class Transactions {
         txReq.Gas=new BigNumber(gas).toString(16);
         txReq.GasPrice=new BigNumber(gasPrice).toString(16);
         txReq.SK = await act.getSK(password);
+        txReq.FeeCy = tx.feeCy?tx.feeCy:"SERO";
 
         return assetService.commitTx(txReq)
 

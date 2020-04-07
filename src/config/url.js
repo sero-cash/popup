@@ -24,6 +24,7 @@ class Url {
         this.Settings = '/settings';
         this.About = '/about';
         this.HistoryPKr = '/manage/historyPKr';
+        this.Embed = '/embed';
 
     }
 

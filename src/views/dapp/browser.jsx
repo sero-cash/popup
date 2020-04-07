@@ -55,16 +55,12 @@ class Browser extends Component {
         }
     }
 
-
-
     componentWillMount() {
         let url = this.props.match.params.url;
         url = decodeURIComponent(url);
         this.setState({
             url: url,
         })
-
-
     }
 
     setPassword = (password) => {
@@ -397,7 +393,7 @@ class Browser extends Component {
 
 
     sendMessage = (msg) => {
-        console.log("popup send msg: ", msg);
+        // console.log("popup send msg: ", msg);
         const childFrameObj = document.getElementById('ifrModel');
         if(childFrameObj){
             childFrameObj.contentWindow.postMessage(msg, '*');

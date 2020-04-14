@@ -3,8 +3,9 @@ import {Icon, List, Toast, NavBar} from 'antd-mobile'
 import Account from "../../../components/account/account";
 import {utils} from "../../../config/utils";
 import jsuperzk from 'jsuperzk'
-import {keys, lang, storage, url} from "../../../config/common";
+import {keys, lang, storage, url,config} from "../../../config/common";
 import {assetService} from "../../../components/service/service";
+import './historyPkr.css'
 
 let account = new Account();
 const Item = List.Item;
@@ -28,6 +29,18 @@ class HistoryPkr extends Component{
             that.loadData();
         },300)
 
+        let logger = document.getElementById('log');
+        console.log = function (message) {
+            if (message.indexOf('span')>-1){
+                logger.innerHTML = `<div><small>${new Date().toLocaleTimeString()}</small>${message}</div>` + logger.innerHTML;
+                const childs = logger.childNodes;
+                if(childs.length>100){
+                    for(let i = 100; i < childs.length; i++) {
+                        logger.removeChild(childs[i])
+                    }
+                }
+            }
+        }
     }
 
     loadData=()=>{
@@ -41,11 +54,15 @@ class HistoryPkr extends Component{
                 const currentBlock =  data.CurrentBlock;
                 account = new Account(current.address);
                 account.Keystore().then(keystore=>{
-                    console.log(keystore);
                     let version = keystore.version;
                     let pkrTemp = [];
                     pkrTemp.push(<Item extra={"Index"} style={{background:"#fdfdfd"}}><span style={{fontSize:"14px"}}>PKr</span></Item>)
-                    for (let i=pkrIndex;i>0;i--){
+
+                    let inend = 0;
+                    if(pkrIndex>10){
+                        inend = pkrIndex-10;
+                    }
+                    for (let i=pkrIndex;i>inend;i--){
                         let tempPkr = jsuperzk.createPkrHash(current.tk,i,version);
                         pkrTemp.push(<Item extra={i}><span style={{fontSize:"14px"}}>{utils.ellipsisAddress(tempPkr)}</span></Item>)
                     }
@@ -72,14 +89,22 @@ class HistoryPkr extends Component{
                     {lang.e().page.setting.pkr}
                 </NavBar>
                 </div>
-
-                <div style={{height:document.documentElement.clientHeight-45,marginTop:'45px',overflowY: 'scroll'}}>
-                    <h1 style={{textAlign:"center"}}>Block height : {this.state.currentBlock}</h1>
+                <div style={{marginTop:'45px'}}>
+                    <h2 style={{textAlign:"center"}}>Block height : {this.state.currentBlock}</h2>
+                </div>
+                <div style={{height:document.documentElement.clientHeight*0.3,background:'#fdfdfd', overflowY: 'scroll'}}>
                     <List>
                         {this.state.pkrs}
                     </List>
                 </div>
+                <div>
+                    <h2 style={{textAlign:"center"}}>Synchronized data log</h2>
+                </div>
+                <div style={{height:document.documentElement.clientHeight*0.6,background:'#fdfdfd',overflowY: 'scroll'}}>
+                    <div id={"log"} >
 
+                    </div>
+                </div>
             </div>
         )
     }

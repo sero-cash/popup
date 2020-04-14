@@ -51,6 +51,9 @@ class Language {
             openTip: "Open on October 31",
             update: "Update",
             repair: "Repair data",
+            share: "Share",
+            copyLink: "Copy Link",
+            refresh: "Refresh",
         },
 
         navbar: {
@@ -284,6 +287,9 @@ class Language {
             openTip: "10月31号开启此功能",
             update: "立即更新",
             repair: "修复数据",
+            share: "分享",
+            copyLink: "复制链接",
+            refresh: "刷新",
         },
 
         navbar: {
@@ -520,6 +526,9 @@ class Language {
             openTip: "10月31日にオープン",
             update: "今すぐ更新",
             repair: "修理データ",
+            share: "共有",
+            copyLink: "リンクをコピー",
+            refresh: "更新",
         },
 
         navbar: {
@@ -754,6 +763,9 @@ class Language {
             openTip: "Открыт 31 октября",
             update: "обновление",
             repair: "Рамонт дадзеных",
+            share: "Падзяліцца",
+            copyLink: "Скапіяваць спасылку",
+            refresh: "Абнавіць",
         },
 
         navbar: {
@@ -989,6 +1001,9 @@ class Language {
             openTip: "10 월 31 일 오픈",
             update: "업데이트",
             repair: "수리 데이터",
+            share: "공유",
+            copyLink: "링크 복사",
+            refresh: "새로 고침",
         },
 
         navbar: {

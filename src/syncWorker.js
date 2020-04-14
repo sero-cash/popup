@@ -12,6 +12,8 @@ export function register() {
     setInterval(function () {
         initAccountSyncService();
     }, 10* 1000)
+
+    initConsole();
 }
 
 document.onvisibilitychange = ()=>{
@@ -38,5 +40,25 @@ function initAccountSyncService() {
         }
     });
 
+}
+
+function initConsole() {
+    if(process.env.NODE_ENV !== "production"){
+        return
+    }
+    console.log = function (message) {
+    }
+
+    console.debug = function (message) {
+    }
+
+    console.info = function (message) {
+    }
+
+    console.warn = function (message) {
+    }
+
+    console.trace = function (message) {
+    }
 }
 

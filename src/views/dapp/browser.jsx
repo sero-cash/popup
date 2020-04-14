@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {NavBar, Icon, Toast, Modal, List, InputItem, Button} from "antd-mobile";
+import {NavBar, Icon, Toast, Modal, List, ActionSheet, Button} from "antd-mobile";
 import {storage, url, keys, lang, config} from "../../config/common";
 import BigNumber from 'bignumber.js'
 import Account from '../../components/account/account'
@@ -7,6 +7,8 @@ import {Transactions} from "../../components/tx/transactions";
 import Web3 from 'sero-web3'
 import {decimals} from "../../components/tx/decimals";
 import {assetService} from "../../components/service/service";
+import copy from "copy-text-to-clipboard/index"
+import './dapp.css'
 
 let web3 = new Web3();
 
@@ -17,6 +19,15 @@ const data = {
     method: "init",
     data: "success"
 }
+
+const isIPhone = new RegExp('\\biPhone\\b|\\biPod\\b', 'i').test(window.navigator.userAgent);
+let wrapProps;
+if (isIPhone) {
+    wrapProps = {
+        onTouchStart: e => e.preventDefault(),
+    };
+}
+
 const operation = {
     method: {
         init: "init",
@@ -25,7 +36,7 @@ const operation = {
         executeContract: "executeContract",
         call: "call",
         estimateGas: "estimateGas",
-        getInfo: "getInfo"
+        getInfo: "getInfo",
     }
 }
 
@@ -42,8 +53,6 @@ class Browser extends Component {
             showTxInfo: false,
             txInfo: "",
         }
-
-
     }
 
 
@@ -390,21 +399,88 @@ class Browser extends Component {
     sendMessage = (msg) => {
         console.log("popup send msg: ", msg);
         const childFrameObj = document.getElementById('ifrModel');
-        childFrameObj.contentWindow.postMessage(msg, '*');
+        if(childFrameObj){
+            childFrameObj.contentWindow.postMessage(msg, '*');
+        }
     };
+
+    dataList = [
+        {method:'share', icon:<Icon type={"iconshare"}/>, title: lang.e().button.share },
+        {method:'copy', icon:<Icon type={"iconcopy"}/>, title: lang.e().button.copyLink },
+        {method:'fresh', icon:<Icon type={"iconrefresh"}/>, title: lang.e().button.refresh },
+    ];
+
+    share = (_url)=>{
+        if(plus && plus.share){
+            plus.share.sendWithSystem({type:'text',content:this.state.navTitle,href:_url}, function(){
+                console.log('分享成功');
+            }, function(e){
+                console.log('分享失败：'+JSON.stringify(e));
+            });
+        }
+    }
+
+    copyLink =(_url)=>{
+        copy(_url);
+        Toast.success(lang.e().toast.success.copy, 1);
+    }
+
+    refresh = (_url)=>{
+        const childFrameObj=document.getElementById("ifrModel");
+        childFrameObj.src = _url;
+    }
+
+    showActionSheet = () => {
+        const that = this;
+        let data = this.dataList;
+        if(!plus || !plus.share){
+            data = this.dataList.slice(1);
+        }
+        ActionSheet.showShareActionSheetWithOptions({
+                options: data,
+                // title: 'title',
+                // message: 'I am description, description, description',
+            },
+            (buttonIndex) => {
+                if(data && data[buttonIndex]){
+                    const mtd = data[buttonIndex].method;
+                    switch (mtd) {
+                        case 'share':
+                            that.share(that.state.url)
+                            break
+                        case 'copy':
+                            that.copyLink(that.state.url)
+                            break
+                        case 'fresh':
+                            that.refresh(that.state.url)
+                            break
+                    }
+                }
+            });
+    }
 
     render() {
         return <div>
             <NavBar
                 mode="light"
-                leftContent={<Icon type="left"/>}
-                // rightContent={<Icon type={"ellipsis"}/>}
+                // leftContent={<Icon type="left"/>}
+                rightContent={<div className={"browser-right"}>
+                    <div><Icon type={"ellipsis"} size={"md"} onClick={this.showActionSheet}/></div>
+                    <div className={"ant-divider ant-divider-vertical ant-divider-dashed"}></div>
+                    <div><Icon type={"cross"} size={"md"} onClick={
+                        () => {
+                            // window.location.replace("/#/dapp")
+                            window.removeEventListener("message", this.receiveMessage, false);
+                            url.goBack();
+                        }
+                    }/></div>
+                </div>}
                 className="layout-top"
-                onLeftClick={() => {
-                    // window.location.replace("/#/dapp")
-                    window.removeEventListener("message", this.receiveMessage, false);
-                    url.goBack();
-                }}
+                // onLeftClick={() => {
+                //     // window.location.replace("/#/dapp")
+                //     window.removeEventListener("message", this.receiveMessage, false);
+                //     url.goBack();
+                // }}
             >
                 {this.state.navTitle}
             </NavBar>

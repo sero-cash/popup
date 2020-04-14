@@ -4,7 +4,7 @@ const popservice = new PopupService();
 
 class AssetService {
     init() {
-        popservice.init(config.seroRpc(),10*1000,function (data) {
+        popservice.init(config.seroRpc(),15*1000,function (data) {
             console.log("init data:",data)
         })
     }

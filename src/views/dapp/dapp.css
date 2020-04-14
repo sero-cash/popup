@@ -50,3 +50,51 @@
     white-space: normal !important;
     text-align: center;
 }
+
+.browser-right{
+    background: #fff;
+    border-radius: 15px;
+    padding: 5px 10px 1px;
+    width: 60px;
+}
+
+.browser-right div:first-child{
+    float: left;
+    width: 30px;
+}
+
+.browser-right div:nth-child(3){
+    float: right;
+}
+
+
+.ant-divider-vertical.ant-divider-dashed {
+    border-width: 0 0 0 1px;
+}
+
+.ant-divider-dashed {
+    background: none;
+    border: dashed #f0f0f0;
+    border-width: 1px 0 0;
+}
+.ant-divider, .ant-divider-vertical {
+    position: relative;
+    top: -.06em;
+    display: inline-block;
+    width: 1px;
+    height: .9em;
+    margin: 0 8px;
+    vertical-align: middle;
+}
+.ant-divider {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    color: rgba(0,0,0,.65);
+    font-size: 14px;
+    font-variant: tabular-nums;
+    line-height: 1.5715;
+    list-style: none;
+    font-feature-settings: "tnum","tnum";
+    background: #f0f0f0;
+}

@@ -1,0 +1,29 @@
+#log {
+    background: black;
+    color: #f7f7f7;
+    padding: 10px 15px;
+    min-height: 100%;
+    height: auto;
+    width: 93%;
+    white-space: nowrap;
+    word-break: break-all;
+    text-overflow: ellipsis;
+
+}
+
+#log small{
+    color: coral;
+}
+
+.log span:first-child{
+    color:#2efdfe;
+    font-size: 12px;
+}
+
+.log span:nth-child(2){
+    color:#f7f7f7;
+    width: 95%;
+    white-space: normal;
+    word-break: break-all;
+    font-size: 12px;
+}

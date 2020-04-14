@@ -36,6 +36,8 @@ class Home extends Component {
         }else{
             _assets = new Map();
         }
+        let detail = storage.get(keys.account.current);
+
         this.state = {
             accountHtml: [],
             address: "",
@@ -43,7 +45,7 @@ class Home extends Component {
             seroPriceInfo: {},
             current: '',
             account: '',
-            detail: '',
+            detail: detail,
             assets: _assets,
             healthy:'normal',//red dead,yellow syncing,green:normal
             healthData:'',
@@ -80,7 +82,7 @@ class Home extends Component {
             }
             homeInterverId = setInterval(function () {
                 that.accounts().then();
-            },  10 * 1000)
+            },  5 * 1000)
 
             if(homeInterverId3){
                 clearInterval(homeInterverId3);
@@ -127,43 +129,43 @@ class Home extends Component {
         }
     }
 
-    showWallet = () => {
+    async showWallet (that){
         let modalId;
-        const that = this;
-        account.Details().then(list=>{
-            let items = [];
-            if (list) {
-                for (let ac of list) {
-                    items.push(
-                        <Item thumb={<Icon type={ac.avatar} className="icon-avatar"/>} multipleLine onClick={() => {
-                            account.setCurrent(ac).then(()=>{
-                                that.accounts().then();
-                                modalId.close();
-                            });
-                        }}>
-                            {ac.name}({ac.mainPKr})
-                            {/*<Brief>{utils.ellipsisAddress(ac.address)}</Brief>*/}
-                        </Item>
-                    )
-                }
+        // const that = this;
+        const list = await account.Details();
+        let items = [];
+        if (list) {
+            for (let ac of list) {
+                const data = await assetService.getSyncState(ac.tk);
+                items.push(
+                    <Item thumb={data.isSyncing?<Icon type={"loading"}/>:<Icon type={ac.avatar} className="icon-avatar"/>} multipleLine onClick={() => {
+                        account.setCurrent(ac).then(()=>{
+                            that.accounts().then();
+                            modalId.close();
+                        });
+                    }}>
+                        {ac.name}({ac.mainPKr})
+                        {/*<Brief>{utils.ellipsisAddress(ac.address)}</Brief>*/}
+                    </Item>
+                )
             }
-            modalId = Modal.alert(
-                <div>
-                    <span>{lang.e().page.wallet.selectWallet}</span>
-                    <Icon type="iconsetting" className="icon-select-account-setting" onClick={() => {
-                        modalId.close();
-                        url.goPage(url.WalletManager, url.Home);
-                        // window.location.replace("/#/walletManage")
-                    }}/>
-                </div>
-                , <div style={{maxHeight: '400px',overflowY: 'scroll'}}>
-                    <List>
-                        {items}
-                    </List>
-                </div>,[
-                    {text:lang.e().button.ok}
-                ])
-        });
+        }
+        modalId = Modal.alert(
+            <div>
+                <span>{lang.e().page.wallet.selectWallet}</span>
+                <Icon type="iconsetting" className="icon-select-account-setting" onClick={() => {
+                    modalId.close();
+                    url.goPage(url.WalletManager, url.Home);
+                    // window.location.replace("/#/walletManage")
+                }}/>
+            </div>
+            , <div style={{maxHeight: '400px',overflowY: 'scroll'}}>
+                <List>
+                    {items}
+                </List>
+            </div>,[
+                {text:lang.e().button.ok}
+            ])
     }
 
     showQrCode = (pkr) => {
@@ -361,7 +363,7 @@ class Home extends Component {
                             url.goPage(url.scan("transfer"), url.Home)
                         }
                     }/>}
-                    onLeftClick={this.showWallet}
+                    onLeftClick={()=>{this.showWallet(this)}}
                 >
                     {lang.e().navbar.wallet}
                 </NavBar>

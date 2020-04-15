@@ -237,6 +237,7 @@ class Language {
                 settings: "Settings",
                 termOfUse: "Term of use",
                 about: "About us",
+                help: "FAQ",
                 clear: "Clear app data",
 
                 address: {
@@ -474,6 +475,7 @@ class Language {
                 settings: "使用设置",
                 termOfUse: "用户协议",
                 about: "关于我们",
+                help: "使用帮助",
                 clear: "清除缓存",
 
                 address: {
@@ -712,6 +714,7 @@ class Language {
                 settings: "設定",
                 termOfUse: "利用規約",
                 about: "私たちに関しては",
+                help: "よくある質問",
                 clear: "アプリのデータを消去",
 
                 address: {
@@ -950,6 +953,7 @@ class Language {
                 settings: "настройки",
                 termOfUse: "Условия пользования",
                 about: "О нас",
+                help: "FAQ",
                 clear: "Очистить данные приложения",
 
                 address: {
@@ -1182,12 +1186,13 @@ class Language {
             },
             my: {
                 addressBook: "주소록",
-                    walletManage: "월렛 관리",
-                    settings: "설정",
-                    termOfUse: "서비스 약관",
-                    about: "우리에 대해",
-                    clear: "명확한 앱 데이터",
-                    address: {
+                walletManage: "월렛 관리",
+                settings: "설정",
+                termOfUse: "서비스 약관",
+                about: "우리에 대해",
+                help: "자주하는 질문",
+                clear: "명확한 앱 데이터",
+                address: {
                     name: "이름",
                     address: "주소",
                     description: "설명 (선택 사항)",

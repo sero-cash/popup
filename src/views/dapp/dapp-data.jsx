@@ -119,9 +119,9 @@ const versionControlDataCn = [
         url:"https://edenworkroom.gitee.io/market/",
     },
     {
-        icon: <div className="dapp-icon"><img src="https://fpsc2019.gitee.io/fpsc-popup/logo.png"  className="dapp-img"/></div>,
+        icon: <div className="dapp-icon"><img src="https://fpsc2020.gitee.io/fpsc-popup/logo.png"  className="dapp-img"/></div>,
         text: `HAPY`,
-        url:"https://fpsc2019.gitee.io/fpsc-popup/",
+        url:"https://fpsc2020.gitee.io/fpsc-popup/",
     },
     {
         icon: <div className="dapp-icon"><img src="https://ubsgame.gitee.io/ubs/logo.png"  className="dapp-img"/></div>,

@@ -13,6 +13,19 @@ class Personal extends Component {
             selectedTab: 'my',
             hidden: false,
             fullScreen: false,
+            helpUrl:"https://wiki.sero.cash/en/index.html?file=Tutorial/popup_QA",
+        }
+    }
+
+    componentDidMount() {
+        if(lang.e().key==='zh_CN'){
+            this.setState({
+                helpUrl:"http://118.24.17.141:8082/zh/index.html?file=Tutorial/popup_QA"
+            })
+        }else{
+            this.setState({
+                helpUrl:"https://wiki.sero.cash/en/index.html?file=Tutorial/popup_QA"
+            })
         }
     }
 
@@ -55,9 +68,16 @@ class Personal extends Component {
                                     url.goPage(url.browser(config.language==="zh_CN"?"termOfUse-cn.html":"termOfUse.html"),url.Personal)
                                 }}
                                 ><span >{lang.e().page.my.termOfUse}</span></List.Item>
+
+                                <List.Item arrow="horizontal" thumb={<Icon type="iconfaq" color="gray"/>} onClick={()=>{
+                                    url.goPage(url.browser(this.state.helpUrl),url.Personal)
+                                }}><span >{lang.e().page.my.help}</span></List.Item>
+
                                 <List.Item arrow="horizontal" thumb={<Icon type="iconaboutus" color="gray"/>} onClick={()=>{
                                     url.goPage(url.About,url.Personal)
                                 }}><span >{lang.e().page.my.about}</span></List.Item>
+
+
                             </List>
                     </div>
                     <WhiteSpace size="lg"/>

@@ -206,7 +206,7 @@ class Account {
             }
             return list;
         }
-        return [];avatar
+        return [];
     }
 
     async getCurrent() {

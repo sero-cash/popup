@@ -136,9 +136,9 @@ class Home extends Component {
         let items = [];
         if (list) {
             for (let ac of list) {
-                const data = await assetService.getSyncState(ac.tk);
+                // const data = await assetService.getSyncState(ac.tk);
                 items.push(
-                    <Item thumb={data.isSyncing?<Icon type={"loading"}/>:<Icon type={ac.avatar} className="icon-avatar"/>} multipleLine onClick={() => {
+                    <Item thumb={<Icon type={ac.avatar} className="icon-avatar"/>} multipleLine onClick={() => {
                         account.setCurrent(ac).then(()=>{
                             that.accounts().then();
                             modalId.close();

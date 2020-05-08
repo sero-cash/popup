@@ -21,6 +21,18 @@ class AssetService {
         })
     }
 
+    ticketsOf(tk) {
+        return new Promise(function (resolve,reject) {
+            popservice.ticketsOf(tk,function (msg) {
+                if(msg.error){
+                    reject(msg.error)
+                }else{
+                    resolve(msg.data)
+                }
+            })
+        })
+    }
+
     initAccount(tk) {
         return new Promise(function (resolve, reject) {
             popservice.initAccount(tk, function (msg) {

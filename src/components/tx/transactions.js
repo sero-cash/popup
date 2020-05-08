@@ -144,6 +144,12 @@ class Transactions {
         txReq.SK = await act.getSK(password);
         txReq.FeeCy = tx.feeCy?tx.feeCy:"SERO";
 
+        if(tx.catg && tx.tkt){
+            let tkts=new Map()
+            tkts.set(tx.catg,tx.tkt)
+            txReq.Tkts = tkts;
+        }
+
         return assetService.commitTx(txReq)
 
     }

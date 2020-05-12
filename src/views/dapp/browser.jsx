@@ -137,7 +137,8 @@ class Browser extends Component {
                 for (let address of addresses) {
                     let detail = await account.Detail(address)
                     const assets = await assetService.balanceOf(detail.tk);
-                    rest.push({Name: detail.name, PK: detail.address, MainPKr: detail.mainPKr, Balance: assets})
+                    const tkts = await assetService.ticketsOf(detail.tk);
+                    rest.push({Name: detail.name, PK: detail.address, MainPKr: detail.mainPKr, Balance: assets,Tickets:tkts})
                 }
             }
             msg.data=rest
@@ -156,7 +157,8 @@ class Browser extends Component {
                 // let detail = storage.get(keys.detailKey(address));
                 let detail = await account.Detail(address)
                 const assets = await assetService.balanceOf(detail.tk);
-                msg.data = {Name: detail.name, PK: detail.address, MainPKr: detail.mainPKr, Balance: assets}
+                const tkts = await assetService.ticketsOf(detail.tk);
+                msg.data = {Name: detail.name, PK: detail.address, MainPKr: detail.mainPKr, Balance: assets,Tickets:tkts}
                 return msg
             }
         } catch (e) {

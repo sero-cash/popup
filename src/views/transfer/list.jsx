@@ -153,9 +153,14 @@ class TransferList extends Component{
                 }else if(tx.Type === "in" && new BigNumber(value).comparedTo(0)===-1){
                     tx.Type = "out";
                 }
-                const icontype = "out"===tx.Type?"iconzhichu":"iconshouru";
-                const iconcolor = "out"===tx.Type?"#24bdd2":"#198fea";
+                let icontype = "out"===tx.Type?"iconzhichu":"iconshouru";
+                let iconcolor = "out"===tx.Type?"#24bdd2":"#198fea";
                 const symbol =  "out"===tx.Type?"":"+";
+
+                if(tx.State === "pending"){
+                    icontype = "iconsystem_pending_line"
+                    iconcolor = "#f47402"
+                }
 
                 renderTx.push(
                     <Item key={i} multipleLine
@@ -163,7 +168,8 @@ class TransferList extends Component{
                               storage.set(keys.txInfoKey("",tx.TxHash),tx);
                               url.goPage(url.transferDetail(tx.TxHash),url.transferList(currency));
                           }}
-                          thumb={<Icon type={icontype} size="lg" style={{color:`${iconcolor}`}}/> } extra={<span className="income-span" style={{color:iconcolor}}>{symbol}{value}</span>}>
+                          thumb={<Icon type={icontype} size="lg" style={{color:`${iconcolor}`}}/> } extra={<span className="income-span" style={{color:iconcolor}}>{symbol}{value}</span>}
+                    >
                         <span style={{fontSize: '14px',color:"#64727c"}}>{utils.ellipsisHash(tx.TxHash)}</span>
                         <Brief style={{fontSize: '12px',color:"#c4c7cc"}}>{time}</Brief>
                     </Item>

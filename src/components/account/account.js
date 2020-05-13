@@ -157,14 +157,15 @@ class Account {
         let addressArray = await lstorage.get(keys.account.addresses);
         const address = keystore.address;
         if (addressArray) {
+            let addressExist = false;
             for(let addr of addressArray){
                 if(addr === address){
-                    return new Promise(function (resolve, reject) {
-                        reject("Account Exist!!")
-                    })
+                    addressExist = true;
                 }
             }
-            addressArray.push(address);
+            if(!addressExist){
+                addressArray.push(address);
+            }
         } else {
             addressArray = [address];
         }

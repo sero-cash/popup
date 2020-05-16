@@ -17,7 +17,8 @@ class Config {
 
         this.host = {
             host: "http://popup.sero.cash/#/",
-            rpc: "http://sero-light-node.ririniannian.com:8545",
+            // rpc: "http://sero-light-node.ririniannian.com:8545",
+            rpc: "https://sero-light-node.ririniannian.com",
             price: "http://129.211.98.114:8987/ticket?t=",
 
         }
@@ -51,9 +52,9 @@ class Config {
             this.host.rpc = seroRpcHost;
         }else{
             if(!this.isZH()){
-                this.host.rpc = "http://f-sero-light-node.ririniannian.com:8545"
+                this.host.rpc = "https://f-sero-light-node.ririniannian.com"
             }else{
-                this.host.rpc = "http://sero-light-node.ririniannian.com:8545"
+                this.host.rpc = "https://sero-light-node.ririniannian.com"
             }
         }
 

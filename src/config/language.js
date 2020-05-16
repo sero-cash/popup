@@ -160,7 +160,8 @@ class Language {
                 gasPrice: "Gas Price",
                 inputPassword: "Input Password",
                 passwordMsg: "Your account password",
-                failed: "Transfer failed, please keep synchronized to the latest block!"
+                failed: "Transfer failed, please keep synchronized to the latest block!",
+                thirdpay:"This payment is initiated by a third party. If you have any questions, please contact the third party."
             },
 
             addressBook: {
@@ -399,6 +400,7 @@ class Language {
                 inputPassword: "请输入密码",
                 passwordMsg: "账户密码",
                 failed: "交易发送失败，请保持同步到最新区块!",
+                thirdpay:"本次支付由第三方发起，如有疑问请第三方。"
             },
 
             addressBook: {
@@ -637,7 +639,8 @@ class Language {
                 gasPrice: "ガス価格",
                 inputPassword: "入力パスワード",
                 passwordMsg: "アカウントのパスワード",
-                failed: "トランザクションの送信に失敗しました。最新のブロックに同期してください!"
+                failed: "トランザクションの送信に失敗しました。最新のブロックに同期してください!",
+                thirdpay:"この支払いはサードパーティによって開始されます。疑問がある場合は、サードパーティにお問い合わせください。"
             },
 
             addressBook: {
@@ -874,7 +877,8 @@ class Language {
                 gasPrice: "Цена на газ",
                 inputPassword: "Введите пароль",
                 passwordMsg: "Пароль от вашей учетной записи",
-                failed: "Не атрымалася адправіць транзакцыю. Працягвайце сінхранізаваць апошні блок!"
+                failed: "Не атрымалася адправіць транзакцыю. Працягвайце сінхранізаваць апошні блок!",
+                thirdpay:"Гэты плацеж ініцыяваны трэцім бокам, калі вы сумняваецеся, калі ласка, трэцім бокам."
 
             },
 
@@ -1113,7 +1117,8 @@ class Language {
                 gasPrice: "가스 가격",
                 inputPassword: "입력 비밀번호",
                 passwordMsg: "계정 비밀번호",
-                failed: "거래 전송 실패, 최신 블록과 동기화 상태를 유지하십시오!"
+                failed: "거래 전송 실패, 최신 블록과 동기화 상태를 유지하십시오!",
+                thirdpay:"이 지불은 제 3자가 시작합니다. 확실하지 않은 경우 제 3자를 참조하십시오."
             },
 
             addressBook: {

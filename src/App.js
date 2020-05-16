@@ -28,7 +28,7 @@ import AddressSelect from "./views/personal/address/select";
 import TokenTracker from "./views/dapp/tokenTracker/tokenTracker";
 import AboutUs from "./views/personal/settings/about";
 import HistoryPkr from "./views/personal/wallet-manage/historyPkr";
-import Embed from "./views/embed/embed";
+import ThirdPay from "./views/thirdpay/thirdpay";
 
 class App extends Component {
 
@@ -82,7 +82,7 @@ class App extends Component {
                     /** TOKEN Tracker */
                     <Route exact path="/tokenTracker" component={TokenTracker}/>
 
-                    <Route exact path="/embed" component={Embed}/>
+                    <Route exact path="/thirdpay" component={ThirdPay}/>
 
                 </Switch>
             </Router>

@@ -267,6 +267,10 @@ class Account {
             return new Promise(function (resolve, reject) {
                 resolve(detail)
             })
+        }else{
+            return new Promise(function (resolve, reject) {
+                reject("Account not exist! ")
+            })
         }
     }
 

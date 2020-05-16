@@ -25,6 +25,7 @@ class Url {
         this.About = '/about';
         this.HistoryPKr = '/manage/historyPKr';
         this.Embed = '/embed';
+        this.ThirdPay = '/thirdpay';
 
     }
 

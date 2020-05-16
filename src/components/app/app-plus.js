@@ -14,6 +14,7 @@ class AppPlus {
 
     init() {
         this._initPlus();
+
     }
 
     _init() {
@@ -29,9 +30,14 @@ class AppPlus {
             if (this.interCount > 10) {
                 clearInterval(that.intervalId)
             }
-            if (plus) {
+            try{
+                if (plus) {
+                    clearInterval(that.intervalId);
+                    that._init();
+                }
+            }catch (e) {
+                console.error(e);
                 clearInterval(that.intervalId);
-                that._init();
             }
             this.interCount++;
         }, 1000);

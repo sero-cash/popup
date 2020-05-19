@@ -23,9 +23,12 @@ class Decimals {
                     "params": [currency]
                 });
                 if (resp.error) {
-                    throw new Error(resp.error.message);
+                    if (resp.error && resp.error.message === "contract not support SER20 decimals"){
+                        storage.set(keys.decimalsKey(currency),0);
+                    }else{
+                        throw new Error(resp.error.message);
+                    }
                 } else {
-                    // console.log("decimal>>>>>>>>>>:", JSON.stringify(resp.result))
                     decimal = parseInt(resp.result);
                     storage.set(keys.decimalsKey(currency),decimal);
                 }

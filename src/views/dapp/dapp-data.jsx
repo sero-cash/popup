@@ -86,6 +86,11 @@ const versionControlDataEn = [
         text: `WESTWORLD`,
         url:"https://delos888.github.io/WESTWORLD/index.html",
     },
+    {
+        icon: <div className="dapp-icon"><img src="https://88fero.github.io/fero/logo.png"  className="dapp-img"/></div>,
+        text: `FERO`,
+        url:"https://88fero.github.io/fero/index.html",
+    }
 ];
 
 
@@ -145,7 +150,11 @@ const versionControlDataCn = [
         text: `WESTWORLD`,
         url:"https://delos.gitee.io/westworld/index.html",
     },
-
+    {
+        icon: <div className="dapp-icon"><img src="https://fero_1_slingyo5228.gitee.io/fero/logo.png"  className="dapp-img"/></div>,
+        text: `FERO`,
+        url:"https://fero_1_slingyo5228.gitee.io/fero",
+    }
 ];
 
 export {

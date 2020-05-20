@@ -14,7 +14,7 @@ class Decimals {
         if("SERO" === currency){
         }else{
             decimal = storage.get(keys.decimalsKey(currency));
-            if (!decimal) {
+            if (!decimal && decimal !== 0) {
                 let httpprovider = new Httpprovider(config.host.rpc);
                 const resp =httpprovider.send({
                     "id": 0,

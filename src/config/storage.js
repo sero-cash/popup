@@ -30,19 +30,23 @@ class Storage {
      * value = storage[key]
      */
     get(key) {
-        return this._get(key) || this._getPlus(key);
+        var ls =  this._get(key)
+        var ps =  this._getPlus(key)
+        return ls===0?ls:ls||ps;
     }
 
     _get(k) {
         var jsonStr = window.localStorage.getItem(k);
-        return jsonStr ? JSON.parse(jsonStr) : null;
+        return jsonStr||jsonStr==="0" ? JSON.parse(jsonStr) : null;
     }
 
     _getPlus(k) {
        try{
            if(plus && plus.storage){
                var jsonStr = plus.storage.getItem(k);
-               return jsonStr ? JSON.parse(jsonStr) : null;
+               return jsonStr||jsonStr==="0" ? JSON.parse(jsonStr) : null;
+           }else{
+               return null;
            }
        }catch (e) {
            console.log(e.message);

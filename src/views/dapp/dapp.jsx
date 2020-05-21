@@ -1,11 +1,13 @@
 import React, {Component} from 'react'
-import {Grid, SearchBar,Toast,Modal,List,Button} from 'antd-mobile'
+import {Grid, SearchBar,Toast,Modal,List,Button,Checkbox} from 'antd-mobile'
 import Layout from "../layout/layout";
 import {storage, keys, url, lang,config} from "../../config/common";
 import './dapp.css'
 import {versionControlDataEn,versionControlDataCn,popupDataEn,popupDataCn} from './dapp-data'
 
 let dataRecent =[];
+
+const AgreeItem = Checkbox.AgreeItem;
 
 class DApp extends Component {
 
@@ -16,7 +18,8 @@ class DApp extends Component {
             popupData:popupDataEn,
             modal2:false,
             dapp:'',
-            dappUrl:''
+            dappUrl:'',
+            visitDApp:true
         }
     }
 
@@ -49,11 +52,23 @@ class DApp extends Component {
         });
     }
 
+    visitDApp(flag){
+        this.setState({
+            "visitDApp": flag,
+        });
+    }
 
+    read=()=>{
+        if(lang.e().key==="zh_CN"){
+            url.goPage(url.browser("https://sero.cash/app/disclaimer/index-zh.html"),url.DApp)
+        }else{
+            url.goPage(url.browser("https://sero.cash/app/disclaimer/index-en.html"),url.DApp)
+        }
+    }
 
     render() {
 
-        const {data,popupData} = this.state;
+        const {data,popupData,visitDApp} = this.state;
         let dapps = storage.get(keys.dapp.list);
         if(dapps) {
             dataRecent=[];
@@ -130,14 +145,18 @@ class DApp extends Component {
                 animationType="slide-up"
             >
                 <List renderHeader={() => <div><h3>{lang.e().modal.dappTip1}</h3></div>} >
-                    <List.Item key={1}>
-                        <p className="popup-list">{lang.e().modal.dappTip2}{this.state.dapp}{lang.e().modal.dappTip3}</p>
+                    <List.Item key={"1"}>
+                        <p className="popup-list">{lang.e().modal.dappTip2}<a onClick={()=>{this.read()}}>{lang.e().modal.dappTip3}</a>{lang.e().modal.dappTip4}</p>
+                        <AgreeItem data-seed="logId" onChange={e => this.visitDApp(!e.target.checked)}>
+                            {lang.e().modal.haveRead}
+                        </AgreeItem>
                     </List.Item>
+
                     <List.Item>
-                        <Button type="primary" onClick={()=>{
+                        <Button type="primary" disabled={visitDApp} onClick={()=>{
                             this.onClose();
                             url.goPage(url.browser(this.state.dappUrl),url.DApp);
-                        }}>{lang.e().button.ok}</Button>
+                        }}>{lang.e().button.confirm}</Button>
                     </List.Item>
                 </List>
             </Modal>

@@ -48,7 +48,12 @@
 
 .popup-list{
     white-space: normal !important;
-    text-align: center;
+    /*text-align: center;*/
+    font-size: 16px;
+}
+
+.popup-list a{
+    color: rgb(16, 142, 233);
 }
 
 .browser-right{

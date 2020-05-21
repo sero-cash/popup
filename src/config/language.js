@@ -115,9 +115,12 @@ class Language {
             clearTip: 'Click "Confirm" to start syncing data. There may be a white screen during the process. Please wait patiently for data synchronization to complete, do not end the process easily.',
             blockHeight:'For asset security, 12 blocks behind the main chain',
 
-            dappTip1: "You are accessing a third-party DApp",
-            dappTip2: "Your use on a third-party DApp will apply to the third-party DApp's 《User Agreement》,《Privacy Policy》of《 ",
-            dappTip3: "》and will be directly and solely responsible to you."
+            dappTip1: "You are visiting a third-party DApp",
+
+            dappTip2: "You are about to visiting an application developed by a third party . Please read carefully [",
+            dappTip3: "potential risks of DApp and SERO Foundation's Disclaimers",
+            dappTip4: "]",
+            haveRead: "I have read it ",
         },
 
         page: {
@@ -353,8 +356,10 @@ class Language {
             clearTip: "点击“确认”后，将会重新同步数据，同步过程中保持钱包在手机前端运行，直到等待数据同步完成。",
             blockHeight:'为了资产的安全性，钱包同步的区块比主链落后了12个区块',
             dappTip1:"你正在访问第三方DApp",
-            dappTip2:"你在第三方DApp上的使用行为将适用该第三方DApp的《用户协议》和《隐私政策》，由《",
-            dappTip3:"》直接并单独向你承担责任。"
+            dappTip2:"你将要访问的应用程序完全由第三方开发，请认真阅读【",
+            dappTip3:"去中心化应用的可能风险以及SERO基金会的免责条款",
+            dappTip4:"】",
+            haveRead: "已经阅读 ",
 
         },
 
@@ -593,8 +598,11 @@ class Language {
             clearTip: '[確認]をクリックして、データの同期を開始します。プロセス中に白い画面が表示される場合があります。データの同期が完了するまでお待ちください。プロセスを突然終了しないでください。',
             blockHeight:'資産セキュリティのために、メインチェーンの背後に12ブロック',
             dappTip1: "サードパーティのDAppにアクセスしています",
-            dappTip2: "サードパーティDAppでの使用は、そのサードパーティDAppの「ユーザー契約」と「プライバシーポリシー」に適用されます「",
-            dappTip3: "」私は直接あなたにのみ責任を負います。"
+
+            dappTip2: "サードパーティが開発したアプリケーションにアクセスしようとしています。よくお読みください[",
+            dappTip3: "DAppとSERO Foundationの免責事項の潜在的なリスク",
+            dappTip4: "]",
+            haveRead: "読みましたhave",
         },
 
         page: {
@@ -830,8 +838,11 @@ class Language {
             clearTip: 'Нажмите «Подтвердить», чтобы начать синхронизацию данных. Во время процесса может быть белый экран. Пожалуйста, терпеливо дождитесь завершения синхронизации данных, не прерывайте процесс внезапно.',
             blockHeight:'Вы собираетесь получить доступ к стороннему DApp',
             dappTip1: "Вы атрымліваеце доступ да старонняга DApp",
-            dappTip2: "Использование вами стороннего DApp будет применяться к« Пользовательскому соглашению »,« Политике конфиденциальности »и«",
-            dappTip3: "»стороннего DApp и будет нести исключительную ответственность перед вами."
+
+            dappTip2: "Вы збіраецеся наведаць прыкладанне, распрацаванае трэцім бокам. Калі ласка, уважліва прачытайце [",
+            dappTip3: "патэнцыйныя рызыкі адмовы ад фонду DApp і фонду SERO",
+            dappTip4: "]",
+            haveRead: "Я прачытаў",
         },
 
         page: {
@@ -1069,8 +1080,11 @@ class Language {
             clearTip:'"확인"을 클릭하여 데이터 동기화를 시작하십시오. 처리하는 동안 흰색 화면이 표시 될 수 있습니다. 데이터 동기화가 완료 될 때까지 기다리십시오. 프로세스를 갑자기 종료하지 마십시오.',
             blockHeight:'자산 보안을 위해 메인 체인 뒤 12 블록',
             dappTip1 : "타사 DApp에 액세스하고 있습니다",
-            dappTip2 : "타사 DApp을 사용하면 타사 DApp의 사용자 계약 및 개인 정보 보호 정책에 적용됩니다.《",
-            dappTip3 : "》 직접 및 별도로 귀하에게 책임이 있습니다."
+
+            dappTip2 : "타사에서 개발 한 응용 프로그램을 방문하려고합니다. 을 (를)주의 깊게 읽으십시오[",
+            dappTip3 : "DApp 및 SERO Foundation의 고지 사항의 잠재적 위험",
+            dappTip4 : "]",
+            haveRead : "읽었습니다.",
         },
 
         page: {

@@ -117,7 +117,7 @@ class Language {
 
             dappTip1: "You are visiting a third-party DApp",
 
-            dappTip2: "You are about to visiting an application developed by a third party . Please read carefully [",
+            dappTip2: "You are about to visit an application developed by a third party . Please read carefully [",
             dappTip3: "potential risks of DApp and SERO Foundation's Disclaimers",
             dappTip4: "]",
             haveRead: "I have read it ",

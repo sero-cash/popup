@@ -19,7 +19,8 @@ class DApp extends Component {
             modal2:false,
             dapp:'',
             dappUrl:'',
-            visitDApp:true
+            visitDApp:true,
+            read:false,
         }
     }
 
@@ -39,10 +40,13 @@ class DApp extends Component {
     }
 
     showModal = (e) => {
+        const read = storage.get(keys.dappsRead(e.text));
         this.setState({
             "modal2": true,
             "dapp":e.text,
-            "dappUrl":e.url
+            "dappUrl":e.url,
+            "read":read,
+            "visitDApp":!read,
         });
     }
 
@@ -52,9 +56,12 @@ class DApp extends Component {
         });
     }
 
-    visitDApp(flag){
+    visitDApp(flag,name){
+        const {dapp} = this.state;
+        storage.set(keys.dappsRead(dapp),!flag)
         this.setState({
-            "visitDApp": flag,
+            visitDApp: flag,
+            read:!flag
         });
     }
 
@@ -68,7 +75,9 @@ class DApp extends Component {
 
     render() {
 
-        const {data,popupData,visitDApp} = this.state;
+        const {data,popupData,visitDApp,read} = this.state;
+
+        console.log("read>>>> ",read)
         let dapps = storage.get(keys.dapp.list);
         if(dapps) {
             dataRecent=[];
@@ -147,7 +156,7 @@ class DApp extends Component {
                 <List renderHeader={() => <div><h3>{lang.e().modal.dappTip1}</h3></div>} >
                     <List.Item key={"1"}>
                         <p className="popup-list">{lang.e().modal.dappTip2}<a onClick={()=>{this.read()}}>{lang.e().modal.dappTip3}</a>{lang.e().modal.dappTip4}</p>
-                        <AgreeItem data-seed="logId" onChange={e => this.visitDApp(!e.target.checked)}>
+                        <AgreeItem data-seed="logId" defaultChecked={read} onChange={e => this.visitDApp(!e.target.checked)}>
                             {lang.e().modal.haveRead}
                         </AgreeItem>
                     </List.Item>

@@ -48,9 +48,14 @@ class Keys {
         this.dapp = {
             list: "dapps:list",
             info:"dapps:info:",
+            read:"dapps:read:"
         }
 
         this.decimals = "decimals"
+    }
+
+    dappsRead(name){
+        return this.dapp.read + name;
     }
 
     dappsInfoKey(contractAddress){

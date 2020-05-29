@@ -95,6 +95,11 @@ const versionControlDataEn = [
         icon: <div className="dapp-icon"><img src="https://edenworkroom.github.io/stoken/logo.png"  className="dapp-img"/></div>,
         text: `SToken`,
         url:"https://edenworkroom.github.io/stoken/",
+    },
+    {
+        icon: <div className="dapp-icon"><img src="https://paretogame.com/logo.png"  className="dapp-img"/></div>,
+        text: `Pareto Game`,
+        url:"https://paretogame.com",
     }
 ];
 
@@ -164,6 +169,11 @@ const versionControlDataCn = [
         icon: <div className="dapp-icon"><img src="https://edenworkroom.gitee.io/stoken/logo.png"  className="dapp-img"/></div>,
         text: `SToken`,
         url:"https://edenworkroom.gitee.io/stoken/",
+    },
+    {
+        icon: <div className="dapp-icon"><img src="https://paretogame.com/logo.png"  className="dapp-img"/></div>,
+        text: `Pareto Game`,
+        url:"https://paretogame.com",
     }
 ];
 

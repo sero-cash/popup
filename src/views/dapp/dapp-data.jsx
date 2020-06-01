@@ -100,6 +100,11 @@ const versionControlDataEn = [
         icon: <div className="dapp-icon"><img src="https://paretogame.com/logo.png"  className="dapp-img"/></div>,
         text: `Pareto Game`,
         url:"https://paretogame.com",
+    },
+    {
+        icon: <div className="dapp-icon"><img src="https://seroclub.gitee.io/game/static/logo.png"  className="dapp-img"/></div>,
+        text: `SERO CLUB`,
+        url:"https://seroclub.gitee.io/game/",
     }
 ];
 
@@ -174,6 +179,11 @@ const versionControlDataCn = [
         icon: <div className="dapp-icon"><img src="https://paretogame.com/logo.png"  className="dapp-img"/></div>,
         text: `Pareto Game`,
         url:"https://paretogame.com",
+    },
+    {
+        icon: <div className="dapp-icon"><img src="https://seroclub.gitee.io/game/static/logo.png"  className="dapp-img"/></div>,
+        text: `SERO CLUB`,
+        url:"https://seroclub.gitee.io/game/",
     }
 ];
 

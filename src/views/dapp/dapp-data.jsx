@@ -105,6 +105,11 @@ const versionControlDataEn = [
         icon: <div className="dapp-icon"><img src="https://seroclub.gitee.io/game/static/logo.png"  className="dapp-img"/></div>,
         text: `SERO CLUB`,
         url:"https://seroclub.gitee.io/game/",
+    },
+    {
+        icon: <div className="dapp-icon"><img src="https://wangdong1413.gitee.io/urcv/logo.png"  className="dapp-img"/></div>,
+        text: `URCV`,
+        url:"https://wangdong1413.gitee.io/urcv/",
     }
 ];
 
@@ -184,6 +189,11 @@ const versionControlDataCn = [
         icon: <div className="dapp-icon"><img src="https://seroclub.gitee.io/game/static/logo.png"  className="dapp-img"/></div>,
         text: `SERO CLUB`,
         url:"https://seroclub.gitee.io/game/",
+    },
+    {
+        icon: <div className="dapp-icon"><img src="https://urcv1433.github.io/urcv/logo.png"  className="dapp-img"/></div>,
+        text: `URCV`,
+        url:"https://urcv1433.github.io/urcv/",
     }
 ];
 

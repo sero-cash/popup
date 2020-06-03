@@ -12,6 +12,7 @@ import BigNumber from "bignumber.js";
 import {Price} from '../../components/tx/price';
 import {decimals} from "../../components/tx/decimals";
 import {assetService} from "../../components/service/service";
+import NONT from '../../icons/NONT.png';
 
 const priceService = new Price();
 
@@ -238,7 +239,14 @@ class Home extends Component {
         return strMap;
     }
 
-        render() {
+    renLogo =(cy)=>{
+        if(cy === "NONT"){
+            return NONT
+        }
+        return logo
+    }
+
+    render() {
         let that = this;
         let assetsArr = [];
         let {current, detail, assets,healthy,healthData} = this.state;
@@ -302,7 +310,7 @@ class Home extends Component {
                                         <div className="home-list-item-money"></div>
                                     </Brief>
                                 </div>} align="top"
-                                  thumb={<div className="currency-icon-border"><img src={logo} width={16}/>
+                                  thumb={<div className="currency-icon-border"><img src={that.renLogo(cy)} width={16}/>
                                   </div>} multipleLine
                                   onClick={() => {
                                       url.goPage("/transfer/list/" + cy)
@@ -341,7 +349,7 @@ class Home extends Component {
                             </Brief>
                         </div>}
                           align="top"
-                          thumb={<div className="currency-icon-border"><img src={logo} width={16}/></div>}
+                          thumb={<div className="currency-icon-border"><img src={that.renLogo("SERO")} width={16}/></div>}
                           multipleLine
                           onClick={() => {
                               url.goPage(url.transferList("SERO"), url.Home);

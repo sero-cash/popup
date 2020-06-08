@@ -28,6 +28,7 @@
 
     <script type="application/javascript" src="./js/index.js"></script>
     <script type="application/javascript">
+
         document.addEventListener('plusready', function() {
             //console.log("所有plus api都应该在此事件发生后调用，否则会出现plus is undefined。"
             plus.navigator.setStatusBarBackground("#F7F7F7");
@@ -35,8 +36,12 @@
 
             plus.nativeUI.closeWaiting();
             plus.navigator.closeSplashscreen();
-
         });
+
+        document.addEventListener("newintent", onNetIntentEv, false);
+        document.addEventListener("resume", onNetIntentEv, false);
+        document.addEventListener("foreground", onNetIntentEv, false);
+
 
         var a = window.location.href;
         var search = location.search;
@@ -52,6 +57,7 @@
         }
 
         Index.init()
+
 
     </script>
 

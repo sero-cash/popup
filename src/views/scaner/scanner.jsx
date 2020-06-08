@@ -1,6 +1,7 @@
 import React ,{Component} from 'react'
-import {Icon, NavBar} from "antd-mobile";
-import {url} from "../../config/common";
+import {Icon, NavBar,Toast} from "antd-mobile";
+import {storage, url} from "../../config/common";
+import {validPkr} from "jsuperzk/dist/wallet/wallet"
 
 window.barcode = null;
 var scanType;
@@ -8,11 +9,26 @@ var cy = "SERO";
 
 function onmarked(type, result) {
     window.barcode.close();
-    if(result.indexOf("http")==0){
+    if(result.indexOf("http")===0){
         url.goPage(url.browser(result))
     }else{
         if(scanType === "transfer"){
-            url.goPage(url.transfer(cy+"/"+result))
+            if(validPkr(result)){
+                url.goPage(url.transfer(cy+"/"+result))
+            }else{
+                try{
+                    const data = JSON.parse(result);
+                    if(typeof data === 'object'){
+                        storage.set("seropay:info",data);
+                        setTimeout(function () {
+                            url.goPage(url.ThirdPay);
+                        },1000)
+                    }
+                }catch (e) {
+                    Toast.fail(e.message,3)
+                }
+            }
+
         }else if(scanType === "address"){
             url.goPage(url.AddressAdd+"/"+result)
         }else if(scanType === "browser"){

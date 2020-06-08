@@ -143,6 +143,7 @@ class Transactions {
         txReq.GasPrice=new BigNumber(gasPrice).toString(16);
         txReq.SK = await act.getSK(password);
         txReq.FeeCy = tx.feeCy?tx.feeCy:"SERO";
+        txReq.BuyShare = tx.BuyShare;
 
         if(tx.catg && tx.tkt){
             let tkts=new Map()

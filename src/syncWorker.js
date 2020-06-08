@@ -15,7 +15,7 @@ export function register() {
     }, 10* 1000)
 
     registerEmbed();
-    // initConsole();
+    initConsole();
 
 
 }

@@ -148,7 +148,8 @@ class Language {
                 to: "To",
                 hash: "Hash",
                 block: "Block",
-                goto: "Go to block explorer for more details >"
+                goto: "Go to block explorer for more details >",
+                pendingDesc:"Submitted, please waiting"
             },
 
             txTransfer: {
@@ -389,7 +390,8 @@ class Language {
                 to: "收款",
                 hash: "交易哈希",
                 block: "块号",
-                goto: "到区块浏览器查看详情 >"
+                goto: "到区块浏览器查看详情 >",
+                pendingDesc:"已提交，请等待处理"
             },
 
             txTransfer: {
@@ -632,7 +634,8 @@ class Language {
                 to: "に",
                 hash: "ハッシュ",
                 block: "ブロック",
-                goto: "詳細については、ブロックエクスプローラーに移動してください"
+                goto: "詳細については、ブロックエクスプローラーに移動してください",
+                pendingDesc:"送信されました。お待ちください"
             },
 
             txTransfer: {
@@ -873,7 +876,8 @@ class Language {
                 to: "к",
                 hash: "Хэш",
                 block: "блок",
-                goto: "Для получения более подробной информации перейдите в обозреватель блоков >"
+                goto: "Для получения более подробной информации перейдите в обозреватель блоков >",
+                pendingDesc:"Прадстаўлена, калі ласка, пачакайце"
             },
 
             txTransfer: {
@@ -1116,7 +1120,8 @@ class Language {
                 to: "으로",
                 hash: "해시",
                 block: "블록",
-                goto: "자세한 내용은 블록 탐색기로 이동하십시오.>"
+                goto: "자세한 내용은 블록 탐색기로 이동하십시오.>",
+                pendingDesc:"제출되었습니다. 잠시만 기다려주세요."
             },
 
             txTransfer: {

@@ -38,6 +38,7 @@ class Form extends React.Component {
         accountList:[],
         showAccount:false,
         valid:'',
+        cachePayInfo:{}
     }
 
     componentDidMount() {
@@ -59,6 +60,9 @@ class Form extends React.Component {
                 valid:typeof e === 'string'?e:e.message,
             })
         });
+        that.setState({
+            cachePayInfo:cachePayInfo
+        })
 
         storage.delete("seropay:info")
     }
@@ -90,7 +94,7 @@ class Form extends React.Component {
                 }
                 if(!existAccount){
                     that.setState({
-                        valid:'Account not Exist! ',
+                        valid:`Account[${cachePayInfo.from}] not Exist! `,
                         accountDetail: {},
                         accountList:[],
                     })
@@ -127,7 +131,9 @@ class Form extends React.Component {
     confirm =()=>{
         const that = this;
         const {valid,accountDetail,payInfo} = that.state;
-        if(valid){
+        if(!accountDetail || !accountDetail.mainPKr){
+            Toast.fail("Please Select Account From",3);
+        }else if(valid){
             Toast.fail(valid,3);
         }else if(payInfo.from && accountDetail.mainPKr !== payInfo.from){
             Toast.fail("The account you selected is not the designated payment account",3);
@@ -145,7 +151,8 @@ class Form extends React.Component {
     }
 
     submit = (password)=>{
-        const {payInfo,accountDetail} = this.state;
+        const that = this;
+        const {payInfo,accountDetail,cachePayInfo} = this.state;
         let data = {}
         data.from = accountDetail.mainPKr;
         data.gas = payInfo.data;
@@ -162,8 +169,11 @@ class Form extends React.Component {
             try {
                 Toast.loading(lang.e().toast.loading.sending,60)
                 transactions.transfer(payInfo, password).then(hash=>{
-                    Toast.success(lang.e().toast.success.send, 2)
-                    storage.delete("seropay:info")
+                    Toast.success(lang.e().toast.success.send, 2);
+                    storage.delete("seropay:info");
+
+                    that.callbackApp(cachePayInfo.appInf,hash)
+
                 }).catch(error=>{
                     if(typeof error === "object"){
                         error = error.message;
@@ -176,6 +186,34 @@ class Form extends React.Component {
                 })
             } catch (e) {
                 Toast.fail(e.message);
+            }
+        }
+    }
+
+
+     callbackApp(appInfo,hash) {
+        if(!appInfo){
+            setTimeout(function () {
+                url.goPage(url.payResult(hash))
+            },2000)
+        }else{
+            const txParams = {hash:hash};
+            if(plus&&plus.os){
+                if ( plus.os.name === "Android" ) {
+                    plus.runtime.launchApplication( {pname:appInfo.pname,newTask:false,extra: txParams}
+                        , function ( e ) {
+                            Toast.fail("Can not open launcher",3);
+                        } );
+                } else if ( plus.os.name === "iOS" ) {
+                    const iosParams = jsonToUrlParams(txParams);
+                    plus.runtime.launchApplication( {action:`${appInfo.action}&${iosParams}`}, function ( e ) {
+                        Toast.fail("Can not open launcher",3);
+                    } );
+                }
+            }else{
+                setTimeout(function () {
+                    url.goPage(url.payResult(hash))
+                },2000)
             }
         }
     }
@@ -230,7 +268,7 @@ class Form extends React.Component {
                 <WhiteSpace/>
                 <List>
                     <List.Item>
-                        <Button type={"primary"} style={{background:'#42ab6c'}} onClick={()=>this.confirm()}>{lang.e().button.next}</Button>
+                        <Button type={"primary"} style={{background:'#42ab6c',zIndex:'999'}} onClick={()=>this.confirm()}>{lang.e().button.next}</Button>
                     </List.Item>
                 </List>
 
@@ -284,6 +322,18 @@ class ThirdPay extends Component{
         );
     }
 
+}
+
+
+function jsonToUrlParams(data){
+    var keys = Object.keys(data);;
+    var urlArr = [];
+    for(var i=0;i<keys.length;i++){
+        var key = keys[i];
+        var value = data[key];
+        urlArr.push([key,value].join("="));
+    }
+    return urlArr.join("&");
 }
 
 export default ThirdPay

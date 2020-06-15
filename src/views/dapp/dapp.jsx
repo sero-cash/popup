@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Grid, SearchBar,Toast,Modal,List,Button,Checkbox} from 'antd-mobile'
+import {Grid, SearchBar,Toast,Modal,List,Button,Checkbox,Icon} from 'antd-mobile'
 import Layout from "../layout/layout";
 import {storage, keys, url, lang,config} from "../../config/common";
 import './dapp.css'
@@ -21,6 +21,7 @@ class DApp extends Component {
             dappUrl:'',
             visitDApp:true,
             read:false,
+            now:0,
         }
     }
 
@@ -73,6 +74,13 @@ class DApp extends Component {
         }
     }
 
+    clearRecent(){
+        storage.delete(keys.dapp.list);
+        this.setState({
+            now:new Date().getTime()
+        })
+    }
+
     render() {
 
         const {data,popupData,visitDApp,read} = this.state;
@@ -87,13 +95,19 @@ class DApp extends Component {
                     tripMap.set(contractAddress,true);
                     let dapp = storage.get(keys.dappsInfoKey(contractAddress));
                     dataRecent.push({
-                        icon: <div className="dapp-icon"><img src={dapp.logo} className="dapp-img"/>
+                        icon: <div className="dapp-icon">
+                            <img src={dapp.logo} className="dapp-img"/>
                         </div>,
                         text: dapp.name,
                         url: dapp.url,
                     })
+                    if(dataRecent.length>=8){
+                        break
+                    }
                 }
             }
+        }else{
+            dataRecent = [];
         }
 
         return <Layout selectedTab="dapp">
@@ -123,7 +137,7 @@ class DApp extends Component {
 
                 <div className="sub-title">{lang.e().page.dapp.recommended} </div>
                 <div style={{textAlign: 'center'}}>
-                    <Grid data={data} activeStyle={false}  onClick={
+                    <Grid data={data} activeStyle={false} style={{height:document.documentElement.clientHeight*0.3}} onClick={
                         (e,index)=>{
                             this.showModal(e)
                         }
@@ -132,8 +146,15 @@ class DApp extends Component {
 
                 <div>
                     {
-                        dataRecent.length>0?<div>
-                            <div className="sub-title">{lang.e().page.dapp.recent} </div>
+                        dataRecent.length>0?<div style={{height:'auto'}}>
+                            <div className="sub-title">
+                                {lang.e().page.dapp.recent}
+                                <div className="sub-title2" onClick={()=>{
+                                    this.clearRecent();
+                                }}>
+                                    <Icon type={"iconclear"}/>
+                                </div>
+                            </div>
                             <div style={{textAlign: 'center'}}>
                                 <Grid data={dataRecent} activeStyle={false} onClick={
                                     (e,index)=>{

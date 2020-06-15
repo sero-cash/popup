@@ -26,6 +26,7 @@ class Url {
         this.HistoryPKr = '/manage/historyPKr';
         this.Embed = '/embed';
         this.ThirdPay = '/thirdpay';
+        this.PayResult = '/thirdpay/result/';
 
     }
 
@@ -71,11 +72,15 @@ class Url {
     }
 
     browser(url) {
-        return "/browser/" + encodeURIComponent(url);
+        return "/browser/" + encodeURIComponent(url+"?"+new Date().getTime());
     }
 
     addressSelect(currency) {
         return "/addressSelect/" + currency;
+    }
+
+    payResult(hash) {
+        return this.PayResult + hash;
     }
 
     scan(bizType,cy){

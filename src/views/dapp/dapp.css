@@ -4,6 +4,14 @@
     font-size: 15px;
     padding: 15px 0 9px 15px;
 }
+
+.sub-title2 {
+    float: right;
+    text-align: right;
+    margin-right: 15px;
+    color:#7f7d7d;
+}
+
 .not-square-grid .am-grid-icon {
     width: 40px;
     height: 60px;

@@ -25,10 +25,10 @@ import TxResult from "./views/transfer/txresult";
 import ImportAccount from "./views/account/import";
 import Scanner from "./views/scaner/scanner";
 import AddressSelect from "./views/personal/address/select";
-import TokenTracker from "./views/dapp/tokenTracker/tokenTracker";
 import AboutUs from "./views/personal/settings/about";
 import HistoryPkr from "./views/personal/wallet-manage/historyPkr";
 import ThirdPay from "./views/thirdpay/thirdpay";
+import PayResult from "./views/thirdpay/payResult";
 
 class App extends Component {
 
@@ -79,10 +79,8 @@ class App extends Component {
 
                     <Route exact path="/browser/:url" component={Browser}/>
 
-                    /** TOKEN Tracker */
-                    <Route exact path="/tokenTracker" component={TokenTracker}/>
-
                     <Route exact path="/thirdpay" component={ThirdPay}/>
+                    <Route exact path="/thirdpay/result/:hash" component={PayResult}/>
 
                 </Switch>
             </Router>

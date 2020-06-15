@@ -96,9 +96,9 @@ const versionControlDataCn = [
         url:"https://edenworkroom.gitee.io/stoken/",
     },
     {
-        icon: <div className="dapp-icon"><img src="https://paretogame.com/logo.png"  className="dapp-img"/></div>,
+        icon: <div className="dapp-icon"><img src="https://sero.paretogame.com/logo.png"  className="dapp-img"/></div>,
         text: `Pareto Game`,
-        url:"https://paretogame.com",
+        url:"https://sero.paretogame.com",
     },
     {
         icon: <div className="dapp-icon"><img src="https://seroclub.gitee.io/game/static/logo.png"  className="dapp-img"/></div>,
@@ -109,6 +109,11 @@ const versionControlDataCn = [
         icon: <div className="dapp-icon"><img src="https://wangdong1413.gitee.io/urcv/logo.png"  className="dapp-img"/></div>,
         text: `URCV`,
         url:"https://wangdong1413.gitee.io/urcv/",
+    },
+    {
+        icon: <div className="dapp-icon"><img src="https://anonymous2020.gitee.io/sero-redpackage/img/logo.77472dad.png"  className="dapp-img"/></div>,
+        text: `SERO红包`,
+        url:"https://anonymous2020.gitee.io/sero-redpackage/",
     }
 ];
 
@@ -180,9 +185,9 @@ const versionControlDataEn = [
         url:"https://edenworkroom.github.io/stoken/",
     },
     {
-        icon: <div className="dapp-icon"><img src="https://paretogame.com/logo.png"  className="dapp-img"/></div>,
+        icon: <div className="dapp-icon"><img src="https://sero.paretogame.com/logo.png"  className="dapp-img"/></div>,
         text: `Pareto Game`,
-        url:"https://paretogame.com",
+        url:"https://sero.paretogame.com",
     },
     {
         icon: <div className="dapp-icon"><img src="https://seroclub.gitee.io/game/static/logo.png"  className="dapp-img"/></div>,

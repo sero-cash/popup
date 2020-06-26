@@ -21,12 +21,20 @@ if (isIPhone) {
 }
 
 class Form extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
     static propTypes = {
         form: formShape,
     };
     state = {
-        payInfo: {
-            payNo:'00000',
+        accountDetail: {},
+        accountList:[],
+        showAccount:false,
+        valid:'',
+        cachePayInfo:{
+            payNo:'',
             to:'',
             gas:'0x0',
             gasPrice:'0x0',
@@ -34,47 +42,46 @@ class Form extends React.Component {
             cy:'SERO',
             data:'0x'
         },
-        accountDetail: {},
-        accountList:[],
-        showAccount:false,
-        valid:'',
-        cachePayInfo:{}
     }
 
     componentDidMount() {
-
-        try{
-            if(plus && plus.nativeUI){
-                plus.nativeUI.closeWaiting();
-            }
-        }catch (e) {
-        }
-
-        const that = this;
-        const cachePayInfo = storage.get("seropay:info");
-
-        this.getPayInfo(cachePayInfo);
-        this.getAccount(cachePayInfo).then(()=>{
-        }).catch((e)=>{
-            that.setState({
-                valid:typeof e === 'string'?e:e.message,
-            })
-        });
-        that.setState({
-            cachePayInfo:cachePayInfo
-        })
-
-        storage.delete("seropay:info")
+        this.init();
     }
 
-    getPayInfo(cachePayInfo){
+    init(){
         const that = this;
-        if(!cachePayInfo){
-            // url.goPage(url.Home);
-        }else{
+        that.initPayInfo();
+        let interId = sessionStorage.getItem("thirdPayInterId");
+        if(interId){
+            clearInterval(interId);
+        }
+        interId = setInterval(function(){
+            try{
+                if(plus && plus.nativeUI){
+                    plus.nativeUI.closeWaiting();
+                }
+            }catch (e) {
+            }
+
+            that.initPayInfo();
+        },1000)
+        sessionStorage.setItem("thirdPayInterId",interId);
+    }
+
+    initPayInfo() {
+        const that = this;
+        const cachePayInfo = storage.get("seropay:info");
+        if(cachePayInfo && cachePayInfo.type ==="thirdpay"){
+            that.getAccount(cachePayInfo).then(()=>{
+            }).catch((e)=>{
+                that.setState({
+                    valid:typeof e === 'string'?e:e.message,
+                })
+            });
             that.setState({
-                payInfo:cachePayInfo
+                cachePayInfo:cachePayInfo
             })
+            storage.delete("seropay:info")
         }
     }
 
@@ -100,13 +107,13 @@ class Form extends React.Component {
                     })
                 }else{
                     that.setState({
-                        accountDetail:detail,
+                        accountDetail:list&&list.length>0?list[0]:{},
                         accountList:list,
                     })
                 }
             }else{
                 that.setState({
-                    accountDetail:detail,
+                    accountDetail:list&&list.length>0?list[0]:{},
                     accountList:list,
                 })
             }
@@ -130,13 +137,13 @@ class Form extends React.Component {
 
     confirm =()=>{
         const that = this;
-        const {valid,accountDetail,payInfo} = that.state;
+        const {valid,accountDetail,cachePayInfo} = that.state;
         if(!accountDetail || !accountDetail.mainPKr){
             Toast.fail("Please Select Account From",3);
         }else if(valid){
             Toast.fail(valid,3);
-        }else if(payInfo.from && accountDetail.mainPKr !== payInfo.from){
-            Toast.fail("The account you selected is not the designated payment account",3);
+        }else if(cachePayInfo.from && accountDetail.mainPKr !== cachePayInfo.from){
+            Toast.fail(lang.e().toast.error.useFrom,3);
         }else{
             Modal.prompt(
                 lang.e().page.txTransfer.inputPassword,
@@ -152,23 +159,23 @@ class Form extends React.Component {
 
     submit = (password)=>{
         const that = this;
-        const {payInfo,accountDetail,cachePayInfo} = this.state;
+        const {accountDetail,cachePayInfo} = this.state;
         let data = {}
-        data.from = accountDetail.mainPKr;
-        data.gas = payInfo.data;
-        data.gasPrice = payInfo.data;
-        data.value=payInfo.value;
-        data.cy=payInfo.cy;
-        data.data=payInfo.data;
-        data.catg=payInfo.catg;
-        data.tkt=payInfo.tkt;
-
+        data.from = accountDetail.address;
+        data.to=cachePayInfo.to;
+        data.gas = cachePayInfo.gas;
+        data.gasPrice = cachePayInfo.gasPrice;
+        data.value=cachePayInfo.value;
+        data.cy=cachePayInfo.cy;
+        data.data=cachePayInfo.data;
+        data.catg=cachePayInfo.catg;
+        data.tkt=cachePayInfo.tkt;
         if (!password) {
             Toast.fail(lang.e().page.txTransfer.inputPassword)
         } else {
             try {
                 Toast.loading(lang.e().toast.loading.sending,60)
-                transactions.transfer(payInfo, password).then(hash=>{
+                transactions.transfer(data, password).then(hash=>{
                     Toast.success(lang.e().toast.success.send, 2);
                     storage.delete("seropay:info");
 
@@ -220,11 +227,11 @@ class Form extends React.Component {
 
     render() {
 
-        const {payInfo,accountDetail,accountList,showAccount} = this.state;
+        const {accountDetail,accountList,showAccount,cachePayInfo} = this.state;
 
-        const fee = decimals.convert(new BigNumber(payInfo.gas).multipliedBy(new BigNumber(payInfo.gasPrice)).toString(10),"SERO");
-        const gasPrice = new BigNumber(payInfo.gasPrice).div(new BigNumber(10).pow(9)).toString(10);
-        const amount = decimals.convert(payInfo.value,payInfo.cy);
+        const fee = decimals.convert(new BigNumber(cachePayInfo.gas).multipliedBy(new BigNumber(cachePayInfo.gasPrice)).toString(10),"SERO");
+        const gasPrice = new BigNumber(cachePayInfo.gasPrice).div(new BigNumber(10).pow(9)).toString(10);
+        const amount = decimals.convert(cachePayInfo.value,cachePayInfo.cy);
         return (
             <div>
                 <NavBar
@@ -236,30 +243,30 @@ class Form extends React.Component {
                     <span>{lang.e().button.transfer}</span>
                 </NavBar>
                 <div style={{textAlign:'center'}}>
-                    <h4>{payInfo.payNo}</h4>
-                    <h2>{amount} {payInfo.cy}</h2>
+                    <h4>{cachePayInfo.payNo}</h4>
+                    <h2>{amount} {cachePayInfo.cy}</h2>
                 </div>
                 <List>
                     <InputItem editable={false} extra={<Icon type={"right"}/>} onClick={()=>this.switchAccount(true)} value={utils.ellipsisAddress(accountDetail.mainPKr)}>
                         <span className={"tdpy-span"}>{lang.e().page.txDetail.from}</span>
                     </InputItem>
-                    <InputItem editable={false} value={utils.ellipsisAddress(payInfo.to)}>
+                    <InputItem editable={false} value={utils.ellipsisAddress(cachePayInfo.to)}>
                         <span className={"tdpy-span"}>{lang.e().page.txDetail.to}</span>
                     </InputItem>
-                    <InputItem editable={false} value={`${amount} ${payInfo.cy}`}>
+                    <InputItem editable={false} value={`${amount} ${cachePayInfo.cy}`}>
                         <span className={"tdpy-span"}>{lang.e().page.txDetail.amount}</span>
                     </InputItem>
                     <List.Item multipleLine extra={<span style={{color:'#000'}}>{fee} SERO</span>} wrap>
                         <span className={"tdpy-span"}>{lang.e().page.txDetail.fee}</span>
                         <List.Item.Brief>
-                            <span style={{fontSize:'10px'}}>Gas: {new BigNumber(payInfo.gas,16).toString(10)} * GasPrice: {gasPrice} Gta</span>
+                            <span style={{fontSize:'10px'}}>Gas: {new BigNumber(cachePayInfo.gas,16).toString(10)} * GasPrice: {gasPrice} Gta</span>
                         </List.Item.Brief>
                     </List.Item>
                     <List.Item multipleLine wrap>
                         <span className={"tdpy-span"}>Data</span>
                         <List.Item.Brief>
                             <div className={"dataWr"}>
-                                {payInfo.data}
+                                {cachePayInfo.data}
                             </div>
                         </List.Item.Brief>
                     </List.Item>

@@ -461,7 +461,7 @@ class Browser extends Component {
         return <div>
             <NavBar
                 mode="light"
-                // leftContent={<Icon type="left"/>}
+                leftContent={<Icon type="left"/>}
                 rightContent={<div className={"browser-right"}>
                     <div><Icon type={"ellipsis"} size={"md"} onClick={this.showActionSheet}/></div>
                     <div className={"ant-divider ant-divider-vertical ant-divider-dashed"}></div>
@@ -474,11 +474,9 @@ class Browser extends Component {
                     }/></div>
                 </div>}
                 className="layout-top"
-                // onLeftClick={() => {
-                //     // window.location.replace("/#/dapp")
-                //     window.removeEventListener("message", this.receiveMessage, false);
-                //     url.goBack();
-                // }}
+                onLeftClick={() => {
+                    history.back();
+                }}
             >
                 {this.state.navTitle}
             </NavBar>

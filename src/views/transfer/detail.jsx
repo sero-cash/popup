@@ -1,5 +1,5 @@
 import React ,{Component} from 'react'
-import {Icon, NavBar, WhiteSpace, WingBlank, Flex, Toast} from "antd-mobile";
+import {Icon, NavBar, WhiteSpace, WingBlank, Flex, Toast, Tag} from "antd-mobile";
 import {storage, keys, url, lang} from "../../config/common";
 import BigNumber from "bignumber.js";
 import copy from "copy-text-to-clipboard";
@@ -7,7 +7,9 @@ import Utils from "../../config/utils";
 import {assetService} from "../../components/service/service";
 import Account from "../../components/account/account";
 import {decimals} from "../../components/tx/decimals";
+import {JsonRpc} from "../../service/jsonrpc";
 
+const jsonRpc = new JsonRpc();
 const utils = new Utils();
 
 class TransferDetail extends Component{
@@ -16,7 +18,8 @@ class TransferDetail extends Component{
         super(props);
         this.state = {
             state:"pending",
-            txInfo:{}
+            txInfo:{},
+            txState:'',
         }
     }
 
@@ -26,15 +29,37 @@ class TransferDetail extends Component{
         const account = new Account()
         account.getCurrent().then(current=>{
             assetService.getTxDetail(current.tk,hash).then((tx)=>{
+                console.log("tx:",tx)
                 that.setState({
                     txInfo:tx,
                 })
             })
         })
+
+        // that.getTxState();
+    }
+
+    getTxState(){
+        const that = this;
+        let hash = this.props.match.params.hash;
+        jsonRpc.seroRpc("sero_getTransactionReceipt",[hash],function (data) {
+            const rest = data.result;
+            if(rest){
+                if(new BigNumber(rest.status).comparedTo(0) === 1){
+                    that.setState({
+                        txState:<Tag>{lang.e().page.txDetail.contractSuccess}</Tag>
+                    })
+                }else{
+                    that.setState({
+                        txState:<Tag>{lang.e().page.txDetail.contractFailed}</Tag>
+                    })
+                }
+            }
+        })
     }
 
     render() {
-        const {txInfo} = this.state;
+        const {txInfo,txState} = this.state;
         let time;
         let assets;
         assets = txInfo.Tkn;
@@ -87,7 +112,6 @@ class TransferDetail extends Component{
                         <Icon type={txInfo.State === "pending"?"icondengdaichuli":"iconchenggongtishi"} size="lg" className="transfer-detail-indiv0-icon"/>
                         <h3>{"pending" === txInfo.State?lang.e().page.txDetail.pending:lang.e().page.txDetail.success}</h3>
                         <span  className="transfer-detail-indiv0-span">{time}</span>
-
                     </div>
                     <div className="transfer-detail-indiv1">
                         <Flex>

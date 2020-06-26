@@ -219,7 +219,7 @@ class Settings extends Component {
                                 <Button type="primary" onClick={()=>{
                                     let customer = document.getElementById("customer").value;
                                     this.setRpc(customer);
-                                }}>{lang.e().button.confirm}</Button>
+                                }}><span style={{color:"#fff"}}>{lang.e().button.confirm}</span></Button>
                             </div>
                         </List.Item>
                     </List>

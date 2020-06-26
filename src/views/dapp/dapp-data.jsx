@@ -35,11 +35,11 @@ const versionControlDataCn = [
         text: `ASNOW`,
         url:"https://asnowhero.gitee.io/asnow-popup/",
     },
-    {
-        icon: <div className="dapp-icon"><img src="http://sanguo.artfuture.store/slg/icon.png"  className="dapp-img"/></div>,
-        text: `超零三国`,
-        url:"http://sanguo.artfuture.store/slg/slg.html",
-    },
+    // {
+    //     icon: <div className="dapp-icon"><img src="http://sanguo.artfuture.store/slg/icon.png"  className="dapp-img"/></div>,
+    //     text: `超零三国`,
+    //     url:"http://sanguo.artfuture.store/slg/slg.html",
+    // },
     {
         icon: <div className="dapp-icon"><img src="http://47.92.113.69/logo.png"  className="dapp-img"/></div>,
         text: `ACES`,
@@ -114,6 +114,21 @@ const versionControlDataCn = [
         icon: <div className="dapp-icon"><img src="https://anonymous2020.gitee.io/sero-redpackage/img/logo.77472dad.png"  className="dapp-img"/></div>,
         text: `SERO红包`,
         url:"https://anonymous2020.gitee.io/sero-redpackage/",
+    },
+    {
+        icon: <div className="dapp-icon"><img src="https://uhexio.gitee.io/sero-sloth/assets/icon/icon.png"  className="dapp-img"/></div>,
+        text: `Sloth`,
+        url:"https://uhexio.gitee.io/sero-sloth/",
+    },
+    {
+        icon: <div className="dapp-icon"><img src="https://uhexio.gitee.io/sero-mpos/assets/icon/icon.png"  className="dapp-img"/></div>,
+        text: `MPoS`,
+        url:"https://uhexio.gitee.io/sero-mpos/",
+    },
+    {
+        icon: <div className="dapp-icon"><img src="https://uhexio.gitee.io/sero-skit/assets/icon/icon.png"  className="dapp-img"/></div>,
+        text: `Doraemon`,
+        url:"https://uhexio.gitee.io/sero-skit/",
     }
 ];
 
@@ -124,11 +139,12 @@ const versionControlDataEn = [
         text: `ASNOW`,
         url:"https://asnowhero.github.io/asnow-popup",
     },
-    {
-        icon: <div className="dapp-icon"><img src="http://sanguo.artfuture.store/slg/icon.png"  className="dapp-img"/></div>,
-        text: `超零三国`,
-        url:"http://sanguo.artfuture.store/slg/slg.html",
-    },
+    //
+    // {
+    //     icon: <div className="dapp-icon"><img src="http://sanguo.artfuture.store/slg/icon.png"  className="dapp-img"/></div>,
+    //     text: `超零三国`,
+    //     url:"http://sanguo.artfuture.store/slg/slg.html",
+    // },
     {
         icon: <div className="dapp-icon"><img src="http://47.92.113.69/logo.png"  className="dapp-img"/></div>,
         text: `ACES`,
@@ -198,6 +214,21 @@ const versionControlDataEn = [
         icon: <div className="dapp-icon"><img src="https://urcv1433.github.io/urcv/logo.png"  className="dapp-img"/></div>,
         text: `URCV`,
         url:"https://urcv1433.github.io/urcv/",
+    },
+    {
+        icon: <div className="dapp-icon"><img src="https://uhexio.github.io/sero-sloth/assets/icon/icon.png"  className="dapp-img"/></div>,
+        text: `Sloth`,
+        url:"https://uhexio.github.io/sero-sloth/",
+    },
+    {
+        icon: <div className="dapp-icon"><img src="https://uhexio.github.io/sero-mpos/assets/icon/icon.png"  className="dapp-img"/></div>,
+        text: `MPoS`,
+        url:"https://uhexio.github.io/sero-mpos/",
+    },
+    {
+        icon: <div className="dapp-icon"><img src="https://uhexio.github.io/sero-skit/assets/icon/icon.png"  className="dapp-img"/></div>,
+        text: `Doraemon`,
+        url:"https://uhexio.github.io/sero-skit/",
     }
 ];
 

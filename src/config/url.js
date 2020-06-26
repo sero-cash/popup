@@ -72,7 +72,7 @@ class Url {
     }
 
     browser(url) {
-        return "/browser/" + encodeURIComponent(url+"?"+new Date().getTime());
+        return "/browser/" + encodeURIComponent(url);
     }
 
     addressSelect(currency) {

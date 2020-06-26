@@ -18,15 +18,24 @@ class Personal extends Component {
     }
 
     componentDidMount() {
-        if(lang.e().key==='zh_CN'){
-            this.setState({
-                helpUrl:"http://118.24.17.141:8082/zh/index.html?file=Tutorial/popup_QA"
-            })
-        }else{
-            this.setState({
-                helpUrl:"https://wiki.sero.cash/en/index.html?file=Tutorial/popup_QA"
-            })
+       this.setHelpUrl();
+    }
+
+    setHelpUrl(){
+        const tLang = lang.e().key;
+        let helpUrl = "https://wiki.sero.cash/en/index.html?file=Tutorial/popup_QA";
+        if (tLang === "zh_CN") {
+            helpUrl="http://118.24.17.141:8082/zh/index.html?file=Tutorial/popup_QA"
+        } else if (tLang === "ja_JP") {
+            helpUrl="https://wiki.sero.cash/en/index.html?file=Tutorial/popup_qa_jp"
+        } else if (tLang === "be_BY") {
+            helpUrl="https://wiki.sero.cash/en/index.html?file=Tutorial/popup_qa_rusia"
+        } else if (tLang === "ko_KR") {
+            helpUrl="https://wiki.sero.cash/en/index.html?file=Tutorial/popup_kr_qa"
         }
+        this.setState({
+            helpUrl:helpUrl
+        })
     }
 
     render() {
@@ -76,8 +85,6 @@ class Personal extends Component {
                                 <List.Item arrow="horizontal" thumb={<Icon type="iconaboutus" color="gray"/>} onClick={()=>{
                                     url.goPage(url.About,url.Personal)
                                 }}><span >{lang.e().page.my.about}</span></List.Item>
-
-
                             </List>
                     </div>
                     <WhiteSpace size="lg"/>

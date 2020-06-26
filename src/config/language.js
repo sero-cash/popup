@@ -100,6 +100,7 @@ class Language {
                 notEnoughFee: "Not enough SERO to pay gas fee !",
                 invalidMnemonic: "Invalid Mnemonic!",
                 clearData:"Cleanup failed, please try again later!",
+                useFrom:"Please use the designated account to initiate payment!"
             }
         },
 
@@ -149,7 +150,9 @@ class Language {
                 hash: "Hash",
                 block: "Block",
                 goto: "Go to block explorer for more details >",
-                pendingDesc:"Submitted, please waiting"
+                pendingDesc:"Submitted, please waiting",
+                contractSuccess: "Contract execute successfully!",
+                contractFailed: "Contract execute failed!"
             },
 
             txTransfer: {
@@ -342,6 +345,7 @@ class Language {
                 notEnoughFee: "没有足够的SERO支付矿工费用",
                 invalidMnemonic: "无效的助记词!",
                 clearData:"正在同步区块，清除失败，请稍后再试!",
+                useFrom:"请使用指定的账户发起支付!"
             }
 
         },
@@ -391,7 +395,9 @@ class Language {
                 hash: "交易哈希",
                 block: "块号",
                 goto: "到区块浏览器查看详情 >",
-                pendingDesc:"已提交，请等待处理"
+                pendingDesc:"已提交，请等待处理",
+                contractSuccess:"合约执行成功！",
+                contractFailed:"合约执行失败！"
             },
 
             txTransfer: {
@@ -407,7 +413,7 @@ class Language {
                 inputPassword: "请输入密码",
                 passwordMsg: "账户密码",
                 failed: "交易发送失败，请保持同步到最新区块!",
-                thirdpay:"本次支付由第三方发起，如有疑问请第三方。"
+                thirdpay:"本次支付由第三方发起，如有疑问请联系第三方。"
             },
 
             addressBook: {
@@ -587,6 +593,7 @@ class Language {
                 notEnoughFee: "料金を支払うのに十分なSEROがありません！",
                 invalidMnemonic: "無効なニーモニック!",
                 clearData:"クリーンアップに失敗しました。しばらくしてからもう一度お試しください!",
+                useFrom:"指定されたアカウントを使用して支払いを開始してください!"
             }
         },
 
@@ -635,7 +642,9 @@ class Language {
                 hash: "ハッシュ",
                 block: "ブロック",
                 goto: "詳細については、ブロックエクスプローラーに移動してください",
-                pendingDesc:"送信されました。お待ちください"
+                pendingDesc:"送信されました。お待ちください",
+                contractSuccess: "契約は正常に実行されました！",
+                contractFailed:"契約の実行に失敗しました！"
             },
 
             txTransfer: {
@@ -829,6 +838,7 @@ class Language {
                 notEnoughFee: "Недостаточно SERO для оплаты платы за газ!",
                 invalidMnemonic: "Няправільны мнеманічны характар !",
                 clearData:"Уборка не атрымалася. Паспрабуйце яшчэ раз пазней!",
+                useFrom:"Калі ласка, выкарыстоўвайце пазначаны ўліковы запіс, каб пачаць аплату!"
             }
         },
 
@@ -877,7 +887,9 @@ class Language {
                 hash: "Хэш",
                 block: "блок",
                 goto: "Для получения более подробной информации перейдите в обозреватель блоков >",
-                pendingDesc:"Прадстаўлена, калі ласка, пачакайце"
+                pendingDesc:"Прадстаўлена, калі ласка, пачакайце",
+                contractSuccess: "Кантракт паспяхова выконваецца!",
+                contractFailed: "Выкананне кантракту не атрымалася!"
             },
 
             txTransfer: {
@@ -1073,6 +1085,7 @@ class Language {
                 notEnoughFee: "SERO는 가스를 지불하기에 충분하지 않습니다수수료!",
                 invalidMnemonic: "잘못된 니모닉 !",
                 clearData:"정리에 실패했습니다. 나중에 다시 시도하십시오!",
+                useFrom:"결제를 시작하려면 지정된 계정을 사용하십시오!"
             }
         },
 
@@ -1121,7 +1134,9 @@ class Language {
                 hash: "해시",
                 block: "블록",
                 goto: "자세한 내용은 블록 탐색기로 이동하십시오.>",
-                pendingDesc:"제출되었습니다. 잠시만 기다려주세요."
+                pendingDesc:"제출되었습니다. 잠시만 기다려주세요.",
+                contractSuccess : "계약이 성공적으로 실행되었습니다!",
+                contractFailed : "계약 체결 실패!"
             },
 
             txTransfer: {

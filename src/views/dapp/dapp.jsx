@@ -40,12 +40,16 @@ class DApp extends Component {
         }
     }
 
-    showModal = (e) => {
+    showModal = (e,flag) => {
         const read = storage.get(keys.dappsRead(e.text));
+        let url = e.url;
+        if(flag){
+            url = e.url + "?" + new Date().getTime();
+        }
         this.setState({
             "modal2": true,
             "dapp":e.text,
-            "dappUrl":e.url,
+            "dappUrl":url,
             "read":read,
             "visitDApp":!read,
         });
@@ -139,7 +143,7 @@ class DApp extends Component {
                 <div style={{textAlign: 'center'}}>
                     <Grid data={data} activeStyle={false} style={{height:document.documentElement.clientHeight*0.3}} onClick={
                         (e,index)=>{
-                            this.showModal(e)
+                            this.showModal(e,true)
                         }
                     } hasLine={false}/>
                 </div>

@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import {Icon, NavBar, Result, WhiteSpace} from 'antd-mobile';
+import {Icon, NavBar, Result, WhiteSpace,Tag} from 'antd-mobile';
 import {lang, url} from "../../config/common";
 import './thirdpay.css';
 import {JsonRpc} from "../../service/jsonrpc";
@@ -43,6 +43,17 @@ class PayResult extends Component{
                         rMsg:<div style={{wordBreak:"break-all"}}>
                             <p>{lang.e().page.txDetail.block}: {new BigNumber(rest.blockNumber).toString(10)}</p>
                             <p>{lang.e().page.txDetail.hash}: <a >{rest.transactionHash}</a></p>
+                            <Tag >{lang.e().page.txDetail.contractSuccess}</Tag>
+                        </div>
+                    })
+                }else{
+                    that.setState({
+                        rTitle:lang.e().page.txDetail.success,
+                        icon:"iconchenggongtishi",
+                        rMsg:<div style={{wordBreak:"break-all"}}>
+                            <p>{lang.e().page.txDetail.block}: {new BigNumber(rest.blockNumber).toString(10)}</p>
+                            <p>{lang.e().page.txDetail.hash}: <a >{rest.transactionHash}</a></p>
+                            <Tag>{lang.e().page.txDetail.contractFailed}</Tag>
                         </div>
                     })
                 }

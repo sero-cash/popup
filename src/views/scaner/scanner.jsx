@@ -21,14 +21,13 @@ function onmarked(type, result) {
                     if(typeof data === 'object'){
                         storage.set("seropay:info",data);
                         setTimeout(function () {
-                            url.goPage(url.ThirdPay);
+                            url.goPage(url.ThirdPay+"/"+new Date().getTime());
                         },1000)
                     }
                 }catch (e) {
                     Toast.fail(e.message,3)
                 }
             }
-
         }else if(scanType === "address"){
             url.goPage(url.AddressAdd+"/"+result)
         }else if(scanType === "browser"){

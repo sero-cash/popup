@@ -63,9 +63,15 @@ class Form extends React.Component {
             }catch (e) {
             }
 
-            that.initPayInfo();
+            // that.initPayInfo();
         },1000)
         sessionStorage.setItem("thirdPayInterId",interId);
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        console.error("test")
+        const that = this;
+        that.initPayInfo();
     }
 
     initPayInfo() {

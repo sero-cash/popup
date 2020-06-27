@@ -112,7 +112,7 @@ class Transactions {
     }
 
     async transfer(tx, password) {
-        let act = new Account()
+        let act ;
         let cy = tx.cy;
         let gas = tx.gas;
         let gasPrice = tx.gasPrice;

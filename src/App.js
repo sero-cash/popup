@@ -76,11 +76,11 @@ class App extends Component {
 
                     <Route exact path="/settings" component={Settings}/>
                     <Route exact path="/about" component={AboutUs}/>
-
                     <Route exact path="/browser/:url" component={Browser}/>
 
-                    <Route exact path="/thirdpay" component={ThirdPay}/>
                     <Route exact path="/thirdpay/result/:hash" component={PayResult}/>
+                    <Route exact path="/thirdpay/:timestamp" component={ThirdPay}/>
+                    <Route exact path="/thirdpay" component={ThirdPay}/>
 
                 </Switch>
             </Router>

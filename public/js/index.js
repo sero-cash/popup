@@ -62,7 +62,7 @@ function onNetIntent(){
                         plus.runtime.arguments="";
 
                         setTimeout(function () {
-                            window.location.href="#/thirdpay?"+new Date().getTime();
+                            window.location.href="#/thirdpay/"+new Date().getTime();
                         },1000)
                     }
                 }
@@ -93,7 +93,7 @@ function onNetIntentEv() {
                 localStorage.setItem("seropay:info",payInfoCash)
                 plus.runtime.arguments="";
                 setTimeout(function () {
-                    window.location.href="#/thirdpay?"+new Date().getTime();
+                    window.location.href="#/thirdpay/"+new Date().getTime();
                 },1000)
             }
         }

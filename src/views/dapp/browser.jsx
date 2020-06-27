@@ -278,18 +278,19 @@ class Browser extends Component {
                                 Toast.success(lang.e().toast.success.send, 2)
                                 cb(hash)
                             }).catch(error=>{
-                                if(typeof error === "object"){
-                                    error = error.message;
-                                }
-                                if (error.indexOf("wrong passphrase") > -1) {
-                                    Toast.fail(lang.e().toast.error.passwordError, 2);
-                                    cb("")
-                                } else {
-                                    Toast.fail(error, 3);
-                                    cb("")
+                                const err = typeof error === 'string'?error:error.message;
+                                if(err){
+                                    if (err.indexOf("wrong passphrase") > -1) {
+                                        Toast.fail(lang.e().toast.error.passwordError, 2);
+                                        cb("")
+                                    } else {
+                                        Toast.fail(err, 3);
+                                        cb("")
+                                    }
+                                }else{
+                                    Toast.fail(JSON.stringify(error), 3);
                                 }
                             })
-                            // Toast.fail(lang.e().button.openTip,3)
                         } catch (e) {
                             Toast.fail(e.message);
                             cb("")

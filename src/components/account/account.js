@@ -50,19 +50,22 @@ class Account {
                     password: password,
                     word: word,
                 }
-                accountService.createAccount(data,function (msg) {
-                    const keystore =msg.data;
-                    let detail = {
-                        address: keystore.address,
-                        name: name,
-                        hint: hint,
-                        tk:keystore.tk,
-                        avatar: utils.getRandomAvatar(),
-                    }
-                    const tempKeystore = {detail: detail, keystore: keystore}
-                    // lstorage.delete(keys.account.tempKeystore).then();
-                    lstorage.set(keys.account.tempKeystore, tempKeystore).then();
-                })
+                lstorage.delete(keys.account.tempKeystore).then(()=>{
+                    accountService.createAccount(data,function (msg) {
+                        const keystore =msg.data;
+                        let detail = {
+                            address: keystore.address,
+                            name: name,
+                            hint: hint,
+                            tk:keystore.tk,
+                            avatar: utils.getRandomAvatar(),
+                        }
+                        const tempKeystore = {detail: detail, keystore: keystore}
+                        // lstorage.delete(keys.account.tempKeystore).then();
+                        lstorage.set(keys.account.tempKeystore, tempKeystore).then();
+                    })
+                });
+
                 resolve()
             }catch (e) {
                 reject(e);

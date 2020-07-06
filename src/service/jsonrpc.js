@@ -31,6 +31,23 @@ class JsonRpc {
         })
     }
 
+    async seroRpcAsync(_method, _params) {
+        let rpc = config.host.rpc;
+        if(this.rpc){
+            rpc = this.rpc
+        }
+        let data = {
+            id: 0,
+            jsonrpc: "2.0",
+            method: _method,
+            params: _params,
+        };
+        const response = await axios.post(rpc, data);
+        return new Promise(resolve => {
+            resolve(response.data);
+        });
+    }
+
     get(url, cb) {
         axios.get(url).then(function (rest) {
             if (cb) {

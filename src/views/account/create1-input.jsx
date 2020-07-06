@@ -77,18 +77,25 @@ class Form extends React.Component {
                     let data = ac.genWord();
                     if (data) {
                         ac.PreCreate(value["name"],value["password"],value["hint"],data).then(()=>{
+                            that.setState({
+                                confirming: false
+                            });
                             url.goPage(url.AccountCreate2,url.AccountCreate1);
                         }).catch(e=>{
                             Toast.fail(e.message,2);
+                            that.setState({
+                                confirming: false
+                            });
                         })
                     }
                 }catch (e) {
                     console.log(e.message);
+                    that.setState({
+                        confirming: false
+                    });
                 }
             }
-            that.setState({
-                confirming: false
-            });
+
         });
     }
 

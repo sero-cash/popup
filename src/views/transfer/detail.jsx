@@ -8,9 +8,21 @@ import {assetService} from "../../components/service/service";
 import Account from "../../components/account/account";
 import {decimals} from "../../components/tx/decimals";
 import {JsonRpc} from "../../service/jsonrpc";
+const bs58 = require('bs58');
 
 const jsonRpc = new JsonRpc();
 const utils = new Utils();
+
+function hexToBase58(hex) {
+    return bs58.encode(hexToBytes(hex));
+}
+
+function hexToBytes(hex) {
+    hex = hex.replace(/^0x/i, '');
+    for (var bytes = [], c = 0; c < hex.length; c += 2)
+        bytes.push(parseInt(hex.substr(c, 2), 16));
+    return bytes;
+}
 
 class TransferDetail extends Component{
 
@@ -20,6 +32,8 @@ class TransferDetail extends Component{
             state:"pending",
             txInfo:{},
             txState:'',
+            tos:[],
+            cmdType:''
         }
     }
 
@@ -29,37 +43,86 @@ class TransferDetail extends Component{
         const account = new Account()
         account.getCurrent().then(current=>{
             assetService.getTxDetail(current.tk,hash).then((tx)=>{
-                console.log("tx:",tx)
                 that.setState({
                     txInfo:tx,
                 })
             })
         })
 
-        // that.getTxState();
+        that.getTxState().catch();
     }
 
-    getTxState(){
-        const that = this;
+
+    async getTxState(){
         let hash = this.props.match.params.hash;
-        jsonRpc.seroRpc("sero_getTransactionReceipt",[hash],function (data) {
-            const rest = data.result;
-            if(rest){
-                if(new BigNumber(rest.status).comparedTo(0) === 1){
-                    that.setState({
-                        txState:<Tag>{lang.e().page.txDetail.contractSuccess}</Tag>
-                    })
-                }else{
-                    that.setState({
-                        txState:<Tag>{lang.e().page.txDetail.contractFailed}</Tag>
-                    })
+        const data = await jsonRpc.seroRpcAsync("sero_getTransactionReceipt",[hash]);
+
+        const rest = data.result;
+        let txState = '';
+        if(rest){
+            if(new BigNumber(rest.status).comparedTo(0) === 1){
+                txState=<Tag>{lang.e().page.txDetail.contractSuccess}</Tag>
+            }else{
+                txState=<Tag>{lang.e().page.txDetail.contractFailed}</Tag>
+            }
+        }
+        const txRest = await jsonRpc.seroRpcAsync("sero_getTransactionByHash",[hash]);
+
+        const txInfo = txRest.result;
+
+        if(txInfo){
+            const cmd = txInfo.stx.Desc_Cmd;
+            let cmdType = ''
+            if(cmd){
+                if(cmd.BuyShare){
+                    cmdType = "Buy Share";
+                }else if(cmd.RegistPool){
+                    cmdType = "Regist Pool";
+                }else if(cmd.ClosePool){
+                    cmdType = "Close Pool";
+                }else if(cmd.Contract){
+                    cmdType = "Contract";
                 }
             }
-        })
+
+            const tos = [];
+
+            if(!cmdType){
+                if(txInfo.stx.Tx1.Outs_P){
+                    for(let i=0;i<txInfo.stx.Tx1.Outs_P.length;i++){
+                        let to = hexToBase58(txInfo.stx.Tx1.Outs_P[i].PKr);
+                        if(txInfo.from !== to){
+                            tos.push(to)
+                        }
+                    }
+                }
+
+                if(txInfo.stx.Tx1.Outs_C){
+                    for(let i=0;i<txInfo.stx.Tx1.Outs_C.length;i++){
+                        let to = hexToBase58(txInfo.stx.Tx1.Outs_C[i].PKr);
+                        if(txInfo.from !== to){
+                            tos.push(to)
+                        }
+                    }
+                }
+            }else{
+                if (cmdType === "Contract"){
+                    tos.push(txInfo.to)
+                }
+            }
+
+            this.setState({
+                txState:txState,
+                tos:tos,
+                cmdType:cmdType
+            })
+
+        }
+
     }
 
     render() {
-        const {txInfo,txState} = this.state;
+        const {txInfo,txState,tos,cmdType} = this.state;
         let time;
         let assets;
         assets = txInfo.Tkn;
@@ -159,29 +222,40 @@ class TransferDetail extends Component{
                                 </div>
                             </Flex.Item>
                         </Flex>
-                        {/*<WhiteSpace size="lg" />*/}
-                        {/*{*/}
-                        {/*    txInfo.to === txInfo.From ?"":<Flex>*/}
-                        {/*        <Flex.Item>*/}
-                        {/*            <div style={{color:"#888"}}>*/}
-                        {/*                {lang.e().page.txDetail.to}:*/}
-                        {/*            </div>*/}
-                        {/*        </Flex.Item>*/}
-                        {/*        <Flex.Item style={{flexBasis: "50%"}} >*/}
-                        {/*            <div>*/}
-                        {/*                <div style={{overflowWrap: "break-word",fontSize:"10px"}}  onClick={()=>{*/}
-                        {/*                    copy(txInfo.to);*/}
-                        {/*                    Toast.success("Copy Successfully", 1);*/}
-                        {/*                }}>*/}
-                        {/*                    {txInfo.to}*/}
-                        {/*                    <Icon type="iconcopy" className="transfer-detail-copy-icon"/>*/}
-                        {/*                </div>*/}
-                        {/*            </div>*/}
+                        <WhiteSpace size="lg" />
+                        <Flex>
+                            <Flex.Item>
+                                <div style={{color:"#888"}}>
+                                    {lang.e().page.txDetail.to}:
+                                </div>
+                            </Flex.Item>
+                            <Flex.Item style={{flexBasis: "50%"}} >
+                                {
+                                    tos.map((to)=>{
+                                        return to?<div>
+                                            <div style={{overflowWrap: "break-word",fontSize:"10px"}}  onClick={()=>{
+                                                copy(to);
+                                                Toast.success("Copy Successfully", 1);
+                                            }}>
+                                                {to}
+                                                <Icon type="iconcopy" className="transfer-detail-copy-icon"/>
+                                            </div>
+                                        </div>:""
+                                    })
+                                }
+                            </Flex.Item>
+                        </Flex>
+                        <WhiteSpace size="lg" />
+                        {
+                            cmdType === 'Contract'?<Flex>
+                                <Flex.Item>
 
-                        {/*        </Flex.Item>*/}
-                        {/*    </Flex>*/}
-                        {/*}*/}
-
+                                </Flex.Item>
+                                <Flex.Item style={{flexBasis: "50%"}} >
+                                    {txState}
+                                </Flex.Item>
+                            </Flex>:cmdType
+                        }
 
                     </div>
                     <div>

@@ -9,6 +9,10 @@ import {decimals} from "../../components/tx/decimals";
 import {assetService} from "../../components/service/service";
 import copy from "copy-text-to-clipboard/index"
 import './dapp.css'
+import {pkrCrypte,pkrEncrypt,pkrDecrypt} from 'jsuperzk/dist/protocol/superzk/pkr'
+import utils,{toString,isNewVersion} from 'jsuperzk/dist/utils/utils'
+
+
 
 let web3 = new Web3();
 
@@ -37,6 +41,9 @@ const operation = {
         call: "call",
         estimateGas: "estimateGas",
         getInfo: "getInfo",
+        pkrCrypto: "pkrCrypto",
+        pkrEncrypt: "pkrEncrypt",
+        pkrDecrypt: "pkrDecrypt",
     }
 }
 
@@ -192,6 +199,37 @@ class Browser extends Component {
             msg.error = e.message
             return msg
             // Toast.fail(e.message,3)
+        }
+    }
+
+    async pkrCrypto(data){
+        const detail = await account.Detail(data.pk)
+        let isNew = isNewVersion(utils.toBuffer(detail.tk));
+        if(!isNew){
+            return new Promise((resovel,reject)=>{
+                reject("Only support v2 account");
+            })
+        }else{
+            const rest = pkrCrypte(data.data,detail.mainPKr,detail.tk,data.pkr);
+            return toString(rest);
+        }
+    }
+
+    async pkrEncrypt(data){
+        const rest = pkrEncrypt(data.data,data.pkr);
+        return toString(rest);
+    }
+
+    async pkrDecrypt(data){
+        const detail = await account.Detail(data.pk)
+        let isNew = isNewVersion(utils.toBuffer(detail.tk));
+        if(!isNew){
+            return new Promise((resovel,reject)=>{
+                reject("Only support v2 account");
+            })
+        }else{
+            const rest = pkrDecrypt(data.data,detail.mainPKr,detail.tk);
+            return toString(rest);
         }
     }
 
@@ -383,6 +421,30 @@ class Browser extends Component {
                         that.sendMessage(msg);
                     }).catch(error=>{
                         msg.error=error
+                        that.sendMessage(msg);
+                    });
+                } else if (msg.method === operation.method.pkrCrypto) {
+                    that.pkrCrypto(msg.data).then(rest=>{
+                        msg.data= rest;
+                        that.sendMessage(msg);
+                    }).catch(e=>{
+                        msg.error= typeof e === 'string'?e:e.message;
+                        that.sendMessage(msg);
+                    });
+                }  else if (msg.method === operation.method.pkrEncrypt) {
+                    that.pkrEncrypt(msg.data).then(rest=>{
+                        msg.data= rest;
+                        that.sendMessage(msg);
+                    }).catch(e=>{
+                        msg.error= typeof e === 'string'?e:e.message;
+                        that.sendMessage(msg);
+                    });
+                }  else if (msg.method === operation.method.pkrDecrypt) {
+                    that.pkrDecrypt(msg.data).then(rest=>{
+                        msg.data= rest;
+                        that.sendMessage(msg);
+                    }).catch(e=>{
+                        msg.error= typeof e === 'string'?e:e.message;
                         that.sendMessage(msg);
                     });
                 } else {

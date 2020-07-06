@@ -2,12 +2,13 @@ import React,{Component} from 'react';
 import { createForm, formShape } from 'rc-form';
 import {List, InputItem, WhiteSpace, Button, Icon, NavBar, Modal, Toast} from 'antd-mobile';
 import './thirdpay.css'
-import {lang, url,storage} from "../../config/common";
+import {lang, url, storage, keys} from "../../config/common";
 import {utils} from '../../config/utils';
 import {decimals} from "../../components/tx/decimals";
 import BigNumber from "bignumber.js";
 import Account from "../../components/account/account";
 import {Transactions} from "../../components/tx/transactions";
+import lstorage from "../../components/database/lstorage";
 
 const account = new Account();
 const transactions = new Transactions();
@@ -45,6 +46,7 @@ class Form extends React.Component {
     }
 
     componentDidMount() {
+
         this.init();
     }
 
@@ -69,7 +71,6 @@ class Form extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        console.error("test")
         const that = this;
         that.initPayInfo();
     }
@@ -93,9 +94,10 @@ class Form extends React.Component {
 
     async getAccount(cachePayInfo){
         const that = this;
+        let list = await account.Details();
+        let current = await account.getCurrent();
+        let detail = await account.Detail(current.address);
         if(cachePayInfo){
-            let list = await account.Details();
-            let detail = await account.getCurrent();
             if(cachePayInfo.from){
                 let existAccount = false;
                 for(let d of list){
@@ -113,13 +115,13 @@ class Form extends React.Component {
                     })
                 }else{
                     that.setState({
-                        accountDetail:list&&list.length>0?list[0]:{},
+                        accountDetail:detail,
                         accountList:list,
                     })
                 }
             }else{
                 that.setState({
-                    accountDetail:list&&list.length>0?list[0]:{},
+                    accountDetail:detail,
                     accountList:list,
                 })
             }

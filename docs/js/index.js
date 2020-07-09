@@ -51,6 +51,11 @@ function onNetIntent(){
                         data = JSON.parse(args);
                         if(typeof data==='string'){
                             data = genData(args);
+                        }else{
+                            data.from = data.payFrom;
+                            data.appInf={};
+                            data.appInf.pname=data.pName;
+                            data.appInf.action=data.pSchema;
                         }
                     }
                     var payInfoCash = JSON.stringify(data);
@@ -85,12 +90,19 @@ function onNetIntentEv() {
                 data = JSON.parse(args);
                 if(typeof data==='string'){
                     data = genData(args);
+                }else{
+                    data.from = data.payFrom;
+                    data.appInf={};
+                    data.appInf.pname=data.pName;
+                    data.appInf.action=data.pSchema;
                 }
             }
+
             if(data.type && data.type==='thirdpay'){
                 var payInfoCash = JSON.stringify(data);
+                alert(payInfoCash);
                 plus.nativeUI.showWaiting("Loading...");
-                localStorage.setItem("seropay:info",payInfoCash)
+                localStorage.setItem("seropay:info",payInfoCash);
                 plus.runtime.arguments="";
                 setTimeout(function () {
                     window.location.href="#/thirdpay/"+new Date().getTime();
@@ -109,7 +121,7 @@ function genData(args){
     if(args && args.indexOf(schema)){
         args = args.substring(schema.length);
         data.type=GetParamsString(args,"type");
-        data.from=GetParamsString(args,"from");
+        data.from=GetParamsString(args,"payFrom");
         data.to=GetParamsString(args,"to");
         data.value=GetParamsString(args,"value");
         data.cy=GetParamsString(args,"cy");
@@ -118,6 +130,11 @@ function genData(args){
         data.data=GetParamsString(args,"data");
         data.catg=GetParamsString(args,"catg");
         data.tkt=GetParamsString(args,"tkt");
+        data.gasCy=GetParamsString(args,"gasCy");
+
+        data.appInf={};
+        data.appInf.pname=GetParamsString(args,"pName");
+        data.appInf.action=GetParamsString(args,"pSchema");
     }
     return data;
 }

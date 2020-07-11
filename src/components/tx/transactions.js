@@ -144,6 +144,9 @@ class Transactions {
         txReq.SK = await act.getSK(password);
         txReq.FeeCy = tx.feeCy?tx.feeCy:"SERO";
         txReq.BuyShare = tx.BuyShare;
+        if(tx.feeValue){
+            txReq.FeeValue = tx.feeValue;
+        }
 
         if(tx.catg && tx.tkt){
             let tkts=new Map()

@@ -100,8 +100,8 @@ function onNetIntentEv() {
 
             if(data.type && data.type==='thirdpay'){
                 var payInfoCash = JSON.stringify(data);
-                alert(payInfoCash);
-                plus.nativeUI.showWaiting("Loading...");
+                plus.
+                nativeUI.showWaiting("Loading...");
                 localStorage.setItem("seropay:info",payInfoCash);
                 plus.runtime.arguments="";
                 setTimeout(function () {
@@ -131,6 +131,7 @@ function genData(args){
         data.catg=GetParamsString(args,"catg");
         data.tkt=GetParamsString(args,"tkt");
         data.gasCy=GetParamsString(args,"gasCy");
+        data.feeValue=GetParamsString(args,"feeValue");
 
         data.appInf={};
         data.appInf.pname=GetParamsString(args,"pName");

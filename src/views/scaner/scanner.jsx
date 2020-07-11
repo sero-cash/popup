@@ -19,6 +19,7 @@ function onmarked(type, result) {
                 try{
                     const data = JSON.parse(result);
                     if(typeof data === 'object'){
+                        data.from=data.payFrom;
                         storage.set("seropay:info",data);
                         setTimeout(function () {
                             url.goPage(url.ThirdPay+"/"+new Date().getTime());

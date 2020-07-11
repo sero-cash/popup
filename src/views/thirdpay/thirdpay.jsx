@@ -8,7 +8,6 @@ import {decimals} from "../../components/tx/decimals";
 import BigNumber from "bignumber.js";
 import Account from "../../components/account/account";
 import {Transactions} from "../../components/tx/transactions";
-import lstorage from "../../components/database/lstorage";
 
 const account = new Account();
 const transactions = new Transactions();
@@ -41,7 +40,7 @@ class Form extends React.Component {
             gasPrice:'0x0',
             value:'0x0',
             cy:'SERO',
-            data:'0x'
+            data:'0x',
         },
     }
 
@@ -178,6 +177,10 @@ class Form extends React.Component {
         data.data=cachePayInfo.data;
         data.catg=cachePayInfo.catg;
         data.tkt=cachePayInfo.tkt;
+        data.feeCy = cachePayInfo.gasCy?cachePayInfo.gasCy:"SERO";
+        data.feeValue = cachePayInfo.feeValue?cachePayInfo.feeValue:null;
+
+
         if (!password) {
             Toast.fail(lang.e().page.txTransfer.inputPassword)
         } else {
@@ -213,23 +216,25 @@ class Form extends React.Component {
             },2000)
         }else{
             const txParams = {hash:hash};
-            if(plus&&plus.os){
-                if ( plus.os.name === "Android" ) {
-                    plus.runtime.launchApplication( {pname:appInfo.pname,newTask:false,extra: txParams}
-                        , function ( e ) {
+            setTimeout(function () {
+                url.goPage(url.payResult(hash))
+            },1500)
+
+            setTimeout(function () {
+                if(plus&&plus.os){
+                    if ( plus.os.name === "Android" ) {
+                        plus.runtime.launchApplication( {pname:appInfo.pname,newTask:false,extra: txParams}
+                            , function ( e ) {
+                                Toast.fail("Can not open launcher",3);
+                            } );
+                    } else if ( plus.os.name === "iOS" ) {
+                        const iosParams = jsonToUrlParams(txParams);
+                        plus.runtime.launchApplication( {action:`${appInfo.action}&${iosParams}`}, function ( e ) {
                             Toast.fail("Can not open launcher",3);
                         } );
-                } else if ( plus.os.name === "iOS" ) {
-                    const iosParams = jsonToUrlParams(txParams);
-                    plus.runtime.launchApplication( {action:`${appInfo.action}&${iosParams}`}, function ( e ) {
-                        Toast.fail("Can not open launcher",3);
-                    } );
+                    }
                 }
-            }else{
-                setTimeout(function () {
-                    url.goPage(url.payResult(hash))
-                },2000)
-            }
+            },3000)
         }
     }
 
@@ -237,7 +242,14 @@ class Form extends React.Component {
 
         const {accountDetail,accountList,showAccount,cachePayInfo} = this.state;
 
-        const fee = decimals.convert(new BigNumber(cachePayInfo.gas).multipliedBy(new BigNumber(cachePayInfo.gasPrice)).toString(10),"SERO");
+        let feeCy = "SERO";
+        let fee = decimals.convert(new BigNumber(cachePayInfo.gas).multipliedBy(new BigNumber(cachePayInfo.gasPrice)).toString(10),feeCy);
+
+        if(cachePayInfo.feeValue && cachePayInfo.gasCy){
+            fee = decimals.convert(new BigNumber(cachePayInfo.feeValue),cachePayInfo.gasCy);
+            feeCy = cachePayInfo.gasCy;
+        }
+
         const gasPrice = new BigNumber(cachePayInfo.gasPrice).div(new BigNumber(10).pow(9)).toString(10);
         const amount = decimals.convert(cachePayInfo.value,cachePayInfo.cy);
         return (
@@ -264,7 +276,7 @@ class Form extends React.Component {
                     <InputItem editable={false} value={`${amount} ${cachePayInfo.cy}`}>
                         <span className={"tdpy-span"}>{lang.e().page.txDetail.amount}</span>
                     </InputItem>
-                    <List.Item multipleLine extra={<span style={{color:'#000'}}>{fee} SERO</span>} wrap>
+                    <List.Item multipleLine extra={<span style={{color:'#000'}}>{fee} {feeCy}</span>} wrap>
                         <span className={"tdpy-span"}>{lang.e().page.txDetail.fee}</span>
                         <List.Item.Brief>
                             <span style={{fontSize:'10px'}}>Gas: {new BigNumber(cachePayInfo.gas,16).toString(10)} * GasPrice: {gasPrice} Gta</span>

@@ -144,6 +144,11 @@ const versionControlDataCn = [
         icon: <div className="dapp-icon"><img src="https://ahoj.xyz/logo64.png"  className="dapp-img"/></div>,
         text: `AHOJ`,
         url:"https://ahoj.xyz/login",
+    },
+    {
+        icon: <div className="dapp-icon"><img src="https://makt.io/logo.png"  className="dapp-img"/></div>,
+        text: `MAKT`,
+        url:"https://makt.io",
     }
 ];
 
@@ -254,6 +259,11 @@ const versionControlDataEn = [
         icon: <div className="dapp-icon"><img src="https://ahoj.xyz/logo64.png"  className="dapp-img"/></div>,
         text: `AHOJ`,
         url:"https://ahoj.xyz/login",
+    },
+    {
+        icon: <div className="dapp-icon"><img src="https://makt.io/logo.png"  className="dapp-img"/></div>,
+        text: `MAKT`,
+        url:"https://makt.io",
     }
 ];
 

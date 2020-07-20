@@ -32,12 +32,12 @@
     }
 
     function checkUpdate(wgtVer){
-        var checkUrl="https://sero-media-1256272584.cos.ap-shanghai.myqcloud.com/popup/version.json?"+new Date().getTime();
+        var checkUrl="https://sero-1259797294.file.myqcloud.com/popup/version.json?"+new Date().getTime();
         if(!isZH()){
             checkUrl = "http://popup-github.sero.cash/version.json?"+new Date().getTime();
         }
         if(isAndroid){
-            checkUrl="https://sero-media-1256272584.cos.ap-shanghai.myqcloud.com/popup/android.json?"+new Date().getTime();
+            checkUrl="https://sero-1259797294.file.myqcloud.com/popup/android.json?"+new Date().getTime();
             if(!isZH()){
                 checkUrl = "http://popup-github.sero.cash/android.json?"+new Date().getTime();
             }
@@ -64,6 +64,9 @@
                     plus.nativeUI.closeWaiting();
                     openApp()
                 }
+            }else{
+                console.log(err);
+                openApp()
             }
         })
     }
@@ -71,6 +74,7 @@
     function httpGet(url, cb) {
         if (plus && plus.net) {
             const xhr = new plus.net.XMLHttpRequest();
+            xhr.timeout = 20 * 1000;
             xhr.onreadystatechange = function () {
                 switch (xhr.readyState) {
                     case 0:

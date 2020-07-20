@@ -136,6 +136,11 @@ const versionControlDataCn = [
         url:"https://uhexio.gitee.io/sero-mpos/",
     },
     {
+        icon: <div className="dapp-icon"><img src="https://uhexio.gitee.io/sero-skit/assets/icon/icon.png"  className="dapp-img"/></div>,
+        text: `Doraemon`,
+        url:"https://uhexio.gitee.io/sero-skit/",
+    },
+    {
         icon: <div className="dapp-icon"><img src="https://gail.com.de/logo.png"  className="dapp-img"/></div>,
         text: `GAIL`,
         url:"https://gail.com.de",

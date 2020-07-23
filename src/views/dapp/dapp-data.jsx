@@ -105,11 +105,11 @@ const versionControlDataCn = [
         text: `SToken`,
         url:"https://edenworkroom.gitee.io/stoken/",
     },
-    {
-        icon: <div className="dapp-icon"><img src="https://sero.paretogame.com/logo.png"  className="dapp-img"/></div>,
-        text: `Pareto Game`,
-        url:"https://sero.paretogame.com",
-    },
+    // {
+    //     icon: <div className="dapp-icon"><img src="https://sero.paretogame.com/logo.png"  className="dapp-img"/></div>,
+    //     text: `Pareto Game`,
+    //     url:"https://sero.paretogame.com",
+    // },
     {
         icon: <div className="dapp-icon"><img src="https://seroclub.gitee.io/game/static/logo.png"  className="dapp-img"/></div>,
         text: `SERO CLUB`,
@@ -151,10 +151,16 @@ const versionControlDataCn = [
         url:"https://ahoj.xyz/login",
     },
     {
-        icon: <div className="dapp-icon"><img src="https://makt.io/logo.png"  className="dapp-img"/></div>,
+        icon: <div className="dapp-icon"><img src="https://makt.io/logo.png" className="dapp-img"/></div>,
         text: `MAKT`,
-        url:"https://makt.io",
-    }
+        url: "https://makt.io",
+    },
+    {
+        icon: <div className="dapp-icon"><img src="https://dbs-game.gitee.io/dbs/logo.png" className="dapp-img"/></div>,
+        text: `DBS`,
+        url: "https://dbs-game.gitee.io/dbs/index.html",
+    },
+
 ];
 
 
@@ -225,11 +231,11 @@ const versionControlDataEn = [
         text: `SToken`,
         url:"https://edenworkroom.github.io/stoken/",
     },
-    {
-        icon: <div className="dapp-icon"><img src="https://sero.paretogame.com/logo.png"  className="dapp-img"/></div>,
-        text: `Pareto Game`,
-        url:"https://sero.paretogame.com",
-    },
+    // {
+    //     icon: <div className="dapp-icon"><img src="https://sero.paretogame.com/logo.png"  className="dapp-img"/></div>,
+    //     text: `Pareto Game`,
+    //     url:"https://sero.paretogame.com",
+    // },
     {
         icon: <div className="dapp-icon"><img src="https://seroclub.gitee.io/game/static/logo.png"  className="dapp-img"/></div>,
         text: `SERO CLUB`,

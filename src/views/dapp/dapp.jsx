@@ -134,7 +134,7 @@ class DApp extends Component {
                 <div style={{textAlign: 'center'}}>
                     <Grid data={popupData} activeStyle={false}  onClick={
                         (e,index)=>{
-                            url.goPage(url.browser(e.url),url.DApp);
+                            url.goPage(url.browser(e.url+"?"+new Date().getTime()),url.DApp);
                         }
                     } hasLine={false}/>
                 </div>

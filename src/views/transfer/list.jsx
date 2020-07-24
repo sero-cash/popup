@@ -37,7 +37,9 @@ class TransferList extends Component{
             isLoading: true,
             height: document.documentElement.clientHeight-45,
             hasMore:true,
-            address:''
+            address:'',
+            latestBlock:0,
+            confirmMap:new Map
         }
     }
 
@@ -70,7 +72,7 @@ class TransferList extends Component{
                 });
             })
 
-        }, 600);
+        }, 200);
 
     }
 
@@ -97,6 +99,7 @@ class TransferList extends Component{
         if (that.state.isLoading) {
             return;
         }
+
         console.log('reach end', event);
         that.setState({ isLoading: true });
         Toast.loading("loading...",2)
@@ -117,28 +120,71 @@ class TransferList extends Component{
         })
     };
 
+        async getSyncState(){
+        let act = await account.getCurrent();
+        const data = await assetService.getSyncState(act.tk);
+        console.log(data.latestBlock);
+        this.setState({
+            latestBlock:data.latestBlock
+        })
+
+    }
+
     async initTxList(count){
         if(!count){
             count = NUM_ROWS;
         }else{
             count = pageIndex*NUM_ROWS
         }
+        await this.getSyncState()
         let act = await account.getCurrent();
         // let address = act.address;
         let currency = this.props.match.params.currency;
-        return await assetService.getTxList(act.tk,currency,count );
+        const txList = await assetService.getTxList(act.tk,currency,count );
+        console.log(txList);
+
+
+        const confirmingList = await assetService.getPendingAndConfirming(act.tk,currency)
+
+        const confirmTemp = [];
+        const pendingHash = [];
+        for(let a of txList){
+            if(a.State === 'pending'){
+                pendingHash.push(a.TxHash);
+            }
+        }
+
+        const confirmMap = new Map();
+        for(let b of confirmingList){
+            if(pendingHash.indexOf(b.TxHash)<0){
+                confirmTemp.push(b)
+            }
+            confirmMap.set(b.TxHash,b);
+        }
+
+        this.setState({
+            confirmMap:confirmMap
+        })
+
+        confirmTemp.reverse()
+        return txList.concat(confirmTemp);
+
     }
 
     render() {
         let currency = this.props.match.params.currency;
 
-        const {datas,hasMore,isLoading} = this.state;
+        const {datas,hasMore,isLoading,latestBlock,confirmMap} = this.state;
         let renderTx = [];
 
         if(datas && datas.length>0){
             for(let i=datas.length-1;i>=0;i--){
                 let time;
-                const tx = datas[i];
+                let tx = datas[i];
+                if(confirmMap.has(tx.TxHash) && confirmMap.get(tx.TxHash).Num){
+                    tx.Num = confirmMap.get(tx.TxHash).Num;
+                    tx.isConfirm = true;
+                }
                 if(tx && tx.Time){
                     time = utils.formatDate(tx.Time)
                 }
@@ -163,15 +209,25 @@ class TransferList extends Component{
                 }
 
                 renderTx.push(
-                    <Item key={i} multipleLine
+                    <Item key={i} style={tx.State === "pending"||tx.isConfirm?{opacity: 0.5}:{}} multipleLine
                           onClick={()=>{
-                              storage.set(keys.txInfoKey("",tx.TxHash),tx);
-                              url.goPage(url.transferDetail(tx.TxHash),url.transferList(currency));
+                              if(tx.Num){
+                                  storage.set(keys.txInfoKey("",tx.TxHash),tx);
+                                  url.goPage(url.transferDetail(tx.TxHash),url.transferList(currency));
+                              }
                           }}
                           thumb={<Icon type={icontype} size="lg" style={{color:`${iconcolor}`}}/> } extra={<span className="income-span" style={{color:iconcolor}}>{symbol}{value}</span>}
                     >
-                        <span style={{fontSize: '14px',color:"#64727c"}}>{utils.ellipsisHash(tx.TxHash)}</span>
-                        <Brief style={{fontSize: '12px',color:"#c4c7cc"}}>{time}</Brief>
+                        <span style={{fontSize: '14px',color:"#64727c"}}>{utils.ellipsisHash(tx.TxHash)}</span><br/>
+                        <span style={{fontSize: '14px',color:"#64727c"}}>
+                            {lang.e().page.txDetail.block +" : "+ (tx.Num === 99999999999?0:tx.Num)}
+                        </span><br/>
+                        <span style={{fontSize: '14px',color:"#64727c"}}>
+                            {tx.isConfirm?lang.e().page.txDetail.pending +" : "+(tx.Num?(12 - tx.Num + latestBlock + 1):0)+"/12": ""}
+                        </span>
+                        <Brief style={{fontSize: '12px',color:"#c4c7cc"}}>
+                            {time}
+                        </Brief>
                     </Item>
                 )
             }

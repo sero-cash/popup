@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {WhiteSpace, Card, Icon, List, NavBar, Button, Modal, Toast, SwipeAction, Progress} from 'antd-mobile'
+import {WhiteSpace, Card, Icon, List, NavBar, Button, Modal, Toast, SwipeAction, Badge} from 'antd-mobile'
 import Account from "../../components/account/account";
 import Utils from "../../config/utils";
 import Layout from "../layout/layout";
@@ -51,7 +51,8 @@ class Home extends Component {
             assets: _assets,
             healthy:'normal',//red dead,yellow syncing,green:normal
             healthData:'',
-            tk:''
+            tk:'',
+            confirmingMap:new Map()
         }
     }
 
@@ -214,11 +215,13 @@ class Home extends Component {
             if(assets){
                 storage.set(keys.account.assets,that._mapToObj(assets))
             }
+            const confirmingMap = await assetService.getPendingAndConfirmingGroupByCy(detail.tk);
             that.setState({
                 detail: detail,
                 account: account,
                 tk:detail.tk,
                 assets: assets,
+                confirmingMap:confirmingMap
             })
         }
     }
@@ -252,7 +255,7 @@ class Home extends Component {
     render() {
         let that = this;
         let assetsArr = [];
-        let {current, detail, assets,healthy,healthData} = this.state;
+        let {current, detail, assets,healthy,healthData,confirmingMap} = this.state;
         let mainPKr = "";
         let currentPKr = "";
         let seroTotal = 0;
@@ -272,6 +275,11 @@ class Home extends Component {
             stateDesc='Synchronization failed!'
         }
 
+        const tempConfirmMap = new Map();
+        for(let [k,v] of confirmingMap){
+            tempConfirmMap.set(k,v)
+        } ;
+        console.log("tempConfirmMap",tempConfirmMap,confirmingMap);
 
         if (current) {
             mainPKr = detail.mainPKr;
@@ -287,6 +295,7 @@ class Home extends Component {
                         }
                     }
                     seroTotal = new BigNumber(seroTotal).plus(cyAmount)
+                    const txNum  = tempConfirmMap.get(cy);
                     assetsArr.push(
                         <SwipeAction key={i++}
                                      style={{backgroundColor: 'gray'}}
@@ -306,61 +315,113 @@ class Home extends Component {
                                      onClose={() => console.log('global close')}
                         >
                             <Item extra={
-                                <div>
-                                    <div className="home-list-item-number">{amount}</div>
+                                  <div>
+                                    <Badge text={txNum}/>
                                     <Brief>
                                         {/*<div className="home-list-item-money">{that.state.seroPriceInfo.type}{cyAmount.toFixed(3)}</div>*/}
-                                        <div className="home-list-item-money"></div>
+                                        <div className="home-list-item-number">{amount}</div>
                                     </Brief>
-                                </div>} align="top"
-                                  thumb={<div className="currency-icon-border"><img src={that.renLogo(cy)} width={16}/>
-                                  </div>} multipleLine
+                                  </div>}
+
+                                  align="top"
+                                  thumb={
+                                      <div className="currency-icon-border"><img src={that.renLogo(cy)} width={16}/></div>
+                                  }
+                                  multipleLine
                                   onClick={() => {
                                       url.goPage("/transfer/list/" + cy)
                                   }}>
+
                                 <p className="home-list-item-name">{cy}</p>
                             </Item>
                         </SwipeAction>
                     )
+
+                    tempConfirmMap.delete(cy);
                 })
             }
 
-
             if (assetsArr.length === 0) {
-                assetsArr = <SwipeAction
-                    style={{backgroundColor: 'gray'}}
-                    autoClose
-                    right={[
-                        {
-                            text: 'Transfer',
-                            onPress: () => {
-                                url.goPage(url.transfer("SERO")), url.Home
-                            },
-                            style: {backgroundColor: '#24bdd2', color: 'white'},
-                        }
-                    ]}
-                    onOpen={() => {
-                        url.goPage(url.transfer("SERO")), url.Home
-                    }}
-                    onClose={() => console.log('global close')}
-                >
-                    <Item extra={
-                        <div>
-                            <div className="home-list-item-number">0.00</div>
-                            <Brief>
-                                <div className="home-list-item-money">&nbsp;</div>
-                            </Brief>
-                        </div>}
-                          align="top"
-                          thumb={<div className="currency-icon-border"><img src={that.renLogo("SERO")} width={16}/></div>}
-                          multipleLine
-                          onClick={() => {
-                              url.goPage(url.transferList("SERO"), url.Home);
-                          }}
+                const cy = "SERO"
+                const txNum  = tempConfirmMap.get(cy);
+                assetsArr.push(
+                    <SwipeAction
+                        style={{backgroundColor: 'gray'}}
+                        autoClose
+                        right={[
+                            {
+                                text: 'Transfer',
+                                onPress: () => {
+                                    url.goPage(url.transfer(cy)), url.Home
+                                },
+                                style: {backgroundColor: '#24bdd2', color: 'white'},
+                            }
+                        ]}
+                        onOpen={() => {
+                            url.goPage(url.transfer(cy)), url.Home
+                        }}
+                        onClose={() => console.log('global close')}
                     >
-                        <p className="home-list-item-name">SERO</p>
-                    </Item>
-                </SwipeAction>
+                        <Item extra={
+                            <div>
+                                <Badge text={tempConfirmMap.get(cy)}/>
+                                <Brief>
+                                    <div className="home-list-item-number">0.00</div>
+                                </Brief>
+                            </div>}
+                              align="top"
+                              thumb={<div className="currency-icon-border"><img src={that.renLogo(cy)} width={16}/></div>}
+                              multipleLine
+                              onClick={() => {
+                                  url.goPage(url.transferList(cy), url.Home);
+                              }}
+                        >
+                            <p className="home-list-item-name">{cy}</p>
+                        </Item>
+                    </SwipeAction>
+                )
+
+                tempConfirmMap.delete(cy);
+            }
+
+            for(let [cy,v] of tempConfirmMap){
+                assetsArr.push(
+                    <SwipeAction
+                        style={{backgroundColor: 'gray'}}
+                        autoClose
+                        right={[
+                            {
+                                text: 'Transfer',
+                                onPress: () => {
+                                    url.goPage(url.transfer(cy)), url.Home
+                                },
+                                style: {backgroundColor: '#24bdd2', color: 'white'},
+                            }
+                        ]}
+                        onOpen={() => {
+                            url.goPage(url.transfer(cy)), url.Home
+                        }}
+                        onClose={() => console.log('global close')}
+                    >
+                        <Item extra={
+                            <div>
+                                <Badge text={v}/>
+                                <Brief>
+                                    <div className="home-list-item-number">0.00</div>
+                                </Brief>
+                            </div>}
+                              align="top"
+                              thumb={<div className="currency-icon-border"><img src={that.renLogo(cy)} width={16}/></div>}
+                              multipleLine
+                              onClick={() => {
+                                  url.goPage(url.transferList(cy), url.Home);
+                              }}
+                        >
+                            <p className="home-list-item-name">{cy}</p>
+                        </Item>
+                    </SwipeAction>
+                )
+
             }
         }
         return <Layout selectedTab="home">
@@ -430,7 +491,9 @@ class Home extends Component {
 
                 <div className="am-list">
                     <div className="am-list-header" style={{background: "#fdfdfd"}}>
-                        <div className="home-list-title"><Icon type={syncState} color={stateColor} size="small" style={{width:"14px",height:"14px"}}/> {lang.e().page.wallet.Assets} {<span style={{fontSize:'12px'}}>{stateDesc}</span>} </div>
+                        <div className="home-list-title">
+                            <Icon type={syncState} color={stateColor} size="small" style={{width:"14px",height:"14px"}}/> {lang.e().page.wallet.Assets} {<span style={{fontSize:'12px'}}>{stateDesc}</span>}
+                        </div>
                     </div>
                 </div>
                 <WhiteSpace size="lg"/>

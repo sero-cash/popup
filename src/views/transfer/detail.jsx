@@ -33,7 +33,8 @@ class TransferDetail extends Component{
             txInfo:{},
             txState:'',
             tos:[],
-            cmdType:''
+            cmdType:'',
+            blockNum:0,
         }
     }
 
@@ -45,6 +46,17 @@ class TransferDetail extends Component{
             assetService.getTxDetail(current.tk,hash).then((tx)=>{
                 that.setState({
                     txInfo:tx,
+                })
+            }).catch((e)=>{
+                assetService.getPendingAndConfirming(current.tk).then(datas=>{
+                    for(let d of datas){
+                        if(hash === d.TxHash){
+                            d.Fee = decimals.convert(new BigNumber(d.GasUsed).multipliedBy(new BigNumber(d.GasPrice)),"SERO")
+                            that.setState({
+                                txInfo:d,
+                            })
+                        }
+                    }
                 })
             })
         })
@@ -71,6 +83,9 @@ class TransferDetail extends Component{
         const txInfo = txRest.result;
 
         if(txInfo){
+            if(rest){
+                txInfo.Num = new BigNumber(rest.blockNumber).toNumber()
+            }
             const cmd = txInfo.stx.Desc_Cmd;
             let cmdType = ''
             if(cmd){
@@ -112,6 +127,7 @@ class TransferDetail extends Component{
             }
 
             this.setState({
+                blockNum:txInfo.Num,
                 txState:txState,
                 tos:tos,
                 cmdType:cmdType
@@ -122,7 +138,7 @@ class TransferDetail extends Component{
     }
 
     render() {
-        const {txInfo,txState,tos,cmdType} = this.state;
+        const {txInfo,txState,tos,cmdType,blockNum} = this.state;
         let time;
         let assets;
         assets = txInfo.Tkn;
@@ -156,7 +172,7 @@ class TransferDetail extends Component{
             time = utils.formatDate(txInfo.Time)
         }
 
-        return <div style={{height:document.documentElement.clientHeight}} className="transfer-detail-bg">
+        return <div style={{height:document.documentElement.clientHeight,opacity:"pending" === txInfo.State ||txInfo.isConfirm?0.5:1}} className="transfer-detail-bg">
             <NavBar
                 icon={<Icon type="left" style={{color:"#f7f7f7"}}/>}
                 onLeftClick={() => {
@@ -172,8 +188,8 @@ class TransferDetail extends Component{
                 <div className="transfer-detail" style={{height:document.documentElement.clientHeight*0.8}}>
                     <div className="transfer-detail-indiv0">
 
-                        <Icon type={txInfo.State === "pending"?"icondengdaichuli":"iconchenggongtishi"} size="lg" className="transfer-detail-indiv0-icon"/>
-                        <h3>{"pending" === txInfo.State?lang.e().page.txDetail.pending:lang.e().page.txDetail.success}</h3>
+                        <Icon type={txInfo.State === "pending"|| txInfo.isConfirm?"icondengdaichuli":"iconchenggongtishi"} size="lg" className="transfer-detail-indiv0-icon"/>
+                        <h3>{"pending" === txInfo.State || txInfo.isConfirm?lang.e().page.txDetail.pending:lang.e().page.txDetail.success}</h3>
                         <span  className="transfer-detail-indiv0-span">{time}</span>
                     </div>
                     <div className="transfer-detail-indiv1">
@@ -285,7 +301,7 @@ class TransferDetail extends Component{
                                 </Flex.Item>
                                 <Flex.Item style={{flexBasis: "50%"}} >
                                     <div style={{color:"#007bff"}}>
-                                        {txInfo.Num===99999999999?"0":txInfo.Num}
+                                        {blockNum===99999999999?0:blockNum}
                                     </div>
                                 </Flex.Item>
                             </Flex>

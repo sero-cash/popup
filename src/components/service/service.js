@@ -134,6 +134,55 @@ class AssetService {
             })
         })
     }
+
+    getPendingAndConfirming(tk,cy){
+        return new Promise(function (resolve, reject) {
+            popservice.getPendingAndConfirming(tk,function (msg) {
+                console.log("getPendingAndConfirming",msg);
+                if (msg.error) {
+                    reject(msg.error)
+                } else {
+                    const datas = msg.data;
+                    if(cy){
+                        const restArr = [];
+                        for(let data of datas){
+                            if(data.Tkn.has(cy)){
+                                restArr.push(data);
+                            }
+                        }
+                        resolve(restArr)
+                    }else{
+                        resolve(datas)
+                    }
+                }
+            })
+        })
+    }
+
+    getPendingAndConfirmingGroupByCy(tk){
+        return new Promise(function (resolve, reject) {
+            console.log("tl",tk);
+            popservice.getPendingAndConfirming(tk,function (msg) {
+                console.log("getPendingAndConfirming",msg);
+                if (msg.error) {
+                    reject(msg.error)
+                } else {
+                    const datas = msg.data;
+                    const restMap = new Map();
+                    for(let data of datas){
+                        for(let [cy,v] of data.Tkn){
+                            if(restMap.has(cy)){
+                                restMap.set(cy,restMap.get(cy)+1)
+                            }else{
+                                restMap.set(cy,1)
+                            }
+                        }
+                    }
+                    resolve(restMap)
+                }
+            })
+        })
+    }
 }
 
 const assetService = new AssetService();

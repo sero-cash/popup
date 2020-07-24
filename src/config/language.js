@@ -142,7 +142,7 @@ class Language {
             txDetail: {
                 title: "Transaction info",
                 success: "Success",
-                pending: "Pending",
+                pending: "Confirming",
                 amount: "Amount",
                 fee: "Fee",
                 from: "From",
@@ -386,7 +386,7 @@ class Language {
 
             txDetail: {
                 title: "交易详情",
-                pending: "处理中",
+                pending: "确认中",
                 success: "交易成功",
                 amount: "金额",
                 fee: "费用",

@@ -1,5 +1,5 @@
 import Utils from "../../config/utils";
-import {keys} from "../../config/common";
+import {keys,storage} from "../../config/common";
 import lstorage from "../database/lstorage";
 import {assetService} from "../service/service";
 import {accountService} from './accountService'
@@ -221,6 +221,13 @@ class Account {
         // console.log(JSON.stringify(info))
         await lstorage.set(keys.account.current, info);
     }
+
+    isMyPKr(pkr) {
+        const current = storage.get(keys.account.current);
+        console.log("isMyPKr,",jsuperzk.account.isMyPKr(current.tk,pkr));
+        return jsuperzk.account.isMyPKr(current.tk,pkr)
+    }
+
 
     async setDefaultCurrent() {
         const that = this;

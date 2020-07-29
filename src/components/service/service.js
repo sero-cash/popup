@@ -163,7 +163,6 @@ class AssetService {
         return new Promise(function (resolve, reject) {
             console.log("tl",tk);
             popservice.getPendingAndConfirming(tk,function (msg) {
-                console.log("getPendingAndConfirming",msg);
                 if (msg.error) {
                     reject(msg.error)
                 } else {

@@ -21,6 +21,7 @@ const Brief = Item.Brief;
 
 const NUM_ROWS = 10;
 let pageIndex = 1;
+let intervarlId = null;
 
 class TransferList extends Component{
 
@@ -74,13 +75,29 @@ class TransferList extends Component{
 
         }, 200);
 
+        if(intervarlId){
+            clearInterval(intervarlId);
+        }
+
+        intervarlId = setInterval(()=>{
+            that.initTxList(10).then(_data=>{
+                that.setState({
+                    datas: _data,
+                    height: hei,
+                    refreshing: false,
+                    isLoading: false,
+                    hasMore:_data.length>=10,
+                });
+            })
+        },10*1000)
+
     }
 
     onRefresh = () => {
         let that = this;
         that.setState({ refreshing: true, isLoading: true ,datas:[]});
         // simulate initial Ajax
-        Toast.loading("loading...",2)
+        Toast.loading("loading...",1)
         that.initTxList().then(_data=>{
             that.setState({
                 datas: _data,
@@ -100,9 +117,8 @@ class TransferList extends Component{
             return;
         }
 
-        console.log('reach end', event);
         that.setState({ isLoading: true });
-        Toast.loading("loading...",2)
+        Toast.loading("loading...",1)
         that.initTxList(++pageIndex).then((_data)=>{
             if(_data.length > that.state.datas.length){
                 that.setState({
@@ -123,7 +139,6 @@ class TransferList extends Component{
         async getSyncState(){
         let act = await account.getCurrent();
         const data = await assetService.getSyncState(act.tk);
-        console.log(data.latestBlock);
         this.setState({
             latestBlock:data.latestBlock
         })
@@ -141,9 +156,8 @@ class TransferList extends Component{
         // let address = act.address;
         let currency = this.props.match.params.currency;
         const txList = await assetService.getTxList(act.tk,currency,count );
-        console.log(txList);
 
-
+        // console.log("txList",txList);
         const confirmingList = await assetService.getPendingAndConfirming(act.tk,currency)
 
         const confirmTemp = [];
@@ -208,6 +222,10 @@ class TransferList extends Component{
                     iconcolor = "#f47402"
                 }
 
+                if(tx.State !== "pending" && tx.isConfirm && account.isMyPKr(tx.From)){
+                    value = "0";
+                }
+
                 renderTx.push(
                     <Item key={i} style={tx.State === "pending"||tx.isConfirm?{opacity: 0.5}:{}} multipleLine
                           onClick={()=>{
@@ -223,7 +241,7 @@ class TransferList extends Component{
                             {lang.e().page.txDetail.block +" : "+ (tx.Num === 99999999999?0:tx.Num)}
                         </span><br/>
                         <span style={{fontSize: '14px',color:"#64727c"}}>
-                            {tx.isConfirm?lang.e().page.txDetail.pending +" : "+(tx.Num?(12 - tx.Num + latestBlock + 1):0)+"/12": ""}
+                            {tx.isConfirm?lang.e().page.txDetail.pending +" : "+(tx.Num?((12 - tx.Num + latestBlock )>=0?(12 - tx.Num + latestBlock ):0):0)+"/12": ""}
                         </span>
                         <Brief style={{fontSize: '12px',color:"#c4c7cc"}}>
                             {time}

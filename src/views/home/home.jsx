@@ -278,8 +278,7 @@ class Home extends Component {
         const tempConfirmMap = new Map();
         for(let [k,v] of confirmingMap){
             tempConfirmMap.set(k,v)
-        } ;
-        console.log("tempConfirmMap",tempConfirmMap,confirmingMap);
+        };
 
         if (current) {
             mainPKr = detail.mainPKr;

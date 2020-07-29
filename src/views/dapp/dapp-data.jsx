@@ -160,6 +160,11 @@ const versionControlDataCn = [
         text: `DBS`,
         url: "https://dbs-game.gitee.io/dbs/index.html",
     },
+    {
+        icon: <div className="dapp-icon"><img src="https://he_lifen.gitee.io/hos/logo.png" className="dapp-img"/></div>,
+        text: `HOS`,
+        url: "https://he_lifen.gitee.io/hos",
+    },
 
 ];
 

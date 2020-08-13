@@ -59,6 +59,8 @@ class Browser extends Component {
             password: "",
             showTxInfo: false,
             txInfo: "",
+            barColor:"#f7f7f7",
+            barMode:"light"
         }
     }
 
@@ -113,6 +115,18 @@ class Browser extends Component {
                 }
                 this.storageDapp(data)
             }
+
+            if(data.navMode && data.navColor && data.barMode && data.barColor) {
+                if (plus && plus.navigator) {
+                    plus.navigator.setStatusBarBackground(data.navColor);
+                    plus.navigator.setStatusBarStyle(data.navMode);
+                }
+                this.setState({
+                    barColor: data.barColor,
+                    barMode: data.barMode
+                })
+            }
+
         }
         return "success"
     }
@@ -141,11 +155,12 @@ class Browser extends Component {
             let addresses = storage.get(keys.account.addresses);
             let rest = [];
             if (addresses) {
+                const current = await account.getCurrent();
                 for (let address of addresses) {
                     let detail = await account.Detail(address)
                     const assets = await assetService.balanceOf(detail.tk);
                     const tkts = await assetService.ticketsOf(detail.tk);
-                    rest.push({Name: detail.name, PK: detail.address, MainPKr: detail.mainPKr, Balance: assets,Tickets:tkts})
+                    rest.push({Name: detail.name, PK: detail.address, MainPKr: detail.mainPKr, Balance: assets,Tickets:tkts, IsCurrent: address === current.address})
                 }
             }
             msg.data=rest
@@ -521,11 +536,15 @@ class Browser extends Component {
     }
 
     render() {
+
+        const {barMode,barColor} = this.state;
+
         return <div>
             <NavBar
-                mode="light"
-                leftContent={<Icon type="left"/>}
-                rightContent={<div className={"browser-right"}>
+                mode={barMode}
+                style={{background:barMode==="light"?"":barColor}}
+                leftContent={<Icon type="left" style={{color: barMode === "light"?"":"#fff"}}/>}
+                rightContent={<div className={"browser-right"} style={{background: barMode === "light"?"#fff":"none"}}>
                     <div><Icon type={"ellipsis"} size={"md"} onClick={this.showActionSheet}/></div>
                     <div className={"ant-divider ant-divider-vertical ant-divider-dashed"}></div>
                     <div><Icon type={"cross"} size={"md"} onClick={
@@ -533,6 +552,11 @@ class Browser extends Component {
                             // window.location.replace("/#/dapp")
                             window.removeEventListener("message", this.receiveMessage, false);
                             url.goBack();
+
+                            if(plus && plus.navigator){
+                                plus.navigator.setStatusBarBackground("#F7F7F7");
+                                plus.navigator.setStatusBarStyle("dark");
+                            }
                         }
                     }/></div>
                 </div>}

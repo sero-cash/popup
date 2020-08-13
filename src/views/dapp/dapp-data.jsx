@@ -280,7 +280,13 @@ const versionControlDataEn = [
         icon: <div className="dapp-icon"><img src="https://makt.io/logo.png"  className="dapp-img"/></div>,
         text: `MAKT`,
         url:"https://makt.io",
+    },
+    {
+        icon: <div className="dapp-icon"><img src="https://catlscd.github.io/sero-redpackage/img/logo.77472dad.png"  className="dapp-img"/></div>,
+        text: `Red Envelope`,
+        url:"https://catlscd.github.io/sero-redpackage",
     }
+
 ];
 
 

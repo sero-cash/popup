@@ -38,6 +38,12 @@ class DApp extends Component {
                 popupData:popupDataEn
             })
         }
+
+        if(plus && plus.navigator){
+            plus.navigator.setStatusBarBackground("#F7F7F7");
+            plus.navigator.setStatusBarStyle("dark");
+        }
+
     }
 
     showModal = (e,flag) => {

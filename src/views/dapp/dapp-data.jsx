@@ -25,7 +25,7 @@ const popupDataCn = [
     {
         icon: <div className="dapp-icon"><img src={sero}  className="dapp-img"/></div>,
         text: `Explorer`,
-        url:"http://118.24.17.141:8081/",
+        url:"https://explorer.sero.cash",
     },
     {
         icon: <div className="dapp-icon"><img src={sero}  className="dapp-img"/></div>,

@@ -60,7 +60,7 @@ class Browser extends Component {
             showTxInfo: false,
             txInfo: "",
             barColor:"#f7f7f7",
-            barMode:"light"
+            barMode:"light",
         }
     }
 
@@ -123,7 +123,7 @@ class Browser extends Component {
                 }
                 this.setState({
                     barColor: data.barColor,
-                    barMode: data.barMode
+                    barMode: data.barMode,
                 })
             }
 
@@ -212,6 +212,7 @@ class Browser extends Component {
         } catch (e) {
             msg.data = "0x0"
             msg.error = e.message
+            console.error(e)
             return msg
             // Toast.fail(e.message,3)
         }

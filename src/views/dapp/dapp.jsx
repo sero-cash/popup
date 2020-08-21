@@ -25,6 +25,11 @@ class DApp extends Component {
         }
     }
 
+    componentWillMount() {
+        this.clearState();
+
+    }
+
     componentDidMount() {
 
         if(config.isZH()){
@@ -39,11 +44,25 @@ class DApp extends Component {
             })
         }
 
-        if(plus && plus.navigator){
-            plus.navigator.setStatusBarBackground("#F7F7F7");
-            plus.navigator.setStatusBarStyle("dark");
-        }
+        this.clearState();
 
+    }
+
+    clearState =()=>{
+        let intervalId = window.sessionStorage.getItem("browserData")
+        if(intervalId){
+            clearInterval(intervalId)
+        }
+        setTimeout(()=>{
+            try{
+                if(plus && plus.navigator){
+                    plus.navigator.setStatusBarBackground("#F7F7F7");
+                    plus.navigator.setStatusBarStyle("dark");
+                }
+            }catch (e) {
+                console.error(e)
+            }
+        },300)
     }
 
     showModal = (e,flag) => {

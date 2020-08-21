@@ -14,6 +14,7 @@ import {decimals} from "../../components/tx/decimals";
 import {assetService} from "../../components/service/service";
 import NONT from '../../icons/NONT.png';
 import HAPY from '../../icons/HAPY.png';
+import VERYBOOM from '../../icons/VERYBOOM.png';
 
 const priceService = new Price();
 
@@ -248,6 +249,8 @@ class Home extends Component {
             return NONT
         }else if(cy === "HAPY"){
             return HAPY
+        }else if(cy === "VERYBOOM"){
+            return VERYBOOM
         }
         return logo
     }

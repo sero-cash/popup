@@ -48,6 +48,14 @@ const operation = {
 }
 
 
+let browserData = {
+    barColor:"#f7f7f7",
+    barMode:"light",
+    navColor:"#F7F7F7",
+    navMode:"dark",
+    navTitle:"Browser"
+}
+
 class Browser extends Component {
 
     constructor(props) {
@@ -55,7 +63,7 @@ class Browser extends Component {
         this.state = {
             url: '',
             hasListener: false,
-            navTitle: "",
+            navTitle: "Browser",
             password: "",
             showTxInfo: false,
             txInfo: "",
@@ -77,11 +85,38 @@ class Browser extends Component {
     }
 
     componentDidMount() {
+        const that = this;
+
+        browserData = {
+            barColor:"#f7f7f7",
+            barMode:"light",
+            navColor:"#F7F7F7",
+            navMode:"dark",
+            navTitle:"Browser"
+        }
 
         this.initTile();
 
         web3.setProvider(new web3.providers.HttpProvider(config.seroRpc()))
 
+        let intervalId = window.sessionStorage.getItem("browserData")
+        if(intervalId){
+            clearInterval(intervalId)
+        }
+        intervalId = setInterval(function () {
+
+            if (plus && plus.navigator) {
+                plus.navigator.setStatusBarBackground(browserData.navColor);
+                plus.navigator.setStatusBarStyle(browserData.navMode);
+            }
+
+            that.setState({
+                barColor: browserData.barColor,
+                barMode:browserData.barMode,
+                navTitle: browserData.navTitle
+            })
+        },200)
+        window.sessionStorage.setItem("browserData",intervalId)
     }
 
     initTile = () => {
@@ -91,9 +126,9 @@ class Browser extends Component {
         if (url.indexOf("http") === -1) {
             setTimeout(function () {
                 const childFrameObj = document.getElementById('ifrModel');
-                that.setState({
-                    navTitle: childFrameObj.contentWindow.document.title
-                })
+                if(childFrameObj){
+                    browserData.navTitle = childFrameObj.contentWindow.document.title
+                }
             }, 200)
         } else {
             that.setState({
@@ -102,12 +137,12 @@ class Browser extends Component {
         }
     }
 
+
+
     initDApp = (data) => {
-        if (data) {
-            // let mainFrame = document.getElementById('ifrModel');
-            this.setState({
-                navTitle: data.name
-            })
+        if (data && data !== "success") {
+
+            browserData.navTitle= data.name
             if (data.name && data.contractAddress && data.github && data.author && data.url && data.logo) {
                 if (data.url && data.url.indexOf("http") === -1) {
                     data.url = "http://" + data.url
@@ -117,17 +152,15 @@ class Browser extends Component {
             }
 
             if(data.navMode && data.navColor && data.barMode && data.barColor) {
-                if (plus && plus.navigator) {
-                    plus.navigator.setStatusBarBackground(data.navColor);
-                    plus.navigator.setStatusBarStyle(data.navMode);
-                }
-                this.setState({
-                    barColor: data.barColor,
-                    barMode: data.barMode,
-                })
+                browserData.barColor = data.barColor
+                browserData.barMode =  data.barMode
+                browserData.navMode = data.navMode;
+                browserData.navColor = data.navColor;
+
             }
 
         }
+        console.log("browserData>>",data,browserData);
         return "success"
     }
 
@@ -540,6 +573,7 @@ class Browser extends Component {
 
         const {barMode,barColor} = this.state;
 
+
         return <div>
             <NavBar
                 mode={barMode}
@@ -558,11 +592,19 @@ class Browser extends Component {
                                 plus.navigator.setStatusBarBackground("#F7F7F7");
                                 plus.navigator.setStatusBarStyle("dark");
                             }
+                            browserData = {
+                                barColor:"#f7f7f7",
+                                barMode:"light",
+                                navColor:"#F7F7F7",
+                                navMode:"dark",
+                                navTitle:"Browser"
+                            }
                         }
                     }/></div>
                 </div>}
                 className="layout-top"
                 onLeftClick={() => {
+                    // window.location.replace("/#/dapp")
                     history.back();
                 }}
             >

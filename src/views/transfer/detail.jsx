@@ -24,6 +24,8 @@ function hexToBytes(hex) {
     return bytes;
 }
 
+const account = new Account()
+
 class TransferDetail extends Component{
 
     constructor(props) {
@@ -41,7 +43,6 @@ class TransferDetail extends Component{
     componentDidMount() {
         let that = this;
         let hash = this.props.match.params.hash;
-        const account = new Account()
         account.getCurrent().then(current=>{
             assetService.getTxDetail(current.tk,hash).then((tx)=>{
                 that.setState({
@@ -248,7 +249,7 @@ class TransferDetail extends Component{
                             <Flex.Item style={{flexBasis: "50%"}} >
                                 {
                                     tos.map((to)=>{
-                                        return to?<div>
+                                        return to && account.isMyPKr(to) ? <div>
                                             <div style={{overflowWrap: "break-word",fontSize:"10px"}}  onClick={()=>{
                                                 copy(to);
                                                 Toast.success("Copy Successfully", 1);

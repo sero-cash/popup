@@ -165,6 +165,11 @@ const versionControlDataCn = [
         text: `HOS`,
         url: "https://he_lifen.gitee.io/hos",
     },
+    {
+        icon: <div className="dapp-icon"><img src="http://wmhl.gitee.io/wmhl/logo.jpeg" className="dapp-img"/></div>,
+        text: `WMHL`,
+        url: "http://wmhl.gitee.io",
+    },
 
 ];
 
@@ -285,7 +290,12 @@ const versionControlDataEn = [
         icon: <div className="dapp-icon"><img src="https://catlscd.github.io/sero-redpackage/img/logo.77472dad.png"  className="dapp-img"/></div>,
         text: `Red Envelope`,
         url:"https://catlscd.github.io/sero-redpackage",
-    }
+    },
+    {
+        icon: <div className="dapp-icon"><img src="https://wmhlw.github.io/wmhl/logo.jpeg" className="dapp-img"/></div>,
+        text: `WMHL`,
+        url: "https://wmhlw.github.io/wmhl/",
+    },
 
 ];
 

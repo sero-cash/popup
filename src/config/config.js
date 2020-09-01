@@ -19,7 +19,7 @@ class Config {
             host: "http://popup.sero.cash/#/",
             // rpc: "http://sero-light-node.ririniannian.com:8545",
             rpc: "https://sero-light-node.ririniannian.com",
-            price: "http://129.211.98.114:8987/ticket?t=",
+            price: "",
 
         }
 

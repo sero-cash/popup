@@ -170,6 +170,12 @@ const versionControlDataCn = [
         text: `WMHL`,
         url: "http://wmhl.gitee.io",
     },
+    {
+        icon: <div className="dapp-icon"><img src="https://conspay.gitee.io/coinhi/assets/icon/icon.png" className="dapp-img"/></div>,
+        text: `客印汇`,
+        url: "https://conspay.gitee.io/coinhi",
+    },
+
 
 ];
 
@@ -295,6 +301,11 @@ const versionControlDataEn = [
         icon: <div className="dapp-icon"><img src="https://wmhlw.github.io/wmhl/logo.jpeg" className="dapp-img"/></div>,
         text: `WMHL`,
         url: "https://wmhlw.github.io/wmhl/",
+    },
+    {
+        icon: <div className="dapp-icon"><img src="https://conspay.github.io/coinhi/assets/icon/icon.png" className="dapp-img"/></div>,
+        text: `Coin Hi`,
+        url: "https://conspay.github.io/coinhi",
     },
 
 ];

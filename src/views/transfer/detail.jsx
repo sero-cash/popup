@@ -249,7 +249,7 @@ class TransferDetail extends Component{
                             <Flex.Item style={{flexBasis: "50%"}} >
                                 {
                                     tos.map((to)=>{
-                                        return to && account.isMyPKr(to) ? <div>
+                                        return to && <div>
                                             <div style={{overflowWrap: "break-word",fontSize:"10px"}}  onClick={()=>{
                                                 copy(to);
                                                 Toast.success("Copy Successfully", 1);
@@ -257,7 +257,7 @@ class TransferDetail extends Component{
                                                 {to}
                                                 <Icon type="iconcopy" className="transfer-detail-copy-icon"/>
                                             </div>
-                                        </div>:""
+                                        </div>
                                     })
                                 }
                             </Flex.Item>

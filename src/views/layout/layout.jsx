@@ -21,7 +21,7 @@ class Layout extends Component {
             })
         }else{
             this.setState({
-                showDApp:false
+                showDApp:true
             })
         }
         // const that = this;

@@ -230,7 +230,8 @@
                 }
             },
             "plugins" : {
-                "speech" : {}
+                "speech" : {},
+                "ad" : {}
             }
         },
         "screenOrientation" : [ "portrait-primary" ]

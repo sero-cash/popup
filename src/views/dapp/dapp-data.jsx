@@ -33,9 +33,9 @@ const popupDataCn = [
         url:"https://wiki.sero.cash",
     },
     {
-        icon: <div className="dapp-icon"><img src="https://dex.coraldex.io/assets/icon/icon.png"  className="dapp-img"/></div>,
+        icon: <div className="dapp-icon"><img src="https://coral-dex.gitee.io/dex/assets/icon/icon.png"  className="dapp-img"/></div>,
         text: `Coral DEX`,
-        url:"https://dex.coraldex.io/#/quotes",
+        url:"https://coral-dex.gitee.io/dex",
     }
 ]
 

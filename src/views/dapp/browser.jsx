@@ -44,6 +44,7 @@ const operation = {
         pkrCrypto: "pkrCrypto",
         pkrEncrypt: "pkrEncrypt",
         pkrDecrypt: "pkrDecrypt",
+        goPage: "goPage",
     }
 }
 
@@ -282,6 +283,16 @@ class Browser extends Component {
         }
     }
 
+    goPage(path){
+        if(path && path.indexOf("scan/")){
+            if(plus && plus.barcode){
+                url.goPage(path)
+            }
+        }else{
+            url.goPage(path)
+        }
+    }
+
     executeContract = (data, cb) => {
         try {
             if (!data) {
@@ -496,7 +507,9 @@ class Browser extends Component {
                         msg.error= typeof e === 'string'?e:e.message;
                         that.sendMessage(msg);
                     });
-                } else {
+                } else if(msg.method === operation.method.goPage){
+                    that.goPage(msg.data)
+                }else {
                     that.sendMessage("operation method is invalid !");
                 }
             } else {

@@ -1,6 +1,6 @@
 import React ,{Component} from 'react'
-import {Icon, NavBar,Toast} from "antd-mobile";
-import {storage, url} from "../../config/common";
+import {Icon, NavBar,Toast,Button} from "antd-mobile";
+import {storage, url,lang} from "../../config/common";
 import {validPkr} from "jsuperzk/dist/wallet/wallet"
 
 window.barcode = null;
@@ -53,6 +53,7 @@ function createBarcode() {
     window.barcode.start();
 }
 
+
 class Scanner extends Component{
 
     constructor(props) {
@@ -69,6 +70,29 @@ class Scanner extends Component{
         }
     }
 
+    scanImg() {
+        if (!window.plus) return;
+        plus.gallery.pick(
+            function(path) {
+                // alert(path);
+                plus.barcode.scan(
+                    path,
+                    function(type, result) {
+                        // window.localStorage.codeUrl2 = result;
+                        onmarked(type, result)
+                    },
+                    function(e) {
+                        // window.localStorage.codeUrl2 = e;
+                        Toast.fail(lang.e().toast.error.scanFailed)
+                    }
+                );
+            },
+            function(e) {
+            },
+            { filter: "image" }
+        );
+    }
+
     render() {
         return <div>
             <NavBar
@@ -79,6 +103,8 @@ class Scanner extends Component{
                     window.barcode.close();
                     url.goBack()
                 }}
+                rightContent={<div type="link" style={{color:"#198fea"}} onClick={()=>this.scanImg()}>{lang.e().button.selectFromAlbum}</div>}
+
             >
                 Scanner
             </NavBar>

@@ -54,6 +54,7 @@ class Language {
             share: "Share",
             copyLink: "Copy Link",
             refresh: "Refresh",
+            selectFromAlbum:"Scan From Album"
         },
 
         navbar: {
@@ -100,7 +101,9 @@ class Language {
                 notEnoughFee: "Not enough SERO to pay gas fee !",
                 invalidMnemonic: "Invalid Mnemonic!",
                 clearData:"Cleanup failed, please try again later!",
-                useFrom:"Please use the designated account to initiate payment!"
+                useFrom:"Please use the designated account to initiate payment!",
+
+                scanFailed:"The picture cannot be identify"
             }
         },
 
@@ -299,6 +302,7 @@ class Language {
             share: "分享",
             copyLink: "复制链接",
             refresh: "刷新",
+            selectFromAlbum:"从相册选择"
         },
 
         navbar: {
@@ -345,7 +349,8 @@ class Language {
                 notEnoughFee: "没有足够的SERO支付矿工费用",
                 invalidMnemonic: "无效的助记词!",
                 clearData:"正在同步区块，清除失败，请稍后再试!",
-                useFrom:"请使用指定的账户发起支付!"
+                useFrom:"请使用指定的账户发起支付!",
+                scanFailed:"图片无法识别!"
             }
 
         },
@@ -546,6 +551,7 @@ class Language {
             share: "共有",
             copyLink: "リンクをコピー",
             refresh: "更新",
+            selectFromAlbum:"アルバムから選択"
         },
 
         navbar: {
@@ -593,7 +599,8 @@ class Language {
                 notEnoughFee: "料金を支払うのに十分なSEROがありません！",
                 invalidMnemonic: "無効なニーモニック!",
                 clearData:"クリーンアップに失敗しました。しばらくしてからもう一度お試しください!",
-                useFrom:"指定されたアカウントを使用して支払いを開始してください!"
+                useFrom:"指定されたアカウントを使用して支払いを開始してください!",
+                scanFailed:"写真を識別できません"
             }
         },
 
@@ -792,6 +799,7 @@ class Language {
             share: "Падзяліцца",
             copyLink: "Скапіяваць спасылку",
             refresh: "Абнавіць",
+            selectFromAlbum:"Выберыце з альбома"
         },
 
         navbar: {
@@ -838,7 +846,8 @@ class Language {
                 notEnoughFee: "Недостаточно SERO для оплаты платы за газ!",
                 invalidMnemonic: "Няправільны мнеманічны характар !",
                 clearData:"Уборка не атрымалася. Паспрабуйце яшчэ раз пазней!",
-                useFrom:"Калі ласка, выкарыстоўвайце пазначаны ўліковы запіс, каб пачаць аплату!"
+                useFrom:"Калі ласка, выкарыстоўвайце пазначаны ўліковы запіс, каб пачаць аплату!",
+                scanFailed:"Малюнак немагчыма ідэнтыфікаваць"
             }
         },
 
@@ -1039,6 +1048,7 @@ class Language {
             share: "공유",
             copyLink: "링크 복사",
             refresh: "새로 고침",
+            selectFromAlbum:"앨범에서 선택"
         },
 
         navbar: {
@@ -1085,7 +1095,8 @@ class Language {
                 notEnoughFee: "SERO는 가스를 지불하기에 충분하지 않습니다수수료!",
                 invalidMnemonic: "잘못된 니모닉 !",
                 clearData:"정리에 실패했습니다. 나중에 다시 시도하십시오!",
-                useFrom:"결제를 시작하려면 지정된 계정을 사용하십시오!"
+                useFrom:"결제를 시작하려면 지정된 계정을 사용하십시오!",
+                scanFailed:"사진은 식별 할 수 없습니다"
             }
         },
 

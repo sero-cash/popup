@@ -3,7 +3,7 @@ import {Grid, SearchBar,Toast,Modal,List,Button,Checkbox,Icon} from 'antd-mobile
 import Layout from "../layout/layout";
 import {storage, keys, url, lang,config} from "../../config/common";
 import './dapp.css'
-import {versionControlDataEn,versionControlDataCn,popupDataEn,popupDataCn} from './dapp-data'
+import {versionControlDataEn,versionControlDataCn,popupDataEn,popupDataCn,seroLabCn,seroLabEn} from './dapp-data'
 
 let dataRecent =[];
 
@@ -16,6 +16,7 @@ class DApp extends Component {
         this.state = {
             data:versionControlDataEn,
             popupData:popupDataEn,
+            seroLab:seroLabEn,
             modal2:false,
             dapp:'',
             dappUrl:'',
@@ -35,12 +36,14 @@ class DApp extends Component {
         if(config.isZH()){
             this.setState({
                 data:versionControlDataCn,
-                popupData:popupDataCn
+                popupData:popupDataCn,
+                seroLab:seroLabCn,
             })
         }else{
             this.setState({
                 data:versionControlDataEn,
-                popupData:popupDataEn
+                popupData:popupDataEn,
+                seroLab:seroLabEn,
             })
         }
 
@@ -112,9 +115,8 @@ class DApp extends Component {
 
     render() {
 
-        const {data,popupData,visitDApp,read} = this.state;
+        const {data,popupData,visitDApp,read,seroLab} = this.state;
 
-        console.log("read>>>> ",read)
         let dapps = storage.get(keys.dapp.list);
         if(dapps) {
             dataRecent=[];
@@ -139,63 +141,75 @@ class DApp extends Component {
             dataRecent = [];
         }
 
-        return <Layout selectedTab="dapp">
-            <div className="layout-top" style={{color:"#f7f7f7"}}>
-                <SearchBar placeholder={lang.e().page.dapp.search} maxLength={200} onSubmit={(val) => {
-                    // window.location.replace("/#/browser/"+encodeURIComponent(val));
-                    if(val){
-                        if(val.indexOf("http")>-1){
-                            url.goPage(url.browser(val), url.DApp);
-                        }else{
-                            Toast.fail(lang.e().page.dapp.invalidDApp,3)
+        return <Layout selectedTab="dapp" >
+            <div>
+                <div className="layout-top" style={{color:"#f7f7f7"}}>
+                    <SearchBar placeholder={lang.e().page.dapp.search} maxLength={200} onSubmit={(val) => {
+                        // window.location.replace("/#/browser/"+encodeURIComponent(val));
+                        if(val){
+                            if(val.indexOf("http")>-1){
+                                url.goPage(url.browser(val), url.DApp);
+                            }else{
+                                Toast.fail(lang.e().page.dapp.invalidDApp,3)
+                            }
                         }
-                    }
 
-                }}/>
-            </div>
-
-            <div style={{padding:'45px 0 60px',overflow:'scroll',background:"#fdfdfd"}} >
-                <div className="sub-title">{lang.e().page.dapp.popup} </div>
-                <div style={{textAlign: 'center'}}>
-                    <Grid data={popupData} activeStyle={false}  onClick={
-                        (e,index)=>{
-                            url.goPage(url.browser(e.url+"?"+new Date().getTime()),url.DApp);
-                        }
-                    } hasLine={false}/>
+                    }}/>
                 </div>
 
-                <div className="sub-title">{lang.e().page.dapp.recommended} </div>
-                <div style={{textAlign: 'center'}}>
-                    <Grid data={data} activeStyle={false} style={{height:document.documentElement.clientHeight*0.3}} onClick={
-                        (e,index)=>{
-                            this.showModal(e,true)
-                        }
-                    } hasLine={false}/>
-                </div>
+                <div style={{padding:'45px 0 60px',overflow:'scroll',background:"#fdfdfd"}} >
+                    <div className="sub-title">{lang.e().page.dapp.popup} </div>
+                    <div style={{textAlign: 'center'}}>
+                        <Grid data={popupData}  activeStyle={false}  onClick={
+                            (e,index)=>{
+                                url.goPage(url.browser(e.url+"?"+new Date().getTime()),url.DApp);
+                            }
+                        } hasLine={false}/>
+                    </div>
 
-                <div>
-                    {
-                        dataRecent.length>0?<div style={{height:'auto'}}>
-                            <div className="sub-title">
-                                {lang.e().page.dapp.recent}
-                                <div className="sub-title2" onClick={()=>{
-                                    this.clearRecent();
-                                }}>
-                                    <Icon type={"iconclear"}/>
+                    <div className="sub-title">{lang.e().page.dapp.seroLab} </div>
+                    <div style={{textAlign: 'center'}}>
+                        <Grid data={seroLab} activeStyle={false}  onClick={
+                            (e,index)=>{
+                                url.goPage(url.browser(e.url+"?"+new Date().getTime()),url.DApp);
+                            }
+                        } hasLine={false}/>
+                    </div>
+
+                    <div className="sub-title">{lang.e().page.dapp.recommended} </div>
+                    <div style={{textAlign: 'center'}}>
+                        <Grid data={data} activeStyle={false}onClick={
+                            (e,index)=>{
+                                this.showModal(e,true)
+                            }
+                        } hasLine={false}/>
+                    </div>
+
+                    <div>
+                        {
+                            dataRecent.length>0?<div style={{height:'auto'}}>
+                                <div className="sub-title">
+                                    {lang.e().page.dapp.recent}
+                                    <div className="sub-title2" onClick={()=>{
+                                        this.clearRecent();
+                                    }}>
+                                        <Icon type={"iconclear"}/>
+                                    </div>
                                 </div>
-                            </div>
-                            <div style={{textAlign: 'center'}}>
-                                <Grid data={dataRecent} activeStyle={false} onClick={
-                                    (e,index)=>{
-                                        this.showModal(e)
-                                    }
-                                } hasLine={false}/>
+                                <div style={{textAlign: 'center'}}>
+                                    <Grid data={dataRecent} activeStyle={false} onClick={
+                                        (e,index)=>{
+                                            this.showModal(e)
+                                        }
+                                    } hasLine={false}/>
 
-                            </div>
-                        </div>:""
-                    }
+                                </div>
+                            </div>:""
+                        }
+                    </div>
                 </div>
             </div>
+
 
             <Modal
                 popup

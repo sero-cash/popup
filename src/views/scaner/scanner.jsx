@@ -53,6 +53,32 @@ function createBarcode() {
     window.barcode.start();
 }
 
+function scanImg() {
+    if (!window.plus) return;
+    plus.gallery.pick(
+        function(path) {
+            // alert(path);
+            plus.barcode.scan(
+                path,
+                function(type, result) {
+                    // window.localStorage.codeUrl2 = result;
+                    // alert(result);
+                    onmarked(type, result)
+                },
+                function(e) {
+                    // window.localStorage.codeUrl2 = e;
+                    alert(JSON.stringify(e));
+                    // Toast.fail(lang.e().toast.error.scanFailed+`[${e.message}]`)
+                }
+            );
+        },
+        function(e) {
+            alert(JSON.stringify(e));
+            // Toast.fail(lang.e().toast.error.scanFailed+`[${e.message}]`)
+        },
+        { filter: "image" }
+    );
+}
 
 class Scanner extends Component{
 
@@ -70,28 +96,7 @@ class Scanner extends Component{
         }
     }
 
-    scanImg() {
-        if (!window.plus) return;
-        plus.gallery.pick(
-            function(path) {
-                // alert(path);
-                plus.barcode.scan(
-                    path,
-                    function(type, result) {
-                        // window.localStorage.codeUrl2 = result;
-                        onmarked(type, result)
-                    },
-                    function(e) {
-                        // window.localStorage.codeUrl2 = e;
-                        Toast.fail(lang.e().toast.error.scanFailed)
-                    }
-                );
-            },
-            function(e) {
-            },
-            { filter: "image" }
-        );
-    }
+
 
     render() {
         return <div>
@@ -103,10 +108,10 @@ class Scanner extends Component{
                     window.barcode.close();
                     url.goBack()
                 }}
-                rightContent={<div type="link" style={{color:"#198fea"}} onClick={()=>this.scanImg()}>{lang.e().button.selectFromAlbum}</div>}
+                rightContent={<div type="link" style={{color:"#198fea"}} onClick={()=>scanImg()}>{lang.e().button.selectFromAlbum}</div>}
 
             >
-                Scanner
+                SCANNER
             </NavBar>
         </div>
     }

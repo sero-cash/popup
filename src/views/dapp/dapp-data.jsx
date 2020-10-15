@@ -17,6 +17,11 @@ const popupDataEn = [
         icon: <div className="dapp-icon"><img src="https://dex.coraldex.io/assets/icon/icon.png"  className="dapp-img"/></div>,
         text: `Coral DEX`,
         url:"https://dex.coraldex.io/#/quotes",
+    },
+    {
+        icon: <div className="dapp-icon"><img src="http://coral-dex.gitee.io/corswap/logo.png"  className="dapp-img"/></div>,
+        text: `Coral Swap`,
+        url:"http://coral-dex.gitee.io/corswap/",
     }
 ]
 
@@ -36,7 +41,29 @@ const popupDataCn = [
         icon: <div className="dapp-icon"><img src="https://coral-dex.gitee.io/dex/assets/icon/icon.png"  className="dapp-img"/></div>,
         text: `Coral DEX`,
         url:"https://coral-dex.gitee.io/dex",
+    },
+    {
+        icon: <div className="dapp-icon"><img src="http://coral-dex.github.io/corswap/logo.png"  className="dapp-img"/></div>,
+        text: `Coral Swap`,
+        url:"http://coral-dex.github.io/corswap/",
     }
+]
+
+const seroLabCn = [
+    {
+        icon: <div className="dapp-icon"><img src="https://sero-lab.gitee.io/seed/logo.png"  className="dapp-img"/></div>,
+        text: `SEED`,
+        url:"https://sero-lab.gitee.io/seed",
+    },
+]
+
+const seroLabEn = [
+
+    {
+        icon: <div className="dapp-icon"><img src="https://sero-lab.gitee.io/seed/logo.png"  className="dapp-img"/></div>,
+        text: `SEED`,
+        url:"https://sero-lab.github.io/seed",
+    },
 ]
 
 const versionControlDataCn = [
@@ -175,7 +202,16 @@ const versionControlDataCn = [
         text: `客印汇`,
         url: "https://conspay.gitee.io/coinhi",
     },
-
+    {
+        icon: <div className="dapp-icon"><img src="https://datong-project.gitee.io/logo2.png" className="dapp-img"/></div>,
+        text: `DAT`,
+        url: "https://datong-project.gitee.io/",
+    },
+    {
+        icon: <div className="dapp-icon"><img src="https://omkit.io/icon.png" style={{height:"48px"}} className="dapp-img"/></div>,
+        text: `OMKIT`,
+        url: "https://omkit.io",
+    }
 
 ];
 
@@ -307,10 +343,20 @@ const versionControlDataEn = [
         text: `Coin Hi`,
         url: "https://conspay.github.io/coinhi",
     },
+    {
+        icon: <div className="dapp-icon"><img src="https://datong-project.github.io/logo2.png" className="dapp-img"/></div>,
+        text: `DAT`,
+        url: "https://datong-project.github.io/",
+    },
+    {
+        icon: <div className="dapp-icon"><img src="https://omkit.io/icon.png" className="dapp-img"/></div>,
+        text: `OMKIT`,
+        url: "https://omkit.io",
+    }
 
 ];
 
 
 export {
-    versionControlDataEn,versionControlDataCn,popupDataEn,popupDataCn
+    versionControlDataEn,versionControlDataCn,popupDataEn,popupDataCn,seroLabCn,seroLabEn
 }

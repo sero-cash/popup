@@ -273,6 +273,7 @@ class Language {
                 recent: "Recent",
                 popup: "Recommended",
                 recommended: "Community voted DApps",
+                seroLab: "SERO Lab",
             }
 
         }
@@ -522,6 +523,7 @@ class Language {
                 recent: "最近使用",
                 popup:"推荐",
                 recommended: "社区投票的DApps",
+                seroLab: "SERO实验室",
             }
 
         }
@@ -769,6 +771,7 @@ class Language {
                 recent: "最近",
                 popup:"お勧め",
                 recommended: "コミュニティがDAppsに投票しました",
+                seroLab: "SERO研究所",
             }
 
         }
@@ -1018,6 +1021,7 @@ class Language {
                 recent: "Недавний",
                 popup:"рекомендуемые",
                 recommended: "Даччыны DAppsСуполка прагаласавала за Допса",
+                seroLab: "Лабараторыя SERO",
             }
         }
     };
@@ -1264,6 +1268,7 @@ class Language {
                 recent:"충적세",
                 popup:"제안 됨",
                 recommended: "커뮤니티 투표 DApps",
+                seroLab: "SERO 연구소"
             }
         }
     };

@@ -19,9 +19,9 @@ const popupDataEn = [
         url:"https://dex.coraldex.io/#/quotes",
     },
     {
-        icon: <div className="dapp-icon"><img src="http://coral-dex.gitee.io/corswap/logo.png"  className="dapp-img"/></div>,
+        icon: <div className="dapp-icon"><img src="http://coral-dex.github.io/corswap/logo.png"  className="dapp-img"/></div>,
         text: `Coral Swap`,
-        url:"http://coral-dex.gitee.io/corswap/",
+        url:"http://coral-dex.github.io/corswap/",
     }
 ]
 
@@ -43,9 +43,9 @@ const popupDataCn = [
         url:"https://coral-dex.gitee.io/dex",
     },
     {
-        icon: <div className="dapp-icon"><img src="http://coral-dex.github.io/corswap/logo.png"  className="dapp-img"/></div>,
+        icon: <div className="dapp-icon"><img src="http://coral-dex.gitee.io/corswap/logo.png"  className="dapp-img"/></div>,
         text: `Coral Swap`,
-        url:"http://coral-dex.github.io/corswap/",
+        url:"http://coral-dex.gitee.io/corswap/",
     }
 ]
 

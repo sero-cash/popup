@@ -208,9 +208,9 @@ const versionControlDataCn = [
         url: "https://datong-project.gitee.io/",
     },
     {
-        icon: <div className="dapp-icon"><img src="https://omkit.io/icon.png" style={{height:"48px"}} className="dapp-img"/></div>,
+        icon: <div className="dapp-icon"><img src="https://omkit.io/icon.png" className="dapp-img"/></div>,
         text: `OMKIT`,
-        url: "https://omkit.io",
+        url: "https://omkit.io/Swap/swap_otc",
     }
 
 ];
@@ -351,7 +351,7 @@ const versionControlDataEn = [
     {
         icon: <div className="dapp-icon"><img src="https://omkit.io/icon.png" className="dapp-img"/></div>,
         text: `OMKIT`,
-        url: "https://omkit.io",
+        url: "https://omkit.io/Swap/swap_otc",
     }
 
 ];

@@ -211,6 +211,11 @@ const versionControlDataCn = [
         icon: <div className="dapp-icon"><img src="https://omkit.io/icon.png" className="dapp-img"/></div>,
         text: `OMKIT`,
         url: "https://omkit.io/Swap/swap_otc",
+    },
+    {
+        icon: <div className="dapp-icon"><img src="https://poroporo.gitee.io/logo.png" className="dapp-img"/></div>,
+        text: `PORO`,
+        url: "https://poroporo.gitee.io",
     }
 
 ];
@@ -352,6 +357,11 @@ const versionControlDataEn = [
         icon: <div className="dapp-icon"><img src="https://omkit.io/icon.png" className="dapp-img"/></div>,
         text: `OMKIT`,
         url: "https://omkit.io/Swap/swap_otc",
+    },
+    {
+        icon: <div className="dapp-icon"><img src="https://poroporo2020.github.io/logo.png" className="dapp-img"/></div>,
+        text: `PORO`,
+        url: "https://poroporo2020.github.io",
     }
 
 ];

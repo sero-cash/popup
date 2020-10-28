@@ -55,14 +55,24 @@ const seroLabCn = [
         text: `SEED`,
         url:"https://sero-lab.gitee.io/seed",
     },
+    {
+        icon: <div className="dapp-icon"><img src="https://sero-lab.gitee.io/seedmix/logo.png"  className="dapp-img"/></div>,
+        text: `SEEDMIX`,
+        url:"https://sero-lab.gitee.io/seedmix",
+    },
+
 ]
 
 const seroLabEn = [
-
     {
-        icon: <div className="dapp-icon"><img src="https://sero-lab.gitee.io/seed/logo.png"  className="dapp-img"/></div>,
+        icon: <div className="dapp-icon"><img src="https://sero-lab.github.io/seed/logo.png"  className="dapp-img"/></div>,
         text: `SEED`,
-        url:"https://sero-lab.github.io/seed",
+        url:"https://sero-lab.github.io/seed/",
+    },
+    {
+        icon: <div className="dapp-icon"><img src="https://sero-lab.github.io/seedmix/logo.png"  className="dapp-img"/></div>,
+        text: `SEEDMIX`,
+        url:"https://sero-lab.github.io/seedmix",
     },
 ]
 

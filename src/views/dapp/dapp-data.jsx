@@ -226,6 +226,11 @@ const versionControlDataCn = [
         icon: <div className="dapp-icon"><img src="https://poroporo.gitee.io/logo.png" className="dapp-img"/></div>,
         text: `PORO`,
         url: "https://poroporo.gitee.io",
+    },
+    {
+        icon: <div className="dapp-icon"><img src="https://aries2020.gitee.io/forsage/logo.jpeg" className="dapp-img"/></div>,
+        text: `Forsage`,
+        url: "https://aries2020.gitee.io/forsage",
     }
 
 ];
@@ -372,6 +377,11 @@ const versionControlDataEn = [
         icon: <div className="dapp-icon"><img src="https://poroporo2020.github.io/logo.png" className="dapp-img"/></div>,
         text: `PORO`,
         url: "https://poroporo2020.github.io",
+    },
+    {
+        icon: <div className="dapp-icon"><img src="https://seroforsage.github.io/forsage/logo.jpeg" className="dapp-img"/></div>,
+        text: `Forsage`,
+        url: "https://seroforsage.github.io/forsage",
     }
 
 ];

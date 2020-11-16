@@ -236,6 +236,11 @@ const versionControlDataCn = [
         icon: <div className="dapp-icon"><img src="https://serominer.gitee.io/miner/dapplogo.png" className="dapp-img"/></div>,
         text: `SERO MINER`,
         url: "https://serominer.gitee.io/miner",
+    },
+    {
+        icon: <div className="dapp-icon"><img src="https://mixpay.org/h5/otc-dist/img/1d18ade.png" className="dapp-img"/></div>,
+        text: `MixPay`,
+        url: "https://mixpay.org/h5/changeChain/?source=3&apikey=1575ee01da8a473fa33d565d0f90352d",
     }
 
 ];
@@ -391,7 +396,14 @@ const versionControlDataEn = [
         icon: <div className="dapp-icon"><img src="https://serominer.github.io/miner/dapplogo.png" className="dapp-img"/></div>,
         text: `SERO MINER`,
         url: "https://serominer.github.io/miner/",
+    },
+    {
+        icon: <div className="dapp-icon"><img src="https://mixpay.org/h5/otc-dist/img/1d18ade.png" className="dapp-img"/></div>,
+        text: `MixPay`,
+        url: "https://mixpay.org/h5/changeChain/?source=3&apikey=1575ee01da8a473fa33d565d0f90352d",
     }
+
+
 
 ];
 

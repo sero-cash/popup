@@ -72,7 +72,7 @@ class DApp extends Component {
         const read = storage.get(keys.dappsRead(e.text));
         let url = e.url;
         if(flag){
-            url = e.url + "?" + new Date().getTime();
+            url = e.url + (e.url.indexOf("?")>-1?"&":"?") + new Date().getTime();
         }
         this.setState({
             "modal2": true,
@@ -162,7 +162,8 @@ class DApp extends Component {
                     <div style={{textAlign: 'center'}}>
                         <Grid data={popupData}  activeStyle={false}  onClick={
                             (e,index)=>{
-                                url.goPage(url.browser(e.url+"?"+new Date().getTime()),url.DApp);
+
+                                url.goPage(url.browser(e.url+ (e.url.indexOf("?")>-1?"&":"?")+new Date().getTime()),url.DApp);
                             }
                         } hasLine={false}/>
                     </div>
@@ -171,7 +172,7 @@ class DApp extends Component {
                     <div style={{textAlign: 'center'}}>
                         <Grid data={seroLab} activeStyle={false}  onClick={
                             (e,index)=>{
-                                url.goPage(url.browser(e.url+"?"+new Date().getTime()),url.DApp);
+                                url.goPage(url.browser(e.url+(e.url.indexOf("?")>-1?"&":"?")+new Date().getTime()),url.DApp);
                             }
                         } hasLine={false}/>
                     </div>

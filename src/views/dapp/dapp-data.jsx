@@ -19,9 +19,9 @@ const popupDataEn = [
         url:"https://dex.coraldex.io/#/quotes",
     },
     {
-        icon: <div className="dapp-icon"><img src="http://coral-dex.github.io/corswap/logo.png"  className="dapp-img"/></div>,
+        icon: <div className="dapp-icon"><img src="https://coral-dex.github.io/corswap/logo.png"  className="dapp-img"/></div>,
         text: `Coral Swap`,
-        url:"http://coral-dex.github.io/corswap/",
+        url:"https://coral-dex.github.io/corswap/",
     }
 ]
 
@@ -43,9 +43,9 @@ const popupDataCn = [
         url:"https://coral-dex.gitee.io/dex",
     },
     {
-        icon: <div className="dapp-icon"><img src="http://coral-dex.gitee.io/corswap/logo.png"  className="dapp-img"/></div>,
+        icon: <div className="dapp-icon"><img src="https://coral-dex.gitee.io/corswap/logo.png"  className="dapp-img"/></div>,
         text: `Coral Swap`,
-        url:"http://coral-dex.gitee.io/corswap/",
+        url:"https://coral-dex.gitee.io/corswap/",
     }
 ]
 
@@ -98,9 +98,9 @@ const versionControlDataCn = [
     //     url:"https://alpha-live.gitee.io/alpha/index.html",
     // },
     {
-        icon: <div className="dapp-icon"><img src="http://liutyler.gitee.io/goFighting/logo.png"  className="dapp-img"/></div>,
+        icon: <div className="dapp-icon"><img src="https://liutyler.gitee.io/goFighting/logo.png"  className="dapp-img"/></div>,
         text: `GO Fighting`,
-        url:"http://liutyler.gitee.io/goFighting",
+        url:"https://liutyler.gitee.io/goFighting",
     },
     {
         icon: <div className="dapp-icon"><img src="http://table.supernode.vip:3000/logo192.png"  className="dapp-img"/></div>,
@@ -182,16 +182,16 @@ const versionControlDataCn = [
         text: `GAIL`,
         url:"https://gail.com.de",
     },
-    {
-        icon: <div className="dapp-icon"><img src="https://ahoj.xyz/logo64.png"  className="dapp-img"/></div>,
-        text: `AHOJ`,
-        url:"https://ahoj.xyz/login",
-    },
-    {
-        icon: <div className="dapp-icon"><img src="https://makt.io/logo.png" className="dapp-img"/></div>,
-        text: `MAKT`,
-        url: "https://makt.io",
-    },
+    // {
+    //     icon: <div className="dapp-icon"><img src="https://ahoj.xyz/logo64.png"  className="dapp-img"/></div>,
+    //     text: `AHOJ`,
+    //     url:"https://ahoj.xyz/login",
+    // },
+    // {
+    //     icon: <div className="dapp-icon"><img src="https://makt.io/logo.png" className="dapp-img"/></div>,
+    //     text: `MAKT`,
+    //     url: "https://makt.io",
+    // },
     {
         icon: <div className="dapp-icon"><img src="https://dbs-game.gitee.io/dbs/logo.png" className="dapp-img"/></div>,
         text: `DBS`,
@@ -203,9 +203,9 @@ const versionControlDataCn = [
         url: "https://he_lifen.gitee.io/hos",
     },
     {
-        icon: <div className="dapp-icon"><img src="http://wmhl.gitee.io/wmhl/logo.jpeg" className="dapp-img"/></div>,
+        icon: <div className="dapp-icon"><img src="https://wmhl.gitee.io/wmhl/logo.jpeg" className="dapp-img"/></div>,
         text: `WMHL`,
-        url: "http://wmhl.gitee.io",
+        url: "https://wmhl.gitee.io",
     },
     {
         icon: <div className="dapp-icon"><img src="https://conspay.gitee.io/coinhi/assets/icon/icon.png" className="dapp-img"/></div>,
@@ -268,9 +268,9 @@ const versionControlDataEn = [
     //     url:"https://alpha-live.github.io/alpha/",
     // },
     {
-        icon: <div className="dapp-icon"><img src="http://liutyler.gitee.io/goFighting/logo.png"  className="dapp-img"/></div>,
+        icon: <div className="dapp-icon"><img src="https://liutyler.gitee.io/goFighting/logo.png"  className="dapp-img"/></div>,
         text: `GO Fighting`,
-        url:"http://liutyler.gitee.io/goFighting",
+        url:"https://liutyler.gitee.io/goFighting",
     },
     {
         icon: <div className="dapp-icon"><img src="http://table.supernode.vip:3000/logo192.png"  className="dapp-img"/></div>,
@@ -347,16 +347,16 @@ const versionControlDataEn = [
         text: `GAIL`,
         url:"https://gail.com.de",
     },
-    {
-        icon: <div className="dapp-icon"><img src="https://ahoj.xyz/logo64.png"  className="dapp-img"/></div>,
-        text: `AHOJ`,
-        url:"https://ahoj.xyz/login",
-    },
-    {
-        icon: <div className="dapp-icon"><img src="https://makt.io/logo.png"  className="dapp-img"/></div>,
-        text: `MAKT`,
-        url:"https://makt.io",
-    },
+    // {
+    //     icon: <div className="dapp-icon"><img src="https://ahoj.xyz/logo64.png"  className="dapp-img"/></div>,
+    //     text: `AHOJ`,
+    //     url:"https://ahoj.xyz/login",
+    // },
+    // {
+    //     icon: <div className="dapp-icon"><img src="https://makt.io/logo.png"  className="dapp-img"/></div>,
+    //     text: `MAKT`,
+    //     url:"https://makt.io",
+    // },
     {
         icon: <div className="dapp-icon"><img src="https://catlscd.github.io/sero-redpackage/img/logo.77472dad.png"  className="dapp-img"/></div>,
         text: `Red Envelope`,

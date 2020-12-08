@@ -3,8 +3,8 @@
     "id" : "cash.sero.popup.community", /*应用的标识*/
     "name" : "SERO Popup Community", /*应用名称，程序桌面图标名称*/
     "version" : {
-        "name" : "1.3.6", /*应用版本名称*/
-        "code" : 173
+        "name" : "1.3.7", /*应用版本名称*/
+        "code" : 174
     },
     "description" : "", /*应用描述信息*/
     "icons" : {
@@ -98,6 +98,9 @@
             "autoclose" : false, /*是否自动关闭程序启动界面，true表示应用加载应用入口页面后自动关闭；false则需调plus.navigator.closeSplashscreen()关闭*/
             "waiting" : false /*是否在程序启动界面显示等待雪花，true表示显示，false表示不显示。*/
         },
+        "kernel": {
+            "ios": "UIWebview"    //或者 "WKWebview"
+        },
         "popGesture" : "close", /*设置应用默认侧滑返回关闭Webview窗口，"none"为无侧滑返回功能，"hide"为侧滑隐藏Webview窗口。参考http://ask.dcloud.net.cn/article/102*/
         "runmode" : "liberate", /*应用的首次启动运行模式，可取liberate或normal，liberate模式在第一次启动时将解压应用资源（Android平台File API才可正常访问_www目录）*/
         "signature" : "Sk9JTiBVUyBtYWlsdG86aHIyMDEzQGRjbG91ZC5pbw==", /*可选，保留给应用签名，暂不使用*/
@@ -108,7 +111,8 @@
                 "password" : "", /*iOS应用打包个人证书导入密码*/
                 "p12" : "", /*iOS应用打包个人证书，打包配置文件关联的个人证书*/
                 "devices" : "universal", /*iOS应用支持的设备类型，可取值iphone/ipad/universal*/
-                "frameworks" : [] /*调用Native.js调用原生Objective-c API需要引用的FrameWork，如需调用GameCenter，则添加"GameKit.framework"*/
+                "frameworks" : [], /*调用Native.js调用原生Objective-c API需要引用的FrameWork，如需调用GameCenter，则添加"GameKit.framework"*/
+                "urltypes" : "seropopup"
             },
             "google" : {
                 "packagename" : "", /*Android应用包名，如io.dcloud.HelloH5*/
@@ -137,7 +141,8 @@
                     "<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>",
                     "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\"/>",
                     "<uses-permission android:name=\"android.permission.WRITE_SETTINGS\"/>"
-                ]
+                ],
+                "schemes" : "seropopup"
             },
             /*使用Native.js调用原生安卓API需要使用到的系统权限*/
             "orientation" : [ "portrait-primary" ], /*应用支持的方向，portrait-primary：竖屏正方向；portrait-secondary：竖屏反方向；landscape-primary：横屏正方向；landscape-secondary：横屏反方向*/

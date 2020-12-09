@@ -147,7 +147,10 @@
     function openApp() {
         plus.io.resolveLocalFileSystemURL( "_www/index.html", function( entry ) {
             if(!isAndroid){
-                plus.webview.open(entry.toRemoteURL());
+                plus.webview.open(entry.toRemoteURL(),"seropopup", {
+                    'kernel': 'UIWebview'       //或者'WKWebview'
+                });
+                // wn.show();
             }else{
                 window.location.replace('./index.html#')
             }

@@ -3,7 +3,7 @@ import {storage} from "../../config/common";
 
 function isPlus() {
     try {
-        return !!(plus && plus.sqlite);
+        return plus && plus.sqlite;
     } catch (e) {
         return false
     }
@@ -19,7 +19,6 @@ class Lstorage {
         if(isPlus()){
             appPlus.db.openDatabase().then(()=>{
                 appPlus.db.executeSql(`create table if not exists lstorage("key" CHAR(1000),"value" CHAR(1000))`).then(data=>{
-                    console.log("create table>>> " + data);
                 }).catch(error=>{
                     console.log("create table>>> " + error);
                 });
@@ -51,7 +50,6 @@ class Lstorage {
                             resolve("");
                         }
                     }).catch((e)=>{
-                        console.log(e);
                         resolve("");
                     });
                 }else{
@@ -59,6 +57,25 @@ class Lstorage {
                 }
             }else{
                 resolve(v);
+            }
+        })
+    }
+
+    async getPlus(key){
+        const that = this;
+        return new Promise(function (resolve) {
+            if(isPlus()){
+                that.getWithSqlLite(key).then(value => {
+                    if(value){
+                        resolve(value);
+                    }else{
+                        resolve("");
+                    }
+                }).catch((e)=>{
+                    resolve("");
+                });
+            }else{
+                resolve("");
             }
         })
     }
@@ -117,6 +134,8 @@ class Lstorage {
                 }
             }).catch(error=>{
                 that.init();
+                resolve("")
+
             });
         })
     }

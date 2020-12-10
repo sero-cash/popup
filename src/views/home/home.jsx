@@ -283,7 +283,7 @@ class Home extends Component {
             tempConfirmMap.set(k,v)
         };
 
-        if (current) {
+        if (current && detail) {
             mainPKr = detail.mainPKr;
             currentPKr = detail.currentPKr;
             if (assets) {

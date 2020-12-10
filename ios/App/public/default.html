@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SERO Popup</title>
+</head>
+<script type="application/javascript">
+    var wgtVer=null;
+    var u = navigator.userAgent, app = navigator.appVersion;
+    var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1; //g
+    var isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+
+    function onPlusReady() {
+        checkVersion()
+    }
+
+    if(window.plus){
+        onPlusReady();
+    }else{
+        document.addEventListener('plusready',onPlusReady,false);
+    }
+
+    function checkVersion() {
+
+        plus.runtime.getProperty(plus.runtime.appid,function(inf){
+            wgtVer=inf.version;
+            console.log("Current Version："+wgtVer);
+            checkUpdate(wgtVer)
+        });
+
+        return true
+    }
+
+    function checkUpdate(wgtVer){
+        var checkUrl="https://sero-1259797294.file.myqcloud.com/popup/version.json?"+new Date().getTime();
+        if(!isZH()){
+            checkUrl = "http://popup-github.sero.cash/version.json?"+new Date().getTime();
+        }
+
+
+        if(isAndroid){
+            checkUrl="https://sero-1259797294.file.myqcloud.com/popup/android.json?"+new Date().getTime();
+            if(!isZH()){
+                checkUrl = "http://popup-github.sero.cash/android.json?"+new Date().getTime();
+            }
+        }
+
+        // checkUrl = "http://129.211.98.114:3004/android.json?"+new Date().getTime();
+
+        console.log(checkUrl);
+        httpGet(checkUrl,function(resp,err){
+            if(!err){
+                console.log(resp);
+                var data= JSON.parse(resp);
+                var _remoteObj = null;
+                if(isZH()){
+                    _remoteObj = data["zh"];
+                }else{
+                    _remoteObj = data["en"];
+                }
+
+                if(wgtVer&&_remoteObj.docs&&(wgtVer!==_remoteObj.docs.version)){
+                    plus.nativeUI.closeWaiting();
+                    downWgt(_remoteObj);
+                }else{
+                    plus.nativeUI.closeWaiting();
+                    openApp()
+                }
+            }else{
+                console.log(err);
+                openApp()
+            }
+        })
+    }
+
+    function httpGet(url, cb) {
+        if (plus && plus.net) {
+            const xhr = new plus.net.XMLHttpRequest();
+            xhr.timeout = 20 * 1000;
+            xhr.onreadystatechange = function () {
+                switch (xhr.readyState) {
+                    case 0:
+                    case 1:
+                    case 2:
+                    case 3:
+                        break;
+                    case 4:
+                        if (xhr.status === 200) {
+                            cb(xhr.responseText, null)
+                        } else {
+                            cb(null, xhr.readyState)
+                        }
+                        break;
+                    default :
+                        break;
+                }
+            }
+            xhr.open("GET", url);
+            xhr.send();
+        }
+    }
+
+    function downWgt(_remoteObj){
+        var wgtUrl = _remoteObj.docs.url
+        if(_remoteObj.docs.show === true){
+            plus.nativeUI.showWaiting("Downloading...");
+        }
+        plus.downloader.createDownload( wgtUrl, {filename:"_doc/update/"}, function(d,status){
+            if ( status == 200 ) {
+                plus.nativeUI.closeWaiting();
+                installWgt(d.filename,_remoteObj);
+            } else {
+                plus.nativeUI.alert("Download failed!");
+            }
+            plus.nativeUI.closeWaiting();
+        }).start();
+    }
+
+    function installWgt(path,_remoteObj){
+        if(_remoteObj.docs.show === true){
+            plus.nativeUI.showWaiting("Install...");
+        }
+
+        plus.runtime.install(path,{},function(){
+            plus.nativeUI.closeWaiting();
+            var content = '\nVersion: '+_remoteObj.docs.version+'\n\n';
+            var descs = _remoteObj.docs.description;
+            for(var i = 0 ;i<descs.length;i++){
+                content += descs[i] +'\n';
+            }
+            if(_remoteObj.docs.show === true){
+                plus.nativeUI.alert(content,function(){
+                    plus.runtime.restart();
+                }, 'Update completed!' , "Restart");
+            }else{
+                plus.runtime.restart();
+            }
+
+        },function(e){
+            plus.nativeUI.closeWaiting();
+            plus.nativeUI.alert("Update failed ["+e.code+"]: "+e.message,function () {
+                openApp()
+            });
+        });
+    }
+
+    function openApp() {
+        plus.io.resolveLocalFileSystemURL( "_www/index.html", function( entry ) {
+            if(!isAndroid){
+                plus.webview.open(entry.toRemoteURL(),"seropopup", {
+                    'kernel': 'UIWebview'       //或者'WKWebview'
+                });
+                // wn.show();
+            }else{
+                window.location.replace('./index.html#')
+            }
+        }, function ( e ) {
+            plus.nativeUI.alert( "Request file system failed: " + e.message );
+        } );
+    }
+
+    function isZH(){
+        let localUtc = new Date().getTimezoneOffset() / 60;
+        return localUtc === -8;
+    }
+</script>
+<body>
+</body>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HVV9BKB9N2"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-HVV9BKB9N2');
+</script>
+</html>

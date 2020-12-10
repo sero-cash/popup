@@ -17,7 +17,6 @@ export function register() {
     registerEmbed();
     initConsole();
 
-
 }
 function registerEmbed(){
     if (window.frames.length !== parent.frames.length){

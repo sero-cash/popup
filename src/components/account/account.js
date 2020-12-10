@@ -185,11 +185,52 @@ class Account {
         await lstorage.set(keys.detailKey(address), detail);
     }
 
+    getAddresses = async () => {
+        let addresses = new Map()
+        let addressesStore = await lstorage.get(keys.account.addresses);
+        console.log("addressesStore,"+JSON.stringify(addressesStore));
+        let addressesPlus = await lstorage.getPlus(keys.account.addresses)
+        let storeLen = 0;
+        let plusLen = 0;
+        if(addressesStore && addressesStore.length>0){
+            storeLen = addressesStore.length;
+            for(let address of addressesStore){
+                addresses.set(address,1);
+            }
+        }
+        console.log("addressesPlus,"+JSON.stringify(addressesPlus));
+        let needUpdate = false;
+        if(addressesPlus && addressesPlus.length>0){
+            plusLen = addressesPlus.length;
+            for(let address of addressesPlus){
+                if(!addresses.has(address)){
+                    needUpdate = true;
+                    addresses.set(address,1);
+                }
+            }
+        }
+        if(!needUpdate && plusLen!=storeLen){
+            needUpdate = true;
+        }
+        if(needUpdate){
+            let list = [];
+            if (addresses && addresses.size>0) {
+                for (let [address,v] of addresses) {
+                    list.push(address)
+                }
+            }
+            if(list.length>0){
+                await lstorage.set(keys.account.addresses, list);
+            }
+        }
+        return addresses
+    }
+
     async List() {
         let list = [];
-        let addresses = await lstorage.get(keys.account.addresses);
-        if (addresses) {
-            for (let address of addresses) {
+        let addresses = await this.getAddresses();
+        if (addresses && addresses.size>0) {
+            for (let [address,v] of addresses) {
                 let account = await lstorage.get(keys.infoKey(address));
                 list.push(account)
             }
@@ -201,9 +242,9 @@ class Account {
     async Details() {
         const that = this;
         let list = [];
-        let addresses = await lstorage.get(keys.account.addresses);
-        if (addresses) {
-            for (let address of addresses) {
+        let addresses = await this.getAddresses();
+        if (addresses && addresses.size>0) {
+            for (let [address,v] of addresses) {
                 // let account = storage.get(keys.detailKey(address));
                 const detail = await that.Detail(address);
                 list.push(detail)

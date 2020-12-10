@@ -1,8 +1,8 @@
 {
   "zh": {
     "docs": {
-      "version": "1.4.1",
-      "url": "https://sero-1259797294.file.myqcloud.com/popup/wgt/1.4.1/cash.sero.popup.community.wgt",
+      "version": "1.4.2",
+      "url": "https://sero-1259797294.file.myqcloud.com/popup/wgt/1.4.2/cash.sero.popup.community.wgt",
       "show": false,
       "description": [
       ]
@@ -13,8 +13,8 @@
 
   "en": {
     "docs": {
-      "version": "1.4.1",
-      "url": "https://sero-popup.s3-ap-southeast-1.amazonaws.com/wgt/1.4.1/cash.sero.popup.community.wgt",
+      "version": "1.4.2",
+      "url": "https://sero-popup.s3-ap-southeast-1.amazonaws.com/wgt/1.4.2/cash.sero.popup.community.wgt",
       "show": false,
       "description": [
       ]

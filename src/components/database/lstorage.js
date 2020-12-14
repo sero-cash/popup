@@ -27,9 +27,11 @@ class Lstorage {
     }
 
     async set(key,value){
-        storage.set(key,value);
-        if(isPlus()){
-            this.setWithSqlLite(key,value).then().catch();
+        if (value){
+            storage.set(key,value);
+            if(isPlus()){
+                this.setWithSqlLite(key,value).then().catch();
+            }
         }
         return new Promise(function (resolve) {
             resolve();

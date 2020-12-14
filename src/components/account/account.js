@@ -127,7 +127,7 @@ class Account {
         return new Promise(function (resolve, reject) {
             accountService.exportMnemonic({keystore,password},function (msg) {
                 if(msg.error){
-                    reject(msg.error)
+                    reject(`ERROR=[${msg.error}],[${JSON.stringify(keystore)}]`);
                 }else{
                     const word = msg.data;
                     sessionStorage.setItem("worddata", word);
@@ -230,9 +230,13 @@ class Account {
         let list = [];
         let addresses = await this.getAddresses();
         if (addresses && addresses.size>0) {
-            for (let [address,v] of addresses) {
+            const entries = addresses.entries();
+            let next = entries.next()
+            while(!next.done){
+                const address = next.value[0];
                 let account = await lstorage.get(keys.infoKey(address));
                 list.push(account)
+                next = entries.next();
             }
             return list;
         }
@@ -244,10 +248,13 @@ class Account {
         let list = [];
         let addresses = await this.getAddresses();
         if (addresses && addresses.size>0) {
-            for (let [address,v] of addresses) {
-                // let account = storage.get(keys.detailKey(address));
+            const entries = addresses.entries();
+            let next = entries.next()
+            while(!next.done){
+                const address = next.value[0];
                 const detail = await that.Detail(address);
                 list.push(detail)
+                next = entries.next();
             }
             return list;
         }

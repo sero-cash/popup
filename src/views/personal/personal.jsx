@@ -25,7 +25,7 @@ class Personal extends Component {
         const tLang = lang.e().key;
         let helpUrl = "https://wiki.sero.cash/en/index.html?file=Tutorial/popup_QA";
         if (tLang === "zh_CN") {
-            helpUrl="http://118.24.17.141:8082/zh/index.html?file=Tutorial/popup_QA"
+            helpUrl="https://wiki.sero.cash/zh/index.html?file=Tutorial/popup_QA"
         } else if (tLang === "ja_JP") {
             helpUrl="https://wiki.sero.cash/en/index.html?file=Tutorial/popup_qa_jp"
         } else if (tLang === "be_BY") {

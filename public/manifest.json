@@ -3,8 +3,8 @@
     "id" : "cash.sero.popup.community", /*应用的标识*/
     "name" : "SERO Popup Community", /*应用名称，程序桌面图标名称*/
     "version" : {
-        "name" : "1.4.3", /*应用版本名称*/
-        "code" : 180
+        "name" : "1.4.4", /*应用版本名称*/
+        "code" : 181
     },
     "description" : "", /*应用描述信息*/
     "icons" : {

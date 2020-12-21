@@ -241,6 +241,11 @@ const versionControlDataCn = [
         icon: <div className="dapp-icon"><img src="https://mixpay.org/h5/otc-dist/img/1d18ade.png" className="dapp-img"/></div>,
         text: `MixPay`,
         url: "https://mixpay.org/h5/changeChain/?source=3&apikey=1575ee01da8a473fa33d565d0f90352d",
+    },
+    {
+        icon: <div className="dapp-icon"><img src="https://midafitom.gitee.io/mpm/logo.png" className="dapp-img"/></div>,
+        text: `MIDAFI`,
+        url: "https://midafitom.gitee.io/mpm/",
     }
 
 ];
@@ -401,10 +406,12 @@ const versionControlDataEn = [
         icon: <div className="dapp-icon"><img src="https://mixpay.org/h5/otc-dist/img/1d18ade.png" className="dapp-img"/></div>,
         text: `MixPay`,
         url: "https://mixpay.org/h5/changeChain/?source=3&apikey=1575ee01da8a473fa33d565d0f90352d",
+    },
+    {
+        icon: <div className="dapp-icon"><img src="https://midafitom.github.io/MPM/logo.png" className="dapp-img"/></div>,
+        text: `MIDAFI`,
+        url: "https://midafitom.github.io/mpm/",
     }
-
-
-
 ];
 
 

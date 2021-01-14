@@ -15,6 +15,7 @@ import {assetService} from "../../components/service/service";
 import NONT from '../../icons/NONT.png';
 import HAPY from '../../icons/HAPY.png';
 import VERYBOOM from '../../icons/VERYBOOM.png';
+import EUSDT from '../../icons/EUSDT.png';
 
 const priceService = new Price();
 
@@ -251,6 +252,8 @@ class Home extends Component {
             return HAPY
         }else if(cy === "VERYBOOM"){
             return VERYBOOM
+        }else if(cy === "EUSDT"){
+            return EUSDT
         }
         return logo
     }

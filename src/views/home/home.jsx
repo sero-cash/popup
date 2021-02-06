@@ -16,6 +16,9 @@ import NONT from '../../icons/NONT.png';
 import HAPY from '../../icons/HAPY.png';
 import VERYBOOM from '../../icons/VERYBOOM.png';
 import EUSDT from '../../icons/EUSDT.png';
+import EWBTC from '../../icons/EWBTC.png';
+import EWETH from '../../icons/EWETH.png';
+import TUSDT from '../../icons/TUSDT.png';
 
 const priceService = new Price();
 
@@ -254,6 +257,12 @@ class Home extends Component {
             return VERYBOOM
         }else if(cy === "EUSDT"){
             return EUSDT
+        }else if(cy === "TUSDT"){
+            return TUSDT
+        }else if(cy === "EWBTC"){
+            return EWBTC
+        }else if(cy === "EWETH"){
+            return EWETH
         }
         return logo
     }

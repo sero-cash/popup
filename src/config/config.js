@@ -49,7 +49,17 @@ class Config {
 
         let seroRpcHost = storage.get(keys.settings.seroRpcHost);
         if (seroRpcHost) {
-            this.host.rpc = seroRpcHost;
+            if(!this.isZH()){
+                this.host.rpc = "https://f-sero-light-node.ririniannian.com"
+            }else{
+                if(seroRpcHost.indexOf("f-sero-light-node")){
+                    storage.set(keys.settings.seroRpcName, lang.e().page.setting.cnNode)
+                    storage.set(keys.settings.seroRpcHost, "https://sero-light-node.ririniannian.com")
+                    this.host.rpc = "https://sero-light-node.ririniannian.com"
+                }else{
+                    this.host.rpc = seroRpcHost;
+                }
+            }
         }else{
             if(!this.isZH()){
                 this.host.rpc = "https://f-sero-light-node.ririniannian.com"
@@ -96,7 +106,7 @@ class Config {
         storage.set(keys.settings.seroRpcHost, v)
         storage.set(keys.settings.seroRpcName, name?name:v)
         this.host.rpc = v
-        this.init();
+        // this.init();
     }
 
     setMoneyType(v) {

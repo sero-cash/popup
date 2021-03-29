@@ -60,6 +60,12 @@ const seroLabCn = [
         text: `SEEDMIX`,
         url:"https://sero-lab.gitee.io/seedmix",
     },
+    {
+        icon: <div className="dapp-icon"><img src="https://sero-cash.gitee.io/emit-wallet-to-popup/assets/icon/icon.png"  className="dapp-img"/></div>,
+        text: `EMIT`,
+        url:"https://sero-cash.gitee.io/emit-wallet-to-popup?embed=popup",
+    },
+
 
 ]
 
@@ -73,6 +79,11 @@ const seroLabEn = [
         icon: <div className="dapp-icon"><img src="https://sero-lab.github.io/seedmix/logo.png"  className="dapp-img"/></div>,
         text: `SEEDMIX`,
         url:"https://sero-lab.github.io/seedmix",
+    },
+    {
+        icon: <div className="dapp-icon"><img src="https://wallet.emit.technology/assets/icon/icon.png"  className="dapp-img"/></div>,
+        text: `EMIT`,
+        url:"https://wallet.emit.technology/?embed=popup",
     },
 ]
 

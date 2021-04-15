@@ -8,21 +8,11 @@ import {assetService} from "../../components/service/service";
 import Account from "../../components/account/account";
 import {decimals} from "../../components/tx/decimals";
 import {JsonRpc} from "../../service/jsonrpc";
-const bs58 = require('bs58');
+
 
 const jsonRpc = new JsonRpc();
 const utils = new Utils();
 
-function hexToBase58(hex) {
-    return bs58.encode(hexToBytes(hex));
-}
-
-function hexToBytes(hex) {
-    hex = hex.replace(/^0x/i, '');
-    for (var bytes = [], c = 0; c < hex.length; c += 2)
-        bytes.push(parseInt(hex.substr(c, 2), 16));
-    return bytes;
-}
 
 const account = new Account()
 
@@ -106,7 +96,7 @@ class TransferDetail extends Component{
             if(!cmdType){
                 if(txInfo.stx.Tx1.Outs_P){
                     for(let i=0;i<txInfo.stx.Tx1.Outs_P.length;i++){
-                        let to = hexToBase58(txInfo.stx.Tx1.Outs_P[i].PKr);
+                        let to = utils.hexToBase58(txInfo.stx.Tx1.Outs_P[i].PKr);
                         if(txInfo.from !== to){
                             tos.push(to)
                         }
@@ -115,7 +105,7 @@ class TransferDetail extends Component{
 
                 if(txInfo.stx.Tx1.Outs_C){
                     for(let i=0;i<txInfo.stx.Tx1.Outs_C.length;i++){
-                        let to = hexToBase58(txInfo.stx.Tx1.Outs_C[i].PKr);
+                        let to = utils.hexToBase58(txInfo.stx.Tx1.Outs_C[i].PKr);
                         if(txInfo.from !== to){
                             tos.push(to)
                         }
@@ -123,7 +113,11 @@ class TransferDetail extends Component{
                 }
             }else{
                 if (cmdType === "Contract"){
-                    tos.push(txInfo.to)
+                    tos.push(txInfo.to);
+
+                    let hexStr = utils.base58ToHex(txInfo.to);
+                    hexStr = hexStr.length>64?hexStr.slice(0,hexStr.length-64):hexStr;
+                    tos.push(`(${utils.ellipsisAddress(utils.hexToBase58(hexStr))})`)
                 }
             }
 
@@ -249,13 +243,17 @@ class TransferDetail extends Component{
                             <Flex.Item style={{flexBasis: "50%"}} >
                                 {
                                     tos.map((to)=>{
-                                        return to && <div>
-                                            <div style={{overflowWrap: "break-word",fontSize:"10px"}}  onClick={()=>{
+                                        return to && to.length>32 ? <div>
+                                            <div style={{overflowWrap: "break-word",fontSize:"10px",padding:"5px 0"}}  onClick={()=>{
                                                 copy(to);
                                                 Toast.success("Copy Successfully", 1);
                                             }}>
                                                 {to}
                                                 <Icon type="iconcopy" className="transfer-detail-copy-icon"/>
+                                            </div>
+                                        </div>:<div>
+                                            <div style={{overflowWrap: "break-word",fontSize:"10px",fontWeight:"600",color:"#000"}} >
+                                                Contract Address: {to}
                                             </div>
                                         </div>
                                     })

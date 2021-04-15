@@ -142,7 +142,7 @@ class Form extends Component {
                                 cy: that.props.cy,
                                 value: decimals.mul(value["amount"], that.props.cy, 0),
                                 gas: 25000,
-                                gasPrice: 1000000000,
+                                gasPrice: 1000000001,
                             }
 
                             transaction.transfer(tx, password).then(data=>{

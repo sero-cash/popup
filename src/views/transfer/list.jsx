@@ -229,10 +229,10 @@ class TransferList extends Component{
                 renderTx.push(
                     <Item key={i} style={tx.State === "pending"||tx.isConfirm?{opacity: 0.5}:{}} multipleLine
                           onClick={()=>{
-                              if(tx.Num){
+                              // if(tx.Num){
                                   storage.set(keys.txInfoKey("",tx.TxHash),tx);
                                   url.goPage(url.transferDetail(tx.TxHash),url.transferList(currency));
-                              }
+                              // }
                           }}
                           thumb={<Icon type={icontype} size="lg" style={{color:`${iconcolor}`}}/> } extra={<span className="income-span" style={{color:iconcolor}}>{symbol}{value}</span>}
                     >

@@ -179,21 +179,21 @@ class Settings extends Component {
 
                     </WingBlank>
                 </List>
-                <WhiteSpace/>
-                <List>
-                    <List.Item onClick={() => {
-                        Modal.alert(lang.e().modal.clearData, lang.e().modal.confirmClear, [{
-                            text: lang.e().button.cancel, onPress: () => {
-                            }
-                        }, {
-                            text: lang.e().button.confirm, onPress: () => {
-                                this.clearData()
-                            },
-                        }])
-                    }}>
-                        <div style={{color: "red", textAlign: "center"}}>{lang.e().page.my.clear}</div>
-                    </List.Item>
-                </List>
+                {/*<WhiteSpace/>*/}
+                {/*<List>*/}
+                {/*    <List.Item onClick={() => {*/}
+                {/*        Modal.alert(lang.e().modal.clearData, lang.e().modal.confirmClear, [{*/}
+                {/*            text: lang.e().button.cancel, onPress: () => {*/}
+                {/*            }*/}
+                {/*        }, {*/}
+                {/*            text: lang.e().button.confirm, onPress: () => {*/}
+                {/*                this.clearData()*/}
+                {/*            },*/}
+                {/*        }])*/}
+                {/*    }}>*/}
+                {/*        <div style={{color: "red", textAlign: "center"}}>{lang.e().page.my.clear}</div>*/}
+                {/*    </List.Item>*/}
+                {/*</List>*/}
 
                 <Modal
                     popup

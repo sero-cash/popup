@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {WhiteSpace, Card, Icon, List, NavBar, Button, Modal, Toast, SwipeAction, Badge} from 'antd-mobile'
+import {WhiteSpace, Card, Icon, List, NavBar, Button, Modal, Toast, SwipeAction, Badge,Progress} from 'antd-mobile'
 import Account from "../../components/account/account";
 import Utils from "../../config/utils";
 import Layout from "../layout/layout";
@@ -19,6 +19,7 @@ import EUSDT from '../../icons/EUSDT.png';
 import EWBTC from '../../icons/EWBTC.png';
 import EWETH from '../../icons/EWETH.png';
 import TUSDT from '../../icons/TUSDT.png';
+import {jsonRpc} from "../../service/jsonrpc";
 
 const priceService = new Price();
 
@@ -57,11 +58,18 @@ class Home extends Component {
             healthy:'normal',//red dead,yellow syncing,green:normal
             healthData:'',
             tk:'',
-            confirmingMap:new Map()
+            confirmingMap:new Map(),
+            percent:0
         }
     }
 
     componentDidMount() {
+        this.init().catch(e=>{
+            console.error(e)
+        })
+    }
+
+    init = async ()=>{
         let that = this;
         try {
             that.accounts().then();
@@ -106,34 +114,31 @@ class Home extends Component {
 
 
 
-    getSyncState(){
+    getSyncState = async () =>{
         let that = this;
         if(that.state.tk){
-            assetService.getSyncState(that.state.tk).then(data=>{
-                if(data){
-                    let healthy = 'normal'
-                    if(data.health === true){
-                        if(data.isSyncing=== true){
-                            healthy = 'syncing'
-                            healthCheckCount ++
-                        }else{
-                            healthy = 'normal'
-                            healthCheckCount =0
-                        }
+            const latestBlock = await jsonRpc.latestBlock();
+            const data = await assetService.getSyncState(that.state.tk)
+            if(data){
+                let healthy = 'normal'
+                if(data.health === true){
+                    if(data.isSyncing=== true){
+                        healthy = 'syncing'
+                        healthCheckCount ++
                     }else{
-                        healthy = 'dead'
+                        healthy = 'normal'
                         healthCheckCount =0
                     }
-                    that.setState({
-                        healthy:healthy,
-                        healthData:data
-                    })
+                }else{
+                    healthy = 'dead'
+                    healthCheckCount =0
                 }
-            }).catch(e=>{
                 that.setState({
-                    healthy:'dead'
+                    healthy:healthy,
+                    healthData:data,
+                    latestBlock:latestBlock
                 })
-            })
+            }
         }
     }
 
@@ -270,13 +275,22 @@ class Home extends Component {
     render() {
         let that = this;
         let assetsArr = [];
-        let {current, detail, assets,healthy,healthData,confirmingMap} = this.state;
+        let {current, detail, assets,healthy,healthData,confirmingMap,latestBlock} = this.state;
         let mainPKr = "";
         let currentPKr = "";
         let seroTotal = 0;
         let syncState = "check-circle"
         let stateColor="green"
-        let stateDesc = lang.e().toast.loading.synchronizing;
+
+        const percent = healthData.currentBlock && healthData.startBlock  ?(healthData.currentBlock-healthData.startBlock)/(latestBlock-healthData.startBlock):healthData.latestBlock/latestBlock;
+        let percentSync = percent < 1 ? percent * 0.9 : percent
+        if(healthData.checkNilPercent && healthData.checkNilPercent>0){
+            percentSync += healthData.checkNilPercent*0.09;
+        }
+        let stateDesc = `${lang.e().toast.loading.synchronizing}${lang.e().page.wallet.PKr} [${healthData && healthData.pkrIndex}]`;
+        if(percent<1 && healthData.startBlock<latestBlock-100){
+            stateDesc = `${lang.e().toast.loading.synchronizing}${lang.e().page.wallet.PKr} [${healthData && healthData.pkrIndex}](${(percentSync * 100).toFixed(2)}%)`;
+        }
         if(healthy === "normal"){
             syncState = "check-circle"
             stateColor="green"
@@ -289,6 +303,7 @@ class Home extends Component {
             stateColor="red"
             stateDesc='Synchronization failed!'
         }
+
 
         const tempConfirmMap = new Map();
         for(let [k,v] of confirmingMap){
@@ -495,7 +510,7 @@ class Home extends Component {
                         </Card.Body>
                         {/*<Card.Footer extra={<span>{that.state.seroPriceInfo.type}{new BigNumber(seroTotal).toFixed(3)}</span>}/>*/}
                         <Card.Footer extra={<span>
-                            <span style={{fontSize:'14px'}}>Block Height: {healthData.latestBlock?healthData.latestBlock:0}</span>
+                            <span style={{fontSize:'14px'}}>Block Height: {healthData.currentBlock?healthData.currentBlock:0}</span>
                             &nbsp;<Icon type="iconhelp" className="icon-pkr" onClick={() => {
                                 this.modalTips(lang.e().modal.blockHeight)
                             }}/>
@@ -503,10 +518,12 @@ class Home extends Component {
                     </Card>
                 </div>
 
+                {percent<1 && healthy === "syncing" && healthData.startBlock<latestBlock-100 && <Progress percent={percentSync * 100} className="sync-progress"/>}
                 <div className="am-list">
                     <div className="am-list-header" style={{background: "#fdfdfd"}}>
                         <div className="home-list-title">
                             <Icon type={syncState} color={stateColor} size="small" style={{width:"14px",height:"14px"}}/> {lang.e().page.wallet.Assets} {<span style={{fontSize:'12px'}}>{stateDesc}</span>}
+
                         </div>
                     </div>
                 </div>

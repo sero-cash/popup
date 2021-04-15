@@ -1,5 +1,6 @@
 import {config} from "../config/common";
 import axios from 'axios'
+import BigNumber from 'bignumber.js'
 // const axios = require('axios');
 
 class JsonRpc {
@@ -55,6 +56,11 @@ class JsonRpc {
             }
         })
     }
-}
 
-export {JsonRpc}
+    latestBlock = async ()=>{
+        const rest =  await this.seroRpcAsync("sero_blockNumber",[])
+        return new BigNumber(rest.result).toNumber()-12;
+    }
+}
+const jsonRpc = new JsonRpc()
+export {JsonRpc,jsonRpc}

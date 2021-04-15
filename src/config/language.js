@@ -336,7 +336,7 @@ class Language {
                 importing: "导入中...",
                 sending: "发送中...",
                 deleting: "删除中...",
-                synchronizing: "正在同步...",
+                synchronizing: "请勿关闭!正在同步...",
                 synccompleted:"同步完成!"
             },
             error: {

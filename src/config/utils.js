@@ -1,3 +1,4 @@
+const bs58 = require('bs58');
 
 class Utils {
 
@@ -48,6 +49,21 @@ class Utils {
         }
     }
 
+
+    hexToBase58(hex) {
+        return bs58.encode(this.hexToBytes(hex));
+    }
+
+    hexToBytes(hex) {
+        hex = hex.replace(/^0x/i, '');
+        for (var bytes = [], c = 0; c < hex.length; c += 2)
+            bytes.push(parseInt(hex.substr(c, 2), 16));
+        return bytes;
+    }
+
+    base58ToHex(address) {
+        return bs58.decode(address).toString("hex");
+    }
 
 }
 

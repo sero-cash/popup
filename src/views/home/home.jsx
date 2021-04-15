@@ -282,13 +282,14 @@ class Home extends Component {
         let syncState = "check-circle"
         let stateColor="green"
 
-        const percent = healthData.currentBlock && healthData.startBlock  ?(healthData.currentBlock-healthData.startBlock)/(latestBlock-healthData.startBlock):healthData.latestBlock/latestBlock;
-        let percentSync = percent < 1 ? percent * 0.9 : percent
+        const percent = healthData.currentBlock && healthData.startBlock&&healthData.startBlock<healthData.currentBlock
+            ?(healthData.currentBlock-healthData.startBlock)/(latestBlock-healthData.startBlock):healthData.currentBlock/latestBlock;
+        let percentSync = percent * 0.9
         if(healthData.checkNilPercent && healthData.checkNilPercent>0){
             percentSync += healthData.checkNilPercent*0.09;
         }
         let stateDesc = `${lang.e().toast.loading.synchronizing}${lang.e().page.wallet.PKr} [${healthData && healthData.pkrIndex}]`;
-        if(percent<1 && healthData.startBlock<latestBlock-100){
+        if(healthData.startBlock<latestBlock-100){
             stateDesc = `${lang.e().toast.loading.synchronizing}${lang.e().page.wallet.PKr} [${healthData && healthData.pkrIndex}](${(percentSync * 100).toFixed(2)}%)`;
         }
         if(healthy === "normal"){
@@ -308,7 +309,7 @@ class Home extends Component {
         const tempConfirmMap = new Map();
         for(let [k,v] of confirmingMap){
             tempConfirmMap.set(k,v)
-        };
+        }
 
         if (current && detail) {
             mainPKr = detail.mainPKr;
@@ -518,7 +519,7 @@ class Home extends Component {
                     </Card>
                 </div>
 
-                {percent<1 && healthy === "syncing" && healthData.startBlock<latestBlock-100 && <Progress percent={percentSync * 100} className="sync-progress"/>}
+                {healthy === "syncing" && healthData.startBlock<latestBlock-100 && <Progress percent={percentSync * 100} className="sync-progress"/>}
                 <div className="am-list">
                     <div className="am-list-header" style={{background: "#fdfdfd"}}>
                         <div className="home-list-title">

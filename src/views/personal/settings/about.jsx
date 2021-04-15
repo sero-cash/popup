@@ -29,7 +29,7 @@ class AboutUs extends Component {
         super(props);
 
         this.state = {
-            version:"1.2.1"
+            version:"2.0.0"
         }
     }
 
@@ -96,8 +96,8 @@ class AboutUs extends Component {
                 <div>
                     <div className="my-header"
                          style={{"height": document.documentElement.clientHeight * 0.15, padding: "30px 0px"}}>
-                        <img src={sero} style={{width: "60px"}}/>
-
+                        <img src={"./icon.png"} style={{width:"60px"}}/>
+                        <p style={{fontSize:"16px",fontWeight:"800"}}>SERO Popup</p>
                     </div>
                     <List>
                         {abouts}

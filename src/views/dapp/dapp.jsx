@@ -157,7 +157,7 @@ class DApp extends Component {
                     }}/>
                 </div>
 
-                <div style={{padding:'45px 0 60px',overflow:'scroll',background:"#fdfdfd"}} >
+                <div style={{padding:'45px 0 60px',minHeight:"80vh",overflow:'scroll',background:"#fdfdfd"}} >
                     <div className="sub-title">{lang.e().page.dapp.popup} </div>
                     <div style={{textAlign: 'center'}}>
                         <Grid data={popupData}  activeStyle={false}  onClick={
@@ -177,14 +177,19 @@ class DApp extends Component {
                         } hasLine={false}/>
                     </div>
 
-                    <div className="sub-title">{lang.e().page.dapp.recommended} </div>
-                    <div style={{textAlign: 'center'}}>
-                        <Grid data={data} activeStyle={false}onClick={
-                            (e,index)=>{
-                                this.showModal(e,true)
-                            }
-                        } hasLine={false}/>
-                    </div>
+                    {
+                        data && data.length>0 && <>
+                            <div className="sub-title">{lang.e().page.dapp.recommended} </div>
+                            <div style={{textAlign: 'center'}}>
+                                <Grid data={data} activeStyle={false}onClick={
+                                    (e,index)=>{
+                                        this.showModal(e,true)
+                                    }
+                                } hasLine={false}/>
+                            </div>
+                        </>
+                    }
+
 
                     <div>
                         {

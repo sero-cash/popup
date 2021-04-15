@@ -3,7 +3,6 @@ import { WhiteSpace, Icon, List} from 'antd-mobile'
 import Layout from "../layout/layout";
 import './personal.css'
 import { config, url, lang} from "../../config/common";
-import sero from '../../logo.png'
 
 class Personal extends Component {
 
@@ -42,7 +41,8 @@ class Personal extends Component {
         return <Layout selectedTab="my">
             <div style={{textAlign: 'center'}}>
                 <div className="my-header" style={{"height": document.documentElement.clientHeight * 0.15, padding: "30px 0px"}}>
-                    <img src={sero} style={{width:"60px"}}/>
+                    <img src={"./icon.png"} style={{width:"60px"}}/>
+                    <p style={{fontSize:"16px",fontWeight:"800"}}>SERO Popup</p>
                 </div>
                 <WhiteSpace size="lg"/>
 

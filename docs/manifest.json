@@ -231,8 +231,7 @@
                 }
             },
             "plugins" : {
-                "speech" : {},
-                "ad" : {}
+                "speech" : {}
             }
         },
         "screenOrientation" : [ "portrait-primary" ]

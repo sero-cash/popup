@@ -144,7 +144,15 @@ class DApp extends Component {
         return <Layout selectedTab="dapp" >
             <div>
                 <div className="layout-top" style={{color:"#f7f7f7"}}>
-                    <SearchBar placeholder={lang.e().page.dapp.search} maxLength={200} onSubmit={(val) => {
+                    <SearchBar placeholder={lang.e().page.dapp.search} onCancel={(val)=>{
+                        if(val){
+                            if(val.indexOf("http")>-1){
+                                url.goPage(url.browser(val), url.DApp);
+                            }else{
+                                Toast.fail(lang.e().page.dapp.invalidDApp,3)
+                            }
+                        }
+                    }} cancelText={<Icon type={"search"}/>} showCancelButton={true} maxLength={200} onSubmit={(val) => {
                         // window.location.replace("/#/browser/"+encodeURIComponent(val));
                         if(val){
                             if(val.indexOf("http")>-1){

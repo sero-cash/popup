@@ -119,3 +119,7 @@
 /*.am-carousel{*/
 /*    height: 300px !important;*/
 /*}*/
+
+.am-search-cancel-show{
+    padding: 10px 2px 0px 5px !important;
+}

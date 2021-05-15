@@ -2,17 +2,17 @@ import React from 'react'
 import sero from "../../sero.png";
 
 const popupDataEn = [
-    //
-    // {
-    //     icon: <div className="dapp-icon"><img src={sero}  className="dapp-img"/></div>,
-    //     text: `Explorer`,
-    //     url:"https://explorer.sero.cash",
-    // },
-    // {
-    //     icon: <div className="dapp-icon"><img src={sero}  className="dapp-img"/></div>,
-    //     text: `Wiki`,
-    //     url:"https://wiki.sero.cash",
-    // },
+
+    {
+        icon: <div className="dapp-icon"><img src={sero}  className="dapp-img"/></div>,
+        text: `Explorer`,
+        url:"https://explorer.sero.cash",
+    },
+    {
+        icon: <div className="dapp-icon"><img src={sero}  className="dapp-img"/></div>,
+        text: `Wiki`,
+        url:"https://wiki.sero.cash",
+    },
     {
         icon: <div className="dapp-icon"><img src="https://dex.coraldex.io/assets/icon/icon.png"  className="dapp-img"/></div>,
         text: `Coral DEX`,
@@ -51,16 +51,16 @@ const popupDataEn = [
 
 
 const popupDataCn = [
-    // {
-    //     icon: <div className="dapp-icon"><img src={sero}  className="dapp-img"/></div>,
-    //     text: `Explorer`,
-    //     url:"https://explorer.sero.cash",
-    // },
-    // {
-    //     icon: <div className="dapp-icon"><img src={sero}  className="dapp-img"/></div>,
-    //     text: `Wiki`,
-    //     url:"https://wiki.sero.cash",
-    // },
+    {
+        icon: <div className="dapp-icon"><img src={sero}  className="dapp-img"/></div>,
+        text: `Explorer`,
+        url:"https://explorer.sero.cash",
+    },
+    {
+        icon: <div className="dapp-icon"><img src={sero}  className="dapp-img"/></div>,
+        text: `Wiki`,
+        url:"https://wiki.sero.cash",
+    },
     {
         icon: <div className="dapp-icon"><img src="https://coral-dex.gitee.io/dex/assets/icon/icon.png"  className="dapp-img"/></div>,
         text: `Coral DEX`,

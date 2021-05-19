@@ -6,6 +6,7 @@ import jsuperzk from 'jsuperzk'
 import {keys, lang, storage, url,config} from "../../../config/common";
 import {assetService} from "../../../components/service/service";
 import './historyPkr.css'
+import copy from "copy-text-to-clipboard";
 
 let account = new Account();
 const Item = List.Item;
@@ -80,18 +81,30 @@ class HistoryPkr extends Component{
         return (
             <div>
                 <div className="layout-top">
-                <NavBar
-                    mode="light"
-                    leftContent={<Icon type="left" onClick={() => {
-                        url.goBack()
-                    }}/>}
-                >
-                    {lang.e().page.setting.pkr}
-                </NavBar>
+                    <NavBar
+                        mode="light"
+                        leftContent={<Icon type="left" onClick={() => {
+                            url.goBack()
+                        }}/>}
+                    >
+                        {lang.e().page.setting.pkr}
+                    </NavBar>
                 </div>
                 <div style={{marginTop:'45px'}}>
                     <h2 style={{textAlign:"center"}}>Block height : {this.state.currentBlock}</h2>
                 </div>
+
+                <List>
+                    <Item multipleLine wrap onClick={()=>{
+                        copy(this.state.current.tk);
+                        Toast.success(lang.e().toast.success.copy, 1);
+                    }}>
+                        <div style={{fontSize:"14px",wordBreak:"break-all",color:"#888"}}>
+                            {this.state.current && this.state.current.tk} <Icon type="iconcopy" style={{width:"14px",height:"14px"}}/>
+                        </div>
+                    </Item>
+                </List>
+
                 <div style={{height:document.documentElement.clientHeight*0.3,background:'#fdfdfd', overflowY: 'scroll'}}>
                     <List>
                         {this.state.pkrs}

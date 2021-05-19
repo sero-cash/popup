@@ -144,7 +144,15 @@ class DApp extends Component {
         return <Layout selectedTab="dapp" >
             <div>
                 <div className="layout-top" style={{color:"#f7f7f7"}}>
-                    <SearchBar placeholder={lang.e().page.dapp.search} maxLength={200} onSubmit={(val) => {
+                    <SearchBar placeholder={lang.e().page.dapp.search} onCancel={(val)=>{
+                        if(val){
+                            if(val.indexOf("http")>-1){
+                                url.goPage(url.browser(val), url.DApp);
+                            }else{
+                                Toast.fail(lang.e().page.dapp.invalidDApp,3)
+                            }
+                        }
+                    }} cancelText={<Icon type={"search"}/>} showCancelButton={true} maxLength={200} onSubmit={(val) => {
                         // window.location.replace("/#/browser/"+encodeURIComponent(val));
                         if(val){
                             if(val.indexOf("http")>-1){
@@ -157,7 +165,7 @@ class DApp extends Component {
                     }}/>
                 </div>
 
-                <div style={{padding:'45px 0 60px',overflow:'scroll',background:"#fdfdfd"}} >
+                <div style={{padding:'45px 0 60px',minHeight:"80vh",overflow:'scroll',background:"#fdfdfd"}} >
                     <div className="sub-title">{lang.e().page.dapp.popup} </div>
                     <div style={{textAlign: 'center'}}>
                         <Grid data={popupData}  activeStyle={false}  onClick={
@@ -177,14 +185,19 @@ class DApp extends Component {
                         } hasLine={false}/>
                     </div>
 
-                    <div className="sub-title">{lang.e().page.dapp.recommended} </div>
-                    <div style={{textAlign: 'center'}}>
-                        <Grid data={data} activeStyle={false}onClick={
-                            (e,index)=>{
-                                this.showModal(e,true)
-                            }
-                        } hasLine={false}/>
-                    </div>
+                    {
+                        data && data.length>0 && <>
+                            <div className="sub-title">{lang.e().page.dapp.recommended} </div>
+                            <div style={{textAlign: 'center'}}>
+                                <Grid data={data} activeStyle={false}onClick={
+                                    (e,index)=>{
+                                        this.showModal(e,true)
+                                    }
+                                } hasLine={false}/>
+                            </div>
+                        </>
+                    }
+
 
                     <div>
                         {

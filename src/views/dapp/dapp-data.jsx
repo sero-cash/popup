@@ -113,11 +113,11 @@ const versionControlDataCn = [
         text: `GO Fighting`,
         url:"https://liutyler.gitee.io/goFighting",
     },
-    {
-        icon: <div className="dapp-icon"><img src="http://table.supernode.vip:3000/logo192.png"  className="dapp-img"/></div>,
-        text: `Table Game`,
-        url:"http://table.supernode.vip:3000/",
-    },
+    // {
+    //     icon: <div className="dapp-icon"><img src="http://table.supernode.vip:3000/logo192.png"  className="dapp-img"/></div>,
+    //     text: `Table Game`,
+    //     url:"http://table.supernode.vip:3000/",
+    // },
     {
         icon: <div className="dapp-icon"><img src="https://edenworkroom.gitee.io/market/logo.png"  className="dapp-img"/></div>,
         text: `Rhino Market`,
@@ -248,11 +248,11 @@ const versionControlDataCn = [
         text: `SERO MINER`,
         url: "https://serominer.gitee.io/miner",
     },
-    {
-        icon: <div className="dapp-icon"><img src="https://mixpay.org/h5/otc-dist/img/1d18ade.png" className="dapp-img"/></div>,
-        text: `MixPay`,
-        url: "https://mixpay.org/h5/changeChain/?source=3&apikey=1575ee01da8a473fa33d565d0f90352d",
-    },
+    // {
+    //     icon: <div className="dapp-icon"><img src="https://mixpay.org/h5/otc-dist/img/1d18ade.png" className="dapp-img"/></div>,
+    //     text: `MixPay`,
+    //     url: "https://mixpay.org/h5/changeChain/?source=3&apikey=1575ee01da8a473fa33d565d0f90352d",
+    // },
     {
         icon: <div className="dapp-icon"><img src="https://midafitom.gitee.io/mpm/logo.png" className="dapp-img"/></div>,
         text: `MIDAFI`,
@@ -288,11 +288,11 @@ const versionControlDataEn = [
         text: `GO Fighting`,
         url:"https://liutyler.gitee.io/goFighting",
     },
-    {
-        icon: <div className="dapp-icon"><img src="http://table.supernode.vip:3000/logo192.png"  className="dapp-img"/></div>,
-        text: `Table Game`,
-        url:"http://table.supernode.vip:3000/",
-    },
+    // {
+    //     icon: <div className="dapp-icon"><img src="http://table.supernode.vip:3000/logo192.png"  className="dapp-img"/></div>,
+    //     text: `Table Game`,
+    //     url:"http://table.supernode.vip:3000/",
+    // },
     {
         icon: <div className="dapp-icon"><img src="https://edenworkroom.gitee.io/market/logo.png"  className="dapp-img"/></div>,
         text: `Rhino Market`,
@@ -413,11 +413,11 @@ const versionControlDataEn = [
         text: `SERO MINER`,
         url: "https://serominer.github.io/miner/",
     },
-    {
-        icon: <div className="dapp-icon"><img src="https://mixpay.org/h5/otc-dist/img/1d18ade.png" className="dapp-img"/></div>,
-        text: `MixPay`,
-        url: "https://mixpay.org/h5/changeChain/?source=3&apikey=1575ee01da8a473fa33d565d0f90352d",
-    },
+    // {
+    //     icon: <div className="dapp-icon"><img src="https://mixpay.org/h5/otc-dist/img/1d18ade.png" className="dapp-img"/></div>,
+    //     text: `MixPay`,
+    //     url: "https://mixpay.org/h5/changeChain/?source=3&apikey=1575ee01da8a473fa33d565d0f90352d",
+    // },
     {
         icon: <div className="dapp-icon"><img src="https://midafitom.github.io/MPM/logo.png" className="dapp-img"/></div>,
         text: `MIDAFI`,

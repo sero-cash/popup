@@ -1,16 +1,16 @@
 {
     "@platforms" : [ "android", "iPhone", "iPad" ],
-    "id" : "cash.sero.popup", /*应用的标识*/
-    "name" : "SERO Popup", /*应用名称，程序桌面图标名称*/
+    "id" : "cash.sero.popup.community", /*应用的标识*/
+    "name" : "SERO Popup Community", /*应用名称，程序桌面图标名称*/
     "version" : {
-        "name" : "2.0.0", /*应用版本名称*/
-        "code" : 200
+        "name" : "1.5.0", /*应用版本名称*/
+        "code" : 187
     },
     "description" : "", /*应用描述信息*/
     "icons" : {
         "72" : "icon.png"
     },
-    "launch_path" : "default.html", /*应用的入口页面，默认为根目录下的index.html；支持网络地址，必须以http://或https://开头*/
+    "launch_path" : "http://popup.sero.cash", /*应用的入口页面，默认为根目录下的index.html；支持网络地址，必须以http://或https://开头*/
     "developer" : {
         "name" : "", /*开发者名称*/
         "email" : "", /*开发者邮箱地址*/
@@ -137,8 +137,7 @@
                     "<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>",
                     "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\"/>",
                     "<uses-permission android:name=\"android.permission.WRITE_SETTINGS\"/>"
-                ],
-                "abiFilters" : [ "armeabi-v7a", "arm64-v8a", "x86" ]
+                ]
             },
             /*使用Native.js调用原生安卓API需要使用到的系统权限*/
             "orientation" : [ "portrait-primary" ], /*应用支持的方向，portrait-primary：竖屏正方向；portrait-secondary：竖屏反方向；landscape-primary：横屏正方向；landscape-secondary：横屏反方向*/
@@ -228,7 +227,8 @@
                     "hdpi" : "unpackage/res/start/480X762.png", /*高分屏启动图片，分辨率：480x762*/
                     "xhdpi" : "unpackage/res/start/720x1242.png", /*720P高分屏启动图片，分辨率：720x1242*/
                     "xxhdpi" : "unpackage/res/start/1080x1882.png" /*1080P高分屏启动图片，分辨率：1080x1882*/
-                }
+                },
+                "iosStyle" : "common"
             },
             "plugins" : {
                 "speech" : {},

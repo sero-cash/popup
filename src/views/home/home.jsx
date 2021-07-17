@@ -103,8 +103,16 @@ class Home extends Component {
             if(homeInterverId3){
                 clearInterval(homeInterverId3);
             }
-            homeInterverId3 = setInterval(function () {
-                that.getSyncState();
+            homeInterverId3 = setInterval(()=> {
+                this.getSyncState().then(() => {
+                    if(Math.ceil(Date.now()/1000) % 10 === 0 ){
+                        jsonRpc.latestBlock().then((latestBlock)=>{
+                            this.setState({
+                                latestBlock:latestBlock
+                            })
+                        })
+                    }
+                })
             },  1 * 1000)
 
         } catch (e) {
@@ -117,7 +125,6 @@ class Home extends Component {
     getSyncState = async () =>{
         let that = this;
         if(that.state.tk){
-            const latestBlock = await jsonRpc.latestBlock();
             const data = await assetService.getSyncState(that.state.tk)
             if(data){
                 let healthy = 'normal'
@@ -136,7 +143,6 @@ class Home extends Component {
                 that.setState({
                     healthy:healthy,
                     healthData:data,
-                    latestBlock:latestBlock
                 })
             }
         }

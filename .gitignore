@@ -27,3 +27,5 @@ yarn-error.log*
 
 .idea
 *.iml
+
+docs/unpackage/release/

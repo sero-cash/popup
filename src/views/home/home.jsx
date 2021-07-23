@@ -74,6 +74,7 @@ class Home extends Component {
         try {
             that.accounts().then();
             // that.calSeroTotal();
+            this.getLastBlock();
 
             if(!homeInterverId0){
                 homeInterverId0 = setInterval(function () {
@@ -106,11 +107,7 @@ class Home extends Component {
             homeInterverId3 = setInterval(()=> {
                 this.getSyncState().then(() => {
                     if(Math.ceil(Date.now()/1000) % 10 === 0 ){
-                        jsonRpc.latestBlock().then((latestBlock)=>{
-                            this.setState({
-                                latestBlock:latestBlock
-                            })
-                        })
+                        this.getLastBlock();
                     }
                 })
             },  1 * 1000)
@@ -120,6 +117,13 @@ class Home extends Component {
         }
     }
 
+    getLastBlock = ()=>{
+        jsonRpc.latestBlock().then((latestBlock)=>{
+            this.setState({
+                latestBlock:latestBlock
+            })
+        })
+    }
 
 
     getSyncState = async () =>{
@@ -288,14 +292,13 @@ class Home extends Component {
         let syncState = "check-circle"
         let stateColor="green"
 
-        const percent = healthData.currentBlock && healthData.startBlock&&healthData.startBlock<healthData.currentBlock
-            ?(healthData.currentBlock-healthData.startBlock)/(latestBlock-healthData.startBlock):healthData.currentBlock/latestBlock;
+        const percent = healthData.currentBlock/latestBlock;
         let percentSync = percent * 0.9
         if(healthData.checkNilPercent && healthData.checkNilPercent>0){
             percentSync += healthData.checkNilPercent*0.09;
         }
         let stateDesc = `${lang.e().toast.loading.synchronizing}${lang.e().page.wallet.PKr} [${healthData && healthData.pkrIndex}]`;
-        if(healthData.startBlock<latestBlock-100){
+        if(percentSync>0){
             stateDesc = `${lang.e().toast.loading.synchronizing}${lang.e().page.wallet.PKr} [${healthData && healthData.pkrIndex}](${(percentSync * 100).toFixed(2)}%)`;
         }
         if(healthy === "normal"){
@@ -517,7 +520,7 @@ class Home extends Component {
                         </Card.Body>
                         {/*<Card.Footer extra={<span>{that.state.seroPriceInfo.type}{new BigNumber(seroTotal).toFixed(3)}</span>}/>*/}
                         <Card.Footer extra={<span>
-                            <span style={{fontSize:'14px'}}>Block Height: {healthData.currentBlock?healthData.currentBlock:0}</span>
+                            <span style={{fontSize:'14px'}}>Block Height: {latestBlock}</span>
                             &nbsp;<Icon type="iconhelp" className="icon-pkr" onClick={() => {
                                 this.modalTips(lang.e().modal.blockHeight)
                             }}/>
@@ -525,7 +528,7 @@ class Home extends Component {
                     </Card>
                 </div>
 
-                {healthy === "syncing" && healthData.startBlock<latestBlock-100 && <Progress percent={percentSync * 100} className="sync-progress"/>}
+                {healthy === "syncing" && percentSync>0 && <Progress percent={percentSync * 100} className="sync-progress"/>}
                 <div className="am-list">
                     <div className="am-list-header" style={{background: "#fdfdfd"}}>
                         <div className="home-list-title">

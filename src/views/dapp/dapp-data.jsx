@@ -47,6 +47,11 @@ const popupDataEn = [
         text: `Doraemon`,
         url:"https://uhexio.github.io/sero-skit/",
     },
+    {
+        icon: <div className="dapp-icon"><img src="https://sero-cash.github.io/easter-node/logo.png"  className="dapp-img"/></div>,
+        text: `Easter`,
+        url:"https://sero-cash.github.io/easter-node/",
+    },
 ]
 
 
@@ -95,6 +100,11 @@ const popupDataCn = [
         icon: <div className="dapp-icon"><img src="https://uhexio.gitee.io/sero-skit/assets/icon/icon.png"  className="dapp-img"/></div>,
         text: `Doraemon`,
         url:"https://uhexio.gitee.io/sero-skit/",
+    },
+    {
+        icon: <div className="dapp-icon"><img src="http://148.70.169.73:8586/logo.png"  className="dapp-img"/></div>,
+        text: `Easter`,
+        url:"http://148.70.169.73:8586",
     },
 ]
 

@@ -5,6 +5,7 @@
     "version" : {
         "name" : "1.5.2", /*应用版本名称*/
         "code" : 189
+
     },
     "description" : "", /*应用描述信息*/
     "icons" : {
@@ -231,8 +232,7 @@
                 "iosStyle" : "common"
             },
             "plugins" : {
-                "speech" : {},
-                "ad" : {}
+                "speech" : {}
             }
         },
         "screenOrientation" : [ "portrait-primary" ]

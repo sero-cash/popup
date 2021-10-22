@@ -104,7 +104,7 @@ const popupDataCn = [
     {
         icon: <div className="dapp-icon"><img src="http://148.70.169.73:8586/logo.png"  className="dapp-img"/></div>,
         text: `Easter`,
-        url:"http://148.70.169.73:8586",
+        url:"https://easter-node.sero.cash",
     },
 ]
 

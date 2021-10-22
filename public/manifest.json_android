@@ -3,15 +3,15 @@
     "id" : "cash.sero.popup.community", /*应用的标识*/
     "name" : "SERO Popup Community", /*应用名称，程序桌面图标名称*/
     "version" : {
-        "name" : "1.4.8", /*应用版本名称*/
-        "code" : 185
+        "name" : "1.5.2", /*应用版本名称*/
+        "code" : 189
 
     },
     "description" : "", /*应用描述信息*/
     "icons" : {
         "72" : "icon.png"
     },
-    "launch_path" : "default.html", /*应用的入口页面，默认为根目录下的index.html；支持网络地址，必须以http://或https://开头*/
+    "launch_path" : "http://popup.sero.cash", /*应用的入口页面，默认为根目录下的index.html；支持网络地址，必须以http://或https://开头*/
     "developer" : {
         "name" : "", /*开发者名称*/
         "email" : "", /*开发者邮箱地址*/
@@ -228,7 +228,8 @@
                     "hdpi" : "unpackage/res/start/480X762.png", /*高分屏启动图片，分辨率：480x762*/
                     "xhdpi" : "unpackage/res/start/720x1242.png", /*720P高分屏启动图片，分辨率：720x1242*/
                     "xxhdpi" : "unpackage/res/start/1080x1882.png" /*1080P高分屏启动图片，分辨率：1080x1882*/
-                }
+                },
+                "iosStyle" : "common"
             },
             "plugins" : {
                 "speech" : {}
@@ -236,5 +237,6 @@
         },
         "screenOrientation" : [ "portrait-primary" ]
     },
-    "fullscreen" : false
+    "fullscreen" : false,
+    "screenOrientation" : [ "portrait-primary" ]
 }

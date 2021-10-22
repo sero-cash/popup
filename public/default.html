@@ -32,22 +32,16 @@
     }
 
     function checkUpdate(wgtVer){
-        var checkUrl="https://sero-1259797294.file.myqcloud.com/popup/version_stable.json?"+new Date().getTime();
-        if(!isZH()){
-            checkUrl = "http://popup-github.sero.cash/version_stable.json?"+new Date().getTime();
-        }
-
-
+        var checkUrl="https://popup.sero.cash/version_stable.json?"+new Date().getTime();
+        // if(!isZH()){
+        //     checkUrl = "http://popup-github.sero.cash/version_stable.json?"+new Date().getTime();
+        // }
         if(isAndroid){
-            checkUrl="https://sero-1259797294.file.myqcloud.com/popup/android_stable.json?"+new Date().getTime();
-            if(!isZH()){
-                checkUrl = "http://popup-github.sero.cash/android_stable.json?"+new Date().getTime();
-            }
+            checkUrl="https://popup.sero.cash/android_stable.json?"+new Date().getTime();
+            // if(!isZH()){
+            //     checkUrl = "http://popup-github.sero.cash/android_stable.json?"+new Date().getTime();
+            // }
         }
-
-        // checkUrl = "http://129.211.98.114:3004/android.json?"+new Date().getTime();
-
-        console.log(checkUrl);
         httpGet(checkUrl,function(resp,err){
             if(!err){
                 console.log(resp);

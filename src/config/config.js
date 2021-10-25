@@ -17,8 +17,8 @@ class Config {
 
         this.host = {
             host: "http://popup.sero.cash/#/",
-            // rpc: "http://sero-light-node.ririniannian.com:8545",
-            rpc: "https://sero-light-node.ririniannian.com",
+            // rpc: "http://light-node.sero.cash:8545",
+            rpc: "https://light-node.sero.cash",
             price: "",
 
         }
@@ -49,22 +49,22 @@ class Config {
 
         let seroRpcHost = storage.get(keys.settings.seroRpcHost);
         if (seroRpcHost) {
-            if(!this.isZH()){
-                this.host.rpc = "https://f-sero-light-node.ririniannian.com"
-            }else{
-                if(seroRpcHost.indexOf("f-sero-light-node")){
-                    storage.set(keys.settings.seroRpcName, lang.e().page.setting.cnNode)
-                    storage.set(keys.settings.seroRpcHost, "https://sero-light-node.ririniannian.com")
-                    this.host.rpc = "https://sero-light-node.ririniannian.com"
-                }else{
+            // if(!this.isZH()){
+            //     this.host.rpc = "https://f-light-node.sero.cash"
+            // }else{
+                // if(seroRpcHost.indexOf("f-sero-light-node")){
+                //     storage.set(keys.settings.seroRpcName, lang.e().page.setting.cnNode)
+                //     storage.set(keys.settings.seroRpcHost, "https://light-node.sero.cash")
+                //     this.host.rpc = "https://light-node.sero.cash"
+                // }else{
                     this.host.rpc = seroRpcHost;
-                }
-            }
+                // }
+            // }
         }else{
             if(!this.isZH()){
-                this.host.rpc = "https://f-sero-light-node.ririniannian.com"
+                this.host.rpc = "https://f-light-node.sero.cash"
             }else{
-                this.host.rpc = "https://sero-light-node.ririniannian.com"
+                this.host.rpc = "https://light-node.sero.cash"
             }
         }
 

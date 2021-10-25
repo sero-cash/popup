@@ -22,13 +22,13 @@ class Settings extends Component {
                     id: "2",
                     network: "main",
                     name: lang.e().page.setting.enNode,
-                    rpc: "https://f-sero-light-node.ririniannian.com",
+                    rpc: "https://f-light-node.sero.cash",
                 },
                 {
                     id: "1",
                     network: "main",
                     name: lang.e().page.setting.cnNode,
-                    rpc: "https://sero-light-node.ririniannian.com",
+                    rpc: "https://light-node.sero.cash",
                 }
             ]
         })

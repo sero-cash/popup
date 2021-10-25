@@ -14,14 +14,14 @@ const popupDataEn = [
         url:"https://wiki.sero.cash",
     },
     {
-        icon: <div className="dapp-icon"><img src="https://dex.coraldex.io/assets/icon/icon.png"  className="dapp-img"/></div>,
+        icon: <div className="dapp-icon"><img src="https://coraldex.sero.cash/assets/icon/icon.png"  className="dapp-img"/></div>,
         text: `Coral DEX`,
-        url:"https://dex.coraldex.io/#/quotes",
+        url:"https://coraldex.sero.cash/#/quotes",
     },
     {
-        icon: <div className="dapp-icon"><img src="https://coral-dex.github.io/corswap/logo.png"  className="dapp-img"/></div>,
+        icon: <div className="dapp-icon"><img src="https://corswap.sero.cash/logo.png"  className="dapp-img"/></div>,
         text: `Coral Swap`,
-        url:"https://coral-dex.github.io/corswap/",
+        url:"https://corswap.sero.cash/corswap/",
     },
     {
         icon: <div className="dapp-icon"><img src="https://wallet.emit.technology/assets/icon/icon.png"  className="dapp-img"/></div>,
@@ -48,9 +48,9 @@ const popupDataEn = [
         url:"https://uhexio.github.io/sero-skit/",
     },
     {
-        icon: <div className="dapp-icon"><img src="https://sero-cash.github.io/easter-node/logo.png"  className="dapp-img"/></div>,
+        icon: <div className="dapp-icon"><img src="https://easter-node.sero.cash/logo.png"  className="dapp-img"/></div>,
         text: `Easter`,
-        url:"https://sero-cash.github.io/easter-node/",
+        url:"https://easter-node.sero.cash",
     },
 ]
 
@@ -67,14 +67,14 @@ const popupDataCn = [
         url:"https://wiki.sero.cash",
     },
     {
-        icon: <div className="dapp-icon"><img src="https://coral-dex.gitee.io/dex/assets/icon/icon.png"  className="dapp-img"/></div>,
+        icon: <div className="dapp-icon"><img src="https://coraldex.sero.cash/assets/icon/icon.png"  className="dapp-img"/></div>,
         text: `Coral DEX`,
-        url:"https://coral-dex.gitee.io/dex",
+        url:"https://coraldex.sero.cash",
     },
     {
-        icon: <div className="dapp-icon"><img src="https://coral-dex.gitee.io/corswap/logo.png"  className="dapp-img"/></div>,
+        icon: <div className="dapp-icon"><img src="https://corswap.sero.cash/logo.png"  className="dapp-img"/></div>,
         text: `Coral Swap`,
-        url:"https://coral-dex.gitee.io/corswap/",
+        url:"https://corswap.sero.cash",
     },
     {
         icon: <div className="dapp-icon"><img src="https://sero-cash.gitee.io/emit-wallet-to-popup/assets/icon/icon.png"  className="dapp-img"/></div>,
@@ -102,7 +102,7 @@ const popupDataCn = [
         url:"https://uhexio.gitee.io/sero-skit/",
     },
     {
-        icon: <div className="dapp-icon"><img src="http://148.70.169.73:8586/logo.png"  className="dapp-img"/></div>,
+        icon: <div className="dapp-icon"><img src="https://easter-node.sero.cash/logo.png"  className="dapp-img"/></div>,
         text: `Easter`,
         url:"https://easter-node.sero.cash",
     },
@@ -110,27 +110,27 @@ const popupDataCn = [
 
 const seroLabCn = [
     {
-        icon: <div className="dapp-icon"><img src="https://sero-lab.gitee.io/seed/logo.png"  className="dapp-img"/></div>,
+        icon: <div className="dapp-icon"><img src="https://seed.sero.cash/logo.png"  className="dapp-img"/></div>,
         text: `SEED`,
-        url:"https://sero-lab.gitee.io/seed",
+        url:"https://seed.sero.cash",
     },
     {
-        icon: <div className="dapp-icon"><img src="https://sero-lab.gitee.io/seedmix/logo.png"  className="dapp-img"/></div>,
+        icon: <div className="dapp-icon"><img src="https://seedmix.sero.cash/logo.png"  className="dapp-img"/></div>,
         text: `SEEDMIX`,
-        url:"https://sero-lab.gitee.io/seedmix",
+        url:"https://seedmix.sero.cash",
     }
 ]
 
 const seroLabEn = [
     {
-        icon: <div className="dapp-icon"><img src="https://sero-lab.github.io/seed/logo.png"  className="dapp-img"/></div>,
+        icon: <div className="dapp-icon"><img src="https://seed.sero.cash/logo.png"  className="dapp-img"/></div>,
         text: `SEED`,
-        url:"https://sero-lab.github.io/seed/",
+        url:"https://seed.sero.cash/",
     },
     {
-        icon: <div className="dapp-icon"><img src="https://sero-lab.github.io/seedmix/logo.png"  className="dapp-img"/></div>,
+        icon: <div className="dapp-icon"><img src="https://seedmix.sero.cash/logo.png"  className="dapp-img"/></div>,
         text: `SEEDMIX`,
-        url:"https://sero-lab.github.io/seedmix",
+        url:"https://seedmix.sero.cash",
     },
 ]
 

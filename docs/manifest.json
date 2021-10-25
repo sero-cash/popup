@@ -5,6 +5,7 @@
     "version" : {
         "name" : "2.1.0", /*应用版本名称*/
         "code" : 210
+
     },
     "description" : "", /*应用描述信息*/
     "icons" : {
@@ -231,12 +232,11 @@
                 "iosStyle" : "common"
             },
             "plugins" : {
-                "speech" : {},
-                "share" : {}
+                "speech" : {}
             }
         },
         "screenOrientation" : [ "portrait-primary" ]
     },
     "fullscreen" : false,
-    "screenOrientation" : []
+    "screenOrientation" : [ "portrait-primary" ]
 }

@@ -1,4 +1,5 @@
 import {config, keys, lang, storage} from "./common";
+import {assetService} from "../components/service/service";
 
 class Config {
 
@@ -12,13 +13,16 @@ class Config {
                 zh_CN: "简体中文",
                 en_US: 'English'
             },
-            network: {}
+            network: {
+                cn: "https://light.seronode.io",
+                en: "https://f-light.seronode.io"
+            }
         }
 
         this.host = {
             host: "http://popup.sero.cash/#/",
-            // rpc: "http://light-node.sero.cash:8545",
-            rpc: "https://light-node.sero.cash",
+            // rpc: "http://light.seronode.io:8545",
+            rpc: "https://light.seronode.io",
             price: "",
 
         }
@@ -49,22 +53,27 @@ class Config {
 
         let seroRpcHost = storage.get(keys.settings.seroRpcHost);
         if (seroRpcHost) {
-            // if(!this.isZH()){
-            //     this.host.rpc = "https://f-light-node.sero.cash"
-            // }else{
-                // if(seroRpcHost.indexOf("f-sero-light-node")){
-                //     storage.set(keys.settings.seroRpcName, lang.e().page.setting.cnNode)
-                //     storage.set(keys.settings.seroRpcHost, "https://light-node.sero.cash")
-                //     this.host.rpc = "https://light-node.sero.cash"
-                // }else{
+            if(!this.isZH() && (seroRpcHost.indexOf("sero.cash")>-1 ||  seroRpcHost.indexOf("ririniannian.com")>-1) ){
+                // storage.set(keys.settings.seroRpcName, lang.e().page.setting.enNode)
+                // storage.set(keys.settings.seroRpcHost, this.setting.network.en)
+                // this.host.rpc = this.setting.network.en
+                this.setRpc(this.setting.network.en,keys.settings.seroRpcName)
+                // assetService.init()
+            }else{
+                if(seroRpcHost.indexOf("sero.cash")>-1 ||  seroRpcHost.indexOf("ririniannian.com")>-1){
+                    // storage.set(keys.settings.seroRpcName, lang.e().page.setting.enNode)
+                    // storage.set(keys.settings.seroRpcHost, this.setting.network.cn)
+                    // this.host.rpc = this.setting.network.cn
+                    this.setRpc(this.setting.network.cn,lang.e().page.setting.cnNode)
+                }else{
                     this.host.rpc = seroRpcHost;
-                // }
-            // }
+                }
+            }
         }else{
             if(!this.isZH()){
-                this.host.rpc = "https://f-light-node.sero.cash"
+                this.host.rpc = this.setting.network.en
             }else{
-                this.host.rpc = "https://light-node.sero.cash"
+                this.host.rpc = this.setting.network.cn
             }
         }
 

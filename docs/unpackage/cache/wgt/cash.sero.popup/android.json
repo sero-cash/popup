@@ -1,0 +1,25 @@
+{
+  "zh": {
+    "docs": {
+      "version": "1.5.9",
+      "url": "https://files.sero.cash/popup/wgt/1.5.9/cash.sero.popup.community.wgt",
+      "show": false,
+      "description": [
+      ]
+    },
+    "dapps": {
+    }
+  },
+
+  "en": {
+    "docs": {
+      "version": "1.5.9",
+      "url": "https://files.sero.cash/popup/wgt/1.5.9/cash.sero.popup.community.wgt",
+      "show": false,
+      "description": [
+      ]
+    },
+    "dapps": {
+    }
+  }
+}

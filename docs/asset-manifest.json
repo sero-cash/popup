@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "./static/css/main.e1724655.chunk.css",
-    "main.js": "./static/js/main.08e98c11.chunk.js",
+    "main.js": "./static/js/main.12302c30.chunk.js",
     "runtime~main.js": "./static/js/runtime~main.ca7cb530.js",
     "static/css/2.d6e5dedb.chunk.css": "./static/css/2.d6e5dedb.chunk.css",
     "static/js/2.f7ed56c8.chunk.js": "./static/js/2.f7ed56c8.chunk.js",
     "index.html": "./index.html",
-    "precache-manifest.ba6f924b686ec4d16d3057bdbc091563.js": "./precache-manifest.ba6f924b686ec4d16d3057bdbc091563.js",
+    "precache-manifest.3a86ebe22dfe5c6eb98c61539d983609.js": "./precache-manifest.3a86ebe22dfe5c6eb98c61539d983609.js",
     "service-worker.js": "./service-worker.js",
     "static/js/0.93946bfa.chunk.worker.js": "./static/js/0.93946bfa.chunk.worker.js",
-    "static/js/1.f8073be3.chunk.worker.js": "./static/js/1.f8073be3.chunk.worker.js",
+    "static/js/1.b7e19987.chunk.worker.js": "./static/js/1.b7e19987.chunk.worker.js",
     "static/media/EUSDT.png": "./static/media/EUSDT.0a5458ff.png",
     "static/media/EWBTC.png": "./static/media/EWBTC.9091f9fa.png",
     "static/media/EWETH.png": "./static/media/EWETH.f4891222.png",

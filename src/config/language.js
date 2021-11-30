@@ -200,7 +200,7 @@ class Language {
                 node: "Node Settings",
                 pkr: "Check synchronization status",
                 source:"Select Wallet Source",
-                cnNode: "Node 2 (Mainland China)",
+                cnNode: "Node 2 (Asia Pacific)",
                 enNode: "Node 1 (Global)"
             },
 
@@ -448,7 +448,7 @@ class Language {
                 node: "节点设置",
                 pkr: "同步状态",
                 source:"设置钱包开源社区",
-                cnNode:"节点2(中国大陆)",
+                cnNode:"节点2(亚太地区)",
                 enNode:"节点1(全球)"
             },
 
@@ -698,7 +698,7 @@ class Language {
                 node: "ノード設定",
                 pkr: "PKrを確認する",
                 source:"ウォレットをオープンソースに設定します",
-                cnNode:"ノード2（中国本土）",
+                cnNode:"ノード2（アジア太平洋地域）",
                 enNode:"ノード1（グローバル）"
             },
 
@@ -947,7 +947,7 @@ class Language {
                 node: "Настройки узла",
                 pkr: "Проверьте PKr",
                 source:"Выберите источник кошелька",
-                cnNode:"Вузел 2 (Кітай)",
+                cnNode:"Вузел 2 (Азіяцка-Ціхаакіянскі рэгіён)",
                 enNode:"Вузел 1 (глабальны)"
 
             },
@@ -1196,7 +1196,7 @@ class Language {
                 node: "노드 설정",
                 pkr: "PKr 확인",
                 source:"월렛 오픈 소스 커뮤니티 설정",
-                cnNode:"노드 2 (중국 본토)",
+                cnNode:"노드 2 (아시아 태평양)",
                 enNode:"노드 1 (글로벌)"
             },
 

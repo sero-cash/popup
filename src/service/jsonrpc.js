@@ -22,7 +22,7 @@ class JsonRpc {
             method: _method,
             params: _params,
         };
-        axios.post(rpc, data).then(function (response) {
+        axios.post(`${rpc}?apiVersion=v1`, data).then(function (response) {
             let data = response.data
             if (callback) {
                 callback(data);
@@ -43,7 +43,7 @@ class JsonRpc {
             method: _method,
             params: _params,
         };
-        const response = await axios.post(rpc, data);
+        const response = await axios.post(`${rpc}?apiVersion=v1`, data);
         return new Promise(resolve => {
             resolve(response.data);
         });

@@ -69,6 +69,9 @@ class Config {
                     this.host.rpc = seroRpcHost;
                 }
             }
+            if (this.host.rpc && (this.host.rpc.indexOf("https://light-node.ririniannian.com")>-1||this.host.rpc.indexOf("https://light.seronode.io")>-1)){
+                this.setRpc(this.setting.network.cn,lang.e().page.setting.cnNode)
+            }
         }else{
             if(!this.isZH()){
                 this.host.rpc = this.setting.network.en

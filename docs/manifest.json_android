@@ -1,17 +1,17 @@
 {
     "@platforms" : [ "android", "iPhone", "iPad" ],
-    "id" : "cash.sero.popup.community", /*应用的标识*/
-    "name" : "SERO Popup Community", /*应用名称，程序桌面图标名称*/
+    "id" : "cash.sero.popup", /*应用的标识*/
+    "name" : "SERO Popup", /*应用名称，程序桌面图标名称*/
     "version" : {
-        "name" : "1.5.2", /*应用版本名称*/
-        "code" : 189
+        "name" : "2.1.3", /*应用版本名称*/
+        "code" : 213
 
     },
     "description" : "", /*应用描述信息*/
     "icons" : {
         "72" : "icon.png"
     },
-    "launch_path" : "http://popup.sero.cash", /*应用的入口页面，默认为根目录下的index.html；支持网络地址，必须以http://或https://开头*/
+    "launch_path" : "default.html", /*应用的入口页面，默认为根目录下的index.html；支持网络地址，必须以http://或https://开头*/
     "developer" : {
         "name" : "", /*开发者名称*/
         "email" : "", /*开发者邮箱地址*/

@@ -21,7 +21,7 @@ const popupDataEn = [
     {
         icon: <div className="dapp-icon"><img src="https://corswap.sero.cash/logo.png"  className="dapp-img"/></div>,
         text: `Coral Swap`,
-        url:"https://corswap.sero.cash/corswap/",
+        url:"https://corswap.sero.cash/",
     },
     {
         icon: <div className="dapp-icon"><img src="https://wallet.emit.technology/assets/icon/icon.png"  className="dapp-img"/></div>,

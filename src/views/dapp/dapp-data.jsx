@@ -33,19 +33,19 @@ const popupDataEn = [
         url:"https://catlscd.github.io/sero-redpackage",
     },
     {
-        icon: <div className="dapp-icon"><img src="https://uhexio.github.io/sero-sloth/assets/icon/icon.png"  className="dapp-img"/></div>,
+        icon: <div className="dapp-icon"><img src="https://sero-sloth.vercel.app/assets/icon/icon.png"  className="dapp-img"/></div>,
         text: `Sloth`,
-        url:"https://uhexio.github.io/sero-sloth/",
+        url:"https://sero-sloth.vercel.app",
     },
     {
-        icon: <div className="dapp-icon"><img src="https://uhexio.github.io/sero-mpos/assets/icon/icon.png"  className="dapp-img"/></div>,
+        icon: <div className="dapp-icon"><img src="https://sero-mpos.vercel.app/assets/icon/icon.png"  className="dapp-img"/></div>,
         text: `MPoS`,
-        url:"https://uhexio.github.io/sero-mpos/",
+        url:"https://sero-mpos.vercel.app",
     },
     {
-        icon: <div className="dapp-icon"><img src="https://uhexio.github.io/sero-skit/assets/icon/icon.png"  className="dapp-img"/></div>,
+        icon: <div className="dapp-icon"><img src="https://sero-skit.vercel.app/assets/icon/icon.png"  className="dapp-img"/></div>,
         text: `Doraemon`,
-        url:"https://uhexio.github.io/sero-skit/",
+        url:"https://sero-skit.vercel.app",
     },
     {
         icon: <div className="dapp-icon"><img src="https://easter-node.sero.cash/logo.png"  className="dapp-img"/></div>,
@@ -87,19 +87,19 @@ const popupDataCn = [
         url:"https://anonymous2020.gitee.io/sero-redpackage/",
     },
     {
-        icon: <div className="dapp-icon"><img src="https://uhexio.gitee.io/sero-sloth/assets/icon/icon.png"  className="dapp-img"/></div>,
+        icon: <div className="dapp-icon"><img src="https://sero-sloth.vercel.app/assets/icon/icon.png"  className="dapp-img"/></div>,
         text: `Sloth`,
-        url:"https://uhexio.gitee.io/sero-sloth/",
+        url:"https://sero-sloth.vercel.app",
     },
     {
-        icon: <div className="dapp-icon"><img src="https://uhexio.gitee.io/sero-mpos/assets/icon/icon.png"  className="dapp-img"/></div>,
+        icon: <div className="dapp-icon"><img src="https://sero-mpos.vercel.app/assets/icon/icon.png"  className="dapp-img"/></div>,
         text: `MPoS`,
-        url:"https://uhexio.gitee.io/sero-mpos/",
+        url:"https://sero-mpos.vercel.app",
     },
     {
-        icon: <div className="dapp-icon"><img src="https://uhexio.gitee.io/sero-skit/assets/icon/icon.png"  className="dapp-img"/></div>,
+        icon: <div className="dapp-icon"><img src="https://sero-skit.vercel.app/assets/icon/icon.png"  className="dapp-img"/></div>,
         text: `Doraemon`,
-        url:"https://uhexio.gitee.io/sero-skit/",
+        url:"https://sero-skit.vercel.app",
     },
     {
         icon: <div className="dapp-icon"><img src="https://easter-node.sero.cash/logo.png"  className="dapp-img"/></div>,

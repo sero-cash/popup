@@ -27,7 +27,8 @@ const popupDataEn = [
         icon: <div className="dapp-icon"><img src="https://wallet.emit.technology/assets/icon/icon.png"  className="dapp-img"/></div>,
         text: `EMIT`,
         url:"https://wallet.emit.technology/?embed=popup",
-    },{
+    },
+    {
         icon: <div className="dapp-icon"><img src="https://catlscd.github.io/sero-redpackage/img/logo.77472dad.png"  className="dapp-img"/></div>,
         text: `Red Envelope`,
         url:"https://catlscd.github.io/sero-redpackage",
@@ -77,14 +78,14 @@ const popupDataCn = [
         url:"https://corswap.sero.cash",
     },
     {
-        icon: <div className="dapp-icon"><img src="https://sero-cash.gitee.io/emit-wallet-to-popup/assets/icon/icon.png"  className="dapp-img"/></div>,
+        icon: <div className="dapp-icon"><img src="https://emit-wallet-to-popup.vercel.app/assets/icon/icon.png"  className="dapp-img"/></div>,
         text: `EMIT`,
-        url:"https://sero-cash.gitee.io/emit-wallet-to-popup?embed=popup",
+        url:"https://emit-wallet-to-popup.vercel.app?embed=popup",
     },
     {
-        icon: <div className="dapp-icon"><img src="https://anonymous2020.gitee.io/sero-redpackage/img/logo.77472dad.png"  className="dapp-img"/></div>,
-        text: `SERO红包`,
-        url:"https://anonymous2020.gitee.io/sero-redpackage/",
+        icon: <div className="dapp-icon"><img src="https://catlscd.github.io/sero-redpackage/img/logo.77472dad.png"  className="dapp-img"/></div>,
+        text: `Red Envelope`,
+        url:"https://catlscd.github.io/sero-redpackage",
     },
     {
         icon: <div className="dapp-icon"><img src="https://sero-sloth.vercel.app/assets/icon/icon.png"  className="dapp-img"/></div>,

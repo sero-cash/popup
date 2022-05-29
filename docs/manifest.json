@@ -1,10 +1,11 @@
 {
     "@platforms" : [ "android", "iPhone", "iPad" ],
-    "id" : "cash.sero.popup.community", /*应用的标识*/
-    "name" : "SERO Popup Community", /*应用名称，程序桌面图标名称*/
+    "id" : "cash.sero.popup", /*应用的标识*/
+    "name" : "SERO Popup", /*应用名称，程序桌面图标名称*/
     "version" : {
-        "name" : "1.6.3", /*应用版本名称*/
-        "code" : 200
+        "name" : "2.1.4", /*应用版本名称*/
+        "code" : 214
+
     },
     "description" : "", /*应用描述信息*/
     "icons" : {

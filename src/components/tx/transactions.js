@@ -133,14 +133,15 @@ class Transactions {
             const dtl = await act.Detail(from);
             from = dtl.tk;
         }
+        console.log(tx);
         let txReq = {}
         txReq.From=from;
         txReq.To=tx.to;
         txReq.Cy=cy;
         txReq.Value=tx.value;
         txReq.Data=tx.data;
-        txReq.Gas=new BigNumber(gas).toString(16);
-        txReq.GasPrice=new BigNumber(gasPrice).toString(16);
+        txReq.Gas= "0x"+new BigNumber(gas).toString(16);
+        txReq.GasPrice= "0x"+ new BigNumber(gasPrice).toString(16);
         txReq.SK = await act.getSK(password);
         txReq.FeeCy = tx.feeCy?tx.feeCy:"SERO";
         txReq.BuyShare = tx.BuyShare;

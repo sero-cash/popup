@@ -67,9 +67,10 @@ class Browser extends Component {
             navTitle: "Browser",
             password: "",
             showTxInfo: false,
-            txInfo: "",
             barColor:"#f7f7f7",
             barMode:"light",
+            data: null,
+            cb: undefined
         }
     }
 
@@ -315,40 +316,9 @@ class Browser extends Component {
             }
 
             this.setState({
-                txInfo: <List>
-                    <List.Item extra={<span>{data.from}</span>}>{lang.e().page.txDetail.from}</List.Item>
-                    <List.Item extra={
-                        <span>{decimals.convert(data.value, data.cy).toString(10)} {data.cy}</span>}>{lang.e().page.txDetail.amount}</List.Item>
-                    <List.Item extra={<span>{data.data}</span>}>Data</List.Item>
-                    <List.Item extra={<div>
-                        {decimals.convert(new BigNumber(data.gas).multipliedBy(new BigNumber(data.gasPrice)), "SERO").toString(10)}<br/>
-                        <span style={{
-                            fontSize: '12px',
-                            color: "#ddd"
-                        }}>{new BigNumber(data.gas).toString(10)}(Gas) * {new BigNumber(data.gasPrice).dividedBy(new BigNumber(10).pow(9)).toString(10)}(Gta)</span><br/>
-                    </div>}>
-                        {lang.e().page.txDetail.fee}
-                    </List.Item>
-                    <List.Item>
-                        <div style={{width: "100%", float: "left", display: "flex"}}>
-                            <div style={{width: "25%", marginRight: "15px"}}>
-                                <Button onClick={() => {
-                                    this.setState({showTxInfo: false})
-                                    cb("")
-                                }}>{lang.e().button.cancel}</Button>
-                            </div>
-                            <div style={{width: "70%"}}>
-                                <Button type="primary" onClick={() => {
-                                    this.submit(data, cb)
-                                }}>{lang.e().button.confirm}</Button>
-                            </div>
-                        </div>
-                    </List.Item>
-                </List>
-            })
-
-            this.setState({
-                showTxInfo: true
+                showTxInfo: true,
+                data: data,
+                cb: cb
             })
         } catch (e) {
             Toast.fail(e.message, 3)
@@ -356,7 +326,8 @@ class Browser extends Component {
         }
     }
 
-    submit = (data, cb) => {
+    submit = (data) => {
+        const {cb} = this.state;
         try {
             Modal.prompt(lang.e().button.transfer, <div>
 
@@ -364,6 +335,9 @@ class Browser extends Component {
                 text: lang.e().button.cancel, onPress: () => {
                     console.log("cancel");
                     cb("")
+                    this.setState({
+                        showTxInfo: false,
+                    })
                 }
             }, {
                 text: lang.e().button.confirm, onPress: (password) => {
@@ -375,6 +349,9 @@ class Browser extends Component {
                             transactions.transfer(data, password).then(hash=>{
                                 Toast.success(lang.e().toast.success.send, 2)
                                 cb(hash)
+                                this.setState({
+                                    showTxInfo: false,
+                                })
                             }).catch(error=>{
                                 const err = typeof error === 'string'?error:error.message;
                                 if(err){
@@ -396,14 +373,41 @@ class Browser extends Component {
                     }
                 }
             }], "secure-text", null, [lang.e().page.txTransfer.inputPassword])
-
-            this.setState({
-                showTxInfo: false
-            })
         } catch (e) {
             Toast.fail(e.message, 3)
         }
     }
+
+    modifyGasPrice = (data) => {
+        try {
+            Modal.prompt("Set gas price", <div>
+
+            </div>, [{
+                text: lang.e().button.cancel, onPress: () => {
+                    console.log("cancel");
+                }
+            }, {
+                text: lang.e().button.confirm, onPress: (gasPrice) => {
+                    if (!gasPrice) {
+                        Toast.fail(`Please input gas price (GTa)`)
+                    } else {
+                        try {
+                            data.gasPrice = "0x"+ new BigNumber(gasPrice).multipliedBy(1e9).toString(16)
+                            data.feeValue = "0x"+new BigNumber(data.gas).multipliedBy(new BigNumber(data.gasPrice)).toString(16);
+                            this.setState({
+                                data: data
+                            })
+                        } catch (e) {
+                            Toast.fail(e.message);
+                        }
+                    }
+                }
+            }], "text", null, [`Please input gas price (GTa)`])
+        } catch (e) {
+            Toast.fail(e.message, 3)
+        }
+    }
+
 
     storageDapp = (data) => {
         try {
@@ -458,7 +462,7 @@ class Browser extends Component {
                         that.sendMessage(msg);
                     })
                 } else if (msg.method === operation.method.executeContract) {
-                    that.executeContract(msg.data.tx, function (txHash) {
+                    that.executeContract(msg.data.tx, (txHash)=>{
                         if(txHash){
                             msg.data = txHash;
                         }else{
@@ -584,7 +588,7 @@ class Browser extends Component {
 
     render() {
 
-        const {barMode,barColor} = this.state;
+        const {barMode,barColor,data,cb} = this.state;
 
 
         return <div>
@@ -643,7 +647,44 @@ class Browser extends Component {
                 visible={this.state.showTxInfo}
                 animationType="slide-up"
             >
-                {this.state.txInfo}
+                {
+                    data && <List>
+                        <List.Item extra={<span>{data.from}</span>}>{lang.e().page.txDetail.from}</List.Item>
+                        <List.Item extra={
+                            <span>{decimals.convert(data.value, data.cy).toString(10)} {data.cy}</span>}>{lang.e().page.txDetail.amount}</List.Item>
+                        <List.Item extra={<span>{data.data}</span>}>Data</List.Item>
+                        <List.Item arrow="horizontal" onClick={()=>{
+                            this.modifyGasPrice(data);
+                        }} extra={
+                            <div>
+                                {decimals.convert(new BigNumber(data.gas).multipliedBy(new BigNumber(data.gasPrice)), "SERO").toString(10)}<br/>
+                                <span style={{
+                                    fontSize: '12px',
+                                    color: "#ddd"
+                                }}>{new BigNumber(data.gas).toString(10)}(Gas) * {new BigNumber(data.gasPrice).dividedBy(new BigNumber(10).pow(9)).toString(10)}(GTa)</span><br/>
+                            </div>
+                        }>
+                            {lang.e().page.txDetail.fee}
+                        </List.Item>
+                        <List.Item>
+                            <div style={{width: "100%", float: "left", display: "flex"}}>
+                                <div style={{width: "25%", marginRight: "15px"}}>
+                                    <Button onClick={() => {
+                                        this.setState({showTxInfo: false})
+                                        if(cb){
+                                            cb("")
+                                        }
+                                    }}>{lang.e().button.cancel}</Button>
+                                </div>
+                                <div style={{width: "70%"}}>
+                                    <Button type="primary" onClick={() => {
+                                        this.submit(data)
+                                    }}>{lang.e().button.confirm}</Button>
+                                </div>
+                            </div>
+                        </List.Item>
+                    </List>
+                }
             </Modal>
         </div>
 

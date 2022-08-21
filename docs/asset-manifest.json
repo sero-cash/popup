@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "./static/css/main.e1724655.chunk.css",
-    "main.js": "./static/js/main.29c4519a.chunk.js",
+    "main.js": "./static/js/main.04b7defb.chunk.js",
     "runtime~main.js": "./static/js/runtime~main.ca7cb530.js",
     "static/css/2.d6e5dedb.chunk.css": "./static/css/2.d6e5dedb.chunk.css",
-    "static/js/2.f7ed56c8.chunk.js": "./static/js/2.f7ed56c8.chunk.js",
+    "static/js/2.b5467efd.chunk.js": "./static/js/2.b5467efd.chunk.js",
     "index.html": "./index.html",
-    "precache-manifest.343c978ae44bf05d759032b25f20050e.js": "./precache-manifest.343c978ae44bf05d759032b25f20050e.js",
+    "precache-manifest.28740e5a1a93e43907d47f45b876a6e3.js": "./precache-manifest.28740e5a1a93e43907d47f45b876a6e3.js",
     "service-worker.js": "./service-worker.js",
-    "static/js/0.93946bfa.chunk.worker.js": "./static/js/0.93946bfa.chunk.worker.js",
+    "static/js/0.f348146a.chunk.worker.js": "./static/js/0.f348146a.chunk.worker.js",
     "static/js/1.b7e19987.chunk.worker.js": "./static/js/1.b7e19987.chunk.worker.js",
     "static/media/EUSDT.png": "./static/media/EUSDT.0a5458ff.png",
     "static/media/EWBTC.png": "./static/media/EWBTC.9091f9fa.png",

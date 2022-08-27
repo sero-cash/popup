@@ -3,8 +3,8 @@
     "id" : "cash.sero.popup", /*应用的标识*/
     "name" : "SERO Popup", /*应用名称，程序桌面图标名称*/
     "version" : {
-        "name" : "2.1.6", /*应用版本名称*/
-        "code" : 216
+        "name" : "2.1.7", /*应用版本名称*/
+        "code" : 217
 
     },
     "description" : "", /*应用描述信息*/
